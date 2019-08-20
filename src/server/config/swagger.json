@@ -1,0 +1,704 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Welcome to HackYourFuture's class07 final project for The Fabric of My Life (FABRIC).",
+    "version": "1.0.0",
+    "title": "Fabric of My Life REST API Documentation",
+    "contact": {
+      "email": "hackyourfuturecopenhagen@gmail.com"
+    }
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "episodes",
+      "description": "Everything about episodes"
+    },
+    {
+      "name": "hashtag",
+      "description": "Operations about hashtags"
+    },
+    {
+      "name": "rss",
+      "description": "RSS Feeds for Fabric"
+    },
+    {
+      "name": "auth",
+      "description": "Operations about user authentication"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get all users",
+        "description": "Get all users records.",
+        "operationId": "getUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/episodes": {
+      "get": {
+        "tags": [
+          "episodes"
+        ],
+        "summary": "Get all episodes",
+        "description": "Get all episodes table records.",
+        "operationId": "getEpisodes",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "episodes"
+        ],
+        "summary": "Create a new episode",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "user_id",
+            "type": "number",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "title",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "image_file",
+            "type": "file",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "netcast_file",
+            "type": "file",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "content_language",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/episodes/{id}": {
+      "get": {
+        "tags": [
+          "episodes"
+        ],
+        "summary": "Find episode by ID",
+        "description": "Returns a single episode",
+        "operationId": "getEpisodeById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of episode to return",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/episodes"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "episodes"
+        ],
+        "summary": "Delete specific episode by ID",
+        "description": "This enpoint deletes an episode based on the id parameter passed to id.  Only authenticated users can perform this operation.",
+        "operationId": "deleteEpisode",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of episode to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record has been deleted.",
+            "schema": {
+              "$ref": "#/definitions/episodes"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "The episode ID you provided does not exist."
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/hashtag": {
+      "get": {
+        "tags": [
+          "hashtag"
+        ],
+        "summary": "Get all hashtags",
+        "description": "Get all hashtag records.",
+        "operationId": "getHashtags",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                1,
+                0
+              ],
+              "default": 1
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "hashtag"
+        ],
+        "description": "Add a new hashtag",
+        "summary": "Add a new hashtag",
+        "operationId": "addHashtag",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/hashtags"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "hashtag"
+        ],
+        "description": "Update an existing hashtag",
+        "summary": "Update an existing hashtag",
+        "operationId": "editHashtag",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/hashtags"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/hashtag/{id}": {
+      "delete": {
+        "tags": [
+          "hashtag"
+        ],
+        "summary": "Delete hashtag record by ID",
+        "description": "Delete a single hashtag record",
+        "operationId": "deleteHashtag",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the hashtag record to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Record not found"
+          }
+        }
+      }
+    },
+    "/rss": {
+      "get": {
+        "tags": [
+          "rss"
+        ],
+        "summary": "Generate RSS Feed of Fabric podcast episodes",
+        "description": "Generate Fabric Episode RSS Feed",
+        "operationId": "feedController",
+        "produces": [
+          "application/xml"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Authenticates a user.",
+        "operationId": "login",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Bad request"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "users": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_role_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "language_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "userRoles": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "role": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "episodes": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 255
+        },
+        "content_language": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 255
+        },
+        "description": {
+          "minLength": 2,
+          "maxLength": 255,
+          "type": "string"
+        },
+        "image_file": {
+          "type": "string"
+        },
+        "netcast_file": {
+          "type": "string"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "episodes_hashtags": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hashtag_id": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "hashtags": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "language": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "language_code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "access_statistics": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "country": {
+          "type": "string"
+        },
+        "device": {
+          "type": "string"
+        },
+        "access_channel": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "translation_description": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "language_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "field_description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "translation_title": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "language_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "field_title": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
