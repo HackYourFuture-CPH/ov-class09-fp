@@ -2,8 +2,6 @@ import React from "react";
 
 import { Route, withRouter, Link } from "react-router-dom";
 
-// <Route exact path="/signup" component={SignUp} />
-
 import Home from "./../Home";
 
 const MainRouter = props => {

@@ -1,7 +1,7 @@
 {
-  "name": "calendar",
+  "name": "Optimum Voyage",
   "version": "1.0.0",
-  "description": "Calendar for classes and modules",
+  "description": "Optimum Voyage",
   "main": "index.js",
   "engines": {
     "node": "8.11.1"
