@@ -31,21 +31,15 @@
       "description": "Operations about user authentication"
     }
   ],
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/users": {
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Get all users",
         "description": "Get all users records.",
         "operationId": "getUsers",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -56,15 +50,11 @@
     },
     "/episodes": {
       "get": {
-        "tags": [
-          "episodes"
-        ],
+        "tags": ["episodes"],
         "summary": "Get all episodes",
         "description": "Get all episodes table records.",
         "operationId": "getEpisodes",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "successful operation"
@@ -72,13 +62,9 @@
         }
       },
       "post": {
-        "tags": [
-          "episodes"
-        ],
+        "tags": ["episodes"],
         "summary": "Create a new episode",
-        "consumes": [
-          "multipart/form-data"
-        ],
+        "consumes": ["multipart/form-data"],
         "parameters": [
           {
             "in": "formData",
@@ -125,15 +111,11 @@
     },
     "/episodes/{id}": {
       "get": {
-        "tags": [
-          "episodes"
-        ],
+        "tags": ["episodes"],
         "summary": "Find episode by ID",
         "description": "Returns a single episode",
         "operationId": "getEpisodeById",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -160,15 +142,11 @@
         }
       },
       "delete": {
-        "tags": [
-          "episodes"
-        ],
+        "tags": ["episodes"],
         "summary": "Delete specific episode by ID",
         "description": "This enpoint deletes an episode based on the id parameter passed to id.  Only authenticated users can perform this operation.",
         "operationId": "deleteEpisode",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -202,9 +180,7 @@
     },
     "/hashtag": {
       "get": {
-        "tags": [
-          "hashtag"
-        ],
+        "tags": ["hashtag"],
         "summary": "Get all hashtags",
         "description": "Get all hashtag records.",
         "operationId": "getHashtags",
@@ -217,10 +193,7 @@
             "type": "array",
             "items": {
               "type": "integer",
-              "enum": [
-                1,
-                0
-              ],
+              "enum": [1, 0],
               "default": 1
             },
             "collectionFormat": "multi"
@@ -233,15 +206,11 @@
         }
       },
       "post": {
-        "tags": [
-          "hashtag"
-        ],
+        "tags": ["hashtag"],
         "description": "Add a new hashtag",
         "summary": "Add a new hashtag",
         "operationId": "addHashtag",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -268,15 +237,11 @@
         ]
       },
       "patch": {
-        "tags": [
-          "hashtag"
-        ],
+        "tags": ["hashtag"],
         "description": "Update an existing hashtag",
         "summary": "Update an existing hashtag",
         "operationId": "editHashtag",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -305,15 +270,11 @@
     },
     "/hashtag/{id}": {
       "delete": {
-        "tags": [
-          "hashtag"
-        ],
+        "tags": ["hashtag"],
         "summary": "Delete hashtag record by ID",
         "description": "Delete a single hashtag record",
         "operationId": "deleteHashtag",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -339,15 +300,11 @@
     },
     "/rss": {
       "get": {
-        "tags": [
-          "rss"
-        ],
+        "tags": ["rss"],
         "summary": "Generate RSS Feed of Fabric podcast episodes",
         "description": "Generate Fabric Episode RSS Feed",
         "operationId": "feedController",
-        "produces": [
-          "application/xml"
-        ],
+        "produces": ["application/xml"],
         "parameters": [],
         "responses": {
           "200": {
@@ -358,14 +315,10 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "Authenticates a user.",
         "operationId": "login",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
+        "consumes": ["application/x-www-form-urlencoded"],
         "parameters": [
           {
             "in": "formData",
