@@ -100,10 +100,22 @@ see if you have used all the best practices
 
 #### Prettier
 
-Install Prettier - Code formatter
+The Project comes pre setup with [Prettier](https://prettier.io/), which is a
+tool that will automatically format your code. Prettier is currently set up to
+format your code right before committing to git, so there should be no risk of
+someone committing something that does not live up to our coding style.
 
-Enable format on save:
-https://github.com/prettier/prettier-vscode#format-on-save
+You may, however, optionally install the Prettier VS Code extension to format
+your code on every single save. This has the benefit that you will always be
+looking at code in the right format and you will know exactly what gets
+committed at any time.
+
+In VS Code you can press CTRL+P (CMD+P on Mac) and type
+`ext install esbenp.prettier-vscode` to install the extension directly or you
+can browser and find it in the Marketplace.
+
+Remember to enable "format on save" in VS Code settings. You can also enable
+formatting on pasting or while editing, depending on your taste.
 
 #### Environment variables
 
