@@ -12,7 +12,8 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon ./src/server/bin/server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "db:setup": "cd ./src/server/ && knex migrate:latest && knex seed:run"
+    "db:setup": "cd ./src/server/ && knex migrate:latest && knex seed:run",
+    "do": "PATH=$(npm bin):$PATH; eval $@;"
   },
   "author": "Benjamin Hughes",
   "license": "MIT",
