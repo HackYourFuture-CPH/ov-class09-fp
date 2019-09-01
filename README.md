@@ -38,6 +38,20 @@ The operator is an onshore personal with the day to day responsibility for a shi
 ##### Ship reportings
 Upon departure and arrival a ship will send a standardized email with voyage specifications. The ship will similarly every day at noon send a noon-report containing specifications on current position, speed, consumption and more.
 
+#### Database model
+
+![DB Diagram](/db/Schema.png)
+
+To get you started we have created a Database schema for you to follow. You can see a preview above or you can go to [dbdiagram.io](https://dbdiagram.io/d/5d67d65dced98361d6de0804) This schema is expected to change over the duration of the project, but since everyone is working on the same project it is important that you follow some guidelines if you need to change the DB.
+
+1. First make sure you actually need to change the DB. We have put a lot of effort into modelling the domain, so don't change it just for the sake of changing it, but on the other hand there will likely be things we haved missed.
+2. Write a migration using Knex.js that will perform the needed Schema updates. Make sure to test it thoroughly on your own branch.
+3. Take the file `/db/Schema.dbml` and copy into the editor on dbdiagram.io. Make changes according to what you changed in your migration.
+4. Copy paste the updated DBML code from dbdiagram.io and add it back to the `/db/Schema.dbml`.
+5. Export the diagram as pdf. Take a screenshot and use it to replace the file `/db/Schema.png`.
+6. Make sure to save the diagram on your dbdiagram.io account and use the "Share" button to copy the url and paste it into this readme file in the section above.
+7. Commit the updated Readme, png file and DBML file.
+8. Make a pull request with the updated schema files along with your migration.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 Fork the repo and clone the repo to your local machine using a terminal or a git client.
