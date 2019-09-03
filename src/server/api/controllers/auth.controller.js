@@ -8,9 +8,9 @@ const jwt = require("jsonwebtoken");
 const login = async ({ body }) => {
   try {
     const users = await knex("users")
-      .select("*", "users.id as id", "userRoles.id as userRolesId")
+      .select("*", "users.id as id", "user_roles.id as userRolesId")
       .where({ email: body.email })
-      .join("userRoles", { "users.user_role_id": "userRoles.id" });
+      .join("user_roles", { "users.role_id": "user_roles.id" });
     if (users.length > 0) {
       const user = users[0];
       const passwordMatch = bcrypt.compareSync(body.password, user.password);

@@ -35,7 +35,7 @@ function authorizeUser(...permittedRoles) {
 
     if (verifiedJwt) {
       const result = await knex("users")
-        .join("userRoles", "users.user_role_id", "userRoles.id")
+        .join("user_roles", "users.role_id", "user_roles.id")
         .select("*")
         .where({ "users.id": verifiedJwt.rest.id });
 

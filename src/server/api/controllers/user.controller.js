@@ -13,9 +13,9 @@ const getUsers = async req => {
   if (role.toUpperCase() === admin.toUpperCase()) {
     try {
       return await knex("users")
-        .select("users.email", "users.name", "userRoles.role")
-        .join("userRoles", {
-          "users.user_role_id": "userRoles.id"
+        .select("users.email", "users.name", "user_roles.role")
+        .join("user_roles", {
+          "users.role_id": "user_roles.id"
         });
     } catch (err) {
       console.log(err);
@@ -28,7 +28,7 @@ const getUsers = async req => {
 const getUserById = async id => {
   try {
     const users = await knex("users")
-      .select("users.id as id", "email", "user_role_id", "name", "password")
+      .select("users.id as id", "email", "role_id", "name", "password")
       .where({ id: id });
     if (users.length === 0) {
       throw new HttpError("Bad request", `Cannot find user for ID ${id}!`, 404);
@@ -43,7 +43,7 @@ const getAccount = async req => {
   const { id } = req.user.rest;
   try {
     const result = await knex("users")
-      .join("userRoles", "users.user_role_id", "userRoles.id")
+      .join("user_roles", "users.role_id", "user_roles.id")
       .select("*")
       .where({
         "users.id": id
@@ -67,7 +67,7 @@ const createUser = async ({ body }) => {
   }
 
   const role = await knex
-    .from("userRoles")
+    .from("user_roles")
     .select("*")
     .where({
       role: body.role
@@ -77,7 +77,7 @@ const createUser = async ({ body }) => {
     const hashedPassword = await hashPassword(body.password);
 
     return knex("users").insert({
-      user_role_id: role[0].id,
+      role_id: role[0].id,
       email: email,
       password: hashedPassword,
       name: body.name,
@@ -280,10 +280,10 @@ const editUserRole = async ({ body, id }) => {
 
   const queryDto = {};
 
-  if (body.user_role_id === "Admin" || body.user_role_id === "") {
-    queryDto.user_role_id = 1;
-  } else if (body.user_role_id === "Publisher") {
-    queryDto.user_role_id = 2;
+  if (body.role_id === "Admin" || body.role_id === "") {
+    queryDto.role_id = 1;
+  } else if (body.role_id === "Publisher") {
+    queryDto.role_id = 2;
   }
 
   if (Object.keys(queryDto).length !== 0) {
