@@ -37,7 +37,7 @@ module.exports = {
     publicPath: "/",
     historyApiFallback: true,
     port: parseInt(process.env.CLIENT_PORT, 10),
-    open: true,
+    open: process.env.OPEN_BROWSER === 'true' ? true : false,
     proxy: {
       "/api": `http://localhost:${process.env.API_PORT}`
     }
