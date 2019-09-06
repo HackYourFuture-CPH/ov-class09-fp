@@ -86,6 +86,6 @@ function onListening() {
   let bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
   logger.info(
-    "Server Listening on " + bind + " (use port 3000/api as a proxy)"
+    `Server Listening on ${bind} (use port ${process.env.CLIENT_PORT}/api as a proxy)`
   );
 }

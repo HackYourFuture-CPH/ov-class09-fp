@@ -36,7 +36,7 @@ module.exports = {
   devServer: {
     publicPath: "/",
     historyApiFallback: true,
-    port: 3000,
+    port: parseInt(process.env.CLIENT_PORT, 10),
     open: true,
     proxy: {
       "/api": `http://localhost:${process.env.API_PORT}`
