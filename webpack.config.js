@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -35,10 +36,10 @@ module.exports = {
   devServer: {
     publicPath: "/",
     historyApiFallback: true,
-    port: 3000,
+    port: parseInt(process.env.CLIENT_PORT, 10),
     open: true,
     proxy: {
-      "/api": "http://localhost:5000"
+      "/api": `http://localhost:${process.env.API_PORT}`
     }
   },
   node: {
