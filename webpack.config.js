@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -38,7 +39,7 @@ module.exports = {
     port: 3000,
     open: true,
     proxy: {
-      "/api": "http://localhost:5000"
+      "/api": `http://localhost:${process.env.API_PORT}`
     }
   },
   node: {
