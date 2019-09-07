@@ -85,12 +85,9 @@ Refer to this points on how to install on your OS:
 
 Run `npm install` to install all required dependencies.
 
-#### Coding styles
-Follow these best practices for coding: https://github.com/HackYourFuture-CPH/curriculum/blob/master/review/review-checklist.md
+#### Coding styles will be managed by Prettier
 
-This can be used as a checklist for every PR you make. Go through the list and see if you have used all the best practices
-
-#### Prettier
+##### Prettier
 Install Prettier - Code formatter
 
 Enable format on save: https://github.com/prettier/prettier-vscode#format-on-save
