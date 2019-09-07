@@ -7,17 +7,17 @@ exports.seed = function(knex, Promise) {
       return knex("user_roles").insert([
         {
           id: 1,
-          role: "Admin",
+          role: "superuser",
           status: true
         },
         {
           id: 2,
-          role: "User",
+          role: "admin",
           status: true
         },
         {
           id: 3,
-          role: "Guest",
+          role: "operator",
           status: true
         }
       ]);
