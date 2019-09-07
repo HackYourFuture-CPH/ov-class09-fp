@@ -42,7 +42,7 @@ Upon departure and arrival a ship will send a standardized email with voyage spe
 
 ![DB Diagram](/db/Schema.png)
 
-To get you started we have created a Database schema for you to follow. You can see a preview above or you can go to [dbdiagram.io](https://dbdiagram.io/d/5d67d65dced98361d6de0804) This schema is expected to change over the duration of the project, but since everyone is working on the same project it is important that you follow some guidelines if you need to change the DB.
+To get you started we have created a Database schema for you to follow. You can see a preview above or you can go to [dbdiagram.io](https://dbdiagram.io/d/5d73b79a83427516dc0b6dba) This schema is expected to change over the duration of the project, but since everyone is working on the same project it is important that you follow some guidelines if you need to change the DB.
 
 1. First make sure you actually need to change the DB. We have put a lot of effort into modelling the domain, so don't change it just for the sake of changing it, but on the other hand there will likely be things we haved missed.
 2. Write a migration using Knex.js that will perform the needed Schema updates. Make sure to test it thoroughly on your own branch.
