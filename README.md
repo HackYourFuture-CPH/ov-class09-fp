@@ -53,6 +53,35 @@ Upon departure and arrival a ship will send a standardized email with voyage
 specifications. The ship will similarly every day at noon send a noon-report
 containing specifications on current position, speed, consumption and more.
 
+#### Database model
+
+![DB Diagram](/db/Schema.png)
+
+To get you started we have created a Database schema for you to follow. You can
+see a preview above or you can go to
+[dbdiagram.io](https://dbdiagram.io/d/5d73b79a83427516dc0b6dba) This schema is
+expected to change over the duration of the project, but since everyone is
+working on the same project it is important that you follow some guidelines if
+you need to change the DB.
+
+1. First make sure you actually need to change the DB. We have put a lot of
+   effort into modelling the domain, so don't change it just for the sake of
+   changing it, but on the other hand there will likely be things we haved
+   missed.
+2. Write a migration using Knex.js that will perform the needed Schema updates.
+   Make sure to test it thoroughly on your own branch.
+3. Take the file `/db/Schema.dbml` and copy into the editor on dbdiagram.io.
+   Make changes according to what you changed in your migration.
+4. Copy paste the updated DBML code from dbdiagram.io and add it back to the
+   `/db/Schema.dbml`.
+5. Export the diagram as pdf. Take a screenshot and use it to replace the file
+   `/db/Schema.png`.
+6. Make sure to save the diagram on your dbdiagram.io account and use the
+   "Share" button to copy the url and paste it into this readme file in the
+   section above.
+7. Commit the updated Readme, png file and DBML file.
+8. Make a pull request with the updated schema files along with your migration.
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 Fork the repo and clone the repo to your local machine using a terminal or a git
@@ -98,7 +127,7 @@ https://github.com/HackYourFuture-CPH/curriculum/blob/master/review/review-check
 This can be used as a checklist for every PR you make. Go through the list and
 see if you have used all the best practices
 
-#### Prettier
+##### Prettier
 
 The Project comes pre setup with [Prettier](https://prettier.io/), which is a
 tool that will automatically format your code. Prettier is currently set up to
@@ -129,9 +158,14 @@ git).
 
 Here is how to get started with the `.env` file
 
-- Create a new file in source folder and name it .env
-- Copy contents from `.env.example` into newly created file .env
-- Change the database part to fit your database user and password
+- Copy and rename the `.env.example` file to `.env`:
+
+```
+cp .env.example .env
+```
+
+- Open the `.env` file and update any parameters according to the environment
+  you are running.
 
 #### Database setup
 
@@ -177,7 +211,8 @@ This repo has two branches:
 Lets get started with our first feature. Lets say we should build a cookies
 popup:
 
-1. Fork this repo. You now have a version of this repo on your profile.
+1. Fork this repo. You now have a version of this repo on your profile. <<<<<<<
+   HEAD
 2. BEFORE WE WRITE ONE SINGLE LINE OF CODE, create the feature branch where we
    will do all our cookies popup development. `git checkout -b cookies-popup`
 3. Now we write all our code in the `cookies-popup` branch, we make good commits
@@ -215,7 +250,46 @@ popup:
    automatically show up on the PR.
 7. Everything look nice now and someone merges `cookies-popup` into `develop`.
    Awesome that was our first feature :) This maybe seems like a big hassle, but
-   once you get used to it, it is not so bad!
+   once you get used to it, it is not so bad! =======
+8. BEFORE WE WRITE ONE SINGLE LINE OF CODE, create the feature branch where we
+   will do all our cookies popup development. `git checkout -b cookies-popup`
+9. Now we write all our code in the `cookies-popup` branch, we make good commits
+   that are not too bit, not too small! We push our branch so it is to be found
+   in our forked repo. Cool, so far so good!
+10. We now want the `cookies-popup` branch to go into
+    https://github.com/HackYourFuture-CPH/ov-class09-fp. We do this with a pull
+    request (PR). BUT BEFORE we do that, there are a couple of thing we need to
+    do before:
+    1. Lets say it took a week for us to write `cookies-popup` and in that time
+       there were 5 branches merged into the `develop` branch of
+       https://github.com/HackYourFuture-CPH/ov-class09-fp. Hmm that means that
+       our `develop` branch on https://github.com/YOURUSERNAME/ov-class09-fp is
+       out of date. So if we just created our PR we our feature might not work
+       (because the codebase was changed). Lets say that in one of the 5 commits
+       someone gave the body a `z-index` of 1. Our popup has no `z-index`, so
+       when the cookies popup should be shown it is not visible. So we need to
+       sync our `develop` branch with class07 `develop` branch. Marta talked
+       about that, but read this aswell:
+       https://help.github.com/en/articles/syncing-a-fork
+    2. Okay, so now our `develop` branch is in sync with class09 `develop`.
+       Perfect! To get those 5 changes lets merge `develop` into `cookies-popup`
+    3. **We now run our code** and see that the popup is not shown (see above
+       why). Lets fix it by giving our `cookies-popup` a `z-index` of 2, create
+       a new commit to our branch.
+    4. NEVER commit something that is not running! You will break the build for
+       everyone! so ALWAYS run the code before you create your PR.
+11. Now we can go to https://github.com/HackYourFuture-CPH/ov-class09-fp and
+    create a PR that merges `cookies-popup` into `develop`. This PR is really
+    nice, check it out:
+    https://github.com/HackYourFuture-CPH/class07-final-project/pull/89
+12. Now we have made our PR, great. Someone is going to review this PR and might
+    tell us to change a variable name. Now we simply make the change locally on
+    the `cookies-popup`, make that commit, push it and this commit will
+    automatically show up on the PR.
+13. Everything look nice now and someone merges `cookies-popup` into `develop`.
+    Awesome that was our first feature :) This maybe seems like a big hassle,
+    but once you get used to it, it is not so bad!
+    > > > > > > > develop
 
 ## 💻 Working with code <a name = "code"></a>
 
