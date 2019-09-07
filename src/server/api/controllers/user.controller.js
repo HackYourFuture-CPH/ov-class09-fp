@@ -98,11 +98,19 @@ const editUser = async ({ body }) => {
       email: email
     });
   if (user.length === 0) {
-    throw new HttpError("Bad request", `Cannot find user with email ${email}!`, 404);
+    throw new HttpError(
+      "Bad request",
+      `Cannot find user with email ${email}!`,
+      404
+    );
   }
 
   if (user.length > 1) {
-    throw new HttpError("Bad request", "An unexpected error has occurred!", 404);
+    throw new HttpError(
+      "Bad request",
+      "An unexpected error has occurred!",
+      404
+    );
   }
 
   const queryDto = {};
