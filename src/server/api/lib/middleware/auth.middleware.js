@@ -37,7 +37,7 @@ function authorizeUser(...permittedRoles) {
       const result = await knex("users")
         .join("user_roles", "users.role_id", "user_roles.id")
         .select("*")
-        .where({ "users.id": verifiedJwt.rest.id });
+        .where({ "users.id": verifiedJwt.id });
 
       const user = result[0];
 
@@ -47,8 +47,8 @@ function authorizeUser(...permittedRoles) {
           return next();
         } else {
           return res.status(401).json({
-            message: "Unauthorized user for role: " + verifiedJwt.rest.role,
-            role: verifiedJwt.rest.role
+            message: "Unauthorized user for role: " + verifiedJwt.role,
+            role: verifiedJwt.role
           });
         }
       }
