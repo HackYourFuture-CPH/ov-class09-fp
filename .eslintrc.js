@@ -17,8 +17,6 @@ module.exports = {
         asyncArrow: "always"
       }
     ],
-    "quotes": [
-      "double"
-    ]
+    quotes: ["double"]
   }
 };

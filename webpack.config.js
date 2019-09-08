@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 require('dotenv').config();
+=======
+require("dotenv").config();
+>>>>>>> 4b0e39357dcc57324eb1506d9f92fe56f230139e
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -37,7 +41,11 @@ module.exports = {
     publicPath: "/",
     historyApiFallback: true,
     port: parseInt(process.env.CLIENT_PORT, 10),
+<<<<<<< HEAD
     open: process.env.OPEN_BROWSER === 'true' ? true : false,
+=======
+    open: process.env.OPEN_BROWSER === "true" ? true : false,
+>>>>>>> 4b0e39357dcc57324eb1506d9f92fe56f230139e
     proxy: {
       "/api": `http://localhost:${process.env.API_PORT}`
     }
