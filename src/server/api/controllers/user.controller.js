@@ -8,20 +8,14 @@ const mailer = require("../lib/services/mailer.service");
 const { hashPassword } = require("../lib/utils/hash.password");
 
 const getUsers = async req => {
-  const { role } = req.user.rest;
-  const admin = "Admin";
-  if (role.toUpperCase() === admin.toUpperCase()) {
-    try {
-      return await knex("users")
-        .select("users.email", "users.name", "user_roles.role")
-        .join("user_roles", {
-          "users.role_id": "user_roles.id"
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    return "Unauthorized role for this request";
+  try {
+    return await knex("users")
+      .select("users.email", "users.name", "user_roles.role")
+      .join("user_roles", {
+        "users.role_id": "user_roles.id"
+      });
+  } catch (err) {
+    console.log(err);
   }
 };
 
