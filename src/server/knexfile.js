@@ -1,8 +1,6 @@
 require("dotenv").config({ path: "../../.env" });
 const path = require("path");
 
-console.log(process.env);
-
 module.exports = {
   development: {
     client: "mysql2",
