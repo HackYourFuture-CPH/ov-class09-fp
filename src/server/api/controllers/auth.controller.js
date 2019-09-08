@@ -16,7 +16,7 @@ const login = async ({ body }) => {
       const passwordMatch = bcrypt.compareSync(body.password, user.password);
 
       if (passwordMatch) {
-        const { password, sessionToken, refreshToken, ...rest } = user;
+        const { password, sessionToken, refreshToken } = user;
 
         const jwtSignObject = { id: user.id, role: user.role };
 
