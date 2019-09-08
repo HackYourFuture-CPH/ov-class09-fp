@@ -23,12 +23,7 @@ const createNewToken = async req => {
     }
 
     if (verifiedToken) {
-      const {
-        password,
-        session,
-        token,
-        ...rest
-      } = verifiedToken.rest;
+      const { password, session, token, ...rest } = verifiedToken.rest;
       const userInfo = {
         rest
       };

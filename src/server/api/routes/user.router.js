@@ -8,64 +8,89 @@ const router = express.Router({
 });
 const { authorizeUser } = require("../lib/middleware/auth.middleware");
 
+const ROLES = require("../../constants/roles");
+
 // controllers
 const userController = require("../controllers/user.controller");
 
 // ENDPOINT: /api/users/ :GET
-router.get("/", authorizeUser("Admin", "User"), (req, res, next) => {
-  userController
-    .getUsers(req)
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.get(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
+  (req, res, next) => {
+    userController
+      .getUsers(req)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 // ENDPOINT: /api/users/:id :GET
-
-router.get("/:id", authorizeUser("Admin", "User"), function(req, res, next) {
-  userController
-    .getUserById(req.params.id)
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.get(
+  "/:id",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  function(req, res, next) {
+    userController
+      .getUserById(req.params.id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 // ENDPOINT: /api/users/account :GET
-router.get("/account", authorizeUser("Admin", "User"), (req, res, next) => {
-  userController
-    .getAccount(req)
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.get(
+  "/account",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    userController
+      .getAccount(req)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 // ENDPOINT: /api/users/ :POST
-router.post("/", (req, res, next) => {
-  userController
-    .createUser({
-      body: req.body
-    })
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.post(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
+  (req, res, next) => {
+    userController
+      .createUser({
+        body: req.body
+      })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 // ENDPOINT: /api/users/ :PATCH
-router.patch("/", authorizeUser("Admin", "User"), (req, res, next) => {
-  userController
-    .editUser({
-      body: req.body
-    })
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.patch(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    userController
+      .editUser({
+        body: req.body
+      })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 // ENDPOINT: /api/users/editUserRole/:id :PATCH
-router.patch("/editUserRole/:id", authorizeUser("Admin"), (req, res, next) => {
-  userController
-    .editUserRole({
-      body: req.body,
-      id: req.params.id
-    })
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.patch(
+  "/editUserRole/:id",
+  authorizeUser(ROLES.SUPER_USER),
+  (req, res, next) => {
+    userController
+      .editUserRole({
+        body: req.body,
+        id: req.params.id
+      })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 // ENDPOINT: /api/users/sendPasswordResetCode :PATCH
 router.post("/sendPasswordResetCode", (req, res, next) => {
@@ -98,13 +123,17 @@ router.post("/changePasswordRandomly", (req, res, next) => {
 });
 
 // ENDPOINT: /api/example/ :DELETE
-router.delete("/", authorizeUser("Admin", "User"), (req, res, next) => {
-  userController
-    .deleteUser({
-      body: req.body
-    })
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.delete(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
+  (req, res, next) => {
+    userController
+      .deleteUser({
+        body: req.body
+      })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 module.exports = router;
