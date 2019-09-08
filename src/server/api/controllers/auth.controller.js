@@ -17,9 +17,8 @@ const login = async ({ body }) => {
 
       if (passwordMatch) {
         const { password, sessionToken, refreshToken, ...rest } = user;
-        const jwtSignObject = {
-          rest
-        };
+
+        const jwtSignObject = { id: user.id, role: user.role };
 
         const token = jwt.sign(jwtSignObject, process.env.SECRET_KEY, {
           expiresIn: "10h"
