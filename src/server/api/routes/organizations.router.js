@@ -53,10 +53,10 @@ router.get(
   }
 );
 
-// ENDPOINT: /api/users/editUserRole/:id :PATCH
+// ENDPOINT: /api/organizations/:id :PATCH
 router.patch(
   "/:id",
-  // authorizeUser(ROLES.SUPER_USER),
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
   (req, res, next) => {
     organizationController
       .updateOrganizationById({

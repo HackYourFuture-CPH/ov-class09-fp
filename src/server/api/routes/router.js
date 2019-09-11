@@ -22,6 +22,7 @@ router.use("/mail", mailRouter);
 
 router.use("/token", refreshTokenRouter);
 
+// /api/organizations
 router.use("/organizations", organizationRouter);
 
 module.exports = router;

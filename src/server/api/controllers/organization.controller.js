@@ -4,12 +4,11 @@ const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 
 const createOrganization = async ({ body }) => {
-  const { name } = body;
   const organization = await knex
     .from("organizations")
     .select("*")
     .where({
-      name
+      body
     });
   if (organization.length !== 0) {
     throw new HttpError("Bad request", "organization already exists!", 409);
@@ -54,9 +53,6 @@ const getOrganizationsById = async id => {
 
 const updateOrganizationById = async ({ body, id }) => {
   try {
-    // const organization = await knex("organizations")
-    //     .where({ id: id })
-    //      .update({ name: body.name, logo: body.logo });
     const organization = await knex
       .from("organizations")
       .select("*")
