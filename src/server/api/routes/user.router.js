@@ -25,6 +25,18 @@ router.get(
   }
 );
 
+// ENDPOINT: /api/users/account :GET
+router.get(
+  "/account/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    userController
+      .getAccount(req)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 // ENDPOINT: /api/users/:id :GET
 router.get(
   "/:id",
@@ -32,18 +44,6 @@ router.get(
   function(req, res, next) {
     userController
       .getUserById(req.params.id)
-      .then(result => res.json(result))
-      .catch(next);
-  }
-);
-
-// ENDPOINT: /api/users/account :GET
-router.get(
-  "/account",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
-  (req, res, next) => {
-    userController
-      .getAccount(req)
       .then(result => res.json(result))
       .catch(next);
   }
