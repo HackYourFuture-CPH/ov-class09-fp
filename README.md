@@ -59,7 +59,7 @@ containing specifications on current position, speed, consumption and more.
 
 To get you started we have created a Database schema for you to follow. You can
 see a preview above or you can go to
-[dbdiagram.io](https://dbdiagram.io/d/5d67d65dced98361d6de0804) This schema is
+[dbdiagram.io](https://dbdiagram.io/d/5d798d7283427516dc0b9212) This schema is
 expected to change over the duration of the project, but since everyone is
 working on the same project it is important that you follow some guidelines if
 you need to change the DB.
