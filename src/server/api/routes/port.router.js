@@ -39,4 +39,16 @@ router.post(
   }
 );
 
+// ENDPOINT: /api/waypoints/:waypoint_id/ports/ :GET
+router.get(
+  "/:waypoint_id/ports/",
+  // authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  function(req, res, next) {
+    portController
+      .getPortByWaypointId(req.params.waypoint_id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 module.exports = router;

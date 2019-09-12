@@ -39,4 +39,17 @@ const createPort = async ({ body }) => {
   }
 };
 
-module.exports = { getPortById, createPort };
+const getPortByWaypointId = async id => {
+  try {
+    return await knex("waypoints")
+      .select("ports.name")
+      .where("waypoints.id", id)
+      .join("ports", {
+        "waypoints.port_id": "ports.id"
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { getPortById, createPort, getPortByWaypointId };
