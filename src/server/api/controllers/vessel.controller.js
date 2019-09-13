@@ -99,9 +99,18 @@ const editVessel = async ({ body }) => {
   } else return "No edit fields passed, nothing updated!";
 };
 
+//Get vessels by organization id
+const getVesselsByOrganizationId = async organization_id => {
+  const vessel = await knex()
+    .from("vessels")
+    .where({ organization_id: organization_id });
+  return vessel;
+};
+
 module.exports = {
   getVessels,
   getVesselById,
   createVessel,
-  editVessel
+  editVessel,
+  getVesselsByOrganizationId
 };
