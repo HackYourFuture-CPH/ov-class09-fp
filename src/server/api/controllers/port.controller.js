@@ -9,7 +9,6 @@ const getPortById = async id => {
       .select("ports.id as id", "name", "created_at", "updated_at")
       .where({ id: id });
     if (ports.length === 0) {
-      console.log("port controller is working");
       throw new HttpError("Bad request", `Cannot find port for ID ${id}!`, 404);
     }
     return ports;
@@ -20,16 +19,18 @@ const getPortById = async id => {
 
 const createPort = async ({ body }) => {
   const { name } = body;
+
+  if (name.length === 0) {
+    throw new HttpError("Bad request", "Port name is missing!", 409);
+  }
+
   const ports = await knex
     .from("ports")
     .select("*")
     .where({
       name
     });
-  console.log(ports);
-  if (name.length === 0) {
-    throw new HttpError("Bad request", "Port name is missing!", 409);
-  }
+
   if (ports.length !== 0) {
     throw new HttpError("Bad request", "port already exists!", 409);
   } else {
@@ -48,7 +49,7 @@ const getPortByWaypointId = async id => {
         "waypoints.port_id": "ports.id"
       });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
