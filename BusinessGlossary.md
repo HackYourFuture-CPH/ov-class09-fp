@@ -1,11 +1,11 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://www.hackyourfuture.dk/static/logo-dark.svg" alt="Project logo"></a>
+ <img width=200px height=200px src="src/client/assets/images/OptimumVoyageLogo.png" alt="Optimum Voyage logo"></a>
 </p>
 
 <h3 align="center">Business Glossary</h3>
 
-##Glossary:
+## Glossary:
 
 AddedCost - Added cost in percentage facing the suggested route
 AftDraft - The draft aft (stern) is measured in the perpendicular of the stern. It's measured in meters. 
@@ -25,12 +25,12 @@ MMSI - Maritime Mobile Service Identity it’s the ID that is used for radio/fre
 RPM - Revolutions per minute - It is a unit of rotational speed or the frequency of rotation around a fixed axis.
 UTC - Coordinated Universal Time.
 
-T##ypes of Users/Roles:
+## Types of Users/Roles:
 Super Users are only for the OV Staff
 Admin Users are the specific Organisation Admin Staff
 Operator Users are the specific operators of a certain Organisation Operators Staff
 
-##Other business concepts:
+## Other business concepts:
 Vessels are the Ships from a certain Organisation
 Vessels go on Voyages which can have 3 status, created, ongoing or completed. Voyages have Routes between Waypoints.
 OV suggests routes between waypoints with the goal of maximising the performance of the voyage and we call that Suggested Routes
