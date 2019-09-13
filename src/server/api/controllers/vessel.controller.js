@@ -38,7 +38,7 @@ const getVesselById = async id => {
 
 const createVessel = async ({ body }) => {
   const { id, organization_id, mmsi, name } = body;
-  console.log(body);
+
   const organization = await knex
     .from("organizations")
     .select("*")
@@ -52,7 +52,7 @@ const createVessel = async ({ body }) => {
       404
     );
   }
-  //console.log("it is a vessel id", vessel);
+
   const vessels = await knex("vessels").insert({
     organization_id: organization[0].id,
     mmsi: mmsi,
