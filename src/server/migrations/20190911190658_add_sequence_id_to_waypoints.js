@@ -2,10 +2,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.table("waypoints", table => {
-    table
-      .integer("sequence_id")
-      .unsigned()
-      .notNullable();
+    table.integer("sequence_id").unsigned();
   });
 };
 
