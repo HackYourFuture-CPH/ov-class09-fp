@@ -31,4 +31,7 @@ router.use("/vessels", vesselRouter);
 // /api/organizations
 router.use("/organizations", organizationRouter);
 
+// /api/organizations/organization_id/vessels
+router.use("/organizations/:organization_id/vessels", vesselRouter);
+
 module.exports = router;
