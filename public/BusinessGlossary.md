@@ -41,3 +41,4 @@ Organizations have operators and admins that can use the app that we are develop
 Users from the Organisations can only see and operate their own vessels and routes.
 The Organisations can choose the type of report/optimization that they want for their voyages and that means that OV will build their optimisations based on this choice:
 and build 1 of these 3 reports Fixed ETA, Least cost arrival, Earliest arrival.
+
