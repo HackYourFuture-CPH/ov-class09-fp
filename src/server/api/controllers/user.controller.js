@@ -23,7 +23,7 @@ const getUserById = async id => {
   try {
     const users = await knex("users")
       .select("users.id as id", "email", "role_id", "name", "password")
-      .where({ id: id });
+      .where({ id });
     if (users.length === 0) {
       throw new HttpError("Bad request", `Cannot find user for ID ${id}!`, 404);
     }
@@ -49,7 +49,7 @@ const getAccount = async req => {
 };
 
 const createUser = async ({ body }) => {
-  const { email } = body;
+  const { name, email, organization_id } = body;
   const users = await knex
     .from("users")
     .select("*")
@@ -79,10 +79,12 @@ const createUser = async ({ body }) => {
 
     return knex("users").insert({
       role_id: role[0].id,
+
       organization_id: organization[0].id,
       email: email,
+
       password: hashedPassword,
-      name: body.name,
+      name,
       status: false
     });
   } else {
@@ -96,9 +98,7 @@ const editUser = async ({ body }) => {
   const user = await knex
     .from("users")
     .select("*")
-    .where({
-      email: email
-    });
+    .where({ email });
   if (user.length === 0) {
     throw new HttpError(
       "Bad request",
@@ -115,16 +115,16 @@ const editUser = async ({ body }) => {
     );
   }
 
-  const queryDto = {};
+  const queryData = {};
   const hashedPassword = await hashPassword(password);
 
-  if (body.name) queryDto.name = name;
-  if (body.password) queryDto.password = hashedPassword;
+  if (body.name) queryData.name = name;
+  if (body.password) queryData.password = hashedPassword;
 
-  if (Object.keys(queryDto).length !== 0) {
+  if (Object.keys(queryData).length !== 0) {
     return knex("users")
       .where({ id: user[0].id })
-      .update(queryDto);
+      .update(queryData);
   } else return "No edit fields passed, nothing updated!";
 };
 
@@ -288,20 +288,20 @@ const editUserRole = async ({ body, id }) => {
     throw new HttpError("Bad request", `Cannot find user for ID ${id}!`, 404);
   }
 
-  const queryDto = {};
+  const queryData = {};
 
   if (body.role_id === "Admin" || body.role_id === "") {
-    queryDto.role_id = 1;
+    queryData.role_id = 1;
   } else if (body.role_id === "Publisher") {
-    queryDto.role_id = 2;
+    queryData.role_id = 2;
   }
 
-  if (Object.keys(queryDto).length !== 0) {
+  if (Object.keys(queryData).length !== 0) {
     return knex("users")
       .where({
         id: id
       })
-      .update(queryDto);
+      .update(queryData);
   } else return "No edit fields passed, nothing updated!";
 };
 
