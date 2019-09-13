@@ -67,11 +67,19 @@ const createUser = async ({ body }) => {
       role: body.role
     });
 
+  const organization = await knex
+    .from("organizations")
+    .select("*")
+    .where({
+      id: 1
+    });
+
   if (role.length > 0) {
     const hashedPassword = await hashPassword(body.password);
 
     return knex("users").insert({
       role_id: role[0].id,
+      organization_id: organization[0].id,
       email: email,
       password: hashedPassword,
       name: body.name,
