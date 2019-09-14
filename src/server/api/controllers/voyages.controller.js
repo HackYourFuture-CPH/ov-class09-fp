@@ -27,7 +27,7 @@ const createVoyage = async ({ body }) => {
       status: body.status
     });
   } catch {
-    console.log("something is wrong!");
+    console.log("Error: Could not insert voyage.");
   }
 };
 
