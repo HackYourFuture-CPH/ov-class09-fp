@@ -17,6 +17,7 @@ const getSelected_routes = async req => {
     err.message;
   }
 };
+
 const createSelectedRoute = async ({ body }) => {
   const { voyage_id, route_id } = body;
   const selected_route = await knex
@@ -58,7 +59,7 @@ const createSelectedRoute = async ({ body }) => {
       .select("*")
       .where({
         voyage_id, route_id
-      });
+      }); 
     if (selectedd_route.length !== 0) {
       throw new HttpError("Bad request", "selected_route already exists!", 409);
     }
@@ -72,6 +73,7 @@ const createSelectedRoute = async ({ body }) => {
 
   };
 */
+
 module.exports = {
   getSelected_routes,
   createSelectedRoute
