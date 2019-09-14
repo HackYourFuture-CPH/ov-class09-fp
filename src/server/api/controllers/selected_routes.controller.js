@@ -31,15 +31,15 @@ const createSelectedRoute = async ({ body }) => {
   }
   const voyage = await knex
     .from("voyages")
-    .select("voyage_id")
+    .select("id")
     .where({
-      voyage_id: voyage_id
+      id: voyage_id
     });
   const route = await knex
     .from("routes")
-    .select("route_id")
+    .select("id")
     .where({
-      route_id: route_id
+      id: route_id
     });
   if (voyage.length > 0 && route.length > 0) {
     return knex("selected_routes").insert({
