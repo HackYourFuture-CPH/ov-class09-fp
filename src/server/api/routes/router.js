@@ -25,6 +25,4 @@ router.use("/token", refreshTokenRouter);
 
 router.use("/ports", portRouter);
 
-router.use("/waypoints", portRouter);
-
 module.exports = router;
