@@ -12,23 +12,23 @@ const ROLES = require("../../constants/roles");
 const voyagesController = require("../controllers/voyages.controller");
 
 // ENDPOINT: /api/voyages/ :GET
-router.get(
+router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
+  voyagesController
+    .getVoyages()
+    .then(result => res.json(result))
+    .catch(next);
+});
+
+// ENDPOINT: /api/voyages/ :post
+router.post(
   "/",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     voyagesController
-      .getVoyages()
+      .createVoyage({ body: req.body })
       .then(result => res.json(result))
       .catch(next);
   }
 );
-
-// ENDPOINT: /api/voyages/ :post
-router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
-  voyagesController
-    .createVoyage({ body: req.body })
-    .then(result => res.json(result))
-    .catch(next);
-});
 
 module.exports = router;
