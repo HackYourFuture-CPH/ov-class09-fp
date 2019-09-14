@@ -20,7 +20,6 @@
 - [Working with git](#git)
 - [Working with code](#code)
 
-
 ## 🧐 About <a name = "about"></a>
 
 Main repository for the final project for Class 09
@@ -55,6 +54,7 @@ specifications. The ship will similarly every day at noon send a noon-report
 containing specifications on current position, speed, consumption and more.
 
 ##### Business Glossary
+
 ![Click here to check the Business Glossary](/BusinessGlossary.md)
 
 #### Database model
