@@ -11,6 +11,7 @@ const { authorizeUser } = require("../lib/middleware/auth.middleware");
 const ROLES = require("../../constants/roles");
 // controllers
 const selected_routesController = require("../controllers/selected_routes.controller");
+const getPortsByIdController = require("../controllers/getPortsById.controller");
 
 //ENDPOINT: //api/selected_routes/ :GET
 router.get(
@@ -23,7 +24,7 @@ router.get(
       .catch(next);
   }
 );
-
+//ENDPOINT: //api/selected_routes/ :POST
 router.post(
   "/",
   //authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
@@ -32,6 +33,18 @@ router.post(
       .createSelectedRoute({
         body: req.body
       })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+//ENDPOINT: //api/ports/:id :GET
+router.get(
+  "/:id",
+  // authorizeUser(ROLES.SUPER_USER),
+  function(req, res, next) {
+    getPortsByIdController
+      .getPortById(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }

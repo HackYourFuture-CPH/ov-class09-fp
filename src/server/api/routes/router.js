@@ -9,6 +9,7 @@ const authRouter = require("./auth.router");
 const refreshTokenRouter = require("./refresh.token.router");
 const mailRouter = require("./mail.router");
 const selectedRoutes = require("./selected_routes.router");
+const getPortsById = require("./getPortsById.router");
 
 // /api/users
 router.use("/users", userRouter);
@@ -25,5 +26,8 @@ router.use("/token", refreshTokenRouter);
 
 // /api/selected_routes
 router.use("/selected_routes", selectedRoutes);
+
+// /api/ports
+router.use("/ports", selectedRoutes);
 
 module.exports = router;
