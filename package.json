@@ -49,6 +49,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@storybook/addon-knobs": "^5.2.0",
     "@storybook/react": "^5.2.0",
     "body-parser": "^1.19.0",
     "clean-webpack-plugin": "^3.0.0",
