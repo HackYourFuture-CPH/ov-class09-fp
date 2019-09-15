@@ -2,10 +2,7 @@
 
 const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
-const bcrypt = require("bcrypt");
-const generatePassword = require("generate-password");
-const mailer = require("../lib/services/mailer.service");
-const { hashPassword } = require("../lib/utils/hash.password");
+
 //GET
 const getVessels = async req => {
   try {
@@ -27,7 +24,11 @@ const getVesselById = async id => {
       .select("vessels.id as id", "organization_id", "mmsi", "name")
       .where({ id: id });
     if (vessels.length === 0) {
-      throw new HttpError("Bad request", `Cannot find user for ID ${id}!`, 404);
+      throw new HttpError(
+        "Bad request",
+        `Cannot find vessel for ID ${id}!`,
+        404
+      );
     }
     return vessels;
   } catch (err) {
@@ -37,7 +38,7 @@ const getVesselById = async id => {
 //POST
 
 const createVessel = async ({ body }) => {
-  const { id, organization_id, mmsi, name } = body;
+  const { organization_id, mmsi, name } = body;
 
   const organization = await knex
     .from("organizations")
@@ -45,6 +46,7 @@ const createVessel = async ({ body }) => {
     .where({
       id: organization_id
     });
+
   if (organization.length === 0) {
     throw new HttpError(
       "Bad request",
@@ -64,17 +66,17 @@ const createVessel = async ({ body }) => {
 //PATCH
 const editVessel = async ({ body }) => {
   const { id, organization_id, mmsi, name } = body;
-  console.log(body);
   const vessel = await knex
     .from("vessels")
     .select("*")
     .where({
+      //id: id,
       name: name
     });
   if (vessel.length === 0) {
     throw new HttpError(
       "Bad request",
-      `Cannot find user with email ${name}!`,
+      `Cannot find vessel with name ${name}!`,
       404
     );
   }
