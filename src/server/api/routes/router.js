@@ -9,6 +9,7 @@ const authRouter = require("./auth.router");
 const refreshTokenRouter = require("./refresh.token.router");
 const mailRouter = require("./mail.router");
 const portRouter = require("./port.router");
+const voyagesRouter = require("./voyages.router");
 
 const organizationRouter = require("./organizations.router");
 // /api/users
@@ -28,4 +29,6 @@ router.use("/ports", portRouter);
 // /api/organizations
 router.use("/organizations", organizationRouter);
 
+// /api/voyages
+router.use("/voyages", voyagesRouter);
 module.exports = router;
