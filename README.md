@@ -198,15 +198,16 @@ https://knexjs.org/#Builder-identifier-syntax
 
 ### 📦 NPM scripts and commands
 
-| Command            | Note                                                                                                                                                |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run build`    | Build the project in production mode.                                                                                                               |
-| `npm start`        | Runs `build` and starts the project (to be used on production servers).                                                                             |
-| `npm run client`   | Runs the client application and serves it with webpack development server.                                                                          |
-| `npm run server`   | Runs the server and serves it via Nodemon, meaning that the server will automatically be restarted when you make code changes.                      |
-| `npm run dev`      | Runs `client` and `server` concurrently. _This is generally the command you run for development_.                                                   |
-| `npm run db:setup` | Runs `knex migrate:latest` and `knex seed:run`. Quick setup to get a fresh database ready for work.                                                 |
-| `npm run do`       | Utility that allows you to easily run cli commands on npm packages installed in your `node_modules` folder without having to install them globally. |
+| Command             | Note                                                                                                                                                |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run build`     | Build the project in production mode.                                                                                                               |
+| `npm start`         | Runs `build` and starts the project (to be used on production servers).                                                                             |
+| `npm run client`    | Runs the client application and serves it with webpack development server.                                                                          |
+| `npm run server`    | Runs the server and serves it via Nodemon, meaning that the server will automatically be restarted when you make code changes.                      |
+| `npm run dev`       | Runs `client` and `server` concurrently. _This is generally the command you run for development_.                                                   |
+| `npm run db:setup`  | Runs `knex migrate:latest` and `knex seed:run`. Quick setup to get a fresh database ready for work.                                                 |
+| `npm run do`        | Utility that allows you to easily run cli commands on npm packages installed in your `node_modules` folder without having to install them globally. |
+| `npm run storybook` | Run the Storybook user interface.                                                                                                                   |
 
 ## ✈️ Working with migrations
 
