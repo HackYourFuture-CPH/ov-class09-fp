@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Map,
-  TileLayer,
-  Marker,
-  Popup,
-  Polyline,
-  GeoJSON
-} from "react-leaflet";
+import { Map, TileLayer, Popup, Polyline } from "react-leaflet";
 import MapMarker from "./Marker";
 
 function MapComponent({
