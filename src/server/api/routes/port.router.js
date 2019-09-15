@@ -25,4 +25,18 @@ router.get(
   }
 );
 
+// ENDPOINT: /api/ports/ :POST
+router.post(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
+  (req, res, next) => {
+    portController
+      .createPort({
+        body: req.body
+      })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 module.exports = router;
