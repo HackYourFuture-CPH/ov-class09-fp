@@ -6,7 +6,6 @@
 <h3 align="center">Business Glossary</h3>
 
 ## Glossary:
-
 AddedCost - Added cost in percentage facing the suggested route.<br>
 AftDraft - The draft aft (stern) is measured in the perpendicular of the stern. It's measured in meters. <br>
 AvgSpeed - Average Speed in knots. A knot is 1,852 Km/h.<br>
@@ -31,14 +30,17 @@ Admin Users are the specific Organisation Admin Staff<br>
 Operator Users are the specific operators of a certain Organisation Operators Staff<br>
 
 ## Other business concepts:
-Vessels are the Ships from a certain Organisation.<br>
-Vessels go on Voyages which can have 3 status, created, ongoing or completed. Voyages have Routes between Waypoints.<br>
-OV suggests routes between waypoints with the goal of maximising the performance of the voyage and we call that Suggested Routes.<br>
-Every time (typically every 12h) the captain of the ship reports back with the Vessel Report OV processes the data of that report and creates new Suggested Routes.<br>
-Waypoints are points on the map with Lon and Lat defined.<br>
-Ports are waypoints (Lon, Lat).<br>
-Organizations have operators and admins that can use the app that we are developing and OV will have a Super User Admin that can Admin the whole app.<br>
-Users from the Organisations can only see and operate their own vessels and routes.<br>
-The Organisations can choose the type of report/optimization that they want for their voyages and that means that OV will build their optimisations based on this choice:
-and build 1 of these 3 reports Fixed ETA, Least cost arrival, Earliest arrival.<br>
-
+Vessels are the Ships from a certain Organisation Vessels go on Voyages which
+can have 3 status, created, ongoing or completed. Voyages have Routes between
+Waypoints. OV suggests routes between waypoints with the goal of maximising the
+performance of the voyage and we call that Suggested Routes Every time
+(typically every 12h) the captain of the ship reports back with the Vessel
+Report OV processes the data of that report and creates new Suggested Routes
+Waypoints are points on the map with Lon and Lat defined Ports are waypoints
+(Lon, Lat) Organizations have operators and admins that can use the app that we
+are developing and OV will have a Super User Admin that can Admin the whole app.
+Users from the Organisations can only see and operate their own vessels and
+routes. The Organisations can choose the type of report/optimization that they
+want for their voyages and that means that OV will build their optimisations
+based on this choice: and build 1 of these 3 reports Fixed ETA, Least cost
+arrival, Earliest arrival.
