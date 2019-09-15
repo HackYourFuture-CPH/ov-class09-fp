@@ -24,10 +24,11 @@ const getWaypointsById = async id => {
 
 const createWaypoints = async ({ body }) => {
   const { lat, lon, port_id, route_id } = body;
+  console.log("this is body", body);
 
   // 1. Get the route
   const routes = await knex
-    .from("routes")
+    .from("suggested_routes")
     .select("*")
     .where({ id: route_id });
   if (routes.length === 0) {
@@ -37,7 +38,7 @@ const createWaypoints = async ({ body }) => {
       409
     );
   }
-
+  console.log("routes", routes);
   // 2. Get the port
   const ports = await knex
     .from("ports")
@@ -64,9 +65,8 @@ const createWaypoints = async ({ body }) => {
 
 // Method for getting waypoints by route id
 const getWaypointsForRoute = async id => {
-  console.log("object");
   try {
-    return await knex("routes")
+    return await knex("suggested_routes")
       .select("*")
       .where("route_id", id)
       .join("waypoints", { route_id: "route_id " });
