@@ -32,6 +32,7 @@
     "formik": "^1.5.8",
     "generate-password": "^1.4.2",
     "interactjs": "^1.5.3",
+    "json-server": "^0.15.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.0",
     "moment-timezone": "^0.5.26",
