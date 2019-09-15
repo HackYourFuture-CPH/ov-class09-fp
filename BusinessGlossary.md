@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="src/client/assets/images/OptimumVoyageLogo.png" alt="Optimum Voyage logo"></a>
+ <img width=200px src="src/client/assets/images/Logo.png" alt="Optimum Voyage logo"></a>
 </p>
 
 <h3 align="center">Business Glossary</h3>
@@ -28,6 +28,31 @@ Coordinated Universal Time.
 Super Users are only for the OV Staff Admin Users are the specific Organisation
 Admin Staff Operator Users are the specific operators of a certain Organisation
 Operators Staff
+
+## Other business concepts:
+
+AddedCost - Added cost in percentage facing the suggested route.<br> AftDraft -
+The draft aft (stern) is measured in the perpendicular of the stern. It's
+measured in meters. <br> AvgSpeed - Average Speed in knots. A knot is 1,852
+Km/h.<br> DistOG - Distance over ground in nautical mile. A nautical mile is
+1,852 km/h.<br> DistTW - Distance through water in nautical mile.<br> ECA -
+Emission Control Areas are designated areas where vessels can only operate with
+LSFO.<br> ETA - Estimate Time of Arrival.<br> ETD - Estimate Time of
+Departure.<br> ForwardDraft - in meters. The draft forward (bow) is measured in
+the perpendicular of the bow.<br> HFO - Heavy Fuel Oil in Tons.<br> LAT -
+Latitude.<br> LON - Longitude.<br> LSFO - Low Sulphur Fuel Oil in Tons, it's the
+Fuel that is mandatory to use in the ECA.<br> MaxWaveHs - Maximum wave height in
+meters.<br> MMSI - Maritime Mobile Service Identity it’s the ID that is used for
+radio/frequency communications and it can be used as an unique identifier of a
+Vessel.<br> RPM - Revolutions per minute - It is a unit of rotational speed or
+the frequency of rotation around a fixed axis.<br> UTC - Coordinated Universal
+Time.<br>
+
+## Types of Users/Roles:
+
+Super Users are only for the OV Staff<br> Admin Users are the specific
+Organisation Admin Staff<br> Operator Users are the specific operators of a
+certain Organisation Operators Staff<br>
 
 ## Other business concepts:
 
