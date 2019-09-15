@@ -72,10 +72,8 @@ const createUser = async ({ body }) => {
 
     return knex("users").insert({
       role_id: role[0].id,
-
       organization_id,
       email,
-
       password: hashedPassword,
       name,
       status: false
