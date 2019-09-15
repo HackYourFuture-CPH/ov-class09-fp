@@ -13,7 +13,8 @@
     "server": "nodemon ./src/server/bin/server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "db:setup": "cd ./src/server/ && knex migrate:latest && knex seed:run",
-    "do": "PATH=$(npm bin):$PATH; eval $@;"
+    "do": "PATH=$(npm bin):$PATH; eval $@;",
+    "storybook": "cd ./src/client/ && start-storybook"
   },
   "author": "Benjamin Hughes",
   "license": "MIT",
@@ -48,6 +49,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@storybook/react": "^5.2.0",
     "body-parser": "^1.19.0",
     "clean-webpack-plugin": "^3.0.0",
     "concurrently": "^4.1.0",
