@@ -1,0 +1,24 @@
+{
+  "vessel_list": [
+    {
+      "id": "1",
+      "name": "SS_Martha",
+      "company_id": "0"
+    },
+    {
+      "id": "11",
+      "name": "Boaty_McBoatface",
+      "company_id": "0"
+    },
+    {
+      "id": "4",
+      "name": "Seven_Seas",
+      "company_id": "1"
+    },
+    {
+      "id": "5",
+      "name": "MS_Marie",
+      "company_id": "1"
+    }
+  ]
+}
