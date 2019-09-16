@@ -11,6 +11,7 @@ const mailRouter = require("./mail.router");
 const portRouter = require("./port.router");
 
 const organizationRouter = require("./organizations.router");
+const vesselRouter = require("./vessel.router");
 // /api/users
 router.use("/users", userRouter);
 
@@ -27,8 +28,8 @@ router.use("/token", refreshTokenRouter);
 router.use("/ports", portRouter);
 // /api/organizations
 router.use("/organizations", organizationRouter);
-
+router.use("/vessels", vesselRouter);
 // /api/organizations/organization_id/vessels
-router.use("/organizations/:organization_id/vessels", vesselRouter);
+router.use("/organizations/:organization_id/vessels", organizationRouter);
 
 module.exports = router;

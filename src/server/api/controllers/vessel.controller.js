@@ -39,7 +39,7 @@ const getVesselById = async id => {
 
 const createVessel = async ({ body }) => {
   const { organization_id, mmsi, name } = body;
-
+  console.log(body);
   const organization = await knex
     .from("organizations")
     .select("*")
@@ -56,9 +56,9 @@ const createVessel = async ({ body }) => {
   }
 
   const vessels = await knex("vessels").insert({
-    organization_id: organization[0].id,
-    mmsi: mmsi,
-    name: name
+    organization_id,
+    mmsi,
+    name
   });
   return vessels;
 };
@@ -70,9 +70,9 @@ const editVessel = async ({ body }) => {
     .from("vessels")
     .select("*")
     .where({
-      //id: id,
-      name: name
-    });
+      name
+    })
+    .first();
   if (vessel.length === 0) {
     throw new HttpError(
       "Bad request",
@@ -96,14 +96,15 @@ const editVessel = async ({ body }) => {
 
   if (Object.keys(queryVessel).length !== 0) {
     return knex("vessels")
-      .where({ id: vessel[0].id })
+      .where({ id: vessel.id })
       .update(queryVessel);
   } else return "No edit fields passed, nothing updated!";
 };
 
 //Get vessels by organization id
 const getVesselsByOrganizationId = async organization_id => {
-  const vessel = await knex()
+  console.log("this is comment", organization_id);
+  const vessel = await knex
     .from("vessels")
     .where({ organization_id: organization_id });
   return vessel;

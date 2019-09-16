@@ -1,4 +1,5 @@
-"use strict";
+const vesselController = require("../controllers/vessel.controller");
+("use strict");
 
 // router setup
 
@@ -63,6 +64,17 @@ router.patch(
         body: req.body,
         id: req.params.id
       })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+//ENDPOINT: /api/organizations/organizations_id/vessels
+router.get(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    vesselController
+      .getVesselsByOrganizationId(organization_id)
       .then(result => res.json(result))
       .catch(next);
   }
