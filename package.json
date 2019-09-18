@@ -10,9 +10,9 @@
     "build": "webpack --mode production",
     "start": "npm run build && node ./src/server/bin/server",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon ./src/server/bin/server",
-    "json": "cd ./src/external-api/ && node server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run json\"",
+    "external-api": "nodemon ./src/server/bin/server",
+    "git": "cd ./src/external-api/ && node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run external-api\"",
     "db:setup": "cd ./src/server/ && knex migrate:latest && knex seed:run",
     "do": "PATH=$(npm bin):$PATH; eval $@;",
     "storybook": "cd ./src/client/ && start-storybook"
