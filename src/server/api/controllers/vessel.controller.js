@@ -34,10 +34,10 @@ const getVesselById = async id => {
     return err.message;
   }
 };
-//POST
 
+//POST
 const createVessel = async ({ body }) => {
-  const { id, organization_id, mmsi, name } = body;
+  const { organization_id, mmsi, name } = body;
 
   const organization = await knex
     .from("organizations")
@@ -53,12 +53,16 @@ const createVessel = async ({ body }) => {
     );
   }
 
-  const vessels = await knex("vessels").insert({
-    organization_id: organization[0].id,
-    mmsi: mmsi,
-    name: name
-  });
-  return vessels;
+  try {
+    const vessels = await knex("vessels").insert({
+      organization_id: organization[0].id,
+      mmsi: mmsi,
+      name: name
+    });
+    return vessels;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 //PATCH
@@ -101,7 +105,7 @@ const editVessel = async ({ body }) => {
 
 //Get vessels by organization id
 const getVesselsByOrganizationId = async organization_id => {
-  const vessel = await knex()
+  const vessel = await knex
     .from("vessels")
     .where({ organization_id: organization_id });
   return vessel;

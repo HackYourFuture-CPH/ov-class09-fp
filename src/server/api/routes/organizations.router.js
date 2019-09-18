@@ -7,6 +7,9 @@ const router = express.Router({
   mergeParams: true
 });
 const { authorizeUser } = require("../lib/middleware/auth.middleware");
+const {
+  getVesselsByOrganizationId
+} = require("../controllers/vessel.controller");
 
 const ROLES = require("../../constants/roles");
 
@@ -63,6 +66,17 @@ router.patch(
         body: req.body,
         id: req.params.id
       })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+//ENDPOINT: /api/organizations/:organizations_id/vessels
+router.get(
+  "/:id/vessels/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    getVesselsByOrganizationId(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }

@@ -65,16 +65,4 @@ router.patch(
   }
 );
 
-//ENDPOINT: /api/organizations/organizations_id/vessels
-router.get(
-  "/",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
-  (req, res, next) => {
-    vesselController
-      .getVesselsByOrganizationId(req)
-      .then(result => res.json(result))
-      .catch(next);
-  }
-);
-
 module.exports = router;
