@@ -103,7 +103,13 @@ const editVessel = async ({ body }) => {
 
 //Get vessels by organization id
 const getVesselsByOrganizationId = async id => {
-  return await knex.from("vessels").where({ organization_id: id });
+  const vesselsByOrganizationId = await knex
+    .from("vessels")
+    .where({ organization_id: id });
+  if (vesselsByOrganizationId.length === 0) {
+    return `no organization exist with that id ${id} `;
+  }
+  return vesselsByOrganizationId;
 };
 
 module.exports = {
