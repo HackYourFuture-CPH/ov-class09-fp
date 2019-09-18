@@ -11,22 +11,22 @@ const { authorizeUser } = require("../lib/middleware/auth.middleware");
 const ROLES = require("../../constants/roles");
 
 // controllers
-const routeController = require("../controllers/routes.controller");
+const suggestedRoutesController = require("../controllers/suggested_routes.controller");
 
-// ENDPOINT: /api/routes/ :GET
+// ENDPOINT: /api/suggested_routes/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
-  routeController
-    .getroutes({
+  suggestedRoutesController
+    .getSuggestedRoutes({
       body: req.body
     })
     .then(result => res.json(result))
     .catch(next);
 });
 
-// ENDPOINT: /api/routes/ :POST
+// ENDPOINT: /api/suggested_routes/ :POST
 router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
-  routeController
-    .createroute({
+  suggestedRoutesController
+    .createSuggestedRoute({
       body: req.body
     })
     .then(result => res.json(result))

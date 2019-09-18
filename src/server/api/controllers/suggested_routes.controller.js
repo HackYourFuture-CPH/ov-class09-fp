@@ -3,28 +3,17 @@
 const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 
-// Get all routes
-const getroutes = async req => {
+// Get all suggested_routes
+const getSuggestedRoutes = async req => {
   try {
-    return await knex("routes").select(
-      "routes.id as id",
-      "voyage_id",
-      "eta",
-      "max_wave_height",
-      "hfo",
-      "lsfo",
-      "total_cost",
-      "distance_over_ground",
-      "distance_through_water",
-      "avgspeed"
-    );
+    return await knex("suggested_routes").select("*");
   } catch (err) {
     console.log(err);
   }
 };
 
 // Create a route
-const createroute = async ({ body }) => {
+const createSuggestedRoute = async ({ body }) => {
   const {
     voyage_id,
     eta,
@@ -37,7 +26,7 @@ const createroute = async ({ body }) => {
     avgspeed
   } = body;
   const route = await knex
-    .from("routes")
+    .from("suggested_routes")
     .select("*")
     .where({
       id: voyage_id
@@ -45,7 +34,7 @@ const createroute = async ({ body }) => {
   if (route.length !== 0) {
     throw new HttpError("Bad request", "route already exists!", 409);
   }
-  return knex("routes").insert({
+  return knex("suggested_routes").insert({
     voyage_id: voyage_id,
     eta: eta,
     max_wave_height: max_wave_height,
@@ -59,6 +48,6 @@ const createroute = async ({ body }) => {
 };
 
 module.exports = {
-  getroutes,
-  createroute
+  getSuggestedRoutes,
+  createSuggestedRoute
 };

@@ -10,7 +10,7 @@ const refreshTokenRouter = require("./refresh.token.router");
 const mailRouter = require("./mail.router");
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
-const routesRouter = require("./routes.router");
+const suggestedRoutesRouter = require("./suggested_routes.router");
 
 const organizationRouter = require("./organizations.router");
 // /api/users
@@ -28,8 +28,8 @@ router.use("/token", refreshTokenRouter);
 
 router.use("/ports", portRouter);
 
-// /api/routes
-router.use("/routes", routesRouter);
+// /api/suggested_routes
+router.use("/suggested_routes", suggestedRoutesRouter);
 
 // /api/organizations
 router.use("/organizations", organizationRouter);
