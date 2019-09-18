@@ -1,6 +1,7 @@
 "use strict";
+require("dotenv").config({ path: "../../.env" });
 
-const port = 4000;
+const port = process.env.EXTERNAL_API_PORT;
 
 const chalk = require("chalk");
 const jsonServer = require("json-server");
