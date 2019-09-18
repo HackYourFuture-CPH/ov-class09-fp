@@ -511,6 +511,7 @@ popup:
    branch as "compare" and "develop" as "base". Before you create the pull
    request you _must_ read through the "Files changed" section and ensure that
    you are not committing something by accident.
+
    - A pull request is an indication to the team that you want to merge a new
      feature (or hotfix) into develop. Creating a pull request implies that you
      have tested your code and that you have read your file diff looking for
@@ -535,6 +536,16 @@ popup:
      mentor or a student who may be able to help you and get them to look over
      the pull request. This way the code is not merged by accident in a
      non-working state.
+   - If you see open pull requests, help a fellow student and don't hesitate to
+     review them yourself. Every pull request needs 2 approvals to be merged.
+     One of them must be from a mentor. Even if a pull request already has an
+     approval from another student, you may still have relevant feedback. Here
+     is a nice
+     [checklist](https://github.com/HackYourFuture-CPH/curriculum/blob/eca8da8f6717a72ec1a326eff78a0e0ff8161d0d/review/review-checklist.md)
+     with everything to look out for when reviewing other peoples code. And
+     since everyone will be held to the same standards, make sure to keep it in
+     mind when you are writing code as well ;)
+
 10. Always check the pull requests tab regularly - ideally multiple times a day.
 
     - If you have a pull request open you may want to check back to see if
