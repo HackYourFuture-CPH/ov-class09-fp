@@ -30,6 +30,5 @@ router.use("/ports", portRouter);
 router.use("/organizations", organizationRouter);
 router.use("/vessels", vesselRouter);
 // /api/organizations/organization_id/vessels
-router.use("/organizations/:organization_id/vessels", organizationRouter);
 
 module.exports = router;
