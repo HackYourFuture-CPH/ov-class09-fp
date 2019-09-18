@@ -7,7 +7,7 @@ module.exports = function() {
   return {
     route_info: routeInfo,
     vassel_list: vesselList,
-    vesselreport: vesselReport,
-    voyageinfo: voyageInfo
+    vessel_report: vesselReport,
+    voyage_info: voyageInfo
   };
 };

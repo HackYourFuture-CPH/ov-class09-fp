@@ -13,7 +13,7 @@ server.use(router);
 server.listen(port, function() {
   console.log(
     chalk.green(
-      `${chalk.bold("Json-Server")} is running on http://localhost:${port}/`
+      `${chalk.bold("External API")} is running on http://localhost:${port}/`
     )
   );
 });
