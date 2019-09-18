@@ -13,6 +13,7 @@ const ROLES = require("../../constants/roles");
 
 // controllers
 const organizationController = require("../controllers/organization.controller");
+const vesselsController = require("../controllers/vessel.controller");
 
 // /api/organizations/ :POST
 router.post(
@@ -70,11 +71,11 @@ router.patch(
 );
 //ENDPOINT: /api/organizations/organizations_id/vessels
 router.get(
-  "/",
+  "/:id/vessels",
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
-    vesselController
-      .getVesselsByOrganizationId(organization_id)
+    vesselsController
+      .getVesselsByOrganizationId(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }
