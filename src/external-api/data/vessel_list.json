@@ -2,22 +2,22 @@
   "vessel_list": [
     {
       "id": "1",
-      "name": "SS_Martha",
+      "name": "SS Martha",
       "company_id": "0"
     },
     {
       "id": "11",
-      "name": "Boaty_McBoatface",
+      "name": "Boaty McBoatface",
       "company_id": "0"
     },
     {
       "id": "4",
-      "name": "Seven_Seas",
+      "name": "Seven Seas",
       "company_id": "1"
     },
     {
       "id": "5",
-      "name": "MS_Marie",
+      "name": "MS Marie",
       "company_id": "1"
     }
   ]
