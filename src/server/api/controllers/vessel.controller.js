@@ -12,9 +12,7 @@ const getVessels = async req => {
       "vessels.mmsi",
       "vessels.name"
     );
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
 //GET:id
@@ -39,7 +37,6 @@ const getVesselById = async id => {
 
 const createVessel = async ({ body }) => {
   const { organization_id, mmsi, name } = body;
-  console.log(body);
   const organization = await knex
     .from("organizations")
     .select("*")
