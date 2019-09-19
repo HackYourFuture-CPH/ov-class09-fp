@@ -70,7 +70,6 @@ router.patch(
 //ENDPOINT: /api/vessels/:vessel_id/vessel_reports/
 router.get(
   "/:id/vessel_reports",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     vesselReportController
       .getVesselsReportByVesselId(req.params.id)
