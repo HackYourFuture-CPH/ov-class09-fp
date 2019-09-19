@@ -16,7 +16,6 @@ const vesselReportController = require("../controllers/vesselReport.controller")
 // ENDPOINT: /api/vessel_reports/ :POST
 router.post(
   "/",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
   (req, res, next) => {
     vesselReportController
       .createVesselReport({
@@ -26,22 +25,10 @@ router.post(
       .catch(next);
   }
 );
-// ENDPOINT: /api/vessel_reports/ :GET
-router.get(
-  "/",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
-  (req, res, next) => {
-    vesselReportController
-      .getVesselReports(req)
-      .then(result => res.json(result))
-      .catch(next);
-  }
-);
 
 // ENDPOINT: /api/vessel_reports/:id :GET
 router.get(
   "/:id",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   function(req, res, next) {
     vesselReportController
       .getVesselReportById(req.params.id)
