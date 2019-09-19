@@ -132,6 +132,7 @@ table waypoints {
   id int [ pk, not null, increment ]
   fk_route_id int
   fk_port_id int
+  sequence_id int     [note: "counts from 0 and up every time a new set of waypoints is added to a route."]
   lon float [ not null ]
   lat float [ not null ]
   created_on timestamp [not null, default: `now()`]
