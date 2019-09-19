@@ -12,6 +12,7 @@ const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
 
 const organizationRouter = require("./organizations.router");
+const vesselRouter = require("./vessel.router");
 // /api/users
 router.use("/users", userRouter);
 
@@ -28,6 +29,8 @@ router.use("/token", refreshTokenRouter);
 router.use("/ports", portRouter);
 // /api/organizations
 router.use("/organizations", organizationRouter);
+router.use("/vessels", vesselRouter);
+// /api/organizations/organization_id/vessels
 
 // /api/voyages
 router.use("/voyages", voyagesRouter);
