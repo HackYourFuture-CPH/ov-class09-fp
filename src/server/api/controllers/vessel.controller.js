@@ -12,7 +12,9 @@ const getVessels = async req => {
       "vessels.mmsi",
       "vessels.name"
     );
-  } catch (err) {}
+  } catch (err) {
+    return err.message;
+  }
 };
 
 //GET:id
