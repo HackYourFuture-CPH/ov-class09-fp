@@ -2,17 +2,20 @@
 
 const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
-const bcrypt = require("bcrypt");
-const generatePassword = require("generate-password");
-const mailer = require("../lib/services/mailer.service");
-const { hashPassword } = require("../lib/utils/hash.password");
 
-const getVesselReports = async vessel_id => {
-  const vessel_reports = await knex()
+
+//Get vessels reports by vessel id
+const getVesselsReportByVesselId = async id => {
+  const vesselReportsByVessel = await knex
     .from("vessel_reports")
-    .where({ vessel_id: vessel_id });
+    .where({ vessel_id: id });
+  if (vesselReportsByVessel.length === 0) {
+    return `no vessel exist with that id ${id} `;
+  }
+  return vesselReportsByVessel;
 };
 
+//create vessel_reports 
 const createVesselReport = async ({ body }) => {
   const {
     vessel_id,
@@ -43,6 +46,7 @@ const createVesselReport = async ({ body }) => {
   
 };
 
+//Get vessel_reports by id
 const getVesselReportById = async id => {
   try {
     const vessel_reports = await knex("vessel_reports")
@@ -68,4 +72,4 @@ const getVesselReportById = async id => {
   }
 };
 
-module.exports = { createVesselReport, getVesselReportById, getVesselReports };
+module.exports = { createVesselReport, getVesselReportById, getVesselsReportByVesselId };
