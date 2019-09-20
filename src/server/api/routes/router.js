@@ -9,7 +9,7 @@ const authRouter = require("./auth.router");
 const refreshTokenRouter = require("./refresh.token.router");
 const mailRouter = require("./mail.router");
 
-const vesselReportRouter = require("./vesselReport.router");
+const vesselReportRouter = require("./vessel-reports.router");
 
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
@@ -32,7 +32,7 @@ router.use("/token", refreshTokenRouter);
 
 
 // /api/vessel-reports
-router.use("/vessel_reports", vesselReportRouter);
+router.use("/vessel-reports", vesselReportRouter);
 
 router.use("/ports", portRouter);
 // /api/organizations
