@@ -1,19 +1,6 @@
 {
   "vessel_report":[
      {
-        "report_id":0,
-        "RPM":"RPM",
-        "lon":null,
-        "lsfo_con":0.0,
-        "date":"DMY",
-        "report_type":"Report Type",
-        "time":"UTC",
-        "lat":null,
-        "hfo_con":0.0,
-        "speed":"SPD",
-        "vessel_id":1
-     },
-     {
         "report_id":1,
         "RPM":"",
         "lon":null,
