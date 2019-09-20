@@ -13,7 +13,7 @@ const ROLES = require("../../constants/roles");
 // controllers
 const vesselController = require("../controllers/vessel.controller");
 // Import controller from vesselReport controller
-const vesselReportController = require("../controllers/vesselReport.controller");
+const vesselReportController = require("../controllers/vessel-report.controller");
 
 // ENDPOINT: /api/vessels/ :GET
 router.get(
@@ -67,9 +67,10 @@ router.patch(
   }
 );
 
-//ENDPOINT: /api/vessels/:vessel_id/vessel_reports/
+//ENDPOINT: /api/vessels/:vessel_id/vessel-reports/
 router.get(
-  "/:id/vessel_reports",
+  "/:id/vessel-reports",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     vesselReportController
       .getVesselsReportByVesselId(req.params.id)
