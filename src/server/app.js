@@ -14,7 +14,6 @@ const buildPath = path.join(__dirname, "../../dist");
 const apiv1 = require("./api/routes/router");
 
 require("./config/db");
-
 let app = express();
 
 app.use(express.static(buildPath));
