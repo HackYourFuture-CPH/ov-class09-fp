@@ -29,7 +29,7 @@ router.use("/token", refreshTokenRouter);
 
 router.use("/ports", portRouter);
 
-// /api/suggested_routes
+// /api/suggested-routes
 router.use("/suggested-routes", suggestedRoutesRouter);
 
 // /api/organizations

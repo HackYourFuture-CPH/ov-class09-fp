@@ -35,7 +35,7 @@ router.get(
   }
 );
 
-// ENDPOINT: /api/suggested_routes/ :POST
+// ENDPOINT: /api/suggested-routes/ :POST
 router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
   suggestedRoutesController
     .createSuggestedRoute({
