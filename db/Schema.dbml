@@ -52,7 +52,7 @@ table users {
 table favorite_vessels {
   user_id integer [note: 'TODO: Make composite key']
   vessel_id integer [note: 'TODO: Make composite key']
-  created_on timestamp [not null, default: `now()`]
+  created_at timestamp [not null, default: `now()`]
 }
 
 
