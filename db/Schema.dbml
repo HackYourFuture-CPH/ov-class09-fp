@@ -155,16 +155,16 @@ enum voyage_status {
 
 
 // A user has 1 role
-ref: roles.id < users.fk_role_id
+ref: user_roles.id < users.fk_role_id
 
 // A company has 0-* users
 ref: organizations.id < users.fk_company_id
 // A vessel has 0-* voyages
 ref: vessels.id < voyages.fk_id_vessel
 // A voyage has 0-* routes
-ref: voyages.id < routes.fk_id_voyage
+ref: voyages.id < suggested_routes.fk_id_voyage
 // A route has 1-* waypoints
-ref: routes.id < waypoints.fk_route_id
+ref: suggested_routes.id < waypoints.fk_route_id
 // A port has 1-* waypoints
 ref: ports.id < waypoints.fk_port_id
 // A company has 0-* vessels
@@ -179,7 +179,7 @@ ref: voyages.arrive_at > waypoints.id
 ref: waypoints.id < vessel_reports.position 
 // Selected route represents a many-to-many join table between route and voyage
 // Current selected route is found by looking for the latest record
-ref: routes.id < selected_routes.fk_route_id
+ref: suggested_routes.id < selected_routes.fk_route_id
 ref: voyages.id < selected_routes.fk_voyage_id
 ref: favorite_vessels.user_id > users.id
 ref: favorite_vessels.vessel_id > vessels.id
