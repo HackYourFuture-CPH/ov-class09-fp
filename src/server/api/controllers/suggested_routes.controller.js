@@ -25,15 +25,7 @@ const createSuggestedRoute = async ({ body }) => {
     distance_through_water,
     avgspeed
   } = body;
-  const route = await knex
-    .from("suggested_routes")
-    .select("*")
-    .where({
-      id: voyage_id
-    });
-  if (route.length !== 0) {
-    throw new HttpError("Bad request", "route already exists!", 409);
-  }
+
   return knex("suggested_routes").insert({
     voyage_id: voyage_id,
     eta: eta,
