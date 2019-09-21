@@ -12,6 +12,24 @@ const getSuggestedRoutes = async req => {
   }
 };
 
+const getSuggestedRouteById = async id => {
+  try {
+    const suggested_route = await knex("suggested_routes")
+      .select("*")
+      .where({ id });
+    if (suggested_route.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `Cannot find vessel for ID ${id}!`,
+        404
+      );
+    }
+    return suggested_route;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 // Create a route
 const createSuggestedRoute = async ({ body }) => {
   const {
@@ -41,5 +59,6 @@ const createSuggestedRoute = async ({ body }) => {
 
 module.exports = {
   getSuggestedRoutes,
+  getSuggestedRouteById,
   createSuggestedRoute
 };
