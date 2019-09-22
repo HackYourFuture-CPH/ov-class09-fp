@@ -13,7 +13,7 @@ const ROLES = require("../../constants/roles");
 // controllers
 const suggestedRoutesController = require("../controllers/suggested-routes.controller");
 
-// ENDPOINT: /api/suggested_routes/ :GET
+// ENDPOINT: /api/suggested-routes/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
   suggestedRoutesController
     .getSuggestedRoutes({
@@ -23,7 +23,19 @@ router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
     .catch(next);
 });
 
-// ENDPOINT: /api/suggested_routes/ :POST
+// ENDPOINT: /api/suggested-routes/:id :GET
+router.get(
+  "/:id",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    suggestedRoutesController
+      .getSuggestedRouteById(req.params.id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: /api/suggested-routes/ :POST
 router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
   suggestedRoutesController
     .createSuggestedRoute({
