@@ -12,12 +12,16 @@ const ROLES = require("../../constants/roles");
 const favoriteVesselsController = require("../controllers/favorite-vessels.controller");
 
 // ENDPOINT: /api/favorite_vessels/ :POST
-router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
-  favoriteVesselsController
-    .createFavoriteVessel({ body: req.body })
-    .then(result => res.json(result))
-    .catch(next);
-});
+router.post(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    favoriteVesselsController
+      .createFavoriteVessel({ body: req.body })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
 
 // ENDPOINT: api/favorite_vessels/ :DELETE
 router.delete(
