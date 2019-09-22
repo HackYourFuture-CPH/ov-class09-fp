@@ -11,7 +11,7 @@ const mailRouter = require("./mail.router");
 const waypointsRouter = require("./waypoints.router");
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
-const suggestedRoutesRouter = require("./suggested-routes.router");
+const suggestedRoutesRouter = require("./suggested.routes.router");
 
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
