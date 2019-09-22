@@ -26,7 +26,7 @@ const createVoyage = async ({ body }) => {
       hirerate: body.hirerate,
       status: body.status
     });
-  } catch {
+  } catch (error) {
     console.log("Error: Could not insert voyage.");
   }
 };
