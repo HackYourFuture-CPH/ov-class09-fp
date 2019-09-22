@@ -4,7 +4,7 @@ const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 
 //POST
-const createFavoriteVessles = async ({ body }) => {
+const createFavoriteVessel = async ({ body }) => {
   const { user_id, vessel_id } = body;
   const checkUserId = await knex
     .from("users")
@@ -28,7 +28,7 @@ const createFavoriteVessles = async ({ body }) => {
 };
 
 //DELETE
-const deleteFavoriteVessels = ({ body }) => {
+const deleteFavoriteVessel = ({ body }) => {
   const { user_id, vessel_id } = body;
   return knex("favorite_vessels")
     .where({ user_id, vessel_id })
@@ -36,6 +36,6 @@ const deleteFavoriteVessels = ({ body }) => {
 };
 
 module.exports = {
-  createFavoriteVessles,
-  deleteFavoriteVessels
+  createFavoriteVessel,
+  deleteFavoriteVessel
 };
