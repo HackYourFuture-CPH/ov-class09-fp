@@ -39,7 +39,8 @@ module.exports = {
     port: parseInt(process.env.CLIENT_PORT, 10),
     open: process.env.OPEN_BROWSER === "true" ? true : false,
     proxy: {
-      "/api": `http://localhost:${process.env.API_PORT}`
+      "/api": `http://localhost:${process.env.API_PORT}`,
+      "/api-docs": `http://localhost:${process.env.API_PORT}`
     }
   },
   node: {

@@ -13,6 +13,14 @@ const voyagesRouter = require("./voyages.router");
 
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
+
+// swagger-ui-express
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("../../config/swagger.json");
+
+// /api/aid-docs Endpoint for swagger-ui-express interface
+router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // /api/users
 router.use("/users", userRouter);
 
@@ -34,4 +42,5 @@ router.use("/vessels", vesselRouter);
 
 // /api/voyages
 router.use("/voyages", voyagesRouter);
+
 module.exports = router;

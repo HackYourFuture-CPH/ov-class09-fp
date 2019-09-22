@@ -1,0 +1,36 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Welcome to HackYourFuture's class09 final project for Optimum Voyage.",
+    "version": "1.0.0",
+    "title": "Optimum Voyage Operator Platform API documentation",
+    "contact": {
+      "email": "hackyourfuturecopenhagen@gmail.com"
+    }
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Operations about users"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Get all users",
+        "description": "Get all users records.",
+        "operationId": "getUsers",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  }
+}
