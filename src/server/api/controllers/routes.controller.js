@@ -1,12 +1,11 @@
 const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
+const moment = require("moment-timezone");
 
 const createArouteWithWaypoints = async ({ body }) => {
   const {
-    vessel_id,
     port_id,
     voyage_id,
-    sailtime,
     eta,
     max_wave_height,
     hfo,
@@ -17,14 +16,8 @@ const createArouteWithWaypoints = async ({ body }) => {
     avgspeed,
     waypoints
   } = body;
-
-  var currentTime = new Date(eta);
-  var date =
-    currentTime.getFullYear() +
-    "-" +
-    (currentTime.getMonth() + 1) +
-    "-" +
-    currentTime.getDate();
+  // using momentJS for formating datetime
+  const eta_momentJs = moment(eta).format("YYYY-MM-DD HH:mm:ss");
 
   const voyage = await knex
     .from("suggested_routes")
@@ -37,7 +30,7 @@ const createArouteWithWaypoints = async ({ body }) => {
   return await knex("suggested_routes")
     .insert({
       voyage_id: voyage_id,
-      eta: date,
+      eta: eta_momentJs,
       max_wave_height: max_wave_height,
       hfo: hfo,
       lsfo: lsfo,
