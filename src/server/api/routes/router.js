@@ -9,7 +9,12 @@ const authRouter = require("./auth.router");
 const refreshTokenRouter = require("./refresh.token.router");
 const mailRouter = require("./mail.router");
 const waypointsRouter = require("./waypoints.router");
+const portRouter = require("./port.router");
+const voyagesRouter = require("./voyages.router");
+const suggestedRoutesRouter = require("./suggested-routes.router");
 
+const organizationRouter = require("./organizations.router");
+const vesselRouter = require("./vessel.router");
 // /api/users
 router.use("/users", userRouter);
 
@@ -26,6 +31,16 @@ router.use("/token", refreshTokenRouter);
 // api/waypoints
 router.use("/waypoints", waypointsRouter);
 
-router.use("/routes", waypointsRouter);
+router.use("/ports", portRouter);
 
+// /api/suggested-routes
+router.use("/suggested-routes", suggestedRoutesRouter);
+
+// /api/organizations
+router.use("/organizations", organizationRouter);
+router.use("/vessels", vesselRouter);
+// /api/organizations/organization_id/vessels
+
+// /api/voyages
+router.use("/voyages", voyagesRouter);
 module.exports = router;
