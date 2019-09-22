@@ -24,7 +24,6 @@ const getWaypointsById = async id => {
 
 const createWaypoints = async ({ body }) => {
   const { lat, lon, port_id, route_id } = body;
-  console.log("this is body", body);
 
   // 1. Get the route
   const routes = await knex
@@ -35,10 +34,10 @@ const createWaypoints = async ({ body }) => {
     throw new HttpError(
       "Bad request",
       `Cannot find routes for ID ${route_id}!`,
-      409
+      404
     );
   }
-  console.log("routes", routes);
+
   // 2. Get the port
   const ports = await knex
     .from("ports")
@@ -48,7 +47,7 @@ const createWaypoints = async ({ body }) => {
     throw new HttpError(
       "Bad request",
       `Cannot find ports for ID ${port_id}!`,
-      409
+      404
     );
   }
 
