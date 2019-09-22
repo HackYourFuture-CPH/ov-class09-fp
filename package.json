@@ -12,7 +12,7 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon ./src/server/bin/server",
     "external-api": "cd ./src/external-api/ && node server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run external-api\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "db:setup": "cd ./src/server/ && knex migrate:latest && knex seed:run",
     "do": "PATH=$(npm bin):$PATH; eval $@;",
     "storybook": "cd ./src/client/ && start-storybook"
