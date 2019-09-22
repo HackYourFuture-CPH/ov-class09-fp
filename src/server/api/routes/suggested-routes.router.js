@@ -11,7 +11,7 @@ const { authorizeUser } = require("../lib/middleware/auth.middleware");
 const ROLES = require("../../constants/roles");
 
 // controllers
-const suggestedRoutesController = require("../controllers/suggested_routes.controller");
+const suggestedRoutesController = require("../controllers/suggested-routes.controller");
 
 // ENDPOINT: /api/suggested_routes/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {

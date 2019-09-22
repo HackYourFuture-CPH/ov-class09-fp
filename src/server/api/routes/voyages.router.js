@@ -10,7 +10,7 @@ const ROLES = require("../../constants/roles");
 
 // controllers
 const voyagesController = require("../controllers/voyages.controller");
-const suggestedRoutesController = require("../controllers/suggested_routes.controller");
+const suggestedRoutesController = require("../controllers/suggested-routes.controller");
 
 // ENDPOINT: /api/voyages/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
