@@ -38,7 +38,7 @@ router.get(
 // ENDPOINT: /api/suggested-routes/ :POST
 router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
   suggestedRoutesController
-    .createSuggestedRoute({
+    .createRouteWithWaypoints({
       body: req.body
     })
     .then(result => res.json(result))
