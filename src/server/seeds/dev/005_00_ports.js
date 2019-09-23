@@ -11,15 +11,12 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("ports").insert([
         {
-          id: 1,
           name: "port1"
         },
         {
-          id: 2,
           name: "port2"
         },
         {
-          id: 3,
           name: "port3"
         }
       ]);

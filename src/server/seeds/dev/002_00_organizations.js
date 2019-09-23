@@ -11,7 +11,6 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("organizations").insert([
         {
-          id: 1,
           name: "Sample company"
         }
       ]);

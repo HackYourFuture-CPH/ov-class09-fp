@@ -11,7 +11,6 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("voyages").insert([
         {
-          id: 1,
           vessel_id: 1,
           etd: "2019-09-23 21:57:09",
           eta: "2019-09-23 21:57:09",
@@ -27,7 +26,6 @@ exports.seed = function(knex, Promise) {
           status: "created"
         },
         {
-          id: 2,
           vessel_id: 2,
           etd: "2019-09-23 21:57:09",
           eta: "2019-09-23 21:57:09",
@@ -43,7 +41,6 @@ exports.seed = function(knex, Promise) {
           status: "ongoing"
         },
         {
-          id: 3,
           vessel_id: 3,
           etd: "2019-09-23 21:57:09",
           eta: "2019-09-23 21:57:09",
