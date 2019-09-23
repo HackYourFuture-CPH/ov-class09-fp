@@ -14,16 +14,12 @@ const ROLES = require("../../constants/roles");
 const userController = require("../controllers/user.controller");
 
 // ENDPOINT: /api/users/ :GET
-router.get(
-  "/",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
-  (req, res, next) => {
-    userController
-      .getUsers(req)
-      .then(result => res.json(result))
-      .catch(next);
-  }
-);
+router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
+  userController
+    .getUsers(req)
+    .then(result => res.json(result))
+    .catch(next);
+});
 
 // ENDPOINT: /api/users/:id :GET
 router.get(

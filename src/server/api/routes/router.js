@@ -13,7 +13,7 @@ const vesselReportRouter = require("./vessel-reports.router");
 
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
-
+const suggestedRoutesRouter = require("./suggested-routes.router");
 
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
@@ -35,6 +35,10 @@ router.use("/token", refreshTokenRouter);
 router.use("/vessel-reports", vesselReportRouter);
 
 router.use("/ports", portRouter);
+
+// /api/suggested-routes
+router.use("/suggested-routes", suggestedRoutesRouter);
+
 // /api/organizations
 router.use("/organizations", organizationRouter);
 router.use("/vessels", vesselRouter);
