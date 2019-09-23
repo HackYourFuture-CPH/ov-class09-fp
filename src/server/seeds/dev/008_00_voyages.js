@@ -13,8 +13,8 @@ exports.seed = function(knex, Promise) {
         {
           id: 1,
           vessel_id: 1,
-          etd: "2019-12-20",
-          eta: "2018-11-23",
+          etd: "2019-09-23 21:57:09",
+          eta: "2019-09-23 21:57:09",
           forwarddraft: 2323.22,
           aftdraft: 2242.24,
           optimisation_type: 1,
@@ -29,8 +29,8 @@ exports.seed = function(knex, Promise) {
         {
           id: 2,
           vessel_id: 2,
-          etd: "2019-12-20",
-          eta: "2018-11-23",
+          etd: "2019-09-23 21:57:09",
+          eta: "2019-09-23 21:57:09",
           forwarddraft: 2323.22,
           aftdraft: 2242.24,
           optimisation_type: 1,
@@ -45,8 +45,8 @@ exports.seed = function(knex, Promise) {
         {
           id: 3,
           vessel_id: 3,
-          etd: "2019-12-20",
-          eta: "2018-11-23",
+          etd: "2019-09-23 21:57:09",
+          eta: "2019-09-23 21:57:09",
           forwarddraft: 2323.22,
           aftdraft: 2242.24,
           optimisation_type: 1,
