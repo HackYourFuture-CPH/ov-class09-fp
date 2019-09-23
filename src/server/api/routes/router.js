@@ -13,6 +13,7 @@ const voyagesRouter = require("./voyages.router");
 const suggestedRoutesRouter = require("./suggested-routes.router");
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
+const favoriteVesselsRouter = require("./favorite-vessels.router");
 // /api/users
 router.use("/users", userRouter);
 
@@ -38,4 +39,8 @@ router.use("/vessels", vesselRouter);
 
 // /api/voyages
 router.use("/voyages", voyagesRouter);
+
+// /api/favorite_vessels/
+router.use("/favorite-vessels", favoriteVesselsRouter);
+
 module.exports = router;
