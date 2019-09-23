@@ -26,12 +26,21 @@ const createVoyage = async ({ body }) => {
       hirerate: body.hirerate,
       status: body.status
     });
-  } catch {
+  } catch (error) {
     console.log("Error: Could not insert voyage.");
   }
 };
 
+// Get voyages by vessel id
+const getVoyagesByVesselId = async id => {
+  const voyagesByVesselId = await knex.from("voyages").where({ vessel_id: id });
+  if (voyagesByVesselId.length === 0) {
+    return `no voyages exist with that id ${id}`;
+  }
+  return voyagesByVesselId;
+};
 module.exports = {
   getVoyages,
-  createVoyage
+  createVoyage,
+  getVoyagesByVesselId
 };
