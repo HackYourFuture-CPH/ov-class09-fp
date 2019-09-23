@@ -7,7 +7,7 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.alterTable("voyages", table => {
+  return knex.schema.alterTable("waypoints", table => {
     table.renameColumn("suggested_route_id", "route_id");
   });
 };
