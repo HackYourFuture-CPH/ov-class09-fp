@@ -3,15 +3,14 @@
 // router setup
 
 const express = require("express");
-const router = express.Router({
-  mergeParams: true
-});
+const router = express.Router({ mergeParams: true });
 const { authorizeUser } = require("../lib/middleware/auth.middleware");
 
 const ROLES = require("../../constants/roles");
 
 // controllers
 const userController = require("../controllers/user.controller");
+const favoriteVesselsController = require("../controllers/favorite-vessels.controller");
 
 // ENDPOINT: /api/users/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
@@ -51,9 +50,7 @@ router.post(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
   (req, res, next) => {
     userController
-      .createUser({
-        body: req.body
-      })
+      .createUser({ body: req.body })
       .then(result => res.json(result))
       .catch(next);
   }
@@ -65,9 +62,7 @@ router.patch(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     userController
-      .editUser({
-        body: req.body
-      })
+      .editUser({ body: req.body })
       .then(result => res.json(result))
       .catch(next);
   }
@@ -79,10 +74,7 @@ router.patch(
   authorizeUser(ROLES.SUPER_USER),
   (req, res, next) => {
     userController
-      .editUserRole({
-        body: req.body,
-        id: req.params.id
-      })
+      .editUserRole({ body: req.body, id: req.params.id })
       .then(result => res.json(result))
       .catch(next);
   }
@@ -91,9 +83,7 @@ router.patch(
 // ENDPOINT: /api/users/sendPasswordResetCode :PATCH
 router.post("/sendPasswordResetCode", (req, res, next) => {
   userController
-    .sendPasswordResetCode({
-      body: req.body
-    })
+    .sendPasswordResetCode({ body: req.body })
     .then(result => res.json(result))
     .catch(next);
 });
@@ -101,9 +91,7 @@ router.post("/sendPasswordResetCode", (req, res, next) => {
 // ENDPOINT: /api/users/resetPasswordWithCode :PATCH
 router.post("/resetPasswordWithCode", (req, res, next) => {
   userController
-    .resetPasswordWithCode({
-      body: req.body
-    })
+    .resetPasswordWithCode({ body: req.body })
     .then(result => res.json(result))
     .catch(next);
 });
@@ -111,9 +99,7 @@ router.post("/resetPasswordWithCode", (req, res, next) => {
 // ENDPOINT: /api/example/ :PATCH
 router.post("/changePasswordRandomly", (req, res, next) => {
   userController
-    .changePasswordRandomly({
-      body: req.body
-    })
+    .changePasswordRandomly({ body: req.body })
     .then(result => res.json(result))
     .catch(next);
 });
@@ -124,9 +110,19 @@ router.delete(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
   (req, res, next) => {
     userController
-      .deleteUser({
-        body: req.body
-      })
+      .deleteUser({ body: req.body })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: /api/users/user_id/vessels :GET
+router.get(
+  "/:user_id/vessels",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    favoriteVesselsController
+      .getFavoriteVesselsByUserId(req.params.user_id)
       .then(result => res.json(result))
       .catch(next);
   }
