@@ -19,7 +19,6 @@ const getPortById = async id => {
 
 const createPort = async ({ body }) => {
   const { name, suggested_route_id, waypoints } = body;
-  //console.log("waypoint: ", waypoints);
   if (name.length === 0) {
     throw new HttpError("Bad request", "Port name is missing!", 409);
   }
