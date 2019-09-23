@@ -18,8 +18,8 @@ const getPortById = async id => {
 };
 
 const createPort = async ({ body }) => {
-  const { name, sailtime, route_id, waypoints } = body;
-
+  const { name, suggested_route_id, waypoints } = body;
+  //console.log("waypoint: ", waypoints);
   if (name.length === 0) {
     throw new HttpError("Bad request", "Port name is missing!", 409);
   }
@@ -31,11 +31,11 @@ const createPort = async ({ body }) => {
       name
     });
 
-  const route = await knex
+  const suggested_route = await knex
     .from("suggested_routes")
     .select("id")
     .where({
-      id: route_id
+      id: suggested_route_id
     });
 
   if (ports.length !== 0) {
@@ -46,10 +46,11 @@ const createPort = async ({ body }) => {
         name: name
       })
       .then(portID => {
-        if (route.length > 0 && waypoints) {
+        //if (suggested_route.length > 0 && waypoints) {
+        if (waypoints) {
           return knex("waypoints").insert({
             port_id: portID[0],
-            route_id: route[0].id,
+            suggested_route_id: suggested_route[0].id,
             lon: waypoints[0].lon,
             lat: waypoints[0].lat
           });
@@ -64,19 +65,3 @@ const createPort = async ({ body }) => {
 };
 
 module.exports = { getPortById, createPort };
-
-/* 
- 
- //let new_waypoint = waypoints.map((item) => {item.lon, item.lat})
- {
-    "name": "Port sunshine",
-    "sailtime": 22.3,
-    "waypoints": [
-        {
-            "lon": 55.65646,
-            "lat": 12.53635
-        }
-    ]
-}
-
- */
