@@ -2,7 +2,7 @@ const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 const moment = require("moment-timezone");
 
-const createArouteWithWaypoints = async ({ body }) => {
+const createRouteWithWaypoints = async ({ body }) => {
   const {
     port_id,
     voyage_id,
@@ -55,4 +55,4 @@ const createArouteWithWaypoints = async ({ body }) => {
     });
 };
 
-module.exports = { createArouteWithWaypoints };
+module.exports = { createRouteWithWaypoints };
