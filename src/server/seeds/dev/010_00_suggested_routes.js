@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
       return knex("suggested_routes").insert([
         {
           voyage_id: 1,
-          eta: 500,
+          eta: "2019-09-23 21:57:09",
           max_wave_height: 100,
           hfo: 10.12,
           lsfo: 123.56,
@@ -23,7 +23,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           voyage_id: 2,
-          eta: 600,
+          eta: "2019-09-23 21:57:09",
           max_wave_height: 100,
           hfo: 10.12,
           lsfo: 123.56,
@@ -34,7 +34,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           voyage_id: 3,
-          eta: 300,
+          eta: "2019-09-23 21:57:09",
           max_wave_height: 100,
           hfo: 10.12,
           lsfo: 123.56,
