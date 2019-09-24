@@ -10,8 +10,6 @@ const ROLES = require("../../constants/roles");
 
 // controllers
 const vesselController = require("../controllers/vessel.controller");
-
-// Import controller from vesselReport controller
 const vesselReportController = require("../controllers/vessel-report.controller");
 const voyagesController = require("../controllers/voyages.controller");
 
