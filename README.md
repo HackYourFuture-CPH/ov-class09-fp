@@ -98,6 +98,9 @@ which is based on Swagger. Just go to
 [localhost:3000/api/documentation](http://localhost:3000/api/documentation) to
 read the specifications for the API.
 
+You can use your api token to authorize in Swagger and you will be able to
+perform test calls against the API directly from Swagger.
+
 If you need to make changes to the specification, this can be done via the
 [Swagger.json](/src/server/config/swagger.json) file.
 
