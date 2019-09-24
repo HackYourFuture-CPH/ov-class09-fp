@@ -5,25 +5,25 @@ exports.seed = function(knex, Promise) {
   console.info(`Running seed file: ${scriptName}`);
 
   // Deletes ALL existing entries
-  return knex("ecas")
+  return knex("waypoints")
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex("ecas").insert([
+      return knex("waypoints").insert([
         {
-          lon: 122133.15,
-          lat: 24244.23,
-          name: "ecas-Test1"
+          port_id: 1,
+          lon: 2344.44,
+          lat: 2234.87
         },
         {
-          lon: 178133.15,
-          lat: 2744.23,
-          name: "ecas-Test2"
+          port_id: 2,
+          lon: 2344.44,
+          lat: 2234.87
         },
         {
-          lon: 1223.15,
-          lat: 26644.23,
-          name: "ecas-Test3"
+          port_id: 3,
+          lon: 2344.44,
+          lat: 2234.87
         }
       ]);
     });

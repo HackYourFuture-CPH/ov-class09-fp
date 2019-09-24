@@ -34,7 +34,7 @@ const getUserById = async id => {
 };
 
 const getAccount = async req => {
-  const { id } = req.user.rest;
+  const { id } = req.user;
   try {
     const result = await knex("users")
       .join("user_roles", "users.role_id", "user_roles.id")
