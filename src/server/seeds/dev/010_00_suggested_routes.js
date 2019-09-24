@@ -1,4 +1,9 @@
 exports.seed = function(knex, Promise) {
+  // Print filename
+  var path = require("path");
+  var scriptName = path.basename(__filename);
+  console.info(`Running seed file: ${scriptName}`);
+
   // Deletes ALL existing entries
   return knex("suggested_routes")
     .del()
@@ -6,9 +11,8 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("suggested_routes").insert([
         {
-          id: 1,
           voyage_id: 1,
-          eta: 500,
+          eta: "2019-09-23 21:57:09",
           max_wave_height: 100,
           hfo: 10.12,
           lsfo: 123.56,
@@ -18,9 +22,8 @@ exports.seed = function(knex, Promise) {
           avgspeed: 234.45
         },
         {
-          id: 2,
           voyage_id: 2,
-          eta: 600,
+          eta: "2019-09-23 21:57:09",
           max_wave_height: 100,
           hfo: 10.12,
           lsfo: 123.56,
@@ -30,9 +33,8 @@ exports.seed = function(knex, Promise) {
           avgspeed: 234.45
         },
         {
-          id: 3,
           voyage_id: 3,
-          eta: 300,
+          eta: "2019-09-23 21:57:09",
           max_wave_height: 100,
           hfo: 10.12,
           lsfo: 123.56,

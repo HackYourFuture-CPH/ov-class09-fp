@@ -11,7 +11,7 @@ const cors = require("cors");
 const HttpError = require("./api/lib/utils/http-error");
 const buildPath = path.join(__dirname, "../../dist");
 
-const apiv1 = require("./api/routes/router");
+const router = require("./api/routes/router");
 
 require("./config/db");
 let app = express();
@@ -35,7 +35,7 @@ app.use(
 app.use(cookieParser());
 app.use(cors());
 
-app.use("/api", apiv1);
+app.use("/", router);
 app.use((err, req, res, next) => {
   if (err instanceof HttpError) {
     res.status(err.httpStatus);
@@ -50,12 +50,9 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.get("/*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./../../dist/index.html"), function(err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
+// If "/api" is called, redirect to the API documentation.
+app.get("/api", function(req, res) {
+  res.redirect(`${process.env.API_PATH}/documentation`);
 });
 
 module.exports = app;
