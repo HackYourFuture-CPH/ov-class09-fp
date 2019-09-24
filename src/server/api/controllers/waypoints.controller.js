@@ -23,13 +23,12 @@ const getWaypointsById = async id => {
 // Method for creating a waypoints
 
 const createWaypoints = async ({ body }) => {
-  const { lat, lon, port_id, route_id } = body;
-
+  const { lat, lon, suggested_route_id } = body;
   // 1. Get the route
   const routes = await knex
     .from("suggested_routes")
     .select("*")
-    .where({ id: route_id });
+    .where({ id: suggested_route_id });
   if (routes.length === 0) {
     throw new HttpError(
       "Bad request",
@@ -38,25 +37,11 @@ const createWaypoints = async ({ body }) => {
     );
   }
 
-  // 2. Get the port
-  const ports = await knex
-    .from("ports")
-    .select("*")
-    .where({ id: port_id });
-  if (ports.length === 0) {
-    throw new HttpError(
-      "Bad request",
-      `Cannot find ports for ID ${port_id}!`,
-      404
-    );
-  }
-
   // 3. create a Waypoint
   const waypoint = await knex("waypoints").insert({
     lat,
     lon,
-    route_id: routes[0].id,
-    port_id: ports[0].id
+    suggested_route_id: routes[0].id
   });
   // 4. return the waypoint entity
   return waypoint;
@@ -64,11 +49,12 @@ const createWaypoints = async ({ body }) => {
 
 // Method for getting waypoints by route id
 const getWaypointsForRoute = async id => {
+  console.log(id);
   try {
     return await knex("suggested_routes")
       .select("*")
-      .where("route_id", id)
-      .join("waypoints", { route_id: "route_id " });
+      .where({ suggested_route_id: id })
+      .join("waypoints", { suggested_route_id: "suggested_routes.id" });
   } catch (err) {
     console.error(err);
   }

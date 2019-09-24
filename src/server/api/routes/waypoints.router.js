@@ -12,7 +12,6 @@ const waypointsController = require("../controllers/waypoints.controller");
 
 // ENDPOINT: /api/waypoints/:id :GET
 router.get("/:id", (req, res, next) => {
-  console.log("the request", req.params.id);
   waypointsController
     .getWaypointsById(req.params.id)
     .then(result => res.json(result))

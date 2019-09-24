@@ -47,10 +47,10 @@ router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
     .catch(next);
 });
 
-// ENDPOINT: /api/routes/:route_id/waypoints/ :GET
-router.get("/waypoints", (req, res, next) => {
+// ENDPOINT: /api/routes/:suggested_route_id/waypoints/ :GET
+router.get("/:suggested_route_id/waypoints", (req, res, next) => {
   waypointsController
-    .getWaypointsForRoute(req.params.route_id)
+    .getWaypointsForRoute(req.params.suggested_route_id)
     .then(result => res.json(result))
     .catch(next);
 });
