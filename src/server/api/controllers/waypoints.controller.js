@@ -24,27 +24,27 @@ const getWaypointsById = async id => {
 
 const createWaypoints = async ({ body }) => {
   const { lat, lon, suggested_route_id } = body;
+
   // 1. Get the route
   const routes = await knex
     .from("suggested_routes")
     .select("*")
     .where({ id: suggested_route_id });
+
   if (routes.length === 0) {
     throw new HttpError(
       "Bad request",
-      `Cannot find routes for ID ${route_id}!`,
+      `Cannot find routes for ID ${suggested_route_id}!`,
       404
     );
   }
-
+  console.log(routes[0].id);
   // 3. create a Waypoint
-  const waypoint = await knex("waypoints").insert({
+  return await knex("waypoints").insert({
     lat,
     lon,
     suggested_route_id: routes[0].id
   });
-  // 4. return the waypoint entity
-  return waypoint;
 };
 
 // Method for getting waypoints by route id
