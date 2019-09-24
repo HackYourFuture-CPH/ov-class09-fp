@@ -1,36 +1,1471 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Welcome to HackYourFuture's class09 final project for Optimum Voyage.",
-    "version": "1.0.0",
-    "title": "Optimum Voyage Operator Platform API documentation",
-    "contact": {
-      "email": "hackyourfuturecopenhagen@gmail.com"
+    "version": "1.0",
+    "title": "Optimum Voyage App",
+    "description": "API documentation for the Optimum Voyage app.",
+    "contact": {}
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "description": "",
+      "name": "Authorization",
+      "in": "header"
     }
   },
-  "basePath": "/api",
-  "tags": [
-    {
-      "name": "users",
-      "description": "Operations about users"
-    }
-  ],
   "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/users": {
+      "post": {
+        "description": "This endpoint allows `admin` users to create a new user with the `operator` role within the same organization as the `admin`. If a `superuser` uses this endpoint to create an `operator` user, it can be created in any organization.\n\nAuthentication: `superuser` & `admin`",
+        "summary": "Create User",
+        "tags": ["User"],
+        "operationId": "UsersPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
       "get": {
-        "tags": ["users"],
-        "summary": "Get all users",
-        "description": "Get all users records.",
-        "operationId": "getUsers",
+        "description": "Get all users.\n\nAuthentication: `superuser` only.",
+        "summary": "GET Users",
+        "tags": ["User"],
+        "operationId": "UsersGet",
+        "deprecated": false,
         "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "patch": {
+        "description": "Edit the currently signed in user.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Edit User",
+        "tags": ["User"],
+        "operationId": "UsersPatch",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "Get a single user by ID.\n\nAuthentication: `superuser`, `admin`, `operator`",
+        "summary": "GET User by ID",
+        "tags": ["User"],
+        "operationId": "UsersByIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/account": {
+      "get": {
+        "description": "Get extended data about the currently signed in user, including:\n - `id`\n - `role_id`\n - `email`\n - `organization_id`\n - `password`\n - `name`\n - `status`\n - `created_at`\n - `updated_at`\n - `session_token`\n - `refreshing_token`\n - `role`\n\nAuthentication: `superuser`, `admin`, `operator`",
+        "summary": "GET Account",
+        "tags": ["User"],
+        "operationId": "UsersAccountGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/admin": {
+      "post": {
+        "description": "Allows creating an admin user in any organization.\n\nAuthentication: `superuser` only.",
+        "summary": "Create Admin User",
+        "tags": ["User"],
+        "operationId": "OrganizationsAdminByOrganizationIdPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateAdminUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "Pass an email and a password for a valid user and get a request token back.\n\nThe request token must be used on the header of all requests to protected endpoints with the key \"authorization\".\n\nAuthentication: `none`",
+        "summary": "Login",
+        "tags": ["Auth"],
+        "operationId": "AuthLoginPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/ports": {
+      "post": {
+        "description": "Authentication: `superuser` only.",
+        "summary": "Create Port",
+        "tags": ["Port"],
+        "operationId": "PortsPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatePortRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ports/{id}": {
+      "get": {
+        "description": "Authentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Port by ID",
+        "tags": ["Port"],
+        "operationId": "PortsByIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/waypoints/{waypoint_id}/ports": {
+      "get": {
+        "description": "This endpoint will retur any ports that matches a given waypoint.",
+        "summary": "Get Port by Waypoint",
+        "tags": ["Port"],
+        "operationId": "WaypointsPortsByWaypointIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "waypoint_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/organizations": {
+      "post": {
+        "description": "Creates an organization. Pass in the name of the organization and a logo for white-labelling the platform.\n\nAuthentication: `superuser` only.",
+        "summary": "Create organization",
+        "tags": ["Organization"],
+        "operationId": "OrganizationsPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateorganizationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Get all organizations.\n\nAuthentication: `superuser` only.",
+        "summary": "Get organizations",
+        "tags": ["Organization"],
+        "operationId": "OrganizationsGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/organizations/{id}": {
+      "get": {
+        "description": "Get a given organization by ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get organization",
+        "tags": ["Organization"],
+        "operationId": "OrganizationsByIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/organizations/3": {
+      "patch": {
+        "description": "TODO: Add Description",
+        "summary": "Update Organization",
+        "tags": ["Organization"],
+        "operationId": "Organizations3Patch",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateOrganizationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/vessel-reports": {
+      "post": {
+        "description": "Authentication: `superuser` only.",
+        "summary": "Create Vessel Report",
+        "tags": ["Vessel Report"],
+        "operationId": "VesselReportsPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateVesselReportRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns all vessel reports.\n\nAuthentication: `superuser` only.",
+        "summary": "Get Vessel Reports",
+        "tags": ["Vessel Report"],
+        "operationId": "VesselReportsGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/vessel-reports/{id}": {
+      "get": {
+        "description": "Authentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Vessel Report by ID",
+        "tags": ["Vessel Report"],
+        "operationId": "VesselReportsByIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/vessels/{vessel_id}/vessel-reports": {
+      "get": {
+        "description": "Returns vessel reports for a given vessel.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Vessel Reports by Vessel",
+        "tags": ["Vessel Report"],
+        "operationId": "VesselsVesselReportsByVesselIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/vessels": {
+      "post": {
+        "description": "Authentication: `superuser` only.",
+        "summary": "Create Vessel",
+        "tags": ["Vessel"],
+        "operationId": "VesselsPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateVesselRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns all vessel.\n\nAuthentication: `superuser` only.",
+        "summary": "Get Vessels",
+        "tags": ["Vessel"],
+        "operationId": "VesselsGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "patch": {
+        "description": "Update data for a given vessel.\n\nAuthentication: `superuser` & `admin`.",
+        "summary": "Update vessel",
+        "tags": ["Vessel"],
+        "operationId": "VesselsPatch",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdatevesselRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/vessels/{id}": {
+      "get": {
+        "description": "Returns a single vessel by ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get vessel by ID",
+        "tags": ["Vessel"],
+        "operationId": "VesselsByIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/vessels": {
+      "get": {
+        "description": "Returns all vessels for a given organization (`admin` & `operators` should only have the option to display vessels for their own organization).\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get vessels by organization",
+        "tags": ["Vessel"],
+        "operationId": "OrganizationsVesselsByOrganizationIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/voyages": {
+      "post": {
+        "description": "Creates a new \"voyage request\", sending data to Optimum Voyage. Until the first vessel report for the given vessel is received, the voyage status will be \"created\", after which it will be \"ongoing\" and once the vessel reaches its destination it will be \"completed\".\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Create Voyage",
+        "tags": ["Voyage"],
+        "operationId": "VoyagesPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateVoyageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Get all voyages.\n\nAuthentication: `superuser` only.",
+        "summary": "Get Voyages",
+        "tags": ["Voyage"],
+        "operationId": "VoyagesGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/vessels/{vessel_id}/voyages": {
+      "get": {
+        "description": "Get all voyages for a given vessel.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Voyage by Vessel ID",
+        "tags": ["Voyage"],
+        "operationId": "VesselsVoyagesByVesselIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/selected_routes": {
+      "post": {
+        "description": "Creates a route selection.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Create Selected Route",
+        "tags": ["Selected Routes"],
+        "operationId": "SelectedRoutesPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateSelectedRouteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/selected-routes": {
+      "get": {
+        "description": "Returns all selected routes.\n\nAuthentication: `superuser` only.",
+        "summary": "Get Selected Routes",
+        "tags": ["Selected Routes"],
+        "operationId": "SelectedRoutesGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "Returns only the latest selected route for a given voyage.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get current Selected Route by Voyage ID",
+        "tags": ["Selected Routes"],
+        "operationId": "UnnammedEndpointGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/suggested-routes": {
+      "post": {
+        "description": "Creates a suggested route.\n\nAuthentication: `superuser` only.",
+        "summary": "Create Suggested Route",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateSuggestedRouteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns all suggested routes.\n\nAuthentication: `superuser` only.",
+        "summary": "Get Suggested Routes",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/suggested-routes/{id}": {
+      "get": {
+        "description": "Returns a single suggested route.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Suggested Route by ID",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesByIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/favorite_vessels": {
+      "post": {
+        "description": "Creates a favorite vessel (association between user and vessel).\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Create Favorite Vessel",
+        "tags": ["Favorite Vessels"],
+        "operationId": "FavoriteVesselsPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateFavoriteVesselRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a favorite vessel association.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Delete Favorite Vessel",
+        "tags": ["Favorite Vessels"],
+        "operationId": "FavoriteVesselsDelete",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DeleteFavoriteVesselRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/suggested-routes/{suggested_route_id}/waypoints": {
+      "post": {
+        "description": "Creates a waypoint. Note that you probably want to be using the endpoint for creating a route with waypoints or a port with a waypoint.\n\nAuthentication: `superuser` only.",
+        "summary": "Create waypoint",
+        "tags": ["Waypoints"],
+        "operationId": "SuggestedRoutesWaypointsBySuggestedRouteIdPost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "suggested_route_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatewaypointRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/waypoints/{id}": {
+      "get": {
+        "description": "Get a given waypoint.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Waypoint by ID",
+        "tags": ["Waypoints"],
+        "operationId": "WaypointsByIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
           }
         }
       }
     }
-  }
+  },
+  "definitions": {
+    "CreateUserRequest": {
+      "title": "CreateUserRequest",
+      "example": {
+        "name": "John Doe",
+        "email": "test3@test3.com",
+        "password": "test3",
+        "organization_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["name", "email", "password", "organization_id"]
+    },
+    "EditUserRequest": {
+      "title": "EditUserRequest",
+      "example": {
+        "email": "test3@test3.com",
+        "name": "Joey Dosik"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["email", "name"]
+    },
+    "CreateAdminUserRequest": {
+      "title": "CreateAdminUserRequest",
+      "example": {
+        "name": "John Doe",
+        "email": "test3@test3.com",
+        "password": "test3",
+        "organization_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["name", "email", "password", "organization_id"]
+    },
+    "LoginRequest": {
+      "title": "LoginRequest",
+      "example": {
+        "email": "test@test.com",
+        "password": "test"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": ["email", "password"]
+    },
+    "CreatePortRequest": {
+      "title": "CreatePortRequest",
+      "example": {
+        "name": "Port sunshine",
+        "waypoints": [
+          {
+            "lon": 55.65646,
+            "lat": 12.53635
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Waypoint"
+          }
+        }
+      },
+      "required": ["name", "waypoints"]
+    },
+    "Waypoint": {
+      "title": "Waypoint",
+      "example": {
+        "lon": 55.65646,
+        "lat": 12.53635
+      },
+      "type": "object",
+      "properties": {
+        "lon": {
+          "type": "number",
+          "format": "double"
+        },
+        "lat": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": ["lon", "lat"]
+    },
+    "CreateorganizationRequest": {
+      "title": "CreateorganizationRequest",
+      "example": {
+        "name": "Teslasss",
+        "logo": "/tesla-logo.png"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "logo"]
+    },
+    "UpdateOrganizationRequest": {
+      "title": "UpdateOrganizationRequest",
+      "example": {
+        "name": "Teslaz",
+        "logo": "fish"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "logo"]
+    },
+    "CreateVesselReportRequest": {
+      "title": "CreateVesselReportRequest",
+      "example": {
+        "vessel_id": 3,
+        "position_waypoint": 3,
+        "current_speed": 10.1,
+        "hfo_consumption": 30.2,
+        "lsfo_consumption": 15.9
+      },
+      "type": "object",
+      "properties": {
+        "vessel_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "position_waypoint": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "current_speed": {
+          "type": "number",
+          "format": "double"
+        },
+        "hfo_consumption": {
+          "type": "number",
+          "format": "double"
+        },
+        "lsfo_consumption": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "vessel_id",
+        "position_waypoint",
+        "current_speed",
+        "hfo_consumption",
+        "lsfo_consumption"
+      ]
+    },
+    "CreateVesselRequest": {
+      "title": "CreateVesselRequest",
+      "example": {
+        "organization_id": 1,
+        "mmsi": "414243",
+        "name": "MS Beautiful Day"
+      },
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mmsi": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["organization_id", "mmsi", "name"]
+    },
+    "UpdatevesselRequest": {
+      "title": "UpdatevesselRequest",
+      "example": {
+        "id": 1,
+        "organization_id": 1,
+        "mmsi": "414223",
+        "name": "MS Million doll hairs"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "organization_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mmsi": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "organization_id", "mmsi", "name"]
+    },
+    "CreateVoyageRequest": {
+      "title": "CreateVoyageRequest",
+      "example": {
+        "vessel_id": 1,
+        "etd": "2019-09-10 21:20:09",
+        "eta": "2019-09-10 21:20:09",
+        "forwarddraft": 8.596,
+        "aftdraft": 8.785,
+        "optimisation_type": 9.852,
+        "depart_from": 8,
+        "arrive_at": 7,
+        "sailtime": 98.879,
+        "hfocost": 89.63,
+        "lsfocost": 87.52,
+        "hirerate": 963.87,
+        "status": "created"
+      },
+      "type": "object",
+      "properties": {
+        "vessel_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "etd": {
+          "type": "string"
+        },
+        "eta": {
+          "type": "string"
+        },
+        "forwarddraft": {
+          "type": "number",
+          "format": "double"
+        },
+        "aftdraft": {
+          "type": "number",
+          "format": "double"
+        },
+        "optimisation_type": {
+          "type": "number",
+          "format": "double"
+        },
+        "depart_from": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "arrive_at": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sailtime": {
+          "type": "number",
+          "format": "double"
+        },
+        "hfocost": {
+          "type": "number",
+          "format": "double"
+        },
+        "lsfocost": {
+          "type": "number",
+          "format": "double"
+        },
+        "hirerate": {
+          "type": "number",
+          "format": "double"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "vessel_id",
+        "etd",
+        "eta",
+        "forwarddraft",
+        "aftdraft",
+        "optimisation_type",
+        "depart_from",
+        "arrive_at",
+        "sailtime",
+        "hfocost",
+        "lsfocost",
+        "hirerate",
+        "status"
+      ]
+    },
+    "CreateSelectedRouteRequest": {
+      "title": "CreateSelectedRouteRequest",
+      "example": {
+        "voyage_id": 1,
+        "route_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "voyage_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "route_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["voyage_id", "route_id"]
+    },
+    "CreateSuggestedRouteRequest": {
+      "title": "CreateSuggestedRouteRequest",
+      "example": {
+        "voyage_id": 1,
+        "eta": "2019-09-01",
+        "max_wave_height": 2.3,
+        "hfo": 24,
+        "lsfo": 43,
+        "total_cost": 224243,
+        "distance_over_ground": 2434,
+        "distance_through_water": 5254,
+        "avgspeed": 18.2
+      },
+      "type": "object",
+      "properties": {
+        "voyage_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "eta": {
+          "type": "string"
+        },
+        "max_wave_height": {
+          "type": "number",
+          "format": "double"
+        },
+        "hfo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lsfo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_cost": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "distance_over_ground": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "distance_through_water": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "avgspeed": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "voyage_id",
+        "eta",
+        "max_wave_height",
+        "hfo",
+        "lsfo",
+        "total_cost",
+        "distance_over_ground",
+        "distance_through_water",
+        "avgspeed"
+      ]
+    },
+    "CreateFavoriteVesselRequest": {
+      "title": "CreateFavoriteVesselRequest",
+      "example": {
+        "user_id": 1,
+        "vessel_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vessel_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["user_id", "vessel_id"]
+    },
+    "DeleteFavoriteVesselRequest": {
+      "title": "DeleteFavoriteVesselRequest",
+      "example": {
+        "user_id": 1,
+        "vessel_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vessel_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["user_id", "vessel_id"]
+    },
+    "CreatewaypointRequest": {
+      "title": "CreatewaypointRequest",
+      "example": {
+        "suggested_route_id": 1,
+        "lon": 55.678276,
+        "lat": 12.47353,
+        "sequence_id": 1,
+        "port_id": null
+      },
+      "type": "object",
+      "properties": {
+        "suggested_route_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lon": {
+          "type": "number",
+          "format": "double"
+        },
+        "lat": {
+          "type": "number",
+          "format": "double"
+        },
+        "sequence_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "port_id": {
+          "type": "string"
+        }
+      },
+      "required": ["suggested_route_id", "lon", "lat", "sequence_id", "port_id"]
+    }
+  },
+  "security": [
+    {
+      "Authorization": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Port"
+    },
+    {
+      "name": "Organization"
+    },
+    {
+      "name": "Vessel Report"
+    },
+    {
+      "name": "Vessel"
+    },
+    {
+      "name": "Voyage"
+    },
+    {
+      "name": "Selected Routes"
+    },
+    {
+      "name": "Suggested Routes"
+    },
+    {
+      "name": "Favorite Vessels"
+    },
+    {
+      "name": "Waypoints"
+    }
+  ]
 }

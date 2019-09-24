@@ -18,29 +18,28 @@ const vesselRouter = require("./vessel.router");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../../config/swagger.json");
 
-// /api/aid-docs Endpoint for swagger-ui-express interface
-router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Route for Swagger API Documentation
+router.use(
+  `${process.env.API_PATH}/documentation`,
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument)
+);
 
-// /api/users
-router.use("/users", userRouter);
+// /users
+router.use(`${process.env.API_PATH}/users`, userRouter);
 
-// /api/auth
-router.use("/auth", authRouter);
+// /auth
+router.use(`${process.env.API_PATH}/auth`, authRouter);
 
-// /api/modules
-router.use("/modules", modulesRouter);
-
-router.use("/mail", mailRouter);
-
-router.use("/token", refreshTokenRouter);
-
-router.use("/ports", portRouter);
-// /api/organizations
-router.use("/organizations", organizationRouter);
-router.use("/vessels", vesselRouter);
-// /api/organizations/organization_id/vessels
-
-// /api/voyages
-router.use("/voyages", voyagesRouter);
+// /modules
+router.use(`${process.env.API_PATH}/modules`, modulesRouter);
+router.use(`${process.env.API_PATH}/mail`, mailRouter);
+router.use(`${process.env.API_PATH}/token`, refreshTokenRouter);
+router.use(`${process.env.API_PATH}/ports`, portRouter);
+// /organizations
+router.use(`${process.env.API_PATH}/organizations`, organizationRouter);
+router.use(`${process.env.API_PATH}/vessels`, vesselRouter);
+// /voyages
+router.use(`${process.env.API_PATH}/voyages`, voyagesRouter);
 
 module.exports = router;
