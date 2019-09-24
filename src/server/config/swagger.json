@@ -338,7 +338,7 @@
     "/organizations/{id}": {
       "get": {
         "description": "Get a given organization by ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
-        "summary": "Get organization",
+        "summary": "Get organization by ID",
         "tags": ["Organization"],
         "operationId": "OrganizationsByIdGet",
         "deprecated": false,
@@ -816,7 +816,7 @@
         }
       }
     },
-    "/favorite_vessels": {
+    "/favorite-vessels": {
       "post": {
         "description": "Creates a favorite vessel (association between user and vessel).\n\nAuthentication: `superuser`, `admin` & `operator`.",
         "summary": "Create Favorite Vessel",
