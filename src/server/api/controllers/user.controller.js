@@ -60,8 +60,6 @@ const createUser = async ({ body }) => {
     throw new HttpError("Bad request", "user already exists!", 409);
   }
 
-  console.error(body.role);
-
   const role = await knex
     .from("user_roles")
     .select("*")
