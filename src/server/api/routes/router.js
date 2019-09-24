@@ -10,9 +10,10 @@ const refreshTokenRouter = require("./refresh.token.router");
 const mailRouter = require("./mail.router");
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
-
+const suggestedRoutesRouter = require("./suggested-routes.router");
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
+const favoriteVesselsRouter = require("./favorite-vessels.router");
 
 // swagger-ui-express
 const swaggerUi = require("swagger-ui-express");
@@ -25,21 +26,17 @@ router.use(
   swaggerUi.setup(swaggerDocument)
 );
 
-// /users
+// Application routes
 router.use(`${process.env.API_PATH}/users`, userRouter);
-
-// /auth
 router.use(`${process.env.API_PATH}/auth`, authRouter);
-
-// /modules
 router.use(`${process.env.API_PATH}/modules`, modulesRouter);
 router.use(`${process.env.API_PATH}/mail`, mailRouter);
 router.use(`${process.env.API_PATH}/token`, refreshTokenRouter);
 router.use(`${process.env.API_PATH}/ports`, portRouter);
-// /organizations
 router.use(`${process.env.API_PATH}/organizations`, organizationRouter);
 router.use(`${process.env.API_PATH}/vessels`, vesselRouter);
-// /voyages
 router.use(`${process.env.API_PATH}/voyages`, voyagesRouter);
+router.use(`${process.env.API_PATH}/suggested-routes`, suggestedRoutesRouter);
+router.use(`${process.env.API_PATH}/favorite-vessels`, favoriteVesselsRouter);
 
 module.exports = router;
