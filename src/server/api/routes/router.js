@@ -11,37 +11,7 @@ const mailRouter = require("./mail.router");
 const waypointsRouter = require("./waypoints.router");
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
-<<<<<<< HEAD
-const suggestedRoutesRouter = require("./suggested.routes.router");
 
-const organizationRouter = require("./organizations.router");
-const vesselRouter = require("./vessel.router");
-// /api/users
-router.use("/users", userRouter);
-
-// /api/auth
-router.use("/auth", authRouter);
-
-// /api/modules
-router.use("/modules", modulesRouter);
-
-router.use("/mail", mailRouter);
-
-router.use("/token", refreshTokenRouter);
-
-// api/waypoints
-router.use("/waypoints", waypointsRouter);
-
-router.use("/ports", portRouter);
-
-// /api/suggested-routes
-router.use("/suggested-routes", suggestedRoutesRouter);
-
-// /api/organizations
-router.use("/organizations", organizationRouter);
-router.use("/vessels", vesselRouter);
-// /api/organizations/organization_id/vessels
-=======
 const suggestedRoutesRouter = require("./suggested-routes.router");
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
@@ -70,6 +40,6 @@ router.use(`${process.env.API_PATH}/vessels`, vesselRouter);
 router.use(`${process.env.API_PATH}/voyages`, voyagesRouter);
 router.use(`${process.env.API_PATH}/suggested-routes`, suggestedRoutesRouter);
 router.use(`${process.env.API_PATH}/favorite-vessels`, favoriteVesselsRouter);
->>>>>>> origin
+router.use(`${process.env.API_PATH}/waypoints`, waypointsRouter);
 
 module.exports = router;
