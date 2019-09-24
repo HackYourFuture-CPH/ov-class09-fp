@@ -942,7 +942,8 @@
         "name": "John Doe",
         "email": "test3@test3.com",
         "password": "test3",
-        "organization_id": 1
+        "organization_id": 1,
+        "role": 1
       },
       "type": "object",
       "properties": {
@@ -956,6 +957,10 @@
           "type": "string"
         },
         "organization_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "role": {
           "type": "integer",
           "format": "int32"
         }

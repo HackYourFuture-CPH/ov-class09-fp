@@ -60,18 +60,20 @@ const createUser = async ({ body }) => {
     throw new HttpError("Bad request", "user already exists!", 409);
   }
 
+  console.error(body.role);
+
   const role = await knex
     .from("user_roles")
     .select("*")
     .where({
-      role: body.role
+      id: body.role
     });
 
   if (role.length > 0) {
     const hashedPassword = await hashPassword(body.password);
 
     return knex("users").insert({
-      role_id: role[0].id,
+      role_id: body.role,
       organization_id,
       email,
       password: hashedPassword,
