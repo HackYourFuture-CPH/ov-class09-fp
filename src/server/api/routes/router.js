@@ -13,10 +13,12 @@ const vesselReportRouter = require("./vessel-reports.router");
 
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
-
-
+const suggestedRoutesRouter = require("./suggested-routes.router");
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
+
+const favoriteVesselsRouter = require("./favorite-vessels.router");
+
 // /api/users
 router.use("/users", userRouter);
 
@@ -30,11 +32,14 @@ router.use("/mail", mailRouter);
 
 router.use("/token", refreshTokenRouter);
 
-
 // /api/vessel-reports
 router.use("/vessel-reports", vesselReportRouter);
 
 router.use("/ports", portRouter);
+
+// /api/suggested-routes
+router.use("/suggested-routes", suggestedRoutesRouter);
+
 // /api/organizations
 router.use("/organizations", organizationRouter);
 router.use("/vessels", vesselRouter);
@@ -42,5 +47,8 @@ router.use("/vessels", vesselRouter);
 
 // /api/voyages
 router.use("/voyages", voyagesRouter);
+
+// /api/favorite_vessels/
+router.use("/favorite-vessels", favoriteVesselsRouter);
 
 module.exports = router;

@@ -3,17 +3,17 @@
 // router setup
 
 const express = require("express");
-const router = express.Router({
-  mergeParams: true
-});
+const router = express.Router({ mergeParams: true });
 const { authorizeUser } = require("../lib/middleware/auth.middleware");
 
 const ROLES = require("../../constants/roles");
 
 // controllers
 const vesselController = require("../controllers/vessel.controller");
+
 // Import controller from vesselReport controller
 const vesselReportController = require("../controllers/vessel-report.controller");
+const voyagesController = require("../controllers/voyages.controller");
 
 // ENDPOINT: /api/vessels/ :GET
 router.get(
@@ -45,9 +45,7 @@ router.post(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
   (req, res, next) => {
     vesselController
-      .createVessel({
-        body: req.body
-      })
+      .createVessel({ body: req.body })
       .then(result => res.json(result))
       .catch(next);
   }
@@ -59,9 +57,19 @@ router.patch(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     vesselController
-      .editVessel({
-        body: req.body
-      })
+      .editVessel({ body: req.body })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: api/vessels/:vessel_id/voyages/ :GET
+router.get(
+  "/:id/voyages",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    voyagesController
+      .getVoyagesByVesselId(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }
