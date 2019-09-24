@@ -25,18 +25,6 @@ router.get(
   }
 );
 
-// ENDPOINT: /api/users/:id :GET
-router.get(
-  "/:id",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
-  function(req, res, next) {
-    userController
-      .getUserById(req.params.id)
-      .then(result => res.json(result))
-      .catch(next);
-  }
-);
-
 // ENDPOINT: /api/users/account :GET
 router.get(
   "/account",
@@ -131,6 +119,18 @@ router.delete(
       .deleteUser({
         body: req.body
       })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: /api/users/:id :GET
+router.get(
+  "/:id",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  function(req, res, next) {
+    userController
+      .getUserById(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }
