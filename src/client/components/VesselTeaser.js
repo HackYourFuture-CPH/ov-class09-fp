@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-function VesselsUIComponent({
+function VesselsComponent({
+  id,
   vesselName,
   departureFrom,
   arrivesAt,
@@ -20,4 +21,4 @@ function VesselsUIComponent({
   );
 }
 
-export default VesselsUIComponent;
+export default VesselsComponent;
