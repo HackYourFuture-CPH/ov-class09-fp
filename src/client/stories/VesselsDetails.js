@@ -8,8 +8,8 @@ export function VesselsDetailsStory() {
   const etd = text("ETD", "2012-08-17 21:18");
   const eta = text("ETA", "2012-08-24 06:43");
   const date = text("DATE", "2019-08-23");
-  const lat = number("LATTITUDE", "55°26'21.4\"N");
-  const lon = text("LONGITUDE", "5°38'39.5\"E");
+  const lat = number("LATTITUDE", "55.26214");
+  const lon = text("LONGITUDE", "5.38395E");
   const hsfo = number("HSFO", 25);
   const lsfo = number("ISFO", 7);
   return (
