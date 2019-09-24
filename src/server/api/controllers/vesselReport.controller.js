@@ -18,7 +18,7 @@ const getVesselsReportByVesselId = async id => {
 const createVesselReport = async ({ body }) => {
   const {
     vessel_id,
-    position_waypoint,
+    position_waypoints,
     current_speed,
     hfo_consumption,
     lsfo_consumption
@@ -36,7 +36,7 @@ const createVesselReport = async ({ body }) => {
 
   const vessel_reports = await knex("vessel_reports").insert({
     vessel_id: vessel[0].id,
-    position_waypoint,
+    position_waypoints,
     current_speed: current_speed,
     hfo_consumption: hfo_consumption,
     lsfo_consumption: lsfo_consumption
