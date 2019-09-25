@@ -30,13 +30,6 @@ const createPort = async ({ body }) => {
       name
     });
 
-  const suggested_route = await knex
-    .from("suggested_routes")
-    .select("id")
-    .where({
-      id: suggested_route_id
-    });
-
   if (ports.length !== 0) {
     throw new HttpError("Bad request", "port already exists!", 409);
   } else {
@@ -45,11 +38,10 @@ const createPort = async ({ body }) => {
         name: name
       })
       .then(portID => {
-        //if (suggested_route.length > 0 && waypoints) {
-        if (waypoints) {
+        if (waypoints.length !== 0) {
           return knex("waypoints").insert({
             port_id: portID[0],
-            suggested_route_id: suggested_route[0].id,
+            suggested_route_id: suggested_route_id || null,
             lon: waypoints[0].lon,
             lat: waypoints[0].lat
           });
