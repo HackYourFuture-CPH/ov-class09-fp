@@ -11,6 +11,7 @@ const mailRouter = require("./mail.router");
 const portRouter = require("./port.router");
 const voyagesRouter = require("./voyages.router");
 const suggestedRoutesRouter = require("./suggested-routes.router");
+const selectedRoutesRouter = require("./selected-routes.router");
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
 const favoriteVesselsRouter = require("./favorite-vessels.router");
@@ -37,6 +38,7 @@ router.use(`${process.env.API_PATH}/organizations`, organizationRouter);
 router.use(`${process.env.API_PATH}/vessels`, vesselRouter);
 router.use(`${process.env.API_PATH}/voyages`, voyagesRouter);
 router.use(`${process.env.API_PATH}/suggested-routes`, suggestedRoutesRouter);
+router.use(`${process.env.API_PATH}/selected-routes`, selectedRoutesRouter);
 router.use(`${process.env.API_PATH}/favorite-vessels`, favoriteVesselsRouter);
 
 module.exports = router;
