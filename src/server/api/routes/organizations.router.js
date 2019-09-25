@@ -4,9 +4,7 @@ const vesselController = require("../controllers/vessel.controller");
 // router setup
 
 const express = require("express");
-const router = express.Router({
-  mergeParams: true
-});
+const router = express.Router({ mergeParams: true });
 const { authorizeUser } = require("../lib/middleware/auth.middleware");
 
 const ROLES = require("../../constants/roles");
@@ -14,6 +12,7 @@ const ROLES = require("../../constants/roles");
 // controllers
 const organizationController = require("../controllers/organization.controller");
 const vesselsController = require("../controllers/vessel.controller");
+const userController = require("../controllers/user.controller");
 
 // /api/organizations/ :POST
 router.post(
@@ -21,9 +20,7 @@ router.post(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
   (req, res, next) => {
     organizationController
-      .createOrganization({
-        body: req.body
-      })
+      .createOrganization({ body: req.body })
       .then(result =>
         res.json({
           message: `${req.body.name} added as new organization`,
@@ -36,9 +33,7 @@ router.post(
 
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
   organizationController
-    .getOrganizations({
-      body: req.body
-    })
+    .getOrganizations({ body: req.body })
     .then(result => res.json(result))
     .catch(next);
 });
@@ -61,10 +56,7 @@ router.patch(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN),
   (req, res, next) => {
     organizationController
-      .updateOrganizationById({
-        body: req.body,
-        id: req.params.id
-      })
+      .updateOrganizationById({ body: req.body, id: req.params.id })
       .then(result => res.json(result))
       .catch(next);
   }
@@ -76,6 +68,18 @@ router.get(
   (req, res, next) => {
     vesselsController
       .getVesselsByOrganizationId(req.params.id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+//ENDPOINT /api/organizations/:organization_id/users/ :POST
+router.post(
+  "/:id/users/",
+  authorizeUser(ROLES.SUPER_USER),
+  (req, res, next) => {
+    userController
+      .createAdminBySuperUser(req.params.id, req.body)
       .then(result => res.json(result))
       .catch(next);
   }

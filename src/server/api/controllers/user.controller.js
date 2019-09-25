@@ -11,9 +11,7 @@ const getUsers = async req => {
   try {
     return await knex("users")
       .select("users.email", "users.name", "user_roles.role")
-      .join("user_roles", {
-        "users.role_id": "user_roles.id"
-      });
+      .join("user_roles", { "users.role_id": "user_roles.id" });
   } catch (err) {
     console.log(err);
   }
@@ -39,9 +37,7 @@ const getAccount = async req => {
     const result = await knex("users")
       .join("user_roles", "users.role_id", "user_roles.id")
       .select("*")
-      .where({
-        "users.id": id
-      });
+      .where({ "users.id": id });
     return result;
   } catch (err) {
     return "User did not find";
@@ -53,9 +49,7 @@ const createUser = async ({ body }) => {
   const users = await knex
     .from("users")
     .select("*")
-    .where({
-      email
-    });
+    .where({ email });
   if (users.length !== 0) {
     throw new HttpError("Bad request", "user already exists!", 409);
   }
@@ -63,9 +57,7 @@ const createUser = async ({ body }) => {
   const role = await knex
     .from("user_roles")
     .select("*")
-    .where({
-      role: body.role
-    });
+    .where({ role: body.role });
 
   if (role.length > 0) {
     const hashedPassword = await hashPassword(body.password);
@@ -118,31 +110,21 @@ const editUser = async ({ body }) => {
       .update(queryData);
   } else return "No edit fields passed, nothing updated!";
 };
-
 const sendPasswordResetCode = async ({ body }) => {
   let user = await knex("users")
     .select("*")
-    .where({
-      id: body.id
-    });
+    .where({ id: body.id });
   if (user.length === 0) {
     throw new HttpError("Bad request", `User not found for id ${body.id}`, 404);
   }
 
   user = user[0];
 
-  const code = await generatePassword.generate({
-    length: 8,
-    numbers: true
-  });
+  const code = await generatePassword.generate({ length: 8, numbers: true });
 
   await knex("users")
-    .where({
-      id: body.id
-    })
-    .update({
-      password: code
-    });
+    .where({ id: body.id })
+    .update({ password: code });
 
   try {
     await mailer.sendEmail({
@@ -162,9 +144,7 @@ const sendPasswordResetCode = async ({ body }) => {
 const resetPasswordWithCode = async ({ body }) => {
   let user = await knex("users")
     .select("*")
-    .where({
-      id: body.id
-    });
+    .where({ id: body.id });
   if (user.length === 0) {
     throw new HttpError("Bad request", `User not found for id ${body.id}`, 404);
   }
@@ -173,21 +153,16 @@ const resetPasswordWithCode = async ({ body }) => {
 
   if (user.password === body.code) {
     return knex("users")
-      .where({
-        id: body.id
-      })
+      .where({ id: body.id })
       .update({
         password: await hashPassword(body.password)
       });
   } else throw new HttpError("Bad request", "Reset codes dont match!", 500);
 };
-
 const changePasswordRandomly = async ({ body }) => {
   let user = await knex("users")
     .select("*")
-    .where({
-      email: body.email
-    });
+    .where({ email: body.email });
   if (user.length === 0) {
     throw new HttpError(
       "Bad request",
@@ -214,25 +189,18 @@ const changePasswordRandomly = async ({ body }) => {
       });
 
       return knex("users")
-        .where({
-          id: user.id
-        })
-        .update({
-          password: await hashPassword(password)
-        });
+        .where({ id: user.id })
+        .update({ password: await hashPassword(password) });
     } catch (error) {
       return `Error occured! ${error.message}`;
     }
   } else return false;
 };
-
 const deleteUser = async ({ body }) => {
   try {
     if (!body.id) throw new HttpError("Bad request", "No id key passed", 400);
     return knex("users")
-      .where({
-        id: body.id
-      })
+      .where({ id: body.id })
       .del();
   } catch (err) {
     console.log(err);
@@ -245,9 +213,7 @@ const editUserRole = async ({ body, id }) => {
   const Admin = await knex
     .from("users")
     .select("*")
-    .where({
-      email: emailAdmin
-    });
+    .where({ email: emailAdmin });
   if (Admin.length === 0) {
     throw new HttpError("Bad request", "Email for admin is not correct", 404);
   }
@@ -272,9 +238,7 @@ const editUserRole = async ({ body, id }) => {
   const user = await knex
     .from("users")
     .select("*")
-    .where({
-      id: id
-    });
+    .where({ id: id });
   if (user.length === 0) {
     throw new HttpError("Bad request", `Cannot find user for ID ${id}!`, 404);
   }
@@ -289,11 +253,22 @@ const editUserRole = async ({ body, id }) => {
 
   if (Object.keys(queryData).length !== 0) {
     return knex("users")
-      .where({
-        id: id
-      })
+      .where({ id: id })
       .update(queryData);
   } else return "No edit fields passed, nothing updated!";
+};
+const createAdminBySuperUser = async (body, id) => {
+  console.log(body, id);
+  const hashedPassword = await hashPassword(body.password);
+
+  return knex("users").insert({
+    role_id: 2,
+    organization_id: id,
+    email: body.email,
+    password: hashedPassword,
+    name: body.name,
+    status: false
+  });
 };
 
 module.exports = {
@@ -306,5 +281,6 @@ module.exports = {
   changePasswordRandomly,
   deleteUser,
   getUserById,
-  editUserRole
+  editUserRole,
+  createAdminBySuperUser
 };
