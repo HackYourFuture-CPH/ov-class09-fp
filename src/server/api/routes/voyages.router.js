@@ -11,6 +11,7 @@ const ROLES = require("../../constants/roles");
 // controllers
 const voyagesController = require("../controllers/voyages.controller");
 const suggestedRoutesController = require("../controllers/suggested-routes.controller");
+const selectedRoutesController = require("../controllers/selected-routes.controller");
 
 // ENDPOINT: /api/voyages/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
@@ -27,6 +28,30 @@ router.get(
   (req, res, next) => {
     suggestedRoutesController
       .getSuggestedRouteByVoyageId(req.params.id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: api/voyages/:voyage_id/selected-routes :GET
+router.get(
+  "/:id/selected-routes",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    selectedRoutesController
+      .getSelectedRouteByVoyageId(req.params.id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: api/voyages/:voyage_id/selected-routes/current :GET
+router.get(
+  "/:id/selected-routes/current",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    selectedRoutesController
+      .getlastSelectedRouteByVoyageId(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }
