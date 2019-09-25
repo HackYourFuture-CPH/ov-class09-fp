@@ -1026,6 +1026,7 @@
       "title": "CreatePortRequest",
       "example": {
         "name": "Port sunshine",
+        "suggested_route_id": 1,
         "waypoints": [
           {
             "lon": 55.65646,
@@ -1037,6 +1038,10 @@
       "properties": {
         "name": {
           "type": "string"
+        },
+        "suggested_route_id": {
+          "type": "integer",
+          "format": "int32"
         },
         "waypoints": {
           "type": "array",
