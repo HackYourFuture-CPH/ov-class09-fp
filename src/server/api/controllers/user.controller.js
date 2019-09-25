@@ -257,10 +257,15 @@ const editUserRole = async ({ body, id }) => {
       .update(queryData);
   } else return "No edit fields passed, nothing updated!";
 };
-const createAdminBySuperUser = async (body, id) => {
-  console.log(body, id);
+const createAdminBySuperUser = async (id, body) => {
+  const users = await knex
+    .from("users")
+    .select("*")
+    .where({ email: body.email });
+  if (users.length !== 0) {
+    throw new HttpError("Bad request", "user already exists!", 409);
+  }
   const hashedPassword = await hashPassword(body.password);
-
   return knex("users").insert({
     role_id: 2,
     organization_id: id,
