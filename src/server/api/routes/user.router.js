@@ -20,18 +20,6 @@ router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
     .catch(next);
 });
 
-// ENDPOINT: /api/users/:id :GET
-router.get(
-  "/:id",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
-  function(req, res, next) {
-    userController
-      .getUserById(req.params.id)
-      .then(result => res.json(result))
-      .catch(next);
-  }
-);
-
 // ENDPOINT: /api/users/account :GET
 router.get(
   "/account",
@@ -123,6 +111,18 @@ router.get(
   (req, res, next) => {
     favoriteVesselsController
       .getFavoriteVesselsByUserId(req.params.user_id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: /api/users/:id :GET
+router.get(
+  "/:id",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  function(req, res, next) {
+    userController
+      .getUserById(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }
