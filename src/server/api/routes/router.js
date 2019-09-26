@@ -19,38 +19,6 @@ const vesselRouter = require("./vessel.router");
 
 const favoriteVesselsRouter = require("./favorite-vessels.router");
 
-// /api/users
-router.use("/users", userRouter);
-
-// /api/auth
-router.use("/auth", authRouter);
-
-// /api/modules
-router.use("/modules", modulesRouter);
-
-router.use("/mail", mailRouter);
-
-router.use("/token", refreshTokenRouter);
-
-// /api/vessel-reports
-router.use("/vessel-reports", vesselReportRouter);
-
-router.use("/ports", portRouter);
-
-// /api/suggested-routes
-router.use("/suggested-routes", suggestedRoutesRouter);
-
-// /api/organizations
-router.use("/organizations", organizationRouter);
-router.use("/vessels", vesselRouter);
-// /api/organizations/organization_id/vessels
-
-// /api/voyages
-router.use("/voyages", voyagesRouter);
-
-// /api/favorite_vessels/
-router.use("/favorite-vessels", favoriteVesselsRouter);
-
 // swagger-ui-express
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../../config/swagger.json");
