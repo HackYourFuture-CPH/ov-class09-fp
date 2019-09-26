@@ -90,7 +90,9 @@ router.post("/sendPasswordResetCode", (req, res, next) => {
 // ENDPOINT: /api/users/resetPasswordWithCode :PATCH
 router.post("/resetPasswordWithCode", (req, res, next) => {
   userController
-    .resetPasswordWithCode({ body: req.body })
+    .resetPasswordWithCode({
+      body: req.body
+    })
     .then(result => res.json(result))
     .catch(next);
 });
