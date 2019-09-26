@@ -35,7 +35,29 @@ const deleteFavoriteVessel = ({ body }) => {
     .del();
 };
 
+//GET
+const getFavoriteVesselsByUserId = async user_id => {
+  try {
+    const favoriteVessels = await knex("favorite_vessels")
+      .select("*")
+      .where({ user_id });
+
+    if (favoriteVessels.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `This user:${user_id}, doesn't have any favorite vessel!`,
+        404
+      );
+    }
+
+    return favoriteVessels;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 module.exports = {
   createFavoriteVessel,
-  deleteFavoriteVessel
+  deleteFavoriteVessel,
+  getFavoriteVesselsByUserId
 };
