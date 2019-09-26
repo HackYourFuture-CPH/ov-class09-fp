@@ -1,7 +1,7 @@
 import React from "react";
 import VesselsList from "../components/VesselsList";
 import { withKnobs, text, object } from "@storybook/addon-knobs";
-export function VesselsStory() {
+export function VesselsListStory() {
   const vesselsList = object("vessels", [
     {
       id: 1,

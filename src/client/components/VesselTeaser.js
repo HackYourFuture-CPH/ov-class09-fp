@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 
-function VesselsComponent({
-  id,
-  vesselName,
-  departureFrom,
-  arrivesAt,
-  etd,
-  eta
-}) {
+function Vessel({ id, vesselName, departureFrom, arrivesAt, etd, eta }) {
   return (
     <div>
       <h1>{vesselName}</h1>
@@ -21,4 +14,4 @@ function VesselsComponent({
   );
 }
 
-export default VesselsComponent;
+export default Vessel;
