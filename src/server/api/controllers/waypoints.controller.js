@@ -38,7 +38,7 @@ const createWaypoints = async ({ body }) => {
       404
     );
   }
-  console.log(routes[0].id);
+
   // 3. create a Waypoint
   return await knex("waypoints").insert({
     lat,
@@ -49,7 +49,6 @@ const createWaypoints = async ({ body }) => {
 
 // Method for getting waypoints by route id
 const getWaypointsForRoute = async id => {
-  console.log(id);
   try {
     return await knex("suggested_routes")
       .select("*")
