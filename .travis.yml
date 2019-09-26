@@ -8,3 +8,9 @@ install:
   - npm install
 script:
   - npm run db:setup
+env:
+  - DB_HOST="127.0.0.1"
+  - DB_PORT="3306"
+  - DB_NAME="optimum_voyage_db"
+  - DB_USER="root"
+  - DB_PASSWORD=""
