@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../components/login-form/login-form";
+import LoginForm from "../components/login-form";
 import { Button } from "@storybook/react/demo";
 import { withKnobs, text } from "@storybook/addon-knobs";
 
