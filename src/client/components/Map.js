@@ -4,7 +4,7 @@ import MapMarker from "./Marker";
 
 function MapComponent({
   centerMapCoordinates,
-  pathColor = "red",
+  pathColor = "purple",
   displayMarkers = false,
   zoom = 12,
   waypoints = []
