@@ -31,7 +31,7 @@ exports.seed = function(knex, Promise) {
           name: "ecas-Test4"
         },
         {
-          lon: 4474441.15,
+          lon: 44744.15,
           lat: 41295.23,
           name: "ecas-Test5"
         },
