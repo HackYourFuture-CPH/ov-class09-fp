@@ -74,5 +74,6 @@ router.use(`${process.env.API_PATH}/vessels`, vesselRouter);
 router.use(`${process.env.API_PATH}/voyages`, voyagesRouter);
 router.use(`${process.env.API_PATH}/suggested-routes`, suggestedRoutesRouter);
 router.use(`${process.env.API_PATH}/favorite-vessels`, favoriteVesselsRouter);
+router.use(`${process.env.API_PATH}/vessel-reports`, vesselReportRouter);
 
 module.exports = router;
