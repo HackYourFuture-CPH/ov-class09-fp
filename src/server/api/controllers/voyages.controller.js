@@ -10,21 +10,37 @@ const getVoyages = () => {
 
 //to create a voyage
 const createVoyage = async ({ body }) => {
+  const {
+    vessel_id,
+    etd,
+    eta,
+    forwarddraft,
+    aftdraft,
+    optimisation_type,
+    depart_from_waypoint,
+    arrive_at_waypoint,
+    sailtime,
+    hfocost,
+    lsfocost,
+    hirerate,
+    status
+  } = body;
+
   try {
     return knex("voyages").insert({
-      vessel_id: body.vessel_id,
-      etd: body.etd,
-      eta: body.eta,
-      forwarddraft: body.forwarddraft,
-      aftdraft: body.aftdraft,
-      optimisation_type: body.optimisation_type,
-      depart_from: body.depart_from,
-      arrive_at: body.arrive_at,
-      sailtime: body.sailtime,
-      hfocost: body.hfocost,
-      lsfocost: body.lsfocost,
-      hirerate: body.hirerate,
-      status: body.status
+      vessel_id,
+      etd,
+      eta,
+      forwarddraft,
+      aftdraft,
+      optimisation_type,
+      depart_from_waypoint,
+      arrive_at_waypoint,
+      sailtime,
+      hfocost,
+      lsfocost,
+      hirerate,
+      status
     });
   } catch (error) {
     console.log("Error: Could not insert voyage.");
@@ -32,10 +48,10 @@ const createVoyage = async ({ body }) => {
 };
 
 // Get voyages by vessel id
-const getVoyagesByVesselId = async id => {
-  const voyagesByVesselId = await knex.from("voyages").where({ vessel_id: id });
+const getVoyagesByVesselId = async vessel_id => {
+  const voyagesByVesselId = await knex.from("voyages").where({ vessel_id });
   if (voyagesByVesselId.length === 0) {
-    return `no voyages exist with that id ${id}`;
+    return `no voyages exist with that id ${vessel_id}`;
   }
   return voyagesByVesselId;
 };
