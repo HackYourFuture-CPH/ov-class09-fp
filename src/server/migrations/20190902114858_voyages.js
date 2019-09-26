@@ -11,17 +11,17 @@ exports.up = function(knex, Promise) {
       .inTable("vessels")
       .onDelete("CASCADE")
       .index();
-    table.date("etd").notNullable();
+    table.date("et").notNullable();
     table.date("eta").notNullable();
     table.float("forwarddraft").notNullable();
-    table.float("aftdraft").notNullable();
-    table.float("optimisation_type").notNullable();
+    table.float("aftraft").notNullable();
+    table.float("optisation_type").notNullable();
     table.integer("depart_from").notNullable();
     table.integer("arrive_at").notNullable();
     table.float("sailtime").notNullable();
-    table.float("hfocost").notNullable();
+    table.float("hfcost").notNullable();
     table.float("lsfocost").notNullable();
-    table.float("hirerate").notNullable();
+    table.float("hrerate").notNullable();
     table.enum("status", ["created", "ongoing", "completed"]).notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());
