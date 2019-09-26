@@ -31,11 +31,10 @@ class LoginForm extends React.Component {
       .then(response => response.json())
       .then(data => {
         localStorage.setItem("token", data.token); //storing token into local storage
-        console.log(data);
+        //console.log(data);
       });
   };
   catch(err) {
-    console.log(err);
     return err.message;
   }
 
