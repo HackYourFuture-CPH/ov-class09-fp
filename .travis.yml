@@ -4,6 +4,8 @@ node_js:
   - 8
 services:
   - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE optimum_voyage_db;'
 install:
   - npm install
 script:
