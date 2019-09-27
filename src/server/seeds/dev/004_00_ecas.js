@@ -11,54 +11,54 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("ecas").insert([
         {
-          lon: 122133.15,
-          lat: 24244.23,
-          name: "ecas-Test1"
+          longitude: -7.8585562,
+          latitude: 42.3233666,
+          name: "Holdlamis"
         },
         {
-          lon: 178133.15,
-          lat: 2744.23,
-          name: "ecas-Test2"
+          longitude: 13.740288,
+          latitude: 49.1333104,
+          name: "Tres-Zap"
         },
         {
-          lon: 1223.15,
-          lat: 26644.23,
-          name: "ecas-Test3"
+          longitude: -9.1836701,
+          latitude: 39.3131016,
+          name: "Sub-Ex"
         },
         {
-          lon: 4523.15,
-          lat: 74852.23,
-          name: "ecas-Test4"
+          longitude: -66.8498883,
+          latitude: 10.6135398,
+          name: "Namfix"
         },
         {
-          lon: 44744.15,
-          lat: 41295.23,
-          name: "ecas-Test5"
+          longitude: 39.8653499,
+          latitude: 55.6583701,
+          name: "Subin"
         },
         {
-          lon: 7253.15,
-          lat: 42515.23,
-          name: "ecas-Test6"
+          longitude: 32.4706123,
+          latitude: 53.4334331,
+          name: "Lotstring"
         },
         {
-          lon: 4125.15,
-          lat: 42354.23,
-          name: "ecas-Test7"
+          longitude: 111.5101759,
+          latitude: -7.413598,
+          name: "Temp"
         },
         {
-          lon: 4522.15,
-          lat: 7452.23,
-          name: "ecas-Test8"
+          longitude: -119.8185447,
+          latitude: 39.5251914,
+          name: "Treeflex"
         },
         {
-          lon: 7532.15,
-          lat: 21597.23,
-          name: "ecas-Test9"
+          longitude: -8.3487249,
+          latitude: 41.5024723,
+          name: "Cardguard"
         },
         {
-          lon: 75853.15,
-          lat: 14222.23,
-          name: "ecas-Test10"
+          longitude: 112.4082849,
+          latitude: -6.9748882,
+          name: "Stim"
         }
       ]);
     });
