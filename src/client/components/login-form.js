@@ -8,7 +8,12 @@ class LoginForm extends React.Component {
       result: ""
     };
   }
-
+  clickHandlerCancel = event => {
+    this.setState({
+      email: "",
+      password: ""
+    });
+  };
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -16,28 +21,27 @@ class LoginForm extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-
-    fetch("http://localhost:3000/api/auth/login/ ", {
-      method: "POST",
-      headers: {
-        Accept: "application/json text/plain",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
+    try {
+      fetch("http://localhost:3000/api/auth/login/ ", {
+        method: "POST",
+        headers: {
+          Accept: "application/json text/plain",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password
+        })
       })
-    })
-      .then(response => response.json())
-      .then(data => {
-        localStorage.setItem("token", data.token); //storing token into local storage
-        //console.log(data);
-      });
+        .then(response => response.json())
+        .then(data => {
+          localStorage.setItem("token", data.token); //storing token into local storage
+          //console.log(data);
+        });
+    } catch (err) {
+      return err.message;
+    }
   };
-  catch(err) {
-    return err.message;
-  }
-
   render() {
     const { email, password, result } = this.state;
     return (
