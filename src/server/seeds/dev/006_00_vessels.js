@@ -12,17 +12,17 @@ exports.seed = function(knex, Promise) {
       return knex("vessels").insert([
         {
           organization_id: 1,
-          mmsi: 23.33,
+          mmsi: "235898000",
           name: "hyf-vessel1"
         },
         {
           organization_id: 1,
-          mmsi: 45.33,
+          mmsi: "235535000",
           name: "hyf-vessel2"
         },
         {
           organization_id: 1,
-          mmsi: 24.33,
+          mmsi: "235231010",
           name: "hyf-vessel3"
         }
       ]);
