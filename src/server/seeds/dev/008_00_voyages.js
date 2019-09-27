@@ -33,12 +33,12 @@ exports.seed = function(knex, Promise) {
           aftdraft: 2513.15,
           optimisation_type: 2,
           depart_from_waypoint: 1,
-          arrive_at_waypoint: 1,
+          arrive_at_waypoint: 2,
           sailtime: 23.25,
           hfocost: 23930.38,
           lsfocost: 15000.84,
           hirerate: 11249.17,
-          status: "departure"
+          status: "created"
         },
         {
           vessel_id: 4,
@@ -47,8 +47,8 @@ exports.seed = function(knex, Promise) {
           forwarddraft: 2977.78,
           aftdraft: 2565.79,
           optimisation_type: 1,
-          depart_from_waypoint: 5,
-          arrive_at_waypoint: 10,
+          depart_from_waypoint: 3,
+          arrive_at_waypoint: 1,
           sailtime: 21.25,
           hfocost: 22559.98,
           lsfocost: 11376.57,
@@ -62,8 +62,8 @@ exports.seed = function(knex, Promise) {
           forwarddraft: 2186.28,
           aftdraft: 2913.92,
           optimisation_type: 1,
-          depart_from_waypoint: 9,
-          arrive_at_waypoint: 2,
+          depart_from_waypoint: 2,
+          arrive_at_waypoint: 3,
           sailtime: 31.99,
           hfocost: 21762.0,
           lsfocost: 17871.23,
@@ -77,7 +77,7 @@ exports.seed = function(knex, Promise) {
           forwarddraft: 1327.47,
           aftdraft: 2104.84,
           optimisation_type: 2,
-          depart_from_waypoint: 10,
+          depart_from_waypoint: 4,
           arrive_at_waypoint: 5,
           sailtime: 38.2,
           hfocost: 29393.21,
@@ -113,7 +113,7 @@ exports.seed = function(knex, Promise) {
           hfocost: 20671.65,
           lsfocost: 25763.39,
           hirerate: 13040.45,
-          status: "departure"
+          status: "created"
         },
         {
           vessel_id: 2,
@@ -128,7 +128,7 @@ exports.seed = function(knex, Promise) {
           hfocost: 23733.33,
           lsfocost: 27105.28,
           hirerate: 27712.71,
-          status: "departure"
+          status: "created"
         },
         {
           vessel_id: 3,
