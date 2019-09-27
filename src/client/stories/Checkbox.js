@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "../components/Checkbox";
+import Checkbox from "../components/voyage/Checkbox";
 import {
   withKnobs,
   text,
