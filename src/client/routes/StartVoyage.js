@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Dropdown from "./components/Dropdown";
-import Checkbox from "./components/Checkbox";
+import Dropdown from "../components/voyage/Dropdown";
+import Checkbox from "../components/voyage/Checkbox";
 
 class StartVoyage extends Component {
   render() {
