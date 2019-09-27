@@ -64,7 +64,7 @@ const createUser = async ({ body }) => {
     .from("user_roles")
     .select("*")
     .where({
-      role: body.role
+      role: "operator"
     });
 
   if (role.length > 0) {

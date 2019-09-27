@@ -10,20 +10,20 @@ exports.seed = function(knex, Promise) {
     return knex("waypoints").insert([
       {
         suggested_route_id: 1,
-        lon: 2344.44,
-        lat: 2234.87,
+        longitude: 55.5893529,
+        latitude: 12.2980372,
         sequence_id: 1
       },
       {
         suggested_route_id: 2,
-        lon: 2344.44,
-        lat: 2234.87,
+        longitude: 55.5893529,
+        latitude: 12.2980372,
         sequence_id: 1
       },
       {
         suggested_route_id: 3,
-        lon: 2344.44,
-        lat: 2234.87,
+        longitude: 55.5893529,
+        latitude: 12.2980372,
         sequence_id: 1
       }
     ]);
