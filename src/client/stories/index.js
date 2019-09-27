@@ -13,14 +13,7 @@ storiesOf("Button", module)
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
-const VesselsListStories = storiesOf("VesselList", module).add(
-  "Vessel",
-  VesselsListStory
-);
+const VesselsListStories = storiesOf("Vessels", module)
+  .add("VesselList", VesselsListStory)
+  .add("Vessel Teaser", VesselTeaserStory);
 VesselsListStories.addDecorator(withKnobs);
-
-const VesselTeaserStories = storiesOf("VesselTeaser", module).add(
-  "Vessel Teaser",
-  VesselTeaserStory
-);
-VesselTeaserStories.addDecorator(withKnobs);
