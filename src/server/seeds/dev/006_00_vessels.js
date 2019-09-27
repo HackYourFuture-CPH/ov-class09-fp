@@ -3,7 +3,6 @@ exports.seed = function(knex, Promise) {
   var path = require("path");
   var scriptName = path.basename(__filename);
   console.info(`Running seed file: ${scriptName}`);
-
   // Deletes ALL existing entries
   return knex("vessels")
     .del()
