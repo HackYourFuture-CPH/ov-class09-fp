@@ -11,18 +11,18 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("ecas").insert([
         {
-          lon: 122133.15,
-          lat: 24244.23,
+          longitude: 55.5893529,
+          latitude: 12.2980372,
           name: "ecas-Test1"
         },
         {
-          lon: 178133.15,
-          lat: 2744.23,
+          longitude: 55.5893529,
+          latitude: 12.2980372,
           name: "ecas-Test2"
         },
         {
-          lon: 1223.15,
-          lat: 26644.23,
+          longitude: 55.5893529,
+          latitude: 12.2980372,
           name: "ecas-Test3"
         }
       ]);
