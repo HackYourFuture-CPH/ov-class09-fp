@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Dropdown from "../components/voyage/Dropdown";
 import Checkbox from "../components/voyage/Checkbox";
+import NavButton from "../components/voyage/NavButton";
 
 class StartVoyage extends Component {
   render() {
     return (
       <div>
+        <NavButton label="Start" />
         <Dropdown
           label="Test"
-          portsMap={[
+          optionsMap={[
             {
               lat: 51.45,
               depth: -11,
