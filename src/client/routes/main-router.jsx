@@ -15,5 +15,4 @@ const MainRouter = props => {
     </React.Fragment>
   );
 };
-
 export default withRouter(MainRouter);
