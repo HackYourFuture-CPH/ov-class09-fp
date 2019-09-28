@@ -52,7 +52,7 @@ const getSuggestedRouteByVoyageId = async id => {
 };
 
 // Create a route
-const createSuggestedRoute = async ({ body }) => {
+const createSuggestedRouteWithWaypoints = async ({ body }) => {
   const {
     voyage_id,
     eta,
@@ -108,5 +108,5 @@ module.exports = {
   getSuggestedRoutes,
   getSuggestedRouteById,
   getSuggestedRouteByVoyageId,
-  createSuggestedRoute
+  createSuggestedRouteWithWaypoints
 };
