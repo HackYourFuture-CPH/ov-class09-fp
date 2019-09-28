@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Title from "../components/voyage/Title";
-import DateTime from "../components/voyage/DateTime";
-import InputField from "../components/voyage/InputField";
+import Title from "./../components/voyage/Title";
+import DateTime from "./../components/voyage/DateTime";
+import InputField from "./../components/voyage/InputField";
 
 class StartVoyage extends Component {
   state = {
