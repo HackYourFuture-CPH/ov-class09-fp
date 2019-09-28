@@ -10,7 +10,6 @@ class StartVoyage extends Component {
     super(props);
 
     this.state = {
-      vessel: [], // vessel: {name & id}
       harbourList: [], //holds the list of harbours {name, lat, depth & lat}
       hire_rate: "",
       ETD: "",
@@ -34,10 +33,10 @@ class StartVoyage extends Component {
       fuelCost_stepSize: 0.5,
       //accuracy,
       fuelCost_Unit: "USD",
-      vesselNames: [
-        { name: "Mirjam" },
-        { name: "Nord Vantage" },
-        { name: "Agrigento" }
+      vessels: [
+        { name: "Mirjam", id: 1 },
+        { name: "Nord Vantage", id: 2 },
+        { name: "Agrigento", id: 3 }
       ],
       portNames: [
         {
@@ -168,7 +167,8 @@ class StartVoyage extends Component {
         }
       ],
       departure_position: {},
-      arrival_position: {}
+      arrival_position: {},
+      vessel_id: 0
     };
   }
 
@@ -192,6 +192,12 @@ class StartVoyage extends Component {
     this.setState({ [name]: value });
   };
 
+  handleVesselSelection = e => {
+    const selectedIndex = e.target.selectedIndex;
+    const vessel_id = this.state.vessels[selectedIndex].id;
+    this.setState({ vessel_id: vessel_id });
+  };
+
   handleDeparturePortSelection = e => {
     const selectedIndex = e.target.selectedIndex;
     const departure_position = {
@@ -207,9 +213,7 @@ class StartVoyage extends Component {
       longitude: this.state.portNames[selectedIndex].lon,
       latitude: this.state.portNames[selectedIndex].lat
     };
-    this.setState({ arrival_position: arrival_position }, () =>
-      console.log(this.state.arrival_position)
-    );
+    this.setState({ arrival_position: arrival_position });
   };
 
   render() {
@@ -231,7 +235,7 @@ class StartVoyage extends Component {
       fuelCost_stepSize,
       //accuracy,
       fuelCost_Unit,
-      vesselNames,
+      vessels,
       portNames
     } = this.state;
 
@@ -240,7 +244,11 @@ class StartVoyage extends Component {
         <form>
           <Title title=" Start Voyage " />
           <br />
-          <Dropdown label="Choose vessel" optionsMap={vesselNames} />
+          <Dropdown
+            label="Choose vessel"
+            optionsMap={vessels}
+            handleSelection={this.handleVesselSelection}
+          />
           <br />
           <Checkbox label="Chartered vessel" />
           <br />
