@@ -7,30 +7,6 @@
 
 ## Glossary:
 
-AddedCost - Added cost in percentage facing the suggested route AftDraft - The
-draft aft (stern) is measured in the perpendicular of the stern. It's measured
-in meters. AvgSpeed - Average Speed in knots. A knot is 1,852 Km/h. DistOG -
-Distance over ground in nautical mile. A nautical mile is 1,852 km/h. DistTW -
-Distance through water in nautical mile ECA - Emission Control Areas are
-designated areas where vessels can only operate with LSFO. ETA - Estimate Time
-of Arrival. ETD - Estimate Time of Departure. ForwardDraft - in meters. The
-draft forward (bow) is measured in the perpendicular of the bow. HFO - Heavy
-Fuel Oil in Tons. LAT - Latitude. LON - Longitude. LSFO - Low Sulphur Fuel Oil
-in Tons, it's the Fuel that is mandatory to use in the ECA. MaxWaveHs - Maximum
-wave height in meters. MMSI - Maritime Mobile Service Identity it’s the ID that
-is used for radio/frequency communications and it can be used as an unique
-identifier of a Vessel. RPM - Revolutions per minute - It is a unit of
-rotational speed or the frequency of rotation around a fixed axis. UTC -
-Coordinated Universal Time.
-
-## Types of Users/Roles:
-
-Super Users are only for the OV Staff Admin Users are the specific Organisation
-Admin Staff Operator Users are the specific operators of a certain Organisation
-Operators Staff
-
-## Other business concepts:
-
 AddedCost - Added cost in percentage facing the suggested route.<br> AftDraft -
 The draft aft (stern) is measured in the perpendicular of the stern. It's
 measured in meters. <br> AvgSpeed - Average Speed in knots. A knot is 1,852
