@@ -12,6 +12,7 @@ const ROLES = require("../../constants/roles");
 
 // controllers
 const userController = require("../controllers/user.controller");
+const favoriteVesselsController = require("../controllers/favorite-vessels.controller");
 
 // ENDPOINT: /api/users/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
@@ -20,18 +21,6 @@ router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
     .then(result => res.json(result))
     .catch(next);
 });
-
-// ENDPOINT: /api/users/:id :GET
-router.get(
-  "/:id",
-  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
-  function(req, res, next) {
-    userController
-      .getUserById(req.params.id)
-      .then(result => res.json(result))
-      .catch(next);
-  }
-);
 
 // ENDPOINT: /api/users/account :GET
 router.get(
@@ -127,6 +116,30 @@ router.delete(
       .deleteUser({
         body: req.body
       })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: /api/users/user_id/vessels :GET
+router.get(
+  "/:user_id/vessels",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    favoriteVesselsController
+      .getFavoriteVesselsByUserId(req.params.user_id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+// ENDPOINT: /api/users/:id :GET
+router.get(
+  "/:id",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  function(req, res, next) {
+    userController
+      .getUserById(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }

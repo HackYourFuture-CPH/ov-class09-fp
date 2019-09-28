@@ -4,7 +4,7 @@ const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 const moment = require("moment-timezone");
 
-// Get all suggested_routes
+// Get all suggested-routes
 const getSuggestedRoutes = async req => {
   try {
     return await knex("suggested_routes").select("*");
@@ -13,6 +13,7 @@ const getSuggestedRoutes = async req => {
   }
 };
 
+// Get a suggested-route by id
 const getSuggestedRouteById = async id => {
   try {
     const suggested_route = await knex("suggested_routes")
@@ -31,8 +32,27 @@ const getSuggestedRouteById = async id => {
   }
 };
 
-// Create a route with waypoints
-const createRouteWithWaypoints = async ({ body }) => {
+// Get a suggested-routes by voyage id
+const getSuggestedRouteByVoyageId = async id => {
+  try {
+    const suggested_routesByVoyageId = await knex("suggested_routes")
+      .select("*")
+      .where({ voyage_id: id });
+    if (suggested_routesByVoyageId.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `Cannot find suggested routes for ID ${id}!`,
+        404
+      );
+    }
+    return suggested_routesByVoyageId;
+  } catch (err) {
+    return err.message;
+  }
+};
+
+// Create a route
+const createSuggestedRoute = async ({ body }) => {
   const {
     voyage_id,
     eta,
@@ -87,5 +107,6 @@ const createRouteWithWaypoints = async ({ body }) => {
 module.exports = {
   getSuggestedRoutes,
   getSuggestedRouteById,
-  createRouteWithWaypoints
+  getSuggestedRouteByVoyageId,
+  createSuggestedRoute
 };

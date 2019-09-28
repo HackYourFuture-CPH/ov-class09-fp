@@ -5,22 +5,25 @@ exports.seed = function(knex, Promise) {
   console.info(`Running seed file: ${scriptName}`);
 
   // Deletes ALL existing entries
-  return knex("user_roles")
+  return knex("waypoints")
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex("user_roles").insert([
+      return knex("waypoints").insert([
         {
-          role: "superuser",
-          status: true
+          port_id: 1,
+          longitude: 55.5893529,
+          latitude: 12.2980372
         },
         {
-          role: "admin",
-          status: true
+          port_id: 2,
+          longitude: 55.5893529,
+          latitude: 12.2980372
         },
         {
-          role: "operator",
-          status: true
+          port_id: 3,
+          longitude: 55.5893529,
+          latitude: 12.2980372
         }
       ]);
     });
