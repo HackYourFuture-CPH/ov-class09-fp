@@ -4,12 +4,25 @@ import Checkbox from "../components/voyage/Checkbox";
 import NavButton from "../components/voyage/NavButton";
 
 class StartVoyage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      vessels: []
+    };
+  }
+
+  componentDidMount() {
+    fetch()
+      .then(res => res.json())
+      .then(data => this.setState({ vessels: data }));
+  }
   render() {
     return (
       <div>
         <NavButton label="Start" />
         <Dropdown
-          label="Test"
+          label="Choose vessel"
           optionsMap={[
             {
               lat: 51.45,
