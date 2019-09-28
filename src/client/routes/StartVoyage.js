@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import Title from "./../components/voyage/Title";
 import DateTime from "./../components/voyage/DateTime";
 import InputField from "./../components/voyage/InputField";
+import Dropdown from "./../components/voyage/Dropdown";
+import NavButton from "./../components/voyage/NavButton";
 
 class StartVoyage extends Component {
   state = {
-    vessel: [], // vessel: {name & id}
+    vessels: [], // vessel: {name & id}
     harbourList: [], //holds the list of harbours {name, lat, depth & lat}
     departure_position: [], // departure: {lat & lon}
     arrival_position: [], // arrival: {lat & lon}
+    optimizationType: [],
     hire_rate: "",
     ETD: "",
     ETA: "",
@@ -55,6 +58,7 @@ class StartVoyage extends Component {
 
   render() {
     const {
+      optimizationType,
       departureDate,
       departureTime,
       arrivalDate,
@@ -62,7 +66,11 @@ class StartVoyage extends Component {
       forward_draft,
       aft_draft,
       lfso_cost,
-      hfo_cost,
+      hfo_cost
+    } = this.state;
+    const {
+      vessels,
+      harbourList,
       min_Draft,
       max_Draft,
       draft_StepSize,
@@ -72,12 +80,16 @@ class StartVoyage extends Component {
       fuelCost_stepSize,
       //accuracy,
       fuelCost_Unit
-    } = this.state;
+    } = this.props;
 
     return (
       <div>
         <form>
           <Title title=" Start Voyage " />
+          <Dropdown label=" Choose Vessel " optionsMap={vessels} />
+          <br />
+          <Dropdown label=" Depart From " optionsMap={harbourList} />
+          <br />
           <DateTime
             label=" Estimated Departure (ETD) "
             name="ETD"
@@ -87,6 +99,8 @@ class StartVoyage extends Component {
             onTimeInputChange={this.handleTimeInputChange}
           />
           <br />
+          <Dropdown label=" Destination " optionsMap={harbourList} />
+          <br />
           <DateTime
             label=" Estimated Arrival (ETA) "
             name="ETA"
@@ -95,6 +109,8 @@ class StartVoyage extends Component {
             onDateInputChange={this.handleDateInputChange}
             onTimeInputChange={this.handleTimeInputChange}
           />
+          <br />
+          <Dropdown label=" Optimisation type " optionsMap={optimizationType} />
           <br />
           <InputField
             label=" Forward Draft "

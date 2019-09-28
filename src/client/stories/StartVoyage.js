@@ -22,6 +22,12 @@ export function StartVoyageStory() {
   const fuelCost_stepSize = number("fuelCost_stepSize", 0.5);
   //const accuracy = number("accuracy", 2.00);
   const fuelCost_Unit = text("fuelCost_Unit", "m");
+  const vessels = object("vesselList", [
+    { id: 1, name: "Yeniser River" },
+    { id: 2, name: "Serenade of the seas" },
+    { id: 3, name: "Msc Meraviglia" },
+    { id: 4, name: "Optimum Voyage" }
+  ]);
 
   // harbour list info
   const harbourList = object("habourList", [
@@ -55,6 +61,7 @@ export function StartVoyageStory() {
   return (
     <StartVoyage
       harbourList={harbourList}
+      vessels={vessels}
       min_Draft={min_Draft}
       max_Draft={max_Draft}
       draft_StepSize={draft_StepSize}
