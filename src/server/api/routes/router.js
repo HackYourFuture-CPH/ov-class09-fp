@@ -13,6 +13,7 @@ const waypointsRouter = require("./waypoints.router");
 const vesselReportRouter = require("./vessel-reports.router");
 
 const portRouter = require("./port.router");
+
 const voyagesRouter = require("./voyages.router");
 
 const suggestedRoutesRouter = require("./suggested-routes.router");
