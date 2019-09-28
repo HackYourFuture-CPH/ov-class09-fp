@@ -96,8 +96,8 @@ const createSuggestedRoute = async ({ body }) => {
         return {
           suggested_route_id: id,
           sequence_id: sequence_id++,
-          lon: waypoint.lon,
-          lat: waypoint.lat
+          longitude: waypoint.longitude,
+          latitude: waypoint.latitude
         };
       });
 
