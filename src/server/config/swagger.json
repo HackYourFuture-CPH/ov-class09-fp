@@ -1026,7 +1026,7 @@
       "title": "CreatePortRequest",
       "example": {
         "name": "Port sunshine",
-        "waypoints": [
+        "waypoint": [
           {
             "lon": 55.65646,
             "lat": 12.53635
@@ -1038,14 +1038,14 @@
         "name": {
           "type": "string"
         },
-        "waypoints": {
-          "type": "array",
+        "waypoint": {
+          "type": "object",
           "items": {
             "$ref": "#/definitions/Waypoint"
           }
         }
       },
-      "required": ["name", "waypoints"]
+      "required": ["name", "waypoint"]
     },
     "Waypoint": {
       "title": "Waypoint",

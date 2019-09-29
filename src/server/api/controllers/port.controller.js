@@ -18,8 +18,7 @@ const getPortById = async id => {
 };
 
 const createPort = async ({ body }) => {
-  const { name } = body;
-
+  const { name, waypoint } = body;
   if (name.length === 0) {
     throw new HttpError("Bad request", "Port name is missing!", 409);
   }
@@ -34,9 +33,24 @@ const createPort = async ({ body }) => {
   if (ports.length !== 0) {
     throw new HttpError("Bad request", "port already exists!", 409);
   } else {
-    return knex("ports").insert({
-      name: name
-    });
+    return knex("ports")
+      .insert({
+        name: name
+      })
+      .then(portID => {
+        if (waypoint.length !== 0) {
+          return knex("waypoints").insert({
+            port_id: portID[0],
+            longitude: waypoint[0].lon,
+            latitude: waypoint[0].lat
+          });
+        } else {
+          return `No Waypoint Added for port: '${name}' `;
+        }
+      })
+      .catch(error => {
+        return `Error occured!  ${error.message}`;
+      });
   }
 };
 
