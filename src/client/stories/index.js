@@ -12,6 +12,3 @@ const LoginStories = storiesOf("Login-form", module).add(
   LoginFormStory
 );
 LoginStories.addDecorator(withKnobs);
-
-storiesOf("Login-form", module).add("Button", LoginFormStory);
-LoginStories.addDecorator(withKnobs);

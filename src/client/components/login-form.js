@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      result: ""
-    };
-  }
+  state = {
+    email: "",
+    password: "",
+    result: ""
+  };
+
   clickHandlerCancel = event => {
     this.setState({
       email: "",
