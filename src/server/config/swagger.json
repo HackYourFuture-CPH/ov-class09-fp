@@ -1039,7 +1039,7 @@
           "type": "string"
         },
         "waypoint": {
-          "type": "array",
+          "type": "object",
           "items": {
             "$ref": "#/definitions/Waypoint"
           }
