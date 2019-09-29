@@ -18,35 +18,37 @@ const getPortById = async id => {
 };
 
 const createPort = async ({ body }) => {
-  const { name, waypoints } = body;
-  if (name.length === 0) {
-    throw new HttpError("Bad request", "Port name is missing!", 409);
-  }
+  try {
+    const { name, waypoint } = body;
 
-  const ports = await knex
-    .from("ports")
-    .select("*")
-    .where({
-      name
-    });
+    if (name.length === 0) {
+      throw new HttpError("Bad request", "Port name is missing!", 404);
+    }
 
-  if (ports.length !== 0) {
-    throw new HttpError("Bad request", "port already exists!", 409);
-  } else {
-    return knex("ports")
-      .insert({
-        name: name
-      })
-      .then(function([id]) {
-        const portWaypoint = waypoints.map(waypoint => {
-          return {
+    const ports = await knex
+      .from("ports")
+      .select("*")
+      .where({
+        name
+      });
+
+    if (ports.length !== 0) {
+      throw new HttpError("Bad request", "port already exists!", 409);
+    } else {
+      return knex("ports")
+        .insert({
+          name: name
+        })
+        .then(function([id]) {
+          return knex("waypoints").insert({
             port_id: id,
             longitude: waypoint.longitude,
             latitude: waypoint.latitude
-          };
+          });
         });
-        return knex("waypoints").insert(portWaypoint);
-      });
+    }
+  } catch (error) {
+    return error.message;
   }
 };
 
