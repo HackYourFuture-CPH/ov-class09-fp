@@ -19,6 +19,7 @@ const getPortById = async id => {
 
 const createPort = async ({ body }) => {
   const { name, waypoint } = body;
+
   if (name.length === 0) {
     throw new HttpError("Bad request", "Port name is missing!", 409);
   }
@@ -37,12 +38,12 @@ const createPort = async ({ body }) => {
       .insert({
         name: name
       })
-      .then(portID => {
+      .then(([portID]) => {
         if (waypoint.length !== 0) {
           return knex("waypoints").insert({
-            port_id: portID[0],
-            longitude: waypoint[0].lon,
-            latitude: waypoint[0].lat
+            port_id: portID,
+            longitude: waypoint.longitude,
+            latitude: waypoint.latitude
           });
         } else {
           return `No Waypoint Added for port: '${name}' `;
