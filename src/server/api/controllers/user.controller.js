@@ -64,7 +64,7 @@ const createUser = async ({ body }) => {
     .from("user_roles")
     .select("*")
     .where({
-      role: body.role
+      role: "operator"
     });
 
   if (role.length > 0) {
@@ -304,8 +304,15 @@ const createAdminBySuperUser = async (id, body) => {
     throw new HttpError("Bad request", "user already exists!", 409);
   }
   const hashedPassword = await hashPassword(body.password);
+  const role = await knex
+    .from("user_roles")
+    .select("*")
+    .where({
+      role: "admin"
+    });
+
   return knex("users").insert({
-    role_id: 2,
+    role_id: role[0].id,
     organization_id: id,
     email: body.email,
     password: hashedPassword,
