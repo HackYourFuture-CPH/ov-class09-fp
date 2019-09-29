@@ -39,9 +39,8 @@ const createPort = async ({ body }) => {
       })
       .then(portID => {
         if (waypoint.length !== 0) {
-          return knex("waypoint").insert({
+          return knex("waypoints").insert({
             port_id: portID[0],
-            //suggested_route_id: suggested_route_id || null,
             longitude: waypoint[0].lon,
             latitude: waypoint[0].lat
           });
