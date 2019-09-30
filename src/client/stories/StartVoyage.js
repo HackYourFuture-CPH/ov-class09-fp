@@ -1,6 +1,6 @@
 import React from "react";
 //import React, { Component } from "react";
-import StartVoyage from "../routes/StartVoyage";
+import StartVoyage from "../components/voyage/StartVoyage";
 
 import {
   withKnobs,
