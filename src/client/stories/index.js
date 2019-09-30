@@ -7,6 +7,8 @@ import { StartVoyageStory } from "./StartVoyage";
 import { DropdownStory } from "./Dropdown";
 import { NavButtonStory } from "./NavButton";
 import { CheckboxStory } from "./Checkbox";
+import { VesselsListStory } from "./Vessels";
+import { VesselTeaserStory } from "./VesselTeaser";
 
 storiesOf("Button", module)
   .add("with text", WithTextStory)
@@ -32,3 +34,7 @@ const VoyageStories = storiesOf("StartVoyage", module).add(
   StartVoyageStory
 );
 VoyageStories.addDecorator(withKnobs);
+const VesselsListStories = storiesOf("Vessels", module)
+  .add("VesselList", VesselsListStory)
+  .add("Vessel Teaser", VesselTeaserStory);
+VesselsListStories.addDecorator(withKnobs);

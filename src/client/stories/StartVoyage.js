@@ -1,7 +1,8 @@
 import React from "react";
 //import React, { Component } from "react";
-import StartVoyage from "../routes/StartVoyage";
+//import StartVoyage from "../routes/StartVoyage";
 import data from "../components/voyage/data";
+import StartVoyage from "../components/voyage/StartVoyage";
 
 import {
   withKnobs,
