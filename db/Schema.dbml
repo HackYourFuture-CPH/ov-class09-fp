@@ -131,7 +131,7 @@ table voyages {
 
 table waypoints {
   id int [ pk, not null, increment ]
-  fk_route_id int
+  fk_suggested_route_id int
   fk_port_id int
   sequence_id int     [note: "counts from 0 and up every time a new set of waypoints is added to a route."]
   lon float [ not null ]
@@ -164,7 +164,7 @@ ref: vessels.id < voyages.fk_id_vessel
 // A voyage has 0-* routes
 ref: voyages.id < suggested_routes.fk_id_voyage
 // A route has 1-* waypoints
-ref: suggested_routes.id < waypoints.fk_route_id
+ref: suggested_routes.id < waypoints.fk_suggested_route_id
 // A port has 1-* waypoints
 ref: ports.id < waypoints.fk_port_id
 // A company has 0-* vessels

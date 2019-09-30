@@ -11,7 +11,46 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("organizations").insert([
         {
-          name: "Sample company"
+          name: "Myworks"
+        },
+        {
+          name: "Oyoloo"
+        },
+        {
+          name: "Photolist"
+        },
+        {
+          name: "Shuffletag"
+        },
+        {
+          name: "Browsetype"
+        },
+        {
+          name: "Trudeo"
+        },
+        {
+          name: "Kvideo"
+        },
+        {
+          name: "Livetube"
+        },
+        {
+          name: "Quire"
+        },
+        {
+          name: "Browsezoom"
+        },
+        {
+          name: "Rhyzio"
+        },
+        {
+          name: "Meemm"
+        },
+        {
+          name: "Cogidoo"
+        },
+        {
+          name: "Wikido"
         }
       ]);
     });

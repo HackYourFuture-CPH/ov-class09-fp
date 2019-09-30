@@ -3,9 +3,14 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
+
 import { VesselDetailsStory } from "./VesselDetails";
 import { CardTeaserStory } from "./CardTeaserStory";
 import { CardGroupStory } from "./CardGroupStory";
+
+import { VesselsListStory } from "./Vessels";
+import { VesselTeaserStory } from "./VesselTeaser";
+
 storiesOf("Button", module)
   .add("with text", WithTextStory)
   .add("with emoji", WithEmojiStory);
@@ -23,3 +28,8 @@ const CardStories = storiesOf("Card", module)
   .add("CardTeaser", CardTeaserStory)
   .add("CardGroup", CardGroupStory);
 CardStories.addDecorator(withKnobs);
+
+const VesselsListStories = storiesOf("Vessels", module)
+  .add("VesselList", VesselsListStory)
+  .add("Vessel Teaser", VesselTeaserStory);
+VesselsListStories.addDecorator(withKnobs);

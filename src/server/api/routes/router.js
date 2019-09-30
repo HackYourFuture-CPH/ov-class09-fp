@@ -8,8 +8,14 @@ const userRouter = require("./user.router");
 const authRouter = require("./auth.router");
 const refreshTokenRouter = require("./refresh.token.router");
 const mailRouter = require("./mail.router");
+const waypointsRouter = require("./waypoints.router");
+
+const vesselReportRouter = require("./vessel-reports.router");
+
 const portRouter = require("./port.router");
+
 const voyagesRouter = require("./voyages.router");
+
 const suggestedRoutesRouter = require("./suggested-routes.router");
 const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
@@ -39,5 +45,7 @@ router.use(`${process.env.API_PATH}/vessels`, vesselRouter);
 router.use(`${process.env.API_PATH}/voyages`, voyagesRouter);
 router.use(`${process.env.API_PATH}/suggested-routes`, suggestedRoutesRouter);
 router.use(`${process.env.API_PATH}/favorite-vessels`, favoriteVesselsRouter);
+router.use(`${process.env.API_PATH}/waypoints`, waypointsRouter);
+router.use(`${process.env.API_PATH}/vessel-reports`, vesselReportRouter);
 
 module.exports = router;
