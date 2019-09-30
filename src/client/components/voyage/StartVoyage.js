@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Title from "./../components/voyage/Title";
-import DateTime from "./../components/voyage/DateTime";
-import InputField from "./../components/voyage/InputField";
-import Dropdown from "./../components/voyage/Dropdown";
-import Checkbox from "./../components/voyage/Checkbox";
+import Title from "./Title";
+import DateTime from "./DateTime";
+import InputField from "./InputField";
+import Dropdown from "./Dropdown";
+import Checkbox from "./Checkbox";
 
 class StartVoyage extends Component {
   constructor(props) {
