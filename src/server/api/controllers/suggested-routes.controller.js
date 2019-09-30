@@ -2,6 +2,7 @@
 
 const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
+const moment = require("moment-timezone");
 
 // Get all suggested-routes
 const getSuggestedRoutes = async req => {
@@ -51,7 +52,7 @@ const getSuggestedRouteByVoyageId = async id => {
 };
 
 // Create a route
-const createSuggestedRoute = async ({ body }) => {
+const createSuggestedRouteWithWaypoints = async ({ body }) => {
   const {
     voyage_id,
     eta,
@@ -61,25 +62,51 @@ const createSuggestedRoute = async ({ body }) => {
     total_cost,
     distance_over_ground,
     distance_through_water,
-    avgspeed
+    avgspeed,
+    waypoints
   } = body;
 
-  return knex("suggested_routes").insert({
-    voyage_id: voyage_id,
-    eta: eta,
-    max_wave_height: max_wave_height,
-    hfo: hfo,
-    lsfo: lsfo,
-    total_cost: total_cost,
-    distance_over_ground: distance_over_ground,
-    distance_through_water: distance_through_water,
-    avgspeed: avgspeed
-  });
-};
+  // using momentJS for formating datetime
+  const etaDateTimeFormat = moment(eta).format("YYYY-MM-DD HH:mm:ss");
 
+  const voyage = await knex
+    .from("voyages")
+    .select("*")
+    .where({ id: voyage_id });
+  console.log(voyage);
+  if (voyage.length === 0) {
+    throw new HttpError("Bad request", "voyage doesn't  exists!", 404);
+  }
+
+  return await knex("suggested_routes")
+    .insert({
+      voyage_id,
+      eta: etaDateTimeFormat,
+      max_wave_height: max_wave_height,
+      hfo: hfo,
+      lsfo: lsfo,
+      total_cost: total_cost,
+      distance_over_ground: distance_over_ground,
+      distance_through_water: distance_through_water,
+      avgspeed: avgspeed
+    })
+    .then(function([id]) {
+      let sequence_id = 1;
+      const waypointsForRoute = waypoints.map(waypoint => {
+        return {
+          suggested_route_id: id,
+          sequence_id: sequence_id++,
+          longitude: waypoint.longitude,
+          latitude: waypoint.latitude
+        };
+      });
+
+      return knex("waypoints").insert(waypointsForRoute);
+    });
+};
 module.exports = {
   getSuggestedRoutes,
   getSuggestedRouteById,
   getSuggestedRouteByVoyageId,
-  createSuggestedRoute
+  createSuggestedRouteWithWaypoints
 };
