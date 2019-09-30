@@ -2,16 +2,16 @@ import React from "react";
 
 import { Route, withRouter, Link } from "react-router-dom";
 
-import VesselsDetails from "./../components/VesselsDetails";
+import VesselDetails from "./../components/VesselDetails";
 
-const VesselsRouter = props => {
+const VesselRouter = props => {
   return (
     <React.Fragment>
       <div className="container">
-        <Route exact path="/vessels" component={VesselsDetails} />
+        <Route exact path="/vessels" component={VesselDetails} />
       </div>
     </React.Fragment>
   );
 };
 
-export default withRouter(VesselsRouter);
+export default withRouter(VesselRouter);
