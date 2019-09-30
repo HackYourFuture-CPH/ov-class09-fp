@@ -11,13 +11,67 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("ports").insert([
         {
-          name: "port1"
+          name: "newpoint"
         },
         {
-          name: "port2"
+          name: "las palmas"
         },
         {
-          name: "port3"
+          name: "panama_anchorage_pacific"
+        },
+        {
+          name: "hellefiske"
+        },
+        {
+          name: "hamburg"
+        },
+        {
+          name: "santos"
+        },
+        {
+          name: "racalada"
+        },
+        {
+          name: "santos"
+        },
+        {
+          name: "conakry"
+        },
+        {
+          name: "vila_do_conde"
+        },
+        {
+          name: "volos_anch"
+        },
+        {
+          name: "douala"
+        },
+        {
+          name: "portland_anch"
+        },
+        {
+          name: "milne"
+        },
+        {
+          name: "rotterdam_anch"
+        },
+        {
+          name: "las_palmas_anch"
+        },
+        {
+          name: "rotterdam_pilot"
+        },
+        {
+          name: "douala_deep"
+        },
+        {
+          name: "abidjan"
+        },
+        {
+          name: "gabes"
+        },
+        {
+          name: "gibraltar_east_anch"
         }
       ]);
     });
