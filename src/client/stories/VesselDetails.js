@@ -1,7 +1,8 @@
 import React from "react";
-import VesselsDetails from "../components/VesselsDetails";
+import VesselDetailsComponent from "../components/VesselDetails";
 import { withKnobs, text, number } from "@storybook/addon-knobs";
-export function VesselsDetailsStory() {
+
+export function VesselDetailsStory() {
   const vesselName = text("Vessel Name", "Yeniser River");
   const departureFrom = text("Departure From", "Sabetta");
   const arrivesAt = text("Arrives At", "Rotterdam");
@@ -11,9 +12,9 @@ export function VesselsDetailsStory() {
   const lat = number("LATTITUDE", "55.26214");
   const lon = text("LONGITUDE", "5.38395E");
   const hsfo = number("HSFO", 25);
-  const lsfo = number("ISFO", 7);
+  const ulsfo = number("ULSFO", 7);
   return (
-    <VesselsDetails
+    <VesselDetailsComponent
       vesselName={vesselName}
       departureFrom={departureFrom}
       arrivesAt={arrivesAt}
@@ -23,7 +24,7 @@ export function VesselsDetailsStory() {
       lat={lat}
       lon={lon}
       hsfo={hsfo}
-      lsfo={lsfo}
+      ulsfo={ulsfo}
     />
   );
 }
