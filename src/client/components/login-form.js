@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 class LoginForm extends React.Component {
-  state = {
-    email: "",
-    password: "",
-    result: ""
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      result: ""
+    };
+  }
   clickHandlerCancel = event => {
     this.setState({
       email: "",
@@ -19,8 +21,9 @@ class LoginForm extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
+
     try {
-      fetch("http://localhost:3000/api/auth/login/ ", {
+      fetch(`${process.env.API_PATH}/auth/login/`, {
         method: "POST",
         headers: {
           Accept: "application/json text/plain",
@@ -34,7 +37,6 @@ class LoginForm extends React.Component {
         .then(response => response.json())
         .then(data => {
           localStorage.setItem("token", data.token); //storing token into local storage
-          //console.log(data);
         });
     } catch (err) {
       return err.message;
