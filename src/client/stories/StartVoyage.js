@@ -22,9 +22,18 @@ export function StartVoyageStory() {
   const fuelCost_stepSize = number("fuelCost_stepSize", 0.5);
   //const accuracy = number("accuracy", 2.00);
   const fuelCost_Unit = text("fuelCost_Unit", "m");
+  const vessels = object("vesselList", [
+    { id: 1, name: "Mirjam" },
+    { id: 2, name: "Nord Vantage" },
+    { id: 3, name: "Agrigento" },
+    { id: 4, name: "Yeniser River" },
+    { id: 5, name: "Serenade of the seas" },
+    { id: 6, name: "Msc Meraviglia" },
+    { id: 7, name: "Optimum Voyage" }
+  ]);
 
   // harbour list info
-  const harbourList = object("habourList", [
+  const portNames = object("habourList", [
     { name: "newpoint", lat: 51.45, depth: -11, lon: -3 },
     { name: "las palmas", lat: 28.1083, depth: -333, lon: -15.3617 },
     {
@@ -54,7 +63,8 @@ export function StartVoyageStory() {
   ]);
   return (
     <StartVoyage
-      harbourList={harbourList}
+      portNames={portNames}
+      vessels={vessels}
       min_Draft={min_Draft}
       max_Draft={max_Draft}
       draft_StepSize={draft_StepSize}
