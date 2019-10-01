@@ -10,14 +10,8 @@ class StartVoyage extends Component {
     super(props);
 
     this.state = {
-<<<<<<< HEAD
       vessels: {},
       portNames: {}, //holds the list of harbours {name, lat, depth & lat}
-=======
-      vessels: [],
-      ports: [], //holds the list of harbours {name, lat, depth & lat}
-      optimisationType: [], // optimisationType: {id, optimisation_type}
->>>>>>> 603dfe2ffe240e2d255babb034d451bc0d3ea807
       departure_position: {}, // departure: {lat & lon}
       arrival_position: {}, // arrival: {lat & lon}
       vessel_id: 0,
@@ -32,21 +26,7 @@ class StartVoyage extends Component {
       departureDate: "",
       departureTime: "",
       arrivalDate: "",
-      arrivalTime: "",
-      // input field props
-      min_Draft: 0.01,
-      max_Draft: 99.99,
-      draft_StepSize: 0.5,
-      draft_Unit: "m",
-      min_fuelCost: 0.01,
-      max_fuelCost: 99.99,
-      fuelCost_stepSize: 0.5,
-      fuelCost_Unit: "USD",
-      min_rate: 0.01,
-      max_rate: 99.99,
-      rate_stepSize: 0.5,
-      rate_Unit: "USD"
-      //accuracy
+      arrivalTime: ""
     };
   }
 
