@@ -4,8 +4,7 @@ class LoginForm extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: "",
-      result: ""
+      password: ""
     };
   }
   clickHandlerCancel = event => {

@@ -12,18 +12,58 @@ exports.seed = function(knex, Promise) {
       return knex("waypoints").insert([
         {
           port_id: 1,
-          lon: 2344.44,
-          lat: 2234.87
+          longitude: 55.5893529,
+          latitude: 12.2980372
         },
         {
           port_id: 2,
-          lon: 2344.44,
-          lat: 2234.87
+          longitude: 55.5893529,
+          latitude: 12.2980372
         },
         {
           port_id: 3,
-          lon: 2344.44,
-          lat: 2234.87
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 4,
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 5,
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 5,
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 6,
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 7,
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 8,
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 9,
+          longitude: 55.5893529,
+          latitude: 12.2980372
+        },
+        {
+          port_id: 10,
+          longitude: 55.5893529,
+          latitude: 12.2980372
         }
       ]);
     });
