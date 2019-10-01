@@ -1,6 +1,6 @@
 import React from "react";
 import { CardGroup, CardGroupHeader } from "../components/CardGroup";
-import CardTeaser from "../components/CardTeaser";
+import DataCard from "../components/DataCard";
 import { withKnobs, text, number } from "@storybook/addon-knobs";
 
 export function CardGroupStory() {
@@ -16,9 +16,9 @@ export function CardGroupStory() {
     <div>
       <CardGroupHeader title={title} />
       <CardGroup>
-        <CardTeaser title={titleCard1} data={dataCard1} />
-        <CardTeaser title={titleCard2} data={dataCard2} />
-        <CardTeaser title={titleCard3} data={dataCard3} />
+        <DataCard title={titleCard1} data={dataCard1} />
+        <DataCard title={titleCard2} data={dataCard2} />
+        <DataCard title={titleCard3} data={dataCard3} />
       </CardGroup>
     </div>
   );

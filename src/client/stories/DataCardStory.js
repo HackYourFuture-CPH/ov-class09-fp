@@ -1,8 +1,8 @@
 import React from "react";
-import CardTeaser from "../components/CardTeaser";
+import DataCard from "../components/DataCard";
 import { withKnobs, text, number } from "@storybook/addon-knobs";
-export function CardTeaserStory() {
+export function DataCardStory() {
   const title = "DATE";
   const date = text("DATE", "2019-08-23");
-  return <CardTeaser title={title} data={date} />;
+  return <DataCard title={title} data={date} />;
 }

@@ -5,7 +5,7 @@ import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
 
 import { VesselDetailsStory } from "./VesselDetails";
-import { CardTeaserStory } from "./CardTeaserStory";
+import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
 
 import { VesselsListStory } from "./Vessels";
@@ -19,13 +19,13 @@ const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
 const VesselDetailsStories = storiesOf("VesselDetails", module).add(
-  "VesselDetailsComponent",
+  "VesselDetails",
   VesselDetailsStory
 );
 VesselDetailsStories.addDecorator(withKnobs);
 
 const CardStories = storiesOf("Card", module)
-  .add("CardTeaser", CardTeaserStory)
+  .add("DataCard", DataCardStory)
   .add("CardGroup", CardGroupStory);
 CardStories.addDecorator(withKnobs);
 
