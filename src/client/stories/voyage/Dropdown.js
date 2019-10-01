@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from "../components/voyage/Dropdown";
+import Dropdown from ".././../components/voyage/Dropdown";
 import {
   withKnobs,
   text,
