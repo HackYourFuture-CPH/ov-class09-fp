@@ -10,8 +10,9 @@ class StartVoyage extends Component {
     super(props);
 
     this.state = {
-      vessels: {},
-      portNames: {}, //holds the list of harbours {name, lat, depth & lat}
+      vessels: [],
+      ports: [], //holds the list of harbours {name, lat, depth & lat}
+      optimisationType: [], // optimisationType: {id, optimisation_type}
       departure_position: {}, // departure: {lat & lon}
       arrival_position: {}, // arrival: {lat & lon}
       vessel_id: 0,
