@@ -1,5 +1,5 @@
 import React from "react";
-import NavButton from "../components/voyage/NavButton";
+import NavButton from ".././../components/voyage/NavButton";
 import {
   withKnobs,
   text,

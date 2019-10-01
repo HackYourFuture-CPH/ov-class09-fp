@@ -10,16 +10,21 @@ class StartVoyage extends Component {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
       vessels: {},
       portNames: {}, //holds the list of harbours {name, lat, depth & lat}
+=======
+      vessels: [],
+      ports: [], //holds the list of harbours {name, lat, depth & lat}
+      optimisationType: [], // optimisationType: {id, optimisation_type}
+>>>>>>> 603dfe2ffe240e2d255babb034d451bc0d3ea807
       departure_position: {}, // departure: {lat & lon}
       arrival_position: {}, // arrival: {lat & lon}
-      optimizationType: [],
       vessel_id: 0,
-      hire_rate: "",
       ETD: "",
       ETA: "",
-      // optimization_type: "",
+      optimisation_type: {},
+      hire_rate: "",
       forward_draft: "",
       aft_draft: "",
       lfso_cost: "",
@@ -36,7 +41,11 @@ class StartVoyage extends Component {
       min_fuelCost: 0.01,
       max_fuelCost: 99.99,
       fuelCost_stepSize: 0.5,
-      fuelCost_Unit: "USD"
+      fuelCost_Unit: "USD",
+      min_rate: 0.01,
+      max_rate: 99.99,
+      rate_stepSize: 0.5,
+      rate_Unit: "USD"
       //accuracy
     };
   }
@@ -70,8 +79,8 @@ class StartVoyage extends Component {
   handleDeparturePortSelection = e => {
     const selectedIndex = e.target.selectedIndex;
     const departure_position = {
-      longitude: this.state.portNames[selectedIndex].lon,
-      latitude: this.state.portNames[selectedIndex].lat
+      longitude: this.state.ports[selectedIndex].lon,
+      latitude: this.state.ports[selectedIndex].lat
     };
     this.setState({ departure_position: departure_position });
   };
@@ -79,19 +88,27 @@ class StartVoyage extends Component {
   handleArrivalPortSelection = e => {
     const selectedIndex = e.target.selectedIndex;
     const arrival_position = {
-      longitude: this.state.portNames[selectedIndex].lon,
-      latitude: this.state.portNames[selectedIndex].lat
+      longitude: this.state.ports[selectedIndex].lon,
+      latitude: this.state.ports[selectedIndex].lat
     };
     this.setState({ arrival_position: arrival_position });
+  };
+  handleOptimisationTypeSelection = e => {
+    const selectedIndex = e.target.selectedIndex;
+    const optimisation_type = {
+      optimisation_type: this.state.optimisationType[selectedIndex]
+        .optimisation_type
+    };
+    this.setState({ optimisation_type: optimisation_type });
   };
 
   render() {
     const {
-      optimizationType,
       departureDate,
       departureTime,
       arrivalDate,
       arrivalTime,
+      hire_rate,
       forward_draft,
       aft_draft,
       lfso_cost,
@@ -100,7 +117,8 @@ class StartVoyage extends Component {
 
     const {
       vessels,
-      portNames,
+      ports,
+      optimisationType,
       min_Draft,
       max_Draft,
       draft_StepSize,
@@ -108,7 +126,11 @@ class StartVoyage extends Component {
       min_fuelCost,
       max_fuelCost,
       fuelCost_stepSize,
-      fuelCost_Unit
+      fuelCost_Unit,
+      min_rate,
+      max_rate,
+      rate_stepSize,
+      rate_Unit
       //accuracy
     } = this.props;
 
@@ -124,10 +146,21 @@ class StartVoyage extends Component {
           />
           <br />
           <Checkbox label=" Chartered vessel " />
+          <InputField
+            label=" Hire Rate "
+            name="hire_rate"
+            min={min_rate}
+            max={max_rate}
+            step={rate_stepSize}
+            unit={rate_Unit}
+            value={hire_rate}
+            //accuracy={accuracy}
+            onDataInputChange={this.handleDataInputChange}
+          />
           <br />
           <Dropdown
             label=" Depart from "
-            optionsMap={portNames}
+            optionsMap={ports}
             handleSelection={this.handleDeparturePortSelection}
           />
           <br />
@@ -142,7 +175,7 @@ class StartVoyage extends Component {
           <br />
           <Dropdown
             label=" Destination "
-            optionsMap={portNames}
+            optionsMap={ports}
             handleSelection={this.handleArrivalPortSelection}
           />
           <br />
@@ -155,7 +188,11 @@ class StartVoyage extends Component {
             onTimeInputChange={this.handleTimeInputChange}
           />
           <br />
-          <Dropdown label=" Optimisation type " optionsMap={optimizationType} />
+          <Dropdown
+            label=" Optimisation type "
+            optionsMap={optimisationType}
+            handleSelection={this.handleOptimisationTypeSelection}
+          />
           <br />
           <InputField
             label=" Forward Draft "
