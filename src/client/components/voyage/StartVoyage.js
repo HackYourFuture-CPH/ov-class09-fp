@@ -117,7 +117,6 @@ class StartVoyage extends Component {
       max_rate,
       rate_stepSize,
       rate_Unit
-      //accuracy
     } = this.props;
 
     let checkBoxLogic;
@@ -131,7 +130,6 @@ class StartVoyage extends Component {
           step={rate_stepSize}
           unit={rate_Unit}
           value={hire_rate}
-          //accuracy={accuracy}
           onDataInputChange={this.handleDataInputChange}
         />
       );
@@ -199,7 +197,6 @@ class StartVoyage extends Component {
             step={draft_StepSize}
             unit={draft_Unit}
             value={forward_draft}
-            //accuracy={accuracy}
             onDataInputChange={this.handleDataInputChange}
           />
           <br />
@@ -211,7 +208,6 @@ class StartVoyage extends Component {
             step={draft_StepSize}
             unit={draft_Unit}
             value={aft_draft}
-            //accuracy={accuracy}
             onDataInputChange={this.handleDataInputChange}
           />
           <br />
@@ -223,7 +219,6 @@ class StartVoyage extends Component {
             step={fuelCost_stepSize}
             unit={fuelCost_Unit}
             value={lfso_cost}
-            //accuracy={accuracy}
             onDataInputChange={this.handleDataInputChange}
           />
           <br />
@@ -235,7 +230,6 @@ class StartVoyage extends Component {
             step={fuelCost_stepSize}
             unit={fuelCost_Unit}
             value={hfo_cost}
-            //accuracy={accuracy}
             onDataInputChange={this.handleDataInputChange}
           />
           <br />

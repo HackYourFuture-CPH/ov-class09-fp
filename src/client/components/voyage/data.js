@@ -50,19 +50,18 @@ const optimisationType = [
 ];
 
 // input field props
-const min_Draft = 0;
+const min_Draft = 0.0;
 const max_Draft = 99.99;
-const draft_StepSize = 0.5;
+const draft_StepSize = 0.01; // input step up/down & floating decimal values
 const draft_Unit = "m";
-const min_fuelCost = 0;
+const min_fuelCost = 0.0;
 const max_fuelCost = 99.99;
-const fuelCost_stepSize = 0.5;
-const fuelCost_Unit = "m";
-const min_rate = 0;
+const fuelCost_stepSize = 0.01; // input step up/down  & floating  decimal values
+const fuelCost_Unit = "USD";
+const min_rate = 0.0;
 const max_rate = 99.99;
-const rate_stepSize = 0.5;
+const rate_stepSize = 0.01; // input step up/down & floating decimal values
 const rate_Unit = "USD";
-//const accuracy = number("accuracy", 2.00);
 
 module.exports = {
   ports,

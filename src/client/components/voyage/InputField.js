@@ -10,24 +10,21 @@ class InputField extends Component {
       step,
       unit,
       value,
-      // accuracy,
       onDataInputChange
     } = this.props;
     return (
       <div>
-        <label htmlFor="data-input-field">{label}</label>
+        <label htmlFor="number-input-field">{label}</label>
         <input
           style={{ width: 100 }}
-          id="data-input-field"
+          id="number-input-field"
           type="number"
           name={name}
-          step={step}
           min={min}
           max={max}
-          //accuracy={accuracy}
           step={step}
-          placeholder={`${min} ${unit}`}
           value={value}
+          placeholder={`${min} ${unit}`}
           onChange={e => onDataInputChange(e)}
         />
       </div>

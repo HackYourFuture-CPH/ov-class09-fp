@@ -22,7 +22,6 @@ class StartVoyageMain extends Component {
           max_rate={data.max_rate}
           rate_stepSize={data.rate_stepSize}
           rate_Unit={data.rate_Unit}
-          //accuracy={accuracy}
         />
       </div>
     );

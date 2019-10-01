@@ -3,7 +3,9 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
-import { StartVoyageStory } from "./voyage/StartVoyage";
+import { StartVoyageMainStory } from "./voyage/StartVoyageMain";
+import { DateTimeStory } from "./voyage/DateTime";
+import { InputFieldStory } from "./voyage/InputField";
 import { DropdownStory } from "./voyage/Dropdown";
 import { NavButtonStory } from "./voyage/NavButton";
 import { CheckboxStory } from "./voyage/Checkbox";
@@ -14,25 +16,16 @@ storiesOf("Button", module)
   .add("with text", WithTextStory)
   .add("with emoji", WithEmojiStory);
 
-storiesOf("Dropdown", module)
-  .add("DropdownComponent", DropdownStory)
-  .addDecorator(withKnobs);
-
-storiesOf("NavButton", module)
-  .add("NavButtonComponent", NavButtonStory)
-  .addDecorator(withKnobs);
-
-storiesOf("Checkbox", module)
-  .add("CheckboxComponent", CheckboxStory)
-  .addDecorator(withKnobs);
-
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
-const VoyageStories = storiesOf("StartVoyage", module).add(
-  "StartVoyageComponent",
-  StartVoyageStory
-);
+const VoyageStories = storiesOf("StartVoyage", module)
+  .add("StartVoyage", StartVoyageMainStory)
+  .add("DateTimeComponent", DateTimeStory)
+  .add("InputFieldComponent", InputFieldStory)
+  .add("DropdownComponent", DropdownStory)
+  .add("NavButtonComponent", NavButtonStory)
+  .add("CheckboxComponent", CheckboxStory);
 VoyageStories.addDecorator(withKnobs);
 
 const VesselsListStories = storiesOf("Vessels", module)

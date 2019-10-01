@@ -11,7 +11,7 @@ import {
   object
 } from "@storybook/addon-knobs";
 
-export function StartVoyageStory() {
+export function StartVoyageMainStory() {
   // input field props
   const min_Draft = number("min_Draft", data.min_Draft);
   const max_Draft = number("max_Draft", data.max_Draft);
@@ -25,7 +25,7 @@ export function StartVoyageStory() {
   const max_rate = number("max_fuelCost", data.max_rate);
   const rate_stepSize = number("fuelCost_stepSize", data.rate_stepSize);
   const rate_Unit = text("fuelCost_Unit", data.rate_Unit);
-  //const accuracy = number("accuracy", 2.00);
+
   // vessels list
   const vessels = object("vesselList", data.vessels);
   // harbour list info
@@ -49,7 +49,6 @@ export function StartVoyageStory() {
       max_rate={max_rate}
       rate_stepSize={rate_stepSize}
       rate_Unit={rate_Unit}
-      //accuracy={accuracy}
     />
   );
 }

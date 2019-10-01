@@ -9,6 +9,6 @@ import {
   object
 } from "@storybook/addon-knobs";
 export function NavButtonStory() {
-  const label = text("label", "This is test");
+  const label = text("label", "Button");
   return <NavButton label={label} />;
 }

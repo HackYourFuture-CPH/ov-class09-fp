@@ -9,6 +9,6 @@ import {
   object
 } from "@storybook/addon-knobs";
 export function CheckboxStory() {
-  const label = text("label", "This is a test");
+  const label = text("label", "Checkbox");
   return <Checkbox label={label} />;
 }
