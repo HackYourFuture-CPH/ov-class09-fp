@@ -1,8 +1,6 @@
 import React from "react";
-//import React, { Component } from "react";
-//import StartVoyage from "../routes/StartVoyage";
-import data from "../components/voyage/data";
-import StartVoyage from "../components/voyage/StartVoyage";
+import data from ".././../components/voyage/data";
+import StartVoyage from ".././../components/voyage/StartVoyage";
 
 import {
   withKnobs,
@@ -13,8 +11,6 @@ import {
   object
 } from "@storybook/addon-knobs";
 
-console.log(data);
-
 export function StartVoyageStory() {
   // input field props
   const min_Draft = number("min_Draft", data.min_Draft);
@@ -24,17 +20,23 @@ export function StartVoyageStory() {
   const min_fuelCost = number("min_fuelCost", data.min_fuelCost);
   const max_fuelCost = number("max_fuelCost", data.max_fuelCost);
   const fuelCost_stepSize = number("fuelCost_stepSize", data.fuelCost_stepSize);
-  //const accuracy = number("accuracy", 2.00);
   const fuelCost_Unit = text("fuelCost_Unit", data.fuelCost_Unit);
+  const min_rate = number("min_fuelCost", data.min_rate);
+  const max_rate = number("max_fuelCost", data.max_rate);
+  const rate_stepSize = number("fuelCost_stepSize", data.rate_stepSize);
+  const rate_Unit = text("fuelCost_Unit", data.rate_Unit);
+  //const accuracy = number("accuracy", 2.00);
   // vessels list
-  const vessels = object("vesselList", data.vessel);
-
+  const vessels = object("vesselList", data.vessels);
   // harbour list info
-  const portNames = object("harbour", data.harbour);
+  const ports = object("ports", data.ports);
+  // optimisation type
+  const optimisationType = object("optimisationType", data.optimisationType);
   return (
     <StartVoyage
-      portNames={portNames}
+      ports={ports}
       vessels={vessels}
+      optimisationType={optimisationType}
       min_Draft={min_Draft}
       max_Draft={max_Draft}
       draft_StepSize={draft_StepSize}
@@ -42,8 +44,12 @@ export function StartVoyageStory() {
       min_fuelCost={min_fuelCost}
       max_fuelCost={max_fuelCost}
       fuelCost_stepSize={fuelCost_stepSize}
-      //accuracy={accuracy}
       fuelCost_Unit={fuelCost_Unit}
+      min_rate={min_rate}
+      max_rate={max_rate}
+      rate_stepSize={rate_stepSize}
+      rate_Unit={rate_Unit}
+      //accuracy={accuracy}
     />
   );
 }

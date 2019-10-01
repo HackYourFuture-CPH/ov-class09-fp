@@ -3,10 +3,10 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
-import { StartVoyageStory } from "./StartVoyage";
-import { DropdownStory } from "./Dropdown";
-import { NavButtonStory } from "./NavButton";
-import { CheckboxStory } from "./Checkbox";
+import { StartVoyageStory } from "./voyage/StartVoyage";
+import { DropdownStory } from "./voyage/Dropdown";
+import { NavButtonStory } from "./voyage/NavButton";
+import { CheckboxStory } from "./voyage/Checkbox";
 import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
 
@@ -34,6 +34,7 @@ const VoyageStories = storiesOf("StartVoyage", module).add(
   StartVoyageStory
 );
 VoyageStories.addDecorator(withKnobs);
+
 const VesselsListStories = storiesOf("Vessels", module)
   .add("VesselList", VesselsListStory)
   .add("Vessel Teaser", VesselTeaserStory);
