@@ -4,6 +4,7 @@ import DateTime from "./DateTime";
 import InputField from "./InputField";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
+import { ENGINE_METHOD_NONE } from "constants";
 
 class StartVoyage extends Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class StartVoyage extends Component {
       departureDate: "",
       departureTime: "",
       arrivalDate: "",
-      arrivalTime: ""
+      arrivalTime: "",
+      isChecked: false
     };
   }
 
@@ -43,6 +45,9 @@ class StartVoyage extends Component {
     const { name, value } = target;
     const timeDescr = name === "ETD" ? "departureTime" : "arrivalTime";
     this.setState({ [timeDescr]: value });
+  };
+  handleToggleCheckbox = e => {
+    this.setState({ isChecked: !this.state.isChecked });
   };
 
   handleDataInputChange = e => {
@@ -115,6 +120,22 @@ class StartVoyage extends Component {
       //accuracy
     } = this.props;
 
+    let checkBoxLogic;
+    if (this.state.isChecked === true) {
+      checkBoxLogic = (
+        <InputField
+          label=" Hire Rate "
+          name="hire_rate"
+          min={min_rate}
+          max={max_rate}
+          step={rate_stepSize}
+          unit={rate_Unit}
+          value={hire_rate}
+          //accuracy={accuracy}
+          onDataInputChange={this.handleDataInputChange}
+        />
+      );
+    }
     return (
       <div>
         <form>
@@ -126,18 +147,13 @@ class StartVoyage extends Component {
             handleSelection={this.handleVesselSelection}
           />
           <br />
-          <Checkbox label=" Chartered vessel " />
-          <InputField
-            label=" Hire Rate "
-            name="hire_rate"
-            min={min_rate}
-            max={max_rate}
-            step={rate_stepSize}
-            unit={rate_Unit}
-            value={hire_rate}
-            //accuracy={accuracy}
-            onDataInputChange={this.handleDataInputChange}
+          <Checkbox
+            label=" Chartered vessel "
+            handleCheckbox={this.handleToggleCheckbox}
           />
+
+          {checkBoxLogic}
+
           <br />
           <Dropdown
             label=" Depart from "
