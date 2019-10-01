@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CardTeaser from "./CardTeaser";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
+import VesselTeaser from "./VesselTeaser";
 
 function VesselDetailsComponent({
   vesselName,
@@ -16,12 +17,13 @@ function VesselDetailsComponent({
 }) {
   return (
     <div>
-      <CardGroupHeader title={vesselName} />
-      <CardGroupHeader title="Departure From" />
-      <CardTeaser title={departureFrom} data={etd} />
-
-      <CardGroupHeader title="ETA" />
-      <CardTeaser title={arrivesAt} data={eta} />
+      <VesselTeaser
+        vesselName={vesselName}
+        departureFrom={departureFrom}
+        arrivesAt={arrivesAt}
+        etd={etd}
+        eta={eta}
+      />
 
       <CardGroupHeader title="Position" />
       <CardGroup>
