@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-function CardTeaser({ title, data }) {
+function DataCard({ title, data }) {
   return (
     <div>
       <h4>{title}</h4>
@@ -9,4 +9,4 @@ function CardTeaser({ title, data }) {
   );
 }
 
-export default CardTeaser;
+export default DataCard;

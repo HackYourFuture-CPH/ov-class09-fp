@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import CardTeaser from "./CardTeaser";
+import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
 import VesselTeaser from "./VesselTeaser";
 
-function VesselDetailsComponent({
+function VesselDetails({
   vesselName,
-  departureFrom,
+  departsFrom,
   arrivesAt,
   etd,
   eta,
   date,
-  lat,
-  lon,
+  latitude,
+  longitude,
   hsfo,
   ulsfo
 }) {
@@ -19,7 +19,7 @@ function VesselDetailsComponent({
     <div>
       <VesselTeaser
         vesselName={vesselName}
-        departureFrom={departureFrom}
+        departureFrom={departsFrom}
         arrivesAt={arrivesAt}
         etd={etd}
         eta={eta}
@@ -27,19 +27,19 @@ function VesselDetailsComponent({
 
       <CardGroupHeader title="Position" />
       <CardGroup>
-        <CardTeaser title="DATE" data={date} />
-        <CardTeaser title="LATTITUDE" data={lat} />
-        <CardTeaser title="LONGITUDE" data={lon} />
+        <DataCard title="Date" data={date} />
+        <DataCard title="Latitude" data={latitude} />
+        <DataCard title="Longitude" data={longitude} />
       </CardGroup>
 
       <CardGroupHeader title="Consumption" />
       <CardGroup>
-        <CardTeaser title="HSFO" data={hsfo} />
-        <CardTeaser title="ULSFO" data={ulsfo} />
-        <CardTeaser title="FOC TOTAL" data={hsfo + ulsfo} />
+        <DataCard title="HSFO" data={hsfo} />
+        <DataCard title="ULSFO" data={ulsfo} />
+        <DataCard title="FOC Total" data={hsfo + ulsfo} />
       </CardGroup>
     </div>
   );
 }
 
-export default VesselDetailsComponent;
+export default VesselDetails;
