@@ -5,9 +5,9 @@ import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
 import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
-import { RouteCard } from "./RouteCard";
-import { InfoRoute } from "./RouteInfo";
-import { RouteTable } from "./RouteTable";
+import { suggestedRouteCard } from "./RouteList/suggestedRouteCard";
+import { suggestedRouteInfo } from "./RouteList/suggestedRouteInfo";
+import { suggestedRouteBox } from "./RouteList/suggestedRouteBox";
 
 storiesOf("Button", module)
   .add("with text", WithTextStory)
@@ -21,8 +21,8 @@ const VesselsListStories = storiesOf("Vessels", module)
   .add("Vessel Teaser", VesselTeaserStory);
 VesselsListStories.addDecorator(withKnobs);
 
-const TableRoute = storiesOf("Display route", module)
-  .add("RouteCard", RouteCard)
-  .add("RouteInfo", InfoRoute)
-  .add("RouteTable", RouteTable);
-TableRoute.addDecorator(withKnobs);
+const DisplaySuggestedRoutes = storiesOf("Display Suggested Routes", module)
+  .add("suggestedRouteCard", suggestedRouteCard)
+  .add("suggestedRouteInfo", suggestedRouteInfo)
+  .add("suggestedRouteBox", suggestedRouteBox);
+DisplaySuggestedRoutes.addDecorator(withKnobs);

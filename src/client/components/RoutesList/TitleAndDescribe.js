@@ -7,17 +7,13 @@ class TitleAndDescribe extends Component {
   };
 
   render() {
+    const { title, description } = this.props;
     return (
       <div>
-        <h4 style={titleStyle}>{this.props.title}</h4>
-        <h4>{this.props.description}</h4>
+        <h4>{title}</h4>
+        <h4>{description}</h4>
       </div>
     );
   }
 }
-
-const titleStyle = {
-  color: "#808080"
-};
-
 export default TitleAndDescribe;

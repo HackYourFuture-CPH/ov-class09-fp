@@ -1,5 +1,5 @@
 import React from "react";
-import RouteInfo from "../components/RouteInfo";
+import SuggestedRouteBox from "../../components/RoutesList/SuggestedRouteBox";
 import {
   withKnobs,
   text,
@@ -9,9 +9,11 @@ import {
   object
 } from "@storybook/addon-knobs";
 
-export function InfoRoute() {
+export function suggestedRouteBox() {
   return (
-    <RouteInfo
+    <SuggestedRouteBox
+      theTime={text("theTime")}
+      thePrice={text("thePrice")}
       eta={text("ETA")}
       sailDays={text("SAIL DAYS")}
       maxWaveHs={text("MAX WAVE HS")}
@@ -22,4 +24,4 @@ export function InfoRoute() {
   );
 }
 
-export default InfoRoute;
+export default suggestedRouteBox;

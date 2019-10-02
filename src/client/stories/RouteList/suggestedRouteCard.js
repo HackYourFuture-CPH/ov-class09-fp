@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import SuggestedRouteCard from "../components/SuggestedRouteCard";
+import React from "react";
+import SuggestedRouteCard from "../../components/RoutesList/SuggestedRouteCard";
 
 import {
   withKnobs,
@@ -10,9 +10,9 @@ import {
   object
 } from "@storybook/addon-knobs";
 
-export function RouteCard() {
+export function suggestedRouteCard() {
   return (
     <SuggestedRouteCard theTime={text("theTime")} thePrice={text("thePrice")} />
   );
 }
-export default RouteCard;
+export default suggestedRouteCard;
