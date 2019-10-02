@@ -19,13 +19,13 @@ export default class SuggestedRouteCard extends Component {
 
   render() {
     const select = this.state.selected;
-    const { time, theTime, price, thePrice } = this.props;
+    const { theTime, thePrice } = this.props;
 
     return (
       <div>
         {select ? <h4>SELECTED ROUTE</h4> : null}
-        <TitleAndDescribe title={time} description={theTime} />
-        <TitleAndDescribe title={price} description={thePrice} />
+        <TitleAndDescribe title="HOURS" description={theTime} />
+        <TitleAndDescribe title="TOTAL COST" description={thePrice} />
         {!select ? <button onClick={this.onClick}>SELECT ROUTE</button> : null}
       </div>
     );
