@@ -1,11 +1,12 @@
 import React from "react";
-import SuggestedRouteBox from "../../components/RoutesList/SuggestedRouteBox";
+import SuggestedRoutesList from "../../components/RoutesList/SuggestedRoutesList";
 
 export function suggestetdRoutesList() {
   const Data = [
     {
-      theTime: "23h/ +7h",
-      thePrice: "$100",
+      suggested_route_id: 1,
+      time: "23h/ +7h",
+      price: "$100",
       eta: "19-07-13 22:22",
       sailDays: "5.5",
       maxWaveHs: "3m",
@@ -14,8 +15,9 @@ export function suggestetdRoutesList() {
       consumption: "$30"
     },
     {
-      theTime: "25h/ +9h",
-      thePrice: "$200",
+      suggested_route_id: 2,
+      time: "25h/ +9h",
+      price: "$200",
       eta: "22-07-13 22:22",
       sailDays: "5.5",
       maxWaveHs: "3m",
@@ -24,8 +26,9 @@ export function suggestetdRoutesList() {
       consumption: "$70"
     },
     {
-      theTime: "12h/ +6h",
-      thePrice: "$300",
+      suggested_route_id: 3,
+      time: "12h/ +6h",
+      price: "$300",
       eta: "19-07-13 22:22",
       sailDays: "5.5",
       maxWaveHs: "3m",
@@ -35,24 +38,7 @@ export function suggestetdRoutesList() {
     }
   ];
 
-  return (
-    <div>
-      {Data.map(i => {
-        return (
-          <SuggestedRouteBox
-            theTime={i.theTime}
-            thePrice={i.thePrice}
-            eta={i.eta}
-            sailDays={i.sailDays}
-            maxWaveHs={i.maxWaveHs}
-            avgSpeed={i.avgSpeed}
-            hireCost={i.hireCost}
-            consumption={i.consumption}
-          />
-        );
-      })}
-    </div>
-  );
+  return <SuggestedRoutesList list={Data} />;
 }
 
 export default suggestetdRoutesList;
