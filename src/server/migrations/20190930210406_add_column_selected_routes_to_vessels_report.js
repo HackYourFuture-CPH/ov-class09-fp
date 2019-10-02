@@ -5,7 +5,6 @@ exports.up = function(knex) {
     table
       .integer("selected_routes")
       .unsigned()
-      .notNullable()
       .references("id")
       .inTable("suggested_routes")
       .onDelete("CASCADE")

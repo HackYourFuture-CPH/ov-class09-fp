@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("suggested_routes").insert([
         {
-          voyage_id: 6,
+          vessel_report_id: 1,
           eta: "2018-10-06 19:06:20",
           max_wave_height: 100,
           hfo: 14.133,
@@ -22,7 +22,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 305.01
         },
         {
-          voyage_id: 2,
+          vessel_report_id: 2,
           eta: "2019-06-28 05:31:08",
           max_wave_height: 100,
           hfo: 19.591,
@@ -33,7 +33,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 477.52
         },
         {
-          voyage_id: 1,
+          vessel_report_id: 3,
           eta: "2019-03-09 15:09:10",
           max_wave_height: 100,
           hfo: 11.97,
@@ -44,7 +44,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 490.69
         },
         {
-          voyage_id: 8,
+          vessel_report_id: 4,
           eta: "2018-10-20 18:12:49",
           max_wave_height: 70,
           hfo: 16.872,
@@ -55,7 +55,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 473.96
         },
         {
-          voyage_id: 9,
+          vessel_report_id: 5,
           eta: "2019-02-19 15:52:38",
           max_wave_height: 300,
           hfo: 17.914,
@@ -66,7 +66,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 392.94
         },
         {
-          voyage_id: 7,
+          vessel_report_id: 6,
           eta: "2019-02-03 07:03:20",
           max_wave_height: 70,
           hfo: 12.515,
@@ -77,7 +77,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 305.57
         },
         {
-          voyage_id: 7,
+          vessel_report_id: 7,
           eta: "2018-12-19 14:25:52",
           max_wave_height: 200,
           hfo: 11.662,
@@ -88,7 +88,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 223.25
         },
         {
-          voyage_id: 4,
+          vessel_report_id: 8,
           eta: "2019-03-01 11:23:16",
           max_wave_height: 50,
           hfo: 10.773,
@@ -99,7 +99,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 381.79
         },
         {
-          voyage_id: 8,
+          vessel_report_id: 9,
           eta: "2019-01-11 20:17:18",
           max_wave_height: 100,
           hfo: 14.884,
@@ -110,7 +110,7 @@ exports.seed = function(knex, Promise) {
           avgspeed: 295.19
         },
         {
-          voyage_id: 3,
+          vessel_report_id: 3,
           eta: "2019-01-14 01:25:49",
           max_wave_height: 200,
           hfo: 13.838,
