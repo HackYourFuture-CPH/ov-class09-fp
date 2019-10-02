@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,8 @@ class LoginForm extends React.Component {
     event.preventDefault();
 
     try {
-      fetch(`${process.env.API_PATH}/auth/login/`, {
+      // TODO: Add environment variable
+      fetch("api/auth/login", {
         method: "POST",
         headers: {
           Accept: "application/json text/plain",
@@ -43,6 +45,7 @@ class LoginForm extends React.Component {
   };
   render() {
     const { email, password, result } = this.state;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>LoginForm</h1>

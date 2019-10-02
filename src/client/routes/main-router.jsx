@@ -7,6 +7,7 @@ import LoginForm from "./../components/login-form";
 
 const MainRouter = props => {
   const isLoggedin = localStorage.getItem("token");
+
   return (
     <React.Fragment>
       <div className="container">
@@ -18,6 +19,7 @@ const MainRouter = props => {
           }
         />
         <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/home" component={Home} />
       </div>
     </React.Fragment>
   );
