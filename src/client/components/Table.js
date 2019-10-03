@@ -36,6 +36,7 @@ export function TableStory() {
   ]);
   return (
     <Paper>
+      <h3>SELECTED ROUTE</h3>
       <Table>
         <TableHead>
           <TableRow>
@@ -60,6 +61,7 @@ export function TableStory() {
           ))}
         </TableBody>
       </Table>
+      <h4>Currently optimizing for the cheapest possible route.</h4>
     </Paper>
   );
 }
