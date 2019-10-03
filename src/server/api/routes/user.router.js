@@ -15,6 +15,7 @@ const userController = require("../controllers/user.controller");
 const favoriteVesselsController = require("../controllers/favorite-vessels.controller");
 
 // ENDPOINT: /api/users/ :GET
+
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
   userController
     .getUsers(req)
