@@ -9,6 +9,11 @@ import { InputFieldStory } from "./voyage/InputField";
 import { DropdownStory } from "./voyage/Dropdown";
 import { NavButtonStory } from "./voyage/NavButton";
 import { CheckboxStory } from "./voyage/Checkbox";
+
+import { VesselDetailsStory } from "./VesselDetails";
+import { DataCardStory } from "./DataCardStory";
+import { CardGroupStory } from "./CardGroupStory";
+
 import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
 
@@ -27,6 +32,16 @@ const VoyageStories = storiesOf("StartVoyage", module)
   .add("NavButtonComponent", NavButtonStory)
   .add("CheckboxComponent", CheckboxStory);
 VoyageStories.addDecorator(withKnobs);
+const VesselDetailsStories = storiesOf("VesselDetails", module).add(
+  "VesselDetails",
+  VesselDetailsStory
+);
+VesselDetailsStories.addDecorator(withKnobs);
+
+const CardStories = storiesOf("Card", module)
+  .add("DataCard", DataCardStory)
+  .add("CardGroup", CardGroupStory);
+CardStories.addDecorator(withKnobs);
 
 const VesselsListStories = storiesOf("Vessels", module)
   .add("VesselList", VesselsListStory)
