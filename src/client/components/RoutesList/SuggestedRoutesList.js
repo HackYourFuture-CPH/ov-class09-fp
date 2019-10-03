@@ -3,23 +3,26 @@ import SuggestedRouteBox from "./SuggestedRouteBox";
 
 export default class SuggestedRoutesList extends Component {
   state = {
-    selectedID: 2
+    selectedId: null
   };
 
-  handleSelect = id => {
-    this.setState({ selectedID: id });
+  handleClick = id => {
+    this.setState({
+      ...this.state,
+      selectedId: id
+    });
   };
 
   render() {
     return (
       <div>
-        {this.props.list.map((i, index) => {
+        {this.props.list.map(i => {
           return (
             <SuggestedRouteBox
-              onSelect={this.handleSelect}
-              id={index}
-              isSelected={true}
-              suggested_route_id={i.suggested_route_id}
+              id={i.suggested_route_id}
+              isSelected={i.suggested_route_id === this.state.selectedId}
+              handleClick={this.handleClick}
+              key={i.suggested_route_id}
               time={i.time}
               price={i.price}
               eta={i.eta}

@@ -3,7 +3,8 @@ import TitleAndDescribe from "./TitleAndDescribe";
 
 export default class SuggestedRouteCard extends Component {
   render() {
-    const { time, price, isSelected, onSelect, id } = this.props;
+    const { time, price } = this.props;
+    const { id, isSelected, handleClick } = this.props.props;
 
     return (
       <div>
@@ -11,7 +12,7 @@ export default class SuggestedRouteCard extends Component {
         <TitleAndDescribe title="HOURS" description={time} />
         <TitleAndDescribe title="TOTAL COST" description={price} />
         {!isSelected ? (
-          <button onClick={onSelect(id)}>SELECT ROUTE</button>
+          <button onClick={() => handleClick(id)}>SELECT ROUTE</button>
         ) : null}
       </div>
     );
