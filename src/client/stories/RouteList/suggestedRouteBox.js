@@ -12,8 +12,8 @@ import {
 export function suggestedRouteBox() {
   return (
     <SuggestedRouteBox
-      theTime={text("theTime")}
-      thePrice={text("thePrice")}
+      time={text("theTime")}
+      price={text("thePrice")}
       eta={text("ETA")}
       sailDays={text("SAIL DAYS")}
       maxWaveHs={text("MAX WAVE HS")}

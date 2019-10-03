@@ -1,13 +1,6 @@
 import React from "react";
 import SuggestedRouteInfo from "../../components/RoutesList/SuggestedRouteInfo";
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  array,
-  object
-} from "@storybook/addon-knobs";
+import { text } from "@storybook/addon-knobs";
 
 export function suggestedRouteInfo() {
   return (
