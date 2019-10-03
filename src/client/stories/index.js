@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
-import { StartVoyageMainStory } from "./voyage/StartVoyageMain";
+import { StartVoyageStory } from "./voyage/StartVoyage";
 import { DateTimeStory } from "./voyage/DateTime";
 import { InputFieldStory } from "./voyage/InputField";
 import { DropdownStory } from "./voyage/Dropdown";
@@ -20,7 +20,7 @@ const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
 const VoyageStories = storiesOf("StartVoyage", module)
-  .add("StartVoyage", StartVoyageMainStory)
+  .add("StartVoyage", StartVoyageStory)
   .add("DateTimeComponent", DateTimeStory)
   .add("InputFieldComponent", InputFieldStory)
   .add("DropdownComponent", DropdownStory)

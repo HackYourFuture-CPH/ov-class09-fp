@@ -17,7 +17,7 @@ export default class DateTime extends Component {
         <input
           id="date"
           name={name}
-          type="text" //"date"
+          type="text"
           value={date}
           placeholder="yyyy-mm-dd"
           onChange={e => onDateInputChange(e)}
@@ -26,7 +26,7 @@ export default class DateTime extends Component {
         <input
           id="time"
           name={name}
-          type="text" //"time"
+          type="text"
           value={time}
           placeholder="hh:mm"
           onChange={e => onTimeInputChange(e)}

@@ -3,14 +3,14 @@ import React from "react";
 import { Route, withRouter, Link } from "react-router-dom";
 
 import Home from "./../Home";
-import StartVoyageMain from "../components/voyage/StartVoyageMain";
+import StartVoyage from "../components/voyage/StartVoyageMain";
 
 const MainRouter = props => {
   return (
     <React.Fragment>
       <div className="container">
         <Route exact path="/" component={Home} />
-        <Route exact path="/StartVoyage" component={StartVoyageMain} />
+        <Route exact path="/" component={StartVoyage} />
       </div>
     </React.Fragment>
   );

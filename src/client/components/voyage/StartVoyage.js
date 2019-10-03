@@ -4,7 +4,6 @@ import DateTime from "./DateTime";
 import InputField from "./InputField";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
-import { ENGINE_METHOD_NONE } from "constants";
 
 class StartVoyage extends Component {
   constructor(props) {
@@ -12,10 +11,10 @@ class StartVoyage extends Component {
 
     this.state = {
       vessels: [],
-      ports: [], //holds the list of harbours {name, lat, depth & lat}
-      optimisationType: [], // optimisationType: {id, optimisation_type}
-      departure_position: {}, // departure: {lat & lon}
-      arrival_position: {}, // arrival: {lat & lon}
+      ports: [],
+      optimisationType: [],
+      departure_position: {},
+      arrival_position: {},
       vessel_id: 0,
       ETD: "",
       ETA: "",
@@ -29,22 +28,36 @@ class StartVoyage extends Component {
       departureTime: "",
       arrivalDate: "",
       arrivalTime: "",
-      isChecked: false
+      isChecked: false,
+
+      // input field props
+      draft_min: 0.0,
+      draft_max: 99.99,
+      draft_step: 0.01,
+      draft_unit: "m",
+      fuelCost_min: 0.0,
+      fuelCost_max: 99.99,
+      fuelCost_step: 0.01,
+      fuelCost_unit: "USD",
+      rate_min: 0.0,
+      rate_max: 99.99,
+      rate_step: 0.01,
+      rate_unit: "USD"
     };
   }
 
   handleDateInputChange = e => {
     const target = e.target;
     const { name, value } = target;
-    const dateDescr = name === "ETD" ? "departureDate" : "arrivalDate";
-    this.setState({ [dateDescr]: value });
+    const date = name === "ETD" ? "departureDate" : "arrivalDate";
+    this.setState({ [date]: value });
   };
 
   handleTimeInputChange = e => {
     const target = e.target;
     const { name, value } = target;
-    const timeDescr = name === "ETD" ? "departureTime" : "arrivalTime";
-    this.setState({ [timeDescr]: value });
+    const time = name === "ETD" ? "departureTime" : "arrivalTime";
+    this.setState({ [time]: value });
   };
   handleToggleCheckbox = e => {
     this.setState({ isChecked: !this.state.isChecked });
@@ -59,7 +72,7 @@ class StartVoyage extends Component {
   handleVesselSelection = e => {
     const selectedIndex = e.target.selectedIndex;
     const vessel_id = this.state.vessels[selectedIndex].id;
-    this.setState({ vessel_id: vessel_id });
+    this.setState({ vessel_id });
   };
 
   handleDeparturePortSelection = e => {
@@ -68,7 +81,7 @@ class StartVoyage extends Component {
       longitude: this.state.ports[selectedIndex].lon,
       latitude: this.state.ports[selectedIndex].lat
     };
-    this.setState({ departure_position: departure_position });
+    this.setState({ departure_position });
   };
 
   handleArrivalPortSelection = e => {
@@ -77,7 +90,7 @@ class StartVoyage extends Component {
       longitude: this.state.ports[selectedIndex].lon,
       latitude: this.state.ports[selectedIndex].lat
     };
-    this.setState({ arrival_position: arrival_position });
+    this.setState({ arrival_position });
   };
   handleOptimisationTypeSelection = e => {
     const selectedIndex = e.target.selectedIndex;
@@ -85,7 +98,7 @@ class StartVoyage extends Component {
       optimisation_type: this.state.optimisationType[selectedIndex]
         .optimisation_type
     };
-    this.setState({ optimisation_type: optimisation_type });
+    this.setState({ optimisation_type });
   };
 
   render() {
@@ -98,26 +111,22 @@ class StartVoyage extends Component {
       forward_draft,
       aft_draft,
       lfso_cost,
-      hfo_cost
+      hfo_cost,
+      draft_min,
+      draft_max,
+      draft_step,
+      draft_unit,
+      fuelCost_min,
+      fuelCost_max,
+      fuelCost_step,
+      fuelCost_unit,
+      rate_min,
+      rate_max,
+      rate_step,
+      rate_unit
     } = this.state;
 
-    const {
-      vessels,
-      ports,
-      optimisationType,
-      min_Draft,
-      max_Draft,
-      draft_StepSize,
-      draft_Unit,
-      min_fuelCost,
-      max_fuelCost,
-      fuelCost_stepSize,
-      fuelCost_Unit,
-      min_rate,
-      max_rate,
-      rate_stepSize,
-      rate_Unit
-    } = this.props;
+    const { vessels, ports, optimisationType } = this.props;
 
     let checkBoxLogic;
     if (this.state.isChecked === true) {
@@ -125,10 +134,10 @@ class StartVoyage extends Component {
         <InputField
           label=" Hire Rate "
           name="hire_rate"
-          min={min_rate}
-          max={max_rate}
-          step={rate_stepSize}
-          unit={rate_Unit}
+          min={rate_min}
+          max={rate_max}
+          step={rate_step}
+          unit={rate_unit}
           value={hire_rate}
           onDataInputChange={this.handleDataInputChange}
         />
@@ -138,13 +147,12 @@ class StartVoyage extends Component {
       <div>
         <form>
           <Title title=" Start Voyage " />
-          <br />
+
           <Dropdown
             label=" Choose vessel "
             optionsMap={vessels}
             handleSelection={this.handleVesselSelection}
           />
-          <br />
           <Checkbox
             label=" Chartered vessel "
             handleCheckbox={this.handleToggleCheckbox}
@@ -152,13 +160,11 @@ class StartVoyage extends Component {
 
           {checkBoxLogic}
 
-          <br />
           <Dropdown
             label=" Depart from "
             optionsMap={ports}
             handleSelection={this.handleDeparturePortSelection}
           />
-          <br />
           <DateTime
             label=" Estimated Departure (ETD) "
             name="ETD"
@@ -167,13 +173,11 @@ class StartVoyage extends Component {
             onDateInputChange={this.handleDateInputChange}
             onTimeInputChange={this.handleTimeInputChange}
           />
-          <br />
           <Dropdown
             label=" Destination "
             optionsMap={ports}
             handleSelection={this.handleArrivalPortSelection}
           />
-          <br />
           <DateTime
             label=" Estimated Arrival (ETA) "
             name="ETA"
@@ -182,57 +186,51 @@ class StartVoyage extends Component {
             onDateInputChange={this.handleDateInputChange}
             onTimeInputChange={this.handleTimeInputChange}
           />
-          <br />
           <Dropdown
             label=" Optimisation type "
             optionsMap={optimisationType}
             handleSelection={this.handleOptimisationTypeSelection}
           />
-          <br />
           <InputField
             label=" Forward Draft "
             name="forward_draft"
-            min={min_Draft}
-            max={max_Draft}
-            step={draft_StepSize}
-            unit={draft_Unit}
+            min={draft_min}
+            max={draft_max}
+            step={draft_step}
+            unit={draft_unit}
             value={forward_draft}
             onDataInputChange={this.handleDataInputChange}
           />
-          <br />
           <InputField
             label=" Aft Draft "
             name="aft_draft"
-            min={min_Draft}
-            max={max_Draft}
-            step={draft_StepSize}
-            unit={draft_Unit}
+            min={draft_min}
+            max={draft_max}
+            step={draft_step}
+            unit={draft_unit}
             value={aft_draft}
             onDataInputChange={this.handleDataInputChange}
           />
-          <br />
           <InputField
             label=" Low Sulfor Fuel Oil Cost "
             name="lfso_cost"
-            min={min_fuelCost}
-            max={max_fuelCost}
-            step={fuelCost_stepSize}
-            unit={fuelCost_Unit}
+            min={fuelCost_min}
+            max={fuelCost_max}
+            step={fuelCost_step}
+            unit={fuelCost_unit}
             value={lfso_cost}
             onDataInputChange={this.handleDataInputChange}
           />
-          <br />
           <InputField
             label=" Heavy Fuel Oil Cost "
             name="hfo_cost"
-            min={min_fuelCost}
-            max={max_fuelCost}
-            step={fuelCost_stepSize}
-            unit={fuelCost_Unit}
+            min={fuelCost_min}
+            max={fuelCost_max}
+            step={fuelCost_step}
+            unit={fuelCost_unit}
             value={hfo_cost}
             onDataInputChange={this.handleDataInputChange}
           />
-          <br />
         </form>
       </div>
     );

@@ -16,7 +16,6 @@ class InputField extends Component {
       <div>
         <label htmlFor="number-input-field">{label}</label>
         <input
-          style={{ width: 100 }}
           id="number-input-field"
           type="number"
           name={name}

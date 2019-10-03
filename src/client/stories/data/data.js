@@ -1,4 +1,3 @@
-// harbour list
 const ports = [
   { name: "newpoint", lat: 51.45, depth: -11, lon: -3 },
   { name: "las palmas", lat: 28.1083, depth: -333, lon: -15.3617 },
@@ -32,7 +31,7 @@ const ports = [
     lon: -5.308113
   }
 ];
-// Voyage list
+
 const vessels = [
   { id: 1, name: "Mirjam" },
   { id: 2, name: "Nord Vantage" },
@@ -49,34 +48,8 @@ const optimisationType = [
   { id: 3, name: "least_cost_arrival" }
 ];
 
-// input field props
-const min_Draft = 0.0;
-const max_Draft = 99.99;
-const draft_StepSize = 0.01; // input step up/down & floating decimal values
-const draft_Unit = "m";
-const min_fuelCost = 0.0;
-const max_fuelCost = 99.99;
-const fuelCost_stepSize = 0.01; // input step up/down  & floating  decimal values
-const fuelCost_Unit = "USD";
-const min_rate = 0.0;
-const max_rate = 99.99;
-const rate_stepSize = 0.01; // input step up/down & floating decimal values
-const rate_Unit = "USD";
-
 module.exports = {
   ports,
   vessels,
-  optimisationType,
-  min_Draft,
-  max_Draft,
-  draft_StepSize,
-  draft_Unit,
-  min_fuelCost,
-  max_fuelCost,
-  fuelCost_stepSize,
-  fuelCost_Unit,
-  min_rate,
-  max_rate,
-  rate_stepSize,
-  rate_Unit
+  optimisationType
 };
