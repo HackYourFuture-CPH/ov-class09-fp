@@ -17,6 +17,7 @@ export default class SuggestedRoutesList extends Component {
     return (
       <div>
         {this.props.list.map(i => {
+          console.log(i.suggested_route_id);
           return (
             <SuggestedRouteCard
               id={i.suggested_route_id}

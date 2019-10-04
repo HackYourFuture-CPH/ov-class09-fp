@@ -7,7 +7,7 @@ export default class SuggestedRouteCard extends Component {
     return (
       <div>
         <SuggestedRouteSummary props={this.props} />
-        <SuggestedRouteDetails />
+        <SuggestedRouteDetails props={this.props} />
       </div>
     );
   }
