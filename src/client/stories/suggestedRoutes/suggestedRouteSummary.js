@@ -3,7 +3,6 @@ import SuggestedRouteSummary from "../../components/SuggestedRoutes/SuggestedRou
 import { text, boolean } from "@storybook/addon-knobs";
 
 export function suggestedRouteSummary() {
-  console.log("hi");
   return (
     <SuggestedRouteSummary
       time={text("Time", "26h / +6")}

@@ -10,10 +10,10 @@ import { CardGroupStory } from "./CardGroupStory";
 
 import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
-import { suggestedRouteCard } from "./SuggestedRoutes/suggestedRouteCard";
-import { suggestedRouteDetails } from "./SuggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
-import { suggestetdRoutesList } from "./SuggestedRoutes/suggestetdRoutesList";
+import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
+import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
+import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 
 storiesOf("Button", module)
   .add("with text", WithTextStory)
@@ -42,5 +42,5 @@ const DisplaySuggestedRoutes = storiesOf("Display Suggested Routes", module)
   .add("suggestedRouteSummary", suggestedRouteSummary)
   .add("suggestedRouteDetails", suggestedRouteDetails)
   .add("suggestedRouteCard", suggestedRouteCard)
-  .add("suggestetdRoutesList", suggestetdRoutesList);
+  .add("suggestedRoutesList", suggestedRoutesList);
 DisplaySuggestedRoutes.addDecorator(withKnobs);

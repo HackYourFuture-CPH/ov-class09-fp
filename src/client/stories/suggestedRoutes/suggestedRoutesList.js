@@ -1,8 +1,9 @@
 import React from "react";
 import SuggestedRoutesList from "../../components/SuggestedRoutes/SuggestedRoutesList";
+import { object } from "@storybook/addon-knobs";
 
-export function suggestetdRoutesList() {
-  const Data = [
+export function suggestedRoutesList() {
+  const Data = object("list", [
     {
       suggested_route_id: 1,
       time: "23h/ +7h",
@@ -36,9 +37,9 @@ export function suggestetdRoutesList() {
       hireCost: "$200",
       consumption: "$50"
     }
-  ];
+  ]);
 
   return <SuggestedRoutesList list={Data} />;
 }
 
-export default suggestetdRoutesList;
+export default suggestedRoutesList;
