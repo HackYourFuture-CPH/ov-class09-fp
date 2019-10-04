@@ -4,22 +4,16 @@ import { Route, withRouter, Link, Redirect } from "react-router-dom";
 
 import Home from "./../Home";
 import LoginForm from "./../components/login-form";
+import PrivateRoute from "./../components/PrivateRoute";
+import AppLayout from "./../components/AppLayout";
 
 const MainRouter = props => {
-  const isLoggedin = localStorage.getItem("token");
-
   return (
     <React.Fragment>
       <div className="container">
-        <Route
-          exact
-          path="/"
-          component={() =>
-            isLoggedin ? <Redirect to="/home" /> : <Redirect to="/login" />
-          }
-        />
-        <Route exact path="/login" component={LoginForm} />
         <Route exact path="/home" component={Home} />
+        <Route exact path="/login" component={LoginForm} />
+        <PrivateRoute path="/app" component={AppLayout} />
       </div>
     </React.Fragment>
   );
