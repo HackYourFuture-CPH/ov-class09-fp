@@ -11,7 +11,7 @@ import { CardGroupStory } from "./CardGroupStory";
 import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
 
-import { CostWidgetStory } from "./CostWidget";
+import { CostWidgetStory } from "./CostWidgetStory";
 
 storiesOf("Button", module)
   .add("with text", WithTextStory)
