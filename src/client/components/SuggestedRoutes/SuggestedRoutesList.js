@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SuggestedRouteBox from "./SuggestedRouteBox";
+import SuggestedRouteCard from "./SuggestedRouteCard";
 
 export default class SuggestedRoutesList extends Component {
   state = {
@@ -18,7 +18,7 @@ export default class SuggestedRoutesList extends Component {
       <div>
         {this.props.list.map(i => {
           return (
-            <SuggestedRouteBox
+            <SuggestedRouteCard
               id={i.suggested_route_id}
               isSelected={i.suggested_route_id === this.state.selectedId}
               handleClick={this.handleClick}

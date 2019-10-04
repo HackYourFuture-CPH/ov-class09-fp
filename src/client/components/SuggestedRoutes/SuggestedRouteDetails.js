@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import TitleAndDescribe from "./TitleAndDescribe";
-import { background } from "@storybook/theming";
+import TitleAndDescribe from "../TitleAndDescribe";
 
-export default class SuggestedRouteInfo extends Component {
+export default class SuggestedRouteDetails extends Component {
   render() {
     const {
       eta,

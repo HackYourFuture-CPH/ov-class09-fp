@@ -1,14 +1,15 @@
 import React from "react";
-import SuggestedRouteCard from "../../components/RoutesList/SuggestedRouteCard";
+import SuggestedRouteSummary from "../../components/SuggestedRoutes/SuggestedRouteSummary";
 import { text, boolean } from "@storybook/addon-knobs";
 
-export function suggestedRouteCard() {
+export function suggestedRouteSummary() {
+  console.log("hi");
   return (
-    <SuggestedRouteCard
+    <SuggestedRouteSummary
       time={text("Time", "26h / +6")}
       price={text("Price", "$104.207/ -$6.208")}
       isSelected={(boolean("Is Selected"), false)}
     />
   );
 }
-export default suggestedRouteCard;
+export default suggestedRouteSummary;

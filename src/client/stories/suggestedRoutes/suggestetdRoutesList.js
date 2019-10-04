@@ -1,5 +1,5 @@
 import React from "react";
-import SuggestedRoutesList from "../../components/RoutesList/SuggestedRoutesList";
+import SuggestedRoutesList from "../../components/SuggestedRoutes/SuggestedRoutesList";
 
 export function suggestetdRoutesList() {
   const Data = [

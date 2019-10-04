@@ -1,10 +1,10 @@
 import React from "react";
-import SuggestedRouteInfo from "../../components/RoutesList/SuggestedRouteInfo";
+import SuggestedRouteDetails from "../../components/SuggestedRoutes/SuggestedRouteDetails";
 import { text } from "@storybook/addon-knobs";
 
-export function suggestedRouteInfo() {
+export function suggestedRouteDetails() {
   return (
-    <SuggestedRouteInfo
+    <SuggestedRouteDetails
       eta={text("ETA")}
       sailDays={text("SAIL DAYS")}
       maxWaveHs={text("MAX WAVE HS")}
@@ -15,4 +15,4 @@ export function suggestedRouteInfo() {
   );
 }
 
-export default suggestedRouteInfo;
+export default suggestedRouteDetails;

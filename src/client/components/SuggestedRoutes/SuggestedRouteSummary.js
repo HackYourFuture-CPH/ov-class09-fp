@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import TitleAndDescribe from "./TitleAndDescribe";
+import TitleAndDescribe from "../TitleAndDescribe";
 
-export default class SuggestedRouteCard extends Component {
+export default class SuggestedRouteSummary extends Component {
   render() {
     const { time, price } = this.props;
     const { id, isSelected, handleClick } = this.props.props;

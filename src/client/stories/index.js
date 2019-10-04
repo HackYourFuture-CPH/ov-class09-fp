@@ -5,10 +5,10 @@ import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
 import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
-import { suggestedRouteCard } from "./RouteList/suggestedRouteCard";
-import { suggestedRouteInfo } from "./RouteList/suggestedRouteInfo";
-import { suggestedRouteBox } from "./RouteList/suggestedRouteBox";
-import { suggestetdRoutesList } from "./RouteList/suggestetdRoutesList";
+import { suggestedRouteCard } from "./SuggestedRoutes/suggestedRouteCard";
+import { suggestedRouteDetails } from "./SuggestedRoutes/suggestedRouteDetails";
+import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
+import { suggestetdRoutesList } from "./SuggestedRoutes/suggestetdRoutesList";
 
 storiesOf("Button", module)
   .add("with text", WithTextStory)
@@ -23,8 +23,8 @@ const VesselsListStories = storiesOf("Vessels", module)
 VesselsListStories.addDecorator(withKnobs);
 
 const DisplaySuggestedRoutes = storiesOf("Display Suggested Routes", module)
+  .add("suggestedRouteSummary", suggestedRouteSummary)
+  .add("suggestedRouteDetails", suggestedRouteDetails)
   .add("suggestedRouteCard", suggestedRouteCard)
-  .add("suggestedRouteInfo", suggestedRouteInfo)
-  .add("suggestedRouteBox", suggestedRouteBox)
   .add("suggestetdRoutesList", suggestetdRoutesList);
 DisplaySuggestedRoutes.addDecorator(withKnobs);
