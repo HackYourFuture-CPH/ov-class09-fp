@@ -7,13 +7,11 @@ import { StartVoyageStory } from "./voyage/StartVoyage";
 import { DateTimeStory } from "./voyage/DateTime";
 import { InputFieldStory } from "./voyage/InputField";
 import { DropdownStory } from "./voyage/Dropdown";
-import { NavButtonStory } from "./voyage/NavButton";
+import { NavButtonStory } from "./navigation/NavButton";
 import { CheckboxStory } from "./voyage/Checkbox";
-
 import { VesselDetailsStory } from "./VesselDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
-
 import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
 
@@ -24,12 +22,17 @@ storiesOf("Button", module)
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
-const VoyageStories = storiesOf("StartVoyage", module)
+const NavigationStories = storiesOf("Navigation", module).add(
+  "ButtonComponent",
+  NavButtonStory
+);
+NavigationStories.addDecorator(withKnobs);
+
+const VoyageStories = storiesOf("Start Voyage", module)
   .add("StartVoyage", StartVoyageStory)
   .add("DateTimeComponent", DateTimeStory)
   .add("InputFieldComponent", InputFieldStory)
   .add("DropdownComponent", DropdownStory)
-  .add("NavButtonComponent", NavButtonStory)
   .add("CheckboxComponent", CheckboxStory);
 VoyageStories.addDecorator(withKnobs);
 const VesselDetailsStories = storiesOf("VesselDetails", module).add(

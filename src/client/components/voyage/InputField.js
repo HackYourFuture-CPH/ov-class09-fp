@@ -13,10 +13,9 @@ class InputField extends Component {
       onDataInputChange
     } = this.props;
     return (
-      <div>
-        <label htmlFor="number-input-field">{label}</label>
+      <label>
+        {label}
         <input
-          id="number-input-field"
           type="number"
           name={name}
           min={min}
@@ -26,7 +25,7 @@ class InputField extends Component {
           placeholder={`${min} ${unit}`}
           onChange={e => onDataInputChange(e)}
         />
-      </div>
+      </label>
     );
   }
 }

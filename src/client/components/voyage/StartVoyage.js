@@ -1,50 +1,43 @@
 import React, { Component } from "react";
-import Title from "./Title";
 import DateTime from "./DateTime";
 import InputField from "./InputField";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 
 class StartVoyage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      vessels: [],
-      ports: [],
-      optimisationType: [],
-      departure_position: {},
-      arrival_position: {},
-      vessel_id: 0,
-      ETD: "",
-      ETA: "",
-      optimisation_type: {},
-      hire_rate: "",
-      forward_draft: "",
-      aft_draft: "",
-      lfso_cost: "",
-      hfo_cost: "",
-      departureDate: "",
-      departureTime: "",
-      arrivalDate: "",
-      arrivalTime: "",
-      isChecked: false,
-
-      // input field props
-      draft_min: 0.0,
-      draft_max: 99.99,
-      draft_step: 0.01,
-      draft_unit: "m",
-      fuelCost_min: 0.0,
-      fuelCost_max: 99.99,
-      fuelCost_step: 0.01,
-      fuelCost_unit: "USD",
-      rate_min: 0.0,
-      rate_max: 99.99,
-      rate_step: 0.01,
-      rate_unit: "USD"
-    };
-  }
+  state = {
+    vessels: [],
+    ports: [],
+    optimisationType: [],
+    departure_position: {},
+    arrival_position: {},
+    vessel_id: 0,
+    ETD: "",
+    ETA: "",
+    optimisation_type: {},
+    hire_rate: "",
+    forward_draft: "",
+    aft_draft: "",
+    lfso_cost: "",
+    hfo_cost: "",
+    departureDate: "",
+    departureTime: "",
+    arrivalDate: "",
+    arrivalTime: "",
+    isChecked: false,
+    draft_min: 0.0,
+    draft_max: 99.99,
+    draft_step: 0.01,
+    draft_unit: "m",
+    fuelCost_min: 0.0,
+    fuelCost_max: 99.99,
+    fuelCost_step: 0.01,
+    fuelCost_unit: "USD",
+    rate_min: 0.0,
+    rate_max: 99.99,
+    rate_step: 0.01,
+    rate_unit: "USD"
+  };
 
   handleDateInputChange = e => {
     const target = e.target;
@@ -132,7 +125,7 @@ class StartVoyage extends Component {
     if (this.state.isChecked === true) {
       checkBoxLogic = (
         <InputField
-          label=" Hire Rate "
+          label="Hire Rate"
           name="hire_rate"
           min={rate_min}
           max={rate_max}
@@ -146,27 +139,25 @@ class StartVoyage extends Component {
     return (
       <div>
         <form>
-          <Title title=" Start Voyage " />
-
           <Dropdown
-            label=" Choose vessel "
+            label="Choose vessel"
             optionsMap={vessels}
             handleSelection={this.handleVesselSelection}
           />
           <Checkbox
-            label=" Chartered vessel "
+            label="Chartered vessel"
             handleCheckbox={this.handleToggleCheckbox}
           />
 
           {checkBoxLogic}
 
           <Dropdown
-            label=" Depart from "
+            label="Depart from"
             optionsMap={ports}
             handleSelection={this.handleDeparturePortSelection}
           />
           <DateTime
-            label=" Estimated Departure (ETD) "
+            label="Estimated Departure (ETD)"
             name="ETD"
             date={departureDate}
             time={departureTime}
@@ -174,12 +165,12 @@ class StartVoyage extends Component {
             onTimeInputChange={this.handleTimeInputChange}
           />
           <Dropdown
-            label=" Destination "
+            label="Destination"
             optionsMap={ports}
             handleSelection={this.handleArrivalPortSelection}
           />
           <DateTime
-            label=" Estimated Arrival (ETA) "
+            label="Estimated Arrival (ETA)"
             name="ETA"
             date={arrivalDate}
             time={arrivalTime}
@@ -187,12 +178,12 @@ class StartVoyage extends Component {
             onTimeInputChange={this.handleTimeInputChange}
           />
           <Dropdown
-            label=" Optimisation type "
+            label="Optimisation type"
             optionsMap={optimisationType}
             handleSelection={this.handleOptimisationTypeSelection}
           />
           <InputField
-            label=" Forward Draft "
+            label="Forward Draft"
             name="forward_draft"
             min={draft_min}
             max={draft_max}
@@ -202,7 +193,7 @@ class StartVoyage extends Component {
             onDataInputChange={this.handleDataInputChange}
           />
           <InputField
-            label=" Aft Draft "
+            label="Aft Draft"
             name="aft_draft"
             min={draft_min}
             max={draft_max}
@@ -212,7 +203,7 @@ class StartVoyage extends Component {
             onDataInputChange={this.handleDataInputChange}
           />
           <InputField
-            label=" Low Sulfor Fuel Oil Cost "
+            label="Low Sulfor Fuel Oil Cost"
             name="lfso_cost"
             min={fuelCost_min}
             max={fuelCost_max}
@@ -222,7 +213,7 @@ class StartVoyage extends Component {
             onDataInputChange={this.handleDataInputChange}
           />
           <InputField
-            label=" Heavy Fuel Oil Cost "
+            label="Heavy Fuel Oil Cost"
             name="hfo_cost"
             min={fuelCost_min}
             max={fuelCost_max}

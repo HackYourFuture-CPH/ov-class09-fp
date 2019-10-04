@@ -11,27 +11,29 @@ export default class DateTime extends Component {
       onTimeInputChange
     } = this.props;
     return (
-      <div>
-        <label>{label}</label> <br />
-        <label htmlFor="date"> Date </label>
-        <input
-          id="date"
-          name={name}
-          type="text"
-          value={date}
-          placeholder="yyyy-mm-dd"
-          onChange={e => onDateInputChange(e)}
-        />
-        <label htmlFor="time"> Time </label>
-        <input
-          id="time"
-          name={name}
-          type="text"
-          value={time}
-          placeholder="hh:mm"
-          onChange={e => onTimeInputChange(e)}
-        />
-      </div>
+      <React.Fragment>
+        <label>{label} </label>
+        <label>
+          Date
+          <input
+            name={name}
+            type="text"
+            value={date}
+            placeholder="yyyy-mm-dd"
+            onChange={e => onDateInputChange(e)}
+          />
+        </label>
+        <label>
+          Time
+          <input
+            name={name}
+            type="text"
+            value={time}
+            placeholder="hh:mm"
+            onChange={e => onTimeInputChange(e)}
+          />
+        </label>
+      </React.Fragment>
     );
   }
 }

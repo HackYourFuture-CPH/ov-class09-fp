@@ -7,12 +7,10 @@ class Dropdown extends Component {
       return <option>{option.name}</option>;
     });
     return (
-      <div>
-        <label htmlFor="dropdown">{label}</label>
-        <select id="dropdown" onChange={e => handleSelection(e)}>
-          {options}
-        </select>
-      </div>
+      <label>
+        {label}
+        <select onChange={e => handleSelection(e)}>{options}</select>
+      </label>
     );
   }
 }
