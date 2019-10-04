@@ -321,6 +321,16 @@ const createAdminBySuperUser = async (id, body) => {
   });
 };
 
+const gerUsersbyorganizationId = async organization_id => {
+  const usersByOrganizationId = await knex
+    .from("users")
+    .where({ organization_id });
+  if (usersByOrganizationId.length === 0) {
+    return `This Organization have no users!`;
+  }
+  return usersByOrganizationId;
+};
+
 module.exports = {
   createUser,
   getUsers,
@@ -332,5 +342,6 @@ module.exports = {
   deleteUser,
   getUserById,
   editUserRole,
-  createAdminBySuperUser
+  createAdminBySuperUser,
+  gerUsersbyorganizationId
 };

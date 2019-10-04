@@ -94,4 +94,16 @@ router.post(
   }
 );
 
+//ENDPOINT /api/organizations/:organization_id/users/ :get
+router.get(
+  "/:organization_id/users",
+  authorizeUser(ROLES.SUPER_USER),
+  (req, res, next) => {
+    userController
+      .gerUsersbyorganizationId(req.params.organization_id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 module.exports = router;
