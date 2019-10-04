@@ -8,6 +8,7 @@ export function suggestedRouteSummary() {
       time={text("Time", "26h / +6")}
       price={text("Price", "$104.207/ -$6.208")}
       isSelected={(boolean("Is Selected"), false)}
+      handleClick={() => console.log("object")}
     />
   );
 }

@@ -10,7 +10,7 @@ export default class SuggestedRouteDetails extends Component {
       avgSpeed,
       hireCost,
       consumption
-    } = this.props.props;
+    } = this.props;
 
     return (
       <React.Fragment>

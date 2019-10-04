@@ -3,7 +3,8 @@ import TitleAndDescribe from "../TitleAndDescribe";
 
 export default class SuggestedRouteSummary extends Component {
   render() {
-    const { id, isSelected, handleClick, time, price } = this.props.props;
+    const { id, isSelected, handleClick, time, price } = this.props;
+    console.log(this.props);
     return (
       <div>
         {isSelected ? <h4>SELECTED ROUTE</h4> : null}
