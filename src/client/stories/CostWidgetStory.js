@@ -9,15 +9,15 @@ export function CostWidgetStory() {
   const titleCard3 = text("title card 3", "Total Cost");
   const dataCard1 = number("Current Cost", 269.68);
   const dataCard2 = number("Remaining Cost", 112.32);
-  const dataCard3 = "$" + (dataCard1 + dataCard2);
+  const dataCard3 = dataCard1 + dataCard2;
 
   return (
     <div>
       <CardGroupHeader title="Cost Widget" />
       <CardGroup>
-        <DataCard title={titleCard1} data={dataCard1} />
-        <DataCard title={titleCard2} data={dataCard2} />
-        <DataCard title={titleCard3} data={dataCard3} />
+        <DataCard title={titleCard1} data={"$" + dataCard1} />
+        <DataCard title={titleCard2} data={"$" + dataCard2} />
+        <DataCard title={titleCard3} data={"$" + dataCard3} />
       </CardGroup>
     </div>
   );
