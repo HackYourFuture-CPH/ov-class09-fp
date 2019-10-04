@@ -3,7 +3,7 @@ import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
 
 function CostWidget({ currentCost, remainingCost }) {
-  let totalCost = currentCost + remainingCost;
+  const totalCost = currentCost + remainingCost;
   return (
     <div>
       <CardGroupHeader title="Cost Widget" />
