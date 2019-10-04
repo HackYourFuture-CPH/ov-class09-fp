@@ -4,11 +4,7 @@ import MainRouter from "./routes/main-router";
 
 class App extends Component {
   render() {
-    return (
-      <div>
-        <MainRouter />
-      </div>
-    );
+    return <MainRouter />;
   }
 }
 
