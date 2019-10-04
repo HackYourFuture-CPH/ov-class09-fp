@@ -5,7 +5,6 @@ export default class SuggestedRouteSummary extends Component {
   render() {
     const { time, price } = this.props;
     const { id, isSelected, handleClick } = this.props.props;
-
     return (
       <div>
         {isSelected ? <h4>SELECTED ROUTE</h4> : null}
