@@ -100,7 +100,7 @@ router.get(
   authorizeUser(ROLES.SUPER_USER),
   (req, res, next) => {
     userController
-      .gerUsersbyorganizationId(req.params.organization_id)
+      .getUsersbyOrganizationId(req.params.organization_id)
       .then(result => res.json(result))
       .catch(next);
   }

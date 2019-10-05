@@ -321,7 +321,7 @@ const createAdminBySuperUser = async (id, body) => {
   });
 };
 
-const gerUsersbyorganizationId = async organization_id => {
+const getUsersbyOrganizationId = async organization_id => {
   const usersByOrganizationId = await knex
     .from("users")
     .where({ organization_id });
@@ -343,5 +343,5 @@ module.exports = {
   getUserById,
   editUserRole,
   createAdminBySuperUser,
-  gerUsersbyorganizationId
+  getUsersbyOrganizationId
 };
