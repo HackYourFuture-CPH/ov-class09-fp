@@ -3,7 +3,7 @@ import SuggestedRoutesList from "../../components/SuggestedRoutes/SuggestedRoute
 import { object } from "@storybook/addon-knobs";
 
 export function suggestedRoutesList() {
-  const Data = object("list", [
+  const Data = object("Routeslist", [
     {
       suggested_route_id: 1,
       time: "23h/ +7h",
@@ -39,7 +39,7 @@ export function suggestedRoutesList() {
     }
   ]);
 
-  return <SuggestedRoutesList list={Data} />;
+  return <SuggestedRoutesList Routeslist={Data} />;
 }
 
 export default suggestedRoutesList;

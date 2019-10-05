@@ -16,21 +16,21 @@ export default class SuggestedRoutesList extends Component {
   render() {
     return (
       <div>
-        {this.props.list.map(i => {
+        {this.props.Routeslist.map(route => {
           return (
             <SuggestedRouteCard
-              id={i.suggested_route_id}
-              isSelected={i.suggested_route_id === this.state.selectedId}
+              id={route.suggested_route_id}
+              isSelected={route.suggested_route_id === this.state.selectedId}
               handleClick={this.handleClick}
-              key={i.suggested_route_id}
-              time={i.time}
-              price={i.price}
-              eta={i.eta}
-              sailDays={i.sailDays}
-              maxWaveHs={i.maxWaveHs}
-              avgSpeed={i.avgSpeed}
-              hireCost={i.hireCost}
-              consumption={i.consumption}
+              key={route.suggested_route_id}
+              time={route.time}
+              price={route.price}
+              eta={route.eta}
+              sailDays={route.sailDays}
+              maxWaveHs={route.maxWaveHs}
+              avgSpeed={route.avgSpeed}
+              hireCost={route.hireCost}
+              consumption={route.consumption}
             />
           );
         })}
