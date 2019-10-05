@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import TitleAndDescribe from "../TitleAndDescribe";
+import Field from "../Field";
 
 export default function SuggestedRouteDetails({
   eta,
@@ -12,14 +12,14 @@ export default function SuggestedRouteDetails({
   return (
     <Fragment>
       <div>
-        <TitleAndDescribe title={"ETA"} description={eta} />
-        <TitleAndDescribe title={"SAIL DAYS"} description={sailDays} />
-        <TitleAndDescribe title={"MAX WAVE HS"} description={maxWaveHs} />
+        <Field title={"ETA"} description={eta} />
+        <Field title={"SAIL DAYS"} description={sailDays} />
+        <Field title={"MAX WAVE HS"} description={maxWaveHs} />
       </div>
       <div>
-        <TitleAndDescribe title={"AVG SPEED"} description={avgSpeed} />
-        <TitleAndDescribe title={"HIRE COST"} description={hireCost} />
-        <TitleAndDescribe title={"CONSUMPTION"} description={consumption} />
+        <Field title={"AVG SPEED"} description={avgSpeed} />
+        <Field title={"HIRE COST"} description={hireCost} />
+        <Field title={"CONSUMPTION"} description={consumption} />
       </div>
     </Fragment>
   );

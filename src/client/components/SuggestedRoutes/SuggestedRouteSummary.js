@@ -1,5 +1,5 @@
 import React from "react";
-import TitleAndDescribe from "../TitleAndDescribe";
+import Field from "../Field";
 
 export default function SuggestedRouteSummary({
   id,
@@ -11,8 +11,8 @@ export default function SuggestedRouteSummary({
   return (
     <div>
       {isSelected ? <h4>SELECTED ROUTE</h4> : null}
-      <TitleAndDescribe title="HOURS" description={time} />
-      <TitleAndDescribe title="TOTAL COST" description={price} />
+      <Field title="HOURS" description={time} />
+      <Field title="TOTAL COST" description={price} />
       {!isSelected ? (
         <button onClick={() => handleClick(id)}>SELECT ROUTE</button>
       ) : null}
