@@ -6,18 +6,6 @@ table organizations {
   updated_at timestamp [not null, default: `now()`, note: 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP']
 }
 
-table knex_migrations_lock {
-  index int [ pk, not null, increment ]
-  is_locked int [ default: null]
-}
-
-table knex_migrations {
-  id int [ pk, not null, increment ]
-  name varchar [ default: null]
-  batch int [ default: null ]
-  migration_time timestamp [ default: null]
-}
-
 // Emissions Control Area (ECA)
 table ecas {
   id int [ pk, not null, increment ]
@@ -148,12 +136,11 @@ enum voyage_status {
 
 // A user has 1 role
 ref: user_roles.id < users.role_id
-
 // A company has 0-* users
 ref: organizations.id < users.organization_id
 // A vessel has 0-* voyages
 ref: vessels.id < voyages.vessel_id
-
+// A vessel_reports has 0-* voyages
 ref: vessel_reports.id < suggested_routes.vessel_report_id
 // A suggested_routes has 0-* vessel_reports
 ref: suggested_routes.id < vessel_reports.selected_route_id
