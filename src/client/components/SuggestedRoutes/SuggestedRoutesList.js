@@ -8,7 +8,6 @@ export default class SuggestedRoutesList extends Component {
 
   handleClick = id => {
     this.setState({
-      ...this.state,
       selectedId: id
     });
   };
