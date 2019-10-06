@@ -8,13 +8,16 @@ export default function SuggestedRouteSummary({
   time,
   price
 }) {
+  const selectRouteBtn = () => {
+    handleClick(id);
+  };
   return (
     <div>
       {isSelected ? <h4>SELECTED ROUTE</h4> : null}
       <Field title="HOURS" description={time} />
       <Field title="TOTAL COST" description={price} />
       {!isSelected ? (
-        <button onClick={() => handleClick(id)}>SELECT ROUTE</button>
+        <button onClick={selectRouteBtn}>SELECT ROUTE</button>
       ) : null}
     </div>
   );
