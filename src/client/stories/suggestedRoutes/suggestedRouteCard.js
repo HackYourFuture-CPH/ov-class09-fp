@@ -12,14 +12,14 @@ import {
 export function suggestedRouteCard() {
   return (
     <SuggestedRouteCard
-      time={text("theTime")}
-      price={text("thePrice")}
+      time={text("Time")}
+      price={text("Price")}
       eta={text("ETA")}
-      sailDays={text("SAIL DAYS")}
-      maxWaveHs={text("MAX WAVE HS")}
-      avgSpeed={text("AVG SPEED")}
-      hireCost={text("HIRE COST")}
-      consumption={text("CONSUMPTION")}
+      sailDays={text("Sail days")}
+      maxWaveHs={text("Max wave HS")}
+      avgSpeed={text("Average speed")}
+      hireCost={text("Hire cost")}
+      consumption={text("Consumption")}
     />
   );
 }
