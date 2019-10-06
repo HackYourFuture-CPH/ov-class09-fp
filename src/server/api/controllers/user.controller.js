@@ -326,7 +326,7 @@ const getUsersbyOrganizationId = async organization_id => {
     .from("users")
     .where({ organization_id });
   if (usersByOrganizationId.length === 0) {
-    return `This Organization have no users!`;
+    throw new HttpError("Bad request", "This Organization have no users!", 404);
   }
   return usersByOrganizationId;
 };
