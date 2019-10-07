@@ -24,17 +24,14 @@ class StartVoyage extends Component {
     departureTime: "",
     arrivalDate: "",
     arrivalTime: "",
-    isChecked: false,
-    draft_min: 0.0,
-    draft_max: 99.99,
+    isChecked: false
+  };
+
+  static defaultProps = {
     draft_step: 0.01,
     draft_unit: "m",
-    fuelCost_min: 0.0,
-    fuelCost_max: 99.99,
     fuelCost_step: 0.01,
     fuelCost_unit: "USD",
-    rate_min: 0.0,
-    rate_max: 99.99,
     rate_step: 0.01,
     rate_unit: "USD"
   };
@@ -104,22 +101,20 @@ class StartVoyage extends Component {
       forward_draft,
       aft_draft,
       lfso_cost,
-      hfo_cost,
-      draft_min,
-      draft_max,
-      draft_step,
-      draft_unit,
-      fuelCost_min,
-      fuelCost_max,
-      fuelCost_step,
-      fuelCost_unit,
-      rate_min,
-      rate_max,
-      rate_step,
-      rate_unit
+      hfo_cost
     } = this.state;
 
-    const { vessels, ports, optimisationType } = this.props;
+    const {
+      vessels,
+      ports,
+      optimisationType,
+      draft_step,
+      draft_unit,
+      fuelCost_step,
+      fuelCost_unit,
+      rate_step,
+      rate_unit
+    } = this.props;
 
     let checkBoxLogic;
     if (this.state.isChecked === true) {
@@ -127,8 +122,6 @@ class StartVoyage extends Component {
         <InputField
           label="Hire Rate"
           name="hire_rate"
-          min={rate_min}
-          max={rate_max}
           step={rate_step}
           unit={rate_unit}
           value={hire_rate}
@@ -185,8 +178,6 @@ class StartVoyage extends Component {
           <InputField
             label="Forward Draft"
             name="forward_draft"
-            min={draft_min}
-            max={draft_max}
             step={draft_step}
             unit={draft_unit}
             value={forward_draft}
@@ -195,8 +186,6 @@ class StartVoyage extends Component {
           <InputField
             label="Aft Draft"
             name="aft_draft"
-            min={draft_min}
-            max={draft_max}
             step={draft_step}
             unit={draft_unit}
             value={aft_draft}
@@ -205,8 +194,6 @@ class StartVoyage extends Component {
           <InputField
             label="Low Sulfor Fuel Oil Cost"
             name="lfso_cost"
-            min={fuelCost_min}
-            max={fuelCost_max}
             step={fuelCost_step}
             unit={fuelCost_unit}
             value={lfso_cost}
@@ -215,8 +202,6 @@ class StartVoyage extends Component {
           <InputField
             label="Heavy Fuel Oil Cost"
             name="hfo_cost"
-            min={fuelCost_min}
-            max={fuelCost_max}
             step={fuelCost_step}
             unit={fuelCost_unit}
             value={hfo_cost}
