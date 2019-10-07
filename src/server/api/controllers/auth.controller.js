@@ -8,9 +8,15 @@ const jwt = require("jsonwebtoken");
 const login = async ({ body }) => {
   try {
     const users = await knex("users")
-      .select("*", "users.id as id", "user_roles.id as userRolesId")
+      .select(
+        "*",
+        "users.id as id",
+        "user_roles.id as userRolesId",
+        "organizations.id as organization_id"
+      )
       .where({ email: body.email })
-      .join("user_roles", { "users.role_id": "user_roles.id" });
+      .join("user_roles", { "users.role_id": "user_roles.id" })
+      .join("organizations", { "users.organization_id": "organizations.id" });
     if (users.length > 0) {
       const user = users[0];
       const passwordMatch = bcrypt.compareSync(body.password, user.password);
@@ -18,7 +24,11 @@ const login = async ({ body }) => {
       if (passwordMatch) {
         const { password, sessionToken, refreshToken } = user;
 
-        const jwtSignObject = { id: user.id, role: user.role };
+        const jwtSignObject = {
+          id: user.id,
+          role: user.role,
+          organization_id: user.organization_id
+        };
 
         const token = jwt.sign(jwtSignObject, process.env.SECRET_KEY, {
           expiresIn: "10h"

@@ -7,7 +7,10 @@ const express = require("express");
 const router = express.Router({
   mergeParams: true
 });
-const { authorizeUser } = require("../lib/middleware/auth.middleware");
+const {
+  authorizeUser,
+  authorizeOrganization
+} = require("../lib/middleware/auth.middleware");
 
 const ROLES = require("../../constants/roles");
 
@@ -86,6 +89,7 @@ router.get(
 router.post(
   "/:id/users/",
   authorizeUser(ROLES.SUPER_USER),
+  authorizeOrganization(),
   (req, res, next) => {
     userController
       .createAdminBySuperUser(req.params.id, req.body)
