@@ -12,7 +12,11 @@ function DataCard({ title, data }) {
 
 DataCard.propTypes = {
   title: PropTypes.string,
-  data: PropTypes.string
+  data: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ])
 };
 
 export default DataCard;

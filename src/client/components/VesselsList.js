@@ -21,7 +21,7 @@ function VesselsList({ vessels = [] }) {
 
 VesselsList.propTypes = {
   vessels: PropTypes.array,
-  id: PropTypes.string,
+  id: PropTypes.number,
   vesselName: PropTypes.string,
   departureFrom: PropTypes.string,
   arrivesAt: PropTypes.string,

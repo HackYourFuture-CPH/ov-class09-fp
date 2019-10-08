@@ -16,6 +16,7 @@ function VesselTeaser({ id, vesselName, departureFrom, arrivesAt, etd, eta }) {
 }
 
 VesselTeaser.propTypes = {
+  id: PropTypes.number,
   vesselName: PropTypes.string,
   departureFrom: PropTypes.string,
   etd: PropTypes.string,
