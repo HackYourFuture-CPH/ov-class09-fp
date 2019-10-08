@@ -295,6 +295,31 @@ const editUserRole = async ({ body, id }) => {
       .update(queryData);
   } else return "No edit fields passed, nothing updated!";
 };
+const createAdminBySuperUser = async (id, body) => {
+  const users = await knex
+    .from("users")
+    .select("*")
+    .where({ email: body.email });
+  if (users.length !== 0) {
+    throw new HttpError("Bad request", "user already exists!", 409);
+  }
+  const hashedPassword = await hashPassword(body.password);
+  const role = await knex
+    .from("user_roles")
+    .select("*")
+    .where({
+      role: "admin"
+    });
+
+  return knex("users").insert({
+    role_id: role[0].id,
+    organization_id: id,
+    email: body.email,
+    password: hashedPassword,
+    name: body.name,
+    status: false
+  });
+};
 
 module.exports = {
   createUser,
@@ -306,5 +331,6 @@ module.exports = {
   changePasswordRandomly,
   deleteUser,
   getUserById,
-  editUserRole
+  editUserRole,
+  createAdminBySuperUser
 };
