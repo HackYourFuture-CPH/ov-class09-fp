@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 function VesselTeaser({ id, vesselName, departureFrom, arrivesAt, etd, eta }) {
   return (
@@ -13,5 +14,13 @@ function VesselTeaser({ id, vesselName, departureFrom, arrivesAt, etd, eta }) {
     </div>
   );
 }
+
+VesselTeaser.propTypes = {
+  vesselName: PropTypes.string,
+  departureFrom: PropTypes.string,
+  etd: PropTypes.string,
+  arrivesAt: PropTypes.string,
+  eta: PropTypes.string
+};
 
 export default VesselTeaser;

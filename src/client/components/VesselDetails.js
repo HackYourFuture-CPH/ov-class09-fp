@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
 import VesselTeaser from "./VesselTeaser";
+import PropTypes from "prop-types";
 
 function VesselDetails({
   vesselName,
@@ -41,5 +42,17 @@ function VesselDetails({
     </div>
   );
 }
+
+VesselDetails.propTypes = {
+  vesselName: PropTypes.string,
+  departsFrom: PropTypes.string,
+  arrivesAt: PropTypes.string,
+  etd: PropTypes.string,
+  eta: PropTypes.string,
+  latitude: PropTypes.string,
+  longitude: PropTypes.string,
+  hsfo: PropTypes.number,
+  ulsfo: PropTypes.number
+};
 
 export default VesselDetails;

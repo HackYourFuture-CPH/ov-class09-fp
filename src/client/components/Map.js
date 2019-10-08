@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Popup, Polyline } from "react-leaflet";
 import MapMarker from "./Marker";
+import PropTypes from "prop-types";
 
 function MapComponent({
   centerMapCoordinates,
@@ -26,5 +27,19 @@ function MapComponent({
     </Map>
   );
 }
+
+MapComponent.propTypes = {
+  centerMapCoordinates: PropTypes.array,
+  pathColor: PropTypes.string,
+  displayMarkers: PropTypes.bool,
+  zoom: PropTypes.number,
+  waypoints: PropTypes.arrayOf(
+    PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+      message: PropTypes.string
+    })
+  )
+};
 
 export default MapComponent;
