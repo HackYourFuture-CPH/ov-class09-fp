@@ -92,14 +92,14 @@ CREATE TABLE `voyages` (
   `eta` datetime DEFAULT null,
   `forwarddraft` float NOT NULL,
   `aftdraft` float NOT NULL,
-  `optimisation_type` ENUM ('a','b') NOT NULL,
+  `optimisation_type` ENUM ('fixed_eta','earliest_arrival','least_cost_arrival') NOT NULL,
   `depart_from_port` int DEFAULT null,
   `arrive_at_port` int DEFAULT null,
   `sailtime` float NOT NULL DEFAULT 0,
   `hfocost` float NOT NULL DEFAULT 0,
   `lsfocost` float NOT NULL DEFAULT 0,
   `hirerate` float NOT NULL,
-  `status` ENUM ('a','b',"created") NOT NULL DEFAULT "created",
+  `status` ENUM ('created','ongoing','completed') NOT NULL DEFAULT "created",
   `created_at` timestamp NOT NULL DEFAULT (now()),
   `updated_at` timestamp NOT NULL DEFAULT (now())
 );
