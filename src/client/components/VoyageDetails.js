@@ -3,7 +3,7 @@ import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
 import VesselTeaser from "./VesselTeaser";
 
-function VesselDetails({
+function VoyageDetails({
   vesselName,
   departsFrom,
   arrivesAt,
@@ -42,4 +42,4 @@ function VesselDetails({
   );
 }
 
-export default VesselDetails;
+export default VoyageDetails;
