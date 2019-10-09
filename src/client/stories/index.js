@@ -12,6 +12,7 @@ import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
+import { AllVoyagesStory } from "./AllVoyagesStory";
 
 storiesOf("Button", module)
   .add("with text", WithTextStory)
@@ -41,3 +42,7 @@ const VesselsListStories = storiesOf("Vessels", module)
   .add("VesselList", VesselsListStory)
   .add("Vessel Teaser", VesselTeaserStory);
 VesselsListStories.addDecorator(withKnobs);
+
+storiesOf("All Voyages", module)
+  .add("Table", AllVoyagesStory)
+  .addDecorator(withKnobs);
