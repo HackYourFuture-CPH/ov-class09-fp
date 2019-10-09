@@ -189,13 +189,6 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "Body",
             "in": "body",
             "required": true,
@@ -465,32 +458,6 @@
         }
       }
     },
-    "/vessels/{vessel_id}/vessel-reports": {
-      "get": {
-        "description": "Returns vessel reports for a given vessel.\n\nAuthentication: `superuser`, `admin` & `operator`.",
-        "summary": "Get Vessel Reports by Vessel",
-        "tags": ["Vessel Report"],
-        "operationId": "VesselsVesselReportsByVesselIdGet",
-        "deprecated": false,
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "vessel_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
     "/vessels": {
       "post": {
         "description": "Authentication: `superuser` only.",
@@ -659,6 +626,32 @@
           }
         },
         "security": []
+      }
+    },
+    "/voyages/{voyage_id}/vessel-reports": {
+      "get": {
+        "description": "Returns vessel reports for a given voyage.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Vessel Reports by Voyage",
+        "tags": ["Vessel Report"],
+        "operationId": "VesselsVesselReportsByVesselIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "voyage_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
       }
     },
     "/vessels/{vessel_id}/voyages": {
@@ -1103,11 +1096,13 @@
     "CreateVesselReportRequest": {
       "title": "CreateVesselReportRequest",
       "example": {
-        "vessel_id": 3,
+        "voyage_id": 3,
         "position_waypoint": 3,
         "current_speed": 10.1,
         "hfo_consumption": 30.2,
-        "lsfo_consumption": 15.9
+        "lsfo_consumption": 15.9,
+        "latitude": "55.429013452407396",
+        "longitude": "5.009765625"
       },
       "type": "object",
       "properties": {
@@ -1193,14 +1188,13 @@
       "title": "CreateVoyageRequest",
       "example": {
         "vessel_id": 1,
-        "etd": "2019-09-10 21:20:09",
-        "eta": "2019-09-10 21:20:09",
+        "departure_time": "2019-09-10 21:20:09",
+        "target_arrival_time": "2019-09-10 21:20:09",
         "forwarddraft": 8.596,
         "aftdraft": 8.785,
         "optimisation_type": 9.852,
-        "depart_from": 8,
-        "arrive_at": 7,
-        "sailtime": 98.879,
+        "depart_from_port": 8,
+        "arrive_at_port": 7,
         "hfocost": 89.63,
         "lsfocost": 87.52,
         "hirerate": 963.87,
@@ -1212,10 +1206,10 @@
           "type": "integer",
           "format": "int32"
         },
-        "etd": {
+        "departure_time": {
           "type": "string"
         },
-        "eta": {
+        "target_arrival_time": {
           "type": "string"
         },
         "forwarddraft": {
@@ -1230,17 +1224,13 @@
           "type": "number",
           "format": "double"
         },
-        "depart_from": {
+        "depart_from_port": {
           "type": "integer",
           "format": "int32"
         },
-        "arrive_at": {
+        "arrive_at_port": {
           "type": "integer",
           "format": "int32"
-        },
-        "sailtime": {
-          "type": "number",
-          "format": "double"
         },
         "hfocost": {
           "type": "number",
@@ -1260,14 +1250,13 @@
       },
       "required": [
         "vessel_id",
-        "etd",
-        "eta",
+        "departure_time",
+        "target_arrival_time",
         "forwarddraft",
         "aftdraft",
         "optimisation_type",
-        "depart_from",
-        "arrive_at",
-        "sailtime",
+        "depart_from_port",
+        "arrive_at_port",
         "hfocost",
         "lsfocost",
         "hirerate",
