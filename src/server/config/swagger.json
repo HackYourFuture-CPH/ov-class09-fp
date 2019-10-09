@@ -121,15 +121,7 @@
         "operationId": "UsersAccountGet",
         "deprecated": false,
         "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "",
@@ -150,13 +142,6 @@
           {
             "name": "organization_id",
             "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
             "required": true,
             "type": "string",
             "description": ""
@@ -414,15 +399,7 @@
         "operationId": "VesselReportsGet",
         "deprecated": false,
         "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "",
@@ -1021,8 +998,9 @@
         "name": "Port sunshine",
         "waypoints": [
           {
-            "lon": 55.65646,
-            "lat": 12.53635
+            "longitude": 55.65646,
+            "latitude": 12.53635,
+            "depth": -12
           }
         ]
       },
@@ -1048,16 +1026,20 @@
       },
       "type": "object",
       "properties": {
-        "lon": {
+        "longitude": {
           "type": "number",
           "format": "double"
         },
-        "lat": {
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "depth": {
           "type": "number",
           "format": "double"
         }
       },
-      "required": ["lon", "lat"]
+      "required": ["lon", "lat", "depth"]
     },
     "CreateorganizationRequest": {
       "title": "CreateorganizationRequest",
@@ -1266,26 +1248,26 @@
     "CreateSelectedRouteRequest": {
       "title": "CreateSelectedRouteRequest",
       "example": {
-        "voyage_id": 1,
-        "route_id": 1
+        "vessel_report_id": 1,
+        "suggested_route_id": 1
       },
       "type": "object",
       "properties": {
-        "voyage_id": {
+        "vessel_report_id": {
           "type": "integer",
           "format": "int32"
         },
-        "route_id": {
+        "suggested_route_id": {
           "type": "integer",
           "format": "int32"
         }
       },
-      "required": ["voyage_id", "route_id"]
+      "required": ["vessel_report_id", "suggested_route_id"]
     },
     "CreateSuggestedRouteRequest": {
       "title": "CreateSuggestedRouteRequest",
       "example": {
-        "voyage_id": 1,
+        "vessel_report_id": 1,
         "eta": "2019-09-01",
         "max_wave_height": 2.3,
         "hfo": 24,
@@ -1297,7 +1279,7 @@
       },
       "type": "object",
       "properties": {
-        "voyage_id": {
+        "vessel_report_id": {
           "type": "integer",
           "format": "int32"
         },
@@ -1334,7 +1316,7 @@
         }
       },
       "required": [
-        "voyage_id",
+        "vessel_report_id",
         "eta",
         "max_wave_height",
         "hfo",
