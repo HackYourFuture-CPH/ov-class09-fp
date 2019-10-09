@@ -9,7 +9,7 @@ import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
 
 import { VoyageListStory } from "./Voyages";
-import { VesselTeaserStory } from "./VesselTeaser";
+import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
 
@@ -39,5 +39,5 @@ CostWidgetStories.addDecorator(withKnobs);
 
 const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageList", VoyageListStory)
-  .add("Vessel Teaser", VesselTeaserStory);
+  .add("VoyageTeaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
