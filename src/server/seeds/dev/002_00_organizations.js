@@ -8,6 +8,9 @@ exports.seed = function(knex, Promise) {
   return knex("organizations")
     .del()
     .then(function() {
+      return knex.raw("ALTER TABLE " + "organizations" + " AUTO_INCREMENT = 1");
+    })
+    .then(function() {
       // Inserts seed entries
       return knex("organizations").insert([
         {

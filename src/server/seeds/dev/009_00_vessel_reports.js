@@ -8,6 +8,11 @@ exports.seed = function(knex, Promise) {
   return knex("vessel_reports")
     .del()
     .then(function() {
+      return knex.raw(
+        "ALTER TABLE " + "vessel_reports" + " AUTO_INCREMENT = 1"
+      );
+    })
+    .then(function() {
       // Inserts seed entries
       return knex("vessel_reports").insert([
         {
