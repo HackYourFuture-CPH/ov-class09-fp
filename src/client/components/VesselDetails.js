@@ -49,8 +49,8 @@ VesselDetails.propTypes = {
   arrivesAt: PropTypes.string,
   etd: PropTypes.string,
   eta: PropTypes.string,
-  latitude: PropTypes.string,
-  longitude: PropTypes.string,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
   hsfo: PropTypes.number,
   ulsfo: PropTypes.number
 };

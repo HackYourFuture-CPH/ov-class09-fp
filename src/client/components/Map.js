@@ -19,9 +19,9 @@ function MapComponent({
       />
       <Polyline color={pathColor} positions={polyline} />
       {displayMarkers &&
-        waypoints.map(({ lat, lng, message }) => (
+        waypoints.map(({ lat, lng }) => (
           <MapMarker key={`${lat}-${lng}`} position={[lat, lng]}>
-            <Popup>{message}</Popup>
+            <Popup>{}</Popup>
           </MapMarker>
         ))}
     </Map>
@@ -36,8 +36,7 @@ MapComponent.propTypes = {
   waypoints: PropTypes.arrayOf(
     PropTypes.shape({
       lat: PropTypes.number,
-      lng: PropTypes.number,
-      message: PropTypes.string
+      lng: PropTypes.number
     })
   )
 };

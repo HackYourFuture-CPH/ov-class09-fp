@@ -6,7 +6,7 @@ function CardGroupHeader({ title }) {
 }
 
 CardGroupHeader.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string.isRequired
 };
 
 function CardGroup({ children }) {
@@ -14,7 +14,16 @@ function CardGroup({ children }) {
 }
 
 CardGroup.propTypes = {
-  children: PropTypes.array
+  children: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      data: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object
+      ])
+    })
+  ).isRequired
 };
 
 export { CardGroup, CardGroupHeader };

@@ -20,13 +20,16 @@ function VesselsList({ vessels = [] }) {
 }
 
 VesselsList.propTypes = {
-  vessels: PropTypes.array,
-  id: PropTypes.number,
-  vesselName: PropTypes.string,
-  departureFrom: PropTypes.string,
-  arrivesAt: PropTypes.string,
-  etd: PropTypes.string,
-  eta: PropTypes.string
+  vessels: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      vesselName: PropTypes.string,
+      departureFrom: PropTypes.string,
+      etd: PropTypes.string,
+      arrivesAt: PropTypes.string,
+      eta: PropTypes.string
+    })
+  )
 };
 
 export default VesselsList;

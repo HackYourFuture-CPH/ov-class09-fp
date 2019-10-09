@@ -18,8 +18,8 @@ function CostWidget({ currentCost, remainingCost }) {
 }
 
 CostWidget.propTypes = {
-  currentCost: PropTypes.string,
-  remainingCost: PropTypes.string
+  currentCost: PropTypes.number,
+  remainingCost: PropTypes.number
 };
 
 export default CostWidget;
