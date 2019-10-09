@@ -23,6 +23,18 @@ router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
     .catch(next);
 });
 
+// ENDPOINT: /api/users/:role :GET
+router.get(
+  "/:role",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    userController
+      .getUsersByRole(req.params.role)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 // ENDPOINT: /api/users/account :GET
 router.get(
   "/account",
