@@ -15,14 +15,15 @@ const getSuggestedRoutes = async req => {
 
 // Get a suggested-route by id
 const getSuggestedRouteById = async id => {
+  let suggested_route_id = Number(id);
   try {
-    const suggested_route = await knex("suggested_routes")
-      .select("*")
-      .where({ id });
+    const suggested_route = await knex
+      .from("suggested_routes")
+      .innerJoin("waypoints", "suggested_route_id", "=", suggested_route_id);
     if (suggested_route.length === 0) {
       throw new HttpError(
         "Bad request",
-        `Cannot find vessel for ID ${id}!`,
+        `Cannot find suggested route for ID ${id}!`,
         404
       );
     }
