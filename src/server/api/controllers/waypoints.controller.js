@@ -47,28 +47,7 @@ const createWaypoints = async ({ body }) => {
   });
 };
 
-// Method for getting waypoints by route id
-const getWaypointsForRoute = async id => {
-  try {
-    const waypointsForRoute = await knex("waypoints").where({
-      suggested_route_id: id
-    });
-
-    if (waypointsForRoute.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `Cannot find waypoints for route ID ${id}!`,
-        404
-      );
-    }
-    return waypointsForRoute;
-  } catch (err) {
-    return err.message;
-  }
-};
-
 module.exports = {
   getWaypointsById,
-  createWaypoints,
-  getWaypointsForRoute
+  createWaypoints
 };
