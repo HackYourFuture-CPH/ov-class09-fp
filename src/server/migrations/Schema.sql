@@ -119,21 +119,21 @@ CREATE TABLE `waypoints` (
   `sequence_id` int DEFAULT null
 );
 
-ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`);
+ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `suggested_routes` ADD FOREIGN KEY (`vessel_report_id`) REFERENCES `vessel_reports` (`id`);
+ALTER TABLE `suggested_routes` ADD FOREIGN KEY (`vessel_report_id`) REFERENCES `vessel_reports` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `users` ADD FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`id`);
-ALTER TABLE `users` ADD FOREIGN KEY (`role_id`) REFERENCES `user_roles` (`id`);
+ALTER TABLE `users` ADD FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`id`) ON DELETE CASCADE;
+ALTER TABLE `users` ADD FOREIGN KEY (`role_id`) REFERENCES `user_roles` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`selected_route_id`) REFERENCES `suggested_routes` (`id`);
-ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyages` (`id`);
+ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`selected_route_id`) REFERENCES `suggested_routes` (`id`) ON DELETE SET NULL;
+ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyages` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `vessels` ADD FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`id`);
+ALTER TABLE `vessels` ADD FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `voyages` ADD FOREIGN KEY (`arrive_at_port`) REFERENCES `ports` (`id`);
-ALTER TABLE `voyages` ADD FOREIGN KEY (`depart_from_port`) REFERENCES `ports` (`id`);
-ALTER TABLE `voyages` ADD FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`);
+ALTER TABLE `voyages` ADD FOREIGN KEY (`arrive_at_port`) REFERENCES `ports` (`id`) ON DELETE CASCADE;
+ALTER TABLE `voyages` ADD FOREIGN KEY (`depart_from_port`) REFERENCES `ports` (`id`) ON DELETE CASCADE;
+ALTER TABLE `voyages` ADD FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `waypoints` ADD FOREIGN KEY (`suggested_route_id`) REFERENCES `suggested_routes` (`id`);
+ALTER TABLE `waypoints` ADD FOREIGN KEY (`suggested_route_id`) REFERENCES `suggested_routes` (`id`) ON DELETE CASCADE;
