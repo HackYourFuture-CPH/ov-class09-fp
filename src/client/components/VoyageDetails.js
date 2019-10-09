@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
-import VesselTeaser from "./VesselTeaser";
+import VoyageTeaser from "./VoyageTeaser";
 
 function VoyageDetails({
   vesselName,
@@ -17,7 +17,7 @@ function VoyageDetails({
 }) {
   return (
     <div>
-      <VesselTeaser
+      <VoyageTeaser
         vesselName={vesselName}
         departureFrom={departsFrom}
         arrivesAt={arrivesAt}
