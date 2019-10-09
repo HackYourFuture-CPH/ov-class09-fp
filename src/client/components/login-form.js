@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
+import axios from "axios";
 
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      isLoggedin: false
-    };
-  }
+  state = {
+    email: "",
+    password: "",
+    isLoggedin: false
+  };
 
   clickHandlerCancel = event => {
     this.setState({
@@ -26,30 +24,22 @@ class LoginForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    try {
-      // TODO: Add environment variable
-      fetch("api/auth/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/json text/plain",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password
-        })
+    axios
+      .post("/api/auth/login", {
+        email: this.state.email,
+        password: this.state.password
       })
-        .then(response => response.json())
-        .then(data => {
-          localStorage.setItem("token", data.token); //storing token into local storage
+      .then(
+        data => {
+          localStorage.setItem("token", data.data.token);
           this.setState({
             isLoggedin: true
           });
-        });
-    } catch (err) {
-      return err.message;
-    }
+        },
+        error => {
+          console.err(error);
+        }
+      );
   };
 
   render() {
@@ -60,40 +50,39 @@ class LoginForm extends React.Component {
 
     if (isLoggedin) {
       return <Redirect to={from} />;
-    } else {
-      return (
-        <div>
-          <p>You must log in to view this page at {from.pathname}</p>
-          <form onSubmit={this.handleSubmit}>
-            <h1>LoginForm</h1>
-            <br />
-            <label>
-              Email:
-              <input
-                name="email"
-                type="text"
-                value={email}
-                placeholder="Enter your Email"
-                onChange={this.handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Password:
-              <input
-                name="password"
-                type="password"
-                value={password}
-                onChange={this.handleChange}
-              />
-            </label>
-            <button type="submit">Login</button>
-            <button onClick={this.clickHandlerCancel}>Cancel</button>
-            <h1>{this.state.result}</h1>
-          </form>
-        </div>
-      );
     }
+    return (
+      <div>
+        <p>You must log in to view this page at {from.pathname}</p>
+        <form onSubmit={this.handleSubmit}>
+          <h1>LoginForm</h1>
+          <br />
+          <label>
+            Email:
+            <input
+              name="email"
+              type="text"
+              value={email}
+              placeholder="Enter your Email"
+              onChange={this.handleChange}
+            />
+          </label>
+
+          <label>
+            Password:
+            <input
+              name="password"
+              type="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+          </label>
+          <button type="submit">Login</button>
+          <button onClick={this.clickHandlerCancel}>Cancel</button>
+          <h1>{this.state.result}</h1>
+        </form>
+      </div>
+    );
   }
 }
 

@@ -11,7 +11,7 @@ const MainRouter = props => {
   return (
     <React.Fragment>
       <div className="container">
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginForm} />
         <PrivateRoute path="/app" component={AppLayout} />
       </div>
