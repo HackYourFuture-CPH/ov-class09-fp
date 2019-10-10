@@ -15,6 +15,7 @@ const ROLES = require("../../constants/roles");
 const organizationController = require("../controllers/organization.controller");
 const vesselsController = require("../controllers/vessel.controller");
 const userController = require("../controllers/user.controller");
+const voyagesController = require("../controllers/voyages.controller");
 
 // /api/organizations/ :POST
 router.post(
@@ -77,6 +78,19 @@ router.get(
   (req, res, next) => {
     vesselsController
       .getVesselsByOrganizationId(req.params.id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+//ENDPOINT: /api/organization/:organization_id/voyages?status=ongoing
+router.get(
+  "/:id/voyages",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    let query = req.query;
+    voyagesController
+      .getVoyagesByOrganization(req.params.id, query)
       .then(result => res.json(result))
       .catch(next);
   }
