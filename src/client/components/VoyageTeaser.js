@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-function VesselTeaser({
+function VoyageTeaser({
   id,
   vesselName,
   departureFrom,
@@ -22,7 +22,7 @@ function VesselTeaser({
   );
 }
 
-VesselTeaser.propTypes = {
+VoyageTeaser.propTypes = {
   id: PropTypes.number,
   vesselName: PropTypes.string,
   departureFrom: PropTypes.string,
@@ -31,4 +31,4 @@ VesselTeaser.propTypes = {
   target_arrival_time: PropTypes.string
 };
 
-export default VesselTeaser;
+export default VoyageTeaser;

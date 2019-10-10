@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import VesselTeaser from "./VesselTeaser";
+import VoyageTeaser from "./VoyageTeaser";
 import PropTypes from "prop-types";
 
-function VesselsList({ vessels = [] }) {
-  const vesselsList = vessels.map(
+function VoyageList({ voyages }) {
+  const voyageList = voyages.map(
     ({
       id,
       vesselName,
@@ -12,7 +12,7 @@ function VesselsList({ vessels = [] }) {
       departure_time,
       target_arrival_time
     }) => (
-      <VesselTeaser
+      <VoyageTeaser
         key={id}
         vesselName={vesselName}
         departureFrom={departureFrom}
@@ -23,11 +23,11 @@ function VesselsList({ vessels = [] }) {
     )
   );
 
-  return <div>{vesselsList}</div>;
+  return <div>{voyageList}</div>;
 }
 
-VesselsList.propTypes = {
-  vessels: PropTypes.arrayOf(
+VoyageList.propTypes = {
+  voyages: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
       vesselName: PropTypes.string,
@@ -39,4 +39,4 @@ VesselsList.propTypes = {
   )
 };
 
-export default VesselsList;
+export default VoyageList;

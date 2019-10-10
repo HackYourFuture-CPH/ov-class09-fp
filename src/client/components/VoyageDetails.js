@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
-import VesselTeaser from "./VesselTeaser";
+import VoyageTeaser from "./VoyageTeaser";
 import PropTypes from "prop-types";
 
-function VesselDetails({
+function VoyageDetails({
   vesselName,
   departsFrom,
   arrivesAt,
@@ -18,7 +18,7 @@ function VesselDetails({
 }) {
   return (
     <div>
-      <VesselTeaser
+      <VoyageTeaser
         vesselName={vesselName}
         departureFrom={departsFrom}
         arrivesAt={arrivesAt}
@@ -43,7 +43,7 @@ function VesselDetails({
   );
 }
 
-VesselDetails.propTypes = {
+VoyageDetails.propTypes = {
   vesselName: PropTypes.string,
   departsFrom: PropTypes.string,
   arrivesAt: PropTypes.string,
@@ -55,4 +55,4 @@ VesselDetails.propTypes = {
   ulsfo: PropTypes.number
 };
 
-export default VesselDetails;
+export default VoyageDetails;
