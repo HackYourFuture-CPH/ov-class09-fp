@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
-import VesselTeaser from "./VesselTeaser";
+import VoyageTeaser from "./VoyageTeaser";
 
-function VesselDetails({
+function VoyageDetails({
   vesselName,
   departsFrom,
   arrivesAt,
@@ -17,7 +17,7 @@ function VesselDetails({
 }) {
   return (
     <div>
-      <VesselTeaser
+      <VoyageTeaser
         vesselName={vesselName}
         departureFrom={departsFrom}
         arrivesAt={arrivesAt}
@@ -42,4 +42,4 @@ function VesselDetails({
   );
 }
 
-export default VesselDetails;
+export default VoyageDetails;

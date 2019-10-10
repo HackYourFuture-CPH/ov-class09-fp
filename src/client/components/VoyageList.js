@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import VesselTeaser from "./VesselTeaser";
+import VoyageTeaser from "./VoyageTeaser";
 
-function VesselsList({ vessels = [] }) {
-  const vesselsList = vessels.map(
+function VoyageList({ voyages = [] }) {
+  const voyageList = voyages.map(
     ({ id, vesselName, departureFrom, arrivesAt, etd, eta }) => (
-      <VesselTeaser
+      <VoyageTeaser
         key={id}
         vesselName={vesselName}
         departureFrom={departureFrom}
@@ -15,7 +15,7 @@ function VesselsList({ vessels = [] }) {
     )
   );
 
-  return <div>{vesselsList}</div>;
+  return <div>{voyageList}</div>;
 }
 
-export default VesselsList;
+export default VoyageList;
