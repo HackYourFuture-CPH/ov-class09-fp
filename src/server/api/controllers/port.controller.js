@@ -18,7 +18,7 @@ const getPortById = async id => {
 };
 
 const createPort = async ({ body }) => {
-  const { name } = body;
+  const { name, depth, latitude, longitude } = body;
 
   if (name.length === 0) {
     throw new HttpError("Bad request", "Port name is missing!", 409);
@@ -35,7 +35,10 @@ const createPort = async ({ body }) => {
     throw new HttpError("Bad request", "port already exists!", 409);
   } else {
     return knex("ports").insert({
-      name: name
+      name,
+      depth,
+      latitude,
+      longitude
     });
   }
 };
