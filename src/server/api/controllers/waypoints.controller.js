@@ -4,7 +4,9 @@ const knex = require("../../config/db");
 // Method for getting waypoints by id:
 const getWaypointsById = async id => {
   try {
-    const waypoints = await knex("waypoints").where({ id: id });
+    const waypoints = await knex("waypoints")
+      .select("*")
+      .where({ id: id });
     if (waypoints.length === 0) {
       throw new HttpError(
         "Bad request",
