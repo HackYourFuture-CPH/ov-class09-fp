@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
+import PropTypes from "prop-types";
 
 function CostWidget({ currentCost, remainingCost }) {
   const totalCost = currentCost + remainingCost;
@@ -15,5 +16,10 @@ function CostWidget({ currentCost, remainingCost }) {
     </div>
   );
 }
+
+CostWidget.propTypes = {
+  currentCost: PropTypes.number,
+  remainingCost: PropTypes.number
+};
 
 export default CostWidget;
