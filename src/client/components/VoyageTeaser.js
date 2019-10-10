@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-function VesselTeaser({ id, vesselName, departureFrom, arrivesAt, etd, eta }) {
+function VoyageTeaser({ id, vesselName, departureFrom, arrivesAt, etd, eta }) {
   return (
     <div>
       <h1>{vesselName}</h1>
@@ -14,4 +14,4 @@ function VesselTeaser({ id, vesselName, departureFrom, arrivesAt, etd, eta }) {
   );
 }
 
-export default VesselTeaser;
+export default VoyageTeaser;
