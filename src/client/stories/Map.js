@@ -16,11 +16,11 @@ export function MapStory() {
   const pathColor = text("pathColor", "red");
   const displayMarkers = boolean("displayMarkers", true);
   const waypoints = object("waypoints", [
-    { lat: 55.721114, lng: 12.646547, waypointMessage: "waypoint 1" },
-    { lat: 55.698478, lng: 12.604377, waypointMessage: "waypoint 2" },
-    { lat: 55.687535, lng: 12.601538, waypointMessage: "waypoint 3" },
-    { lat: 55.679846, lng: 12.596304, waypointMessage: "waypoint 4" },
-    { lat: 55.677632, lng: 12.592699, waypointMessage: "waypoint 5" }
+    { lat: 55.721114, lng: 12.646547 },
+    { lat: 55.698478, lng: 12.604377 },
+    { lat: 55.687535, lng: 12.601538 },
+    { lat: 55.679846, lng: 12.596304 },
+    { lat: 55.677632, lng: 12.592699 }
   ]);
   return (
     <Map

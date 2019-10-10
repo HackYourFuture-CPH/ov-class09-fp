@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
 import VoyageTeaser from "./VoyageTeaser";
+import PropTypes from "prop-types";
 
 function VoyageDetails({
   vesselName,
   departsFrom,
   arrivesAt,
-  etd,
-  eta,
+  departure_time,
+  target_arrival_time,
   date,
   latitude,
   longitude,
@@ -21,8 +22,8 @@ function VoyageDetails({
         vesselName={vesselName}
         departureFrom={departsFrom}
         arrivesAt={arrivesAt}
-        etd={etd}
-        eta={eta}
+        departure_time={departure_time}
+        target_arrival_time={target_arrival_time}
       />
 
       <CardGroupHeader title="Position" />
@@ -41,5 +42,17 @@ function VoyageDetails({
     </div>
   );
 }
+
+VoyageDetails.propTypes = {
+  vesselName: PropTypes.string,
+  departsFrom: PropTypes.string,
+  arrivesAt: PropTypes.string,
+  departure_time: PropTypes.string,
+  target_arrival_time: PropTypes.string,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  hsfo: PropTypes.number,
+  ulsfo: PropTypes.number
+};
 
 export default VoyageDetails;
