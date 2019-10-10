@@ -119,9 +119,6 @@ CREATE TABLE `waypoints` (
   `sequence_id` int DEFAULT null
 );
 
-ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`) ON DELETE CASCADE;
-
 ALTER TABLE `suggested_routes` ADD FOREIGN KEY (`vessel_report_id`) REFERENCES `vessel_reports` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `users` ADD FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`id`) ON DELETE CASCADE;
