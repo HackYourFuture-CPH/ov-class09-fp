@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
           });
         },
         error => {
-          console.err(error);
+          console.error(error);
         }
       );
   };
