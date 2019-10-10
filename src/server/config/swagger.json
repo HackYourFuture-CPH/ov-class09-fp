@@ -138,9 +138,9 @@
         }
       }
     },
-    "/organizations/{organization_id}/admin": {
+    "/organizations/{organization_id}/users": {
       "post": {
-        "description": "Allows creating an admin user in any organization.\n\nAuthentication: `superuser` only.",
+        "description": "Allows creating a user on a specific organization. Currently this is used by super users to create admin users and, thus, this request will only create admin users.\n\nAuthentication: `superuser` only.",
         "summary": "Create Admin User",
         "tags": ["User"],
         "operationId": "OrganizationsAdminByOrganizationIdPost",
@@ -150,13 +150,6 @@
           {
             "name": "organization_id",
             "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
             "required": true,
             "type": "string",
             "description": ""
