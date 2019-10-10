@@ -643,22 +643,13 @@
         "operationId": "VoyagesGet",
         "deprecated": false,
         "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       }
     },
     "/vessels/{vessel_id}/voyages": {
@@ -1197,7 +1188,7 @@
         "eta": "2019-09-10 21:20:09",
         "forwarddraft": 8.596,
         "aftdraft": 8.785,
-        "optimisation_type": 9.852,
+        "optimisation_type": "fixed_eta",
         "depart_from": 8,
         "arrive_at": 7,
         "sailtime": 98.879,
