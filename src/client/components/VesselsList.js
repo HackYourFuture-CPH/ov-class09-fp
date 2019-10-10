@@ -4,14 +4,21 @@ import PropTypes from "prop-types";
 
 function VesselsList({ vessels = [] }) {
   const vesselsList = vessels.map(
-    ({ id, vesselName, departureFrom, arrivesAt, etd, eta }) => (
+    ({
+      id,
+      vesselName,
+      departureFrom,
+      arrivesAt,
+      departure_time,
+      target_arrival_time
+    }) => (
       <VesselTeaser
         key={id}
         vesselName={vesselName}
         departureFrom={departureFrom}
         arrivesAt={arrivesAt}
-        etd={etd}
-        eta={eta}
+        departure_time={departure_time}
+        target_arrival_time={target_arrival_time}
       />
     )
   );
@@ -25,9 +32,9 @@ VesselsList.propTypes = {
       id: PropTypes.number,
       vesselName: PropTypes.string,
       departureFrom: PropTypes.string,
-      etd: PropTypes.string,
+      departure_time: PropTypes.string,
       arrivesAt: PropTypes.string,
-      eta: PropTypes.string
+      target_arrival_time: PropTypes.string
     })
   )
 };

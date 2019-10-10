@@ -8,8 +8,8 @@ function VesselDetails({
   vesselName,
   departsFrom,
   arrivesAt,
-  etd,
-  eta,
+  departure_time,
+  target_arrival_time,
   date,
   latitude,
   longitude,
@@ -22,8 +22,8 @@ function VesselDetails({
         vesselName={vesselName}
         departureFrom={departsFrom}
         arrivesAt={arrivesAt}
-        etd={etd}
-        eta={eta}
+        departure_time={departure_time}
+        target_arrival_time={target_arrival_time}
       />
 
       <CardGroupHeader title="Position" />
@@ -47,8 +47,8 @@ VesselDetails.propTypes = {
   vesselName: PropTypes.string,
   departsFrom: PropTypes.string,
   arrivesAt: PropTypes.string,
-  etd: PropTypes.string,
-  eta: PropTypes.string,
+  departure_time: PropTypes.string,
+  target_arrival_time: PropTypes.string,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
   hsfo: PropTypes.number,
