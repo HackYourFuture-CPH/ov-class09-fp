@@ -54,7 +54,7 @@ const getVoyagesByVesselId = async vessel_id => {
   return voyagesByVesselId;
 };
 
-// Get voyages by Organization (& voyage_status=created/ongoing/completed)
+// Get voyages by Organization ID (& voyage_status=created/ongoing/completed)
 const getVoyagesByOrganization = async (organizationID, voyageStatus) => {
   try {
     const organization = await knex("organizations")
@@ -78,7 +78,7 @@ const getVoyagesByOrganization = async (organizationID, voyageStatus) => {
       .join("ports as p2", "p2.id", "voy.arrive_at_port")
       .select(
         "voy.id as id",
-        "ves.id as vessel",
+        "ves.id as vessel_id",
         "ves.name as vessel_name",
         "voy.departure_time",
         "voy.target_arrival_time",
@@ -105,7 +105,7 @@ const getVoyagesByOrganization = async (organizationID, voyageStatus) => {
         404
       );
     }
-    return { voyages: voyages };
+    return { voyages };
   } catch (error) {
     return error.message;
   }
