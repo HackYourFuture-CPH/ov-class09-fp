@@ -959,6 +959,7 @@
       "title": "EditUserRequest",
       "example": {
         "email": "test3@test3.com",
+        "password": "1234",
         "name": "Joey Dosik"
       },
       "type": "object",
@@ -966,11 +967,14 @@
         "email": {
           "type": "string"
         },
+        "password": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         }
       },
-      "required": ["email", "name"]
+      "required": ["email", "password", "name"]
     },
     "CreateAdminUserRequest": {
       "title": "CreateAdminUserRequest",
