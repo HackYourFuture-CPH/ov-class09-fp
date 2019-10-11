@@ -12,8 +12,13 @@ import { CheckboxStory } from "./voyage/Checkbox";
 import { VesselDetailsStory } from "./VesselDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
-import { VesselsListStory } from "./Vessels";
-import { VesselTeaserStory } from "./VesselTeaser";
+
+import { VoyageDetailsStory } from "./VoyageDetails";
+import { DataCardStory } from "./DataCardStory";
+import { CardGroupStory } from "./CardGroupStory";
+
+import { VoyageListStory } from "./Voyages";
+import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
 
@@ -41,7 +46,11 @@ const VesselDetailsStories = storiesOf("VesselDetails", module).add(
   "VesselDetails",
   VesselDetailsStory
 );
-VesselDetailsStories.addDecorator(withKnobs);
+const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
+  "VoyageDetails",
+  VoyageDetailsStory
+);
+VoyageDetailsStories.addDecorator(withKnobs);
 
 const CardStories = storiesOf("Card", module)
   .add("DataCard", DataCardStory)
@@ -54,7 +63,7 @@ const CostWidgetStories = storiesOf("Cost Widget", module).add(
 );
 CostWidgetStories.addDecorator(withKnobs);
 
-const VesselsListStories = storiesOf("Vessels", module)
-  .add("VesselList", VesselsListStory)
-  .add("Vessel Teaser", VesselTeaserStory);
-VesselsListStories.addDecorator(withKnobs);
+const VoyagesListStories = storiesOf("Voyages", module)
+  .add("VoyageList", VoyageListStory)
+  .add("VoyageTeaser", VoyageTeaserStory);
+VoyagesListStories.addDecorator(withKnobs);
