@@ -1276,8 +1276,8 @@
     "CreateFavoriteVesselRequest": {
       "title": "CreateFavoriteVesselRequest",
       "example": {
-        "user_id": 1,
-        "vessel_id": 1
+        "user_id": 10,
+        "vessel_id": 11
       },
       "type": "object",
       "properties": {
