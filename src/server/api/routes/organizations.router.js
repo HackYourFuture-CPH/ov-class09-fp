@@ -85,12 +85,11 @@ router.get(
 
 //ENDPOINT: /api/organization/:organization_id/voyages?status=ongoing
 router.get(
-  "/:id/voyages",
+  "/:id/voyages?",
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
-    let query = req.query;
     voyagesController
-      .getVoyagesByOrganization(req.params.id, query)
+      .getVoyagesByOrganization(req.params.id, req.query.status)
       .then(result => res.json(result))
       .catch(next);
   }

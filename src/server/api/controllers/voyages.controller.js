@@ -54,9 +54,8 @@ const getVoyagesByVesselId = async vessel_id => {
   return voyagesByVesselId;
 };
 
-// Get voyages by Organization (by status=created/ongoing/completed)
+// Get voyages by Organization (& voyage_status=created/ongoing/completed)
 const getVoyagesByOrganization = async (organizationID, voyageStatus) => {
-  const status = voyageStatus.status;
   try {
     const organization = await knex("organizations")
       .select("name")
@@ -74,12 +73,35 @@ const getVoyagesByOrganization = async (organizationID, voyageStatus) => {
       .join("vessels as ves", "ves.organization_id", "org.id")
       .where("ves.organization_id", organizationID)
       .join("voyages as voy", "voy.vessel_id", "ves.id")
-      .where("voy.status", status);
+      .where("voy.status", voyageStatus)
+      .join("ports as p1", "p1.id", "voy.depart_from_port")
+      .join("ports as p2", "p2.id", "voy.arrive_at_port")
+      .select(
+        "voy.id as id",
+        "ves.id as vessel",
+        "ves.name as vessel_name",
+        "voy.departure_time",
+        "voy.target_arrival_time",
+        "voy.forwarddraft",
+        "voy.aftdraft",
+        "voy.optimisation_type",
+        "voy.depart_from_port",
+        "p1.name as depart_from",
+        "voy.arrive_at_port",
+        "p2.name as arrive_at",
+        "voy.hfocost",
+        "voy.lsfocost",
+        "voy.hirerate",
+        "voy.status",
+        "voy.created_at",
+        "voy.updated_at",
+        "org.name as organization"
+      );
 
     if (voyages.length === 0) {
       throw new HttpError(
         "Bad request",
-        `There are no ${status} Voyages for Organization with ID ${organizationID}!`,
+        `There are no ${voyageStatus} Voyages for Organization with ID ${organizationID}!`,
         404
       );
     }
