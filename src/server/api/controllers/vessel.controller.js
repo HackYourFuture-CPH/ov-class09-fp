@@ -67,7 +67,6 @@ const editVessel = async ({ body }) => {
   const { id, organization_id, mmsi, name } = body;
   const vessel = await knex
     .from("vessels")
-    .select("*")
     .where({ id })
     .first();
   if (vessel.length === 0) {
