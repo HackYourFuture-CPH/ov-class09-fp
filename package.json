@@ -87,7 +87,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "./src/server/bin/protected-branch.sh && pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged"
     }
   }
 }
