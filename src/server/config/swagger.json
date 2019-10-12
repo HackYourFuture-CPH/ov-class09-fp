@@ -219,32 +219,6 @@
         }
       }
     },
-    "/vessel-reports/{vessel-report-id}/suggested-routes": {
-      "get": {
-        "description": "Authentication: `superuser`, `admin`, `operator`.",
-        "summary": "Get suggested routes by vessel report ID",
-        "tags": ["Suggested Routes"],
-        "operationId": "SuggestedRoutesByVesselReportId",
-        "deprecated": false,
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    },
     "/ports/{id}": {
       "get": {
         "description": "Authentication: `superuser`, `admin` & `operator`.",
@@ -747,6 +721,32 @@
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/vessel-reports/{vessel_report_id}/suggested-routes": {
+      "get": {
+        "description": "Authentication: `superuser`, `admin`, `operator`.",
+        "summary": "Get suggested routes by vessel report ID",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesByVesselReportId",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
             "in": "path",
             "required": true,
             "type": "integer",
