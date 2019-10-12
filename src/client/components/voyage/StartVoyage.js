@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DateTime from "./DateTime";
-import InputField from "./InputField";
+import InputFieldNumber from "./InputFieldNumber";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 
@@ -12,14 +12,14 @@ class StartVoyage extends Component {
     departure_position: {},
     arrival_position: {},
     vessel_id: 0,
-    ETD: "",
-    ETA: "",
+    departure_time: "",
+    target_arrival_time: "",
     optimisation_type: {},
-    hire_rate: "",
-    forward_draft: "",
-    aft_draft: "",
-    lfso_cost: "",
-    hfo_cost: "",
+    hirerate: "",
+    forwarddraft: "",
+    aftdraft: "",
+    lfsocost: "",
+    hfocost: "",
     departureDate: "",
     departureTime: "",
     arrivalDate: "",
@@ -39,14 +39,14 @@ class StartVoyage extends Component {
   handleDateInputChange = e => {
     const target = e.target;
     const { name, value } = target;
-    const date = name === "ETD" ? "departureDate" : "arrivalDate";
+    const date = name === "departure_time" ? "departureDate" : "arrivalDate";
     this.setState({ [date]: value });
   };
 
   handleTimeInputChange = e => {
     const target = e.target;
     const { name, value } = target;
-    const time = name === "ETD" ? "departureTime" : "arrivalTime";
+    const time = name === "departure_time" ? "departureTime" : "arrivalTime";
     this.setState({ [time]: value });
   };
   handleToggleCheckbox = e => {
@@ -68,8 +68,8 @@ class StartVoyage extends Component {
   handleDeparturePortSelection = e => {
     const selectedIndex = e.target.selectedIndex;
     const departure_position = {
-      longitude: this.state.ports[selectedIndex].lon,
-      latitude: this.state.ports[selectedIndex].lat
+      longitude: this.state.ports[selectedIndex].longitude,
+      latitude: this.state.ports[selectedIndex].latitude
     };
     this.setState({ departure_position });
   };
@@ -77,8 +77,8 @@ class StartVoyage extends Component {
   handleArrivalPortSelection = e => {
     const selectedIndex = e.target.selectedIndex;
     const arrival_position = {
-      longitude: this.state.ports[selectedIndex].lon,
-      latitude: this.state.ports[selectedIndex].lat
+      longitude: this.state.ports[selectedIndex].longitude,
+      latitude: this.state.ports[selectedIndex].latitude
     };
     this.setState({ arrival_position });
   };
@@ -97,17 +97,17 @@ class StartVoyage extends Component {
       departureTime,
       arrivalDate,
       arrivalTime,
-      hire_rate,
-      forward_draft,
-      aft_draft,
-      lfso_cost,
-      hfo_cost
+      hirerate,
+      forwarddraft,
+      aftdraft,
+      lfsocost,
+      hfocost
     } = this.state;
 
     const {
       vessels,
       ports,
-      optimisationType,
+      voyages, //optimisationType
       draft_step,
       draft_unit,
       fuelCost_step,
@@ -119,12 +119,12 @@ class StartVoyage extends Component {
     let checkBoxLogic;
     if (this.state.isChecked === true) {
       checkBoxLogic = (
-        <InputField
+        <InputFieldNumber
           label="Hire Rate"
-          name="hire_rate"
+          name="hirerate"
           step={rate_step}
           unit={rate_unit}
-          value={hire_rate}
+          value={hirerate}
           onDataInputChange={this.handleDataInputChange}
         />
       );
@@ -150,8 +150,8 @@ class StartVoyage extends Component {
             handleSelection={this.handleDeparturePortSelection}
           />
           <DateTime
-            label="Estimated Departure (ETD)"
-            name="ETD"
+            label="Departure time"
+            name="departure_time"
             date={departureDate}
             time={departureTime}
             onDateInputChange={this.handleDateInputChange}
@@ -163,8 +163,8 @@ class StartVoyage extends Component {
             handleSelection={this.handleArrivalPortSelection}
           />
           <DateTime
-            label="Estimated Arrival (ETA)"
-            name="ETA"
+            label="Arrival time"
+            name="target_arrival_time"
             date={arrivalDate}
             time={arrivalTime}
             onDateInputChange={this.handleDateInputChange}
@@ -172,39 +172,39 @@ class StartVoyage extends Component {
           />
           <Dropdown
             label="Optimisation type"
-            optionsMap={optimisationType}
+            optionsMap={voyages} //optimisationType
             handleSelection={this.handleOptimisationTypeSelection}
           />
-          <InputField
+          <InputFieldNumber
             label="Forward Draft"
-            name="forward_draft"
+            name="forwarddraft"
             step={draft_step}
             unit={draft_unit}
-            value={forward_draft}
+            value={forwarddraft}
             onDataInputChange={this.handleDataInputChange}
           />
-          <InputField
+          <InputFieldNumber
             label="Aft Draft"
-            name="aft_draft"
+            name="aftdraft"
             step={draft_step}
             unit={draft_unit}
-            value={aft_draft}
+            value={aftdraft}
             onDataInputChange={this.handleDataInputChange}
           />
-          <InputField
+          <InputFieldNumber
             label="Low Sulfor Fuel Oil Cost"
-            name="lfso_cost"
+            name="lfsocost"
             step={fuelCost_step}
             unit={fuelCost_unit}
-            value={lfso_cost}
+            value={lfsocost}
             onDataInputChange={this.handleDataInputChange}
           />
-          <InputField
+          <InputFieldNumber
             label="Heavy Fuel Oil Cost"
-            name="hfo_cost"
+            name="hfocost"
             step={fuelCost_step}
             unit={fuelCost_unit}
-            value={hfo_cost}
+            value={hfocost}
             onDataInputChange={this.handleDataInputChange}
           />
         </form>

@@ -5,7 +5,7 @@ import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
 import { StartVoyageStory } from "./voyage/StartVoyage";
 import { DateTimeStory } from "./voyage/DateTime";
-import { InputFieldStory } from "./voyage/InputField";
+import { InputFieldNumberStory } from "./voyage/InputFieldNumber";
 import { DropdownStory } from "./voyage/Dropdown";
 import { NavButtonStory } from "./navigation/NavButton";
 import { CheckboxStory } from "./voyage/Checkbox";
@@ -38,7 +38,7 @@ NavigationStories.addDecorator(withKnobs);
 const VoyageStories = storiesOf("Start Voyage", module)
   .add("StartVoyage", StartVoyageStory)
   .add("DateTimeComponent", DateTimeStory)
-  .add("InputFieldComponent", InputFieldStory)
+  .add("InputFieldNumberComponent", InputFieldNumberStory)
   .add("DropdownComponent", DropdownStory)
   .add("CheckboxComponent", CheckboxStory);
 VoyageStories.addDecorator(withKnobs);

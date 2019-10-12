@@ -14,12 +14,6 @@ import {
 export function StartVoyageStory() {
   const vessels = object("vesselList", data.vessels);
   const ports = object("ports", data.ports);
-  const optimisationType = object("optimisationType", data.optimisationType);
-  return (
-    <StartVoyage
-      ports={ports}
-      vessels={vessels}
-      optimisationType={optimisationType}
-    />
-  );
+  const voyages = object("optimisationType", data.voyages);
+  return <StartVoyage ports={ports} vessels={vessels} voyages={voyages} />;
 }
