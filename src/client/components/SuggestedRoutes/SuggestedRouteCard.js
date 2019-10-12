@@ -38,15 +38,5 @@ export default function SuggestedRouteCard({
 }
 
 SuggestedRouteCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  isSelected: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  time: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  eta: PropTypes.string.isRequired,
-  sailDays: PropTypes.number.isRequired,
-  maxWaveHs: PropTypes.number.isRequired,
-  avgSpeed: PropTypes.number.isRequired,
-  hireCost: PropTypes.number.isRequired,
-  consumption: PropTypes.number.isRequired
+  routesList: PropTypes.array
 };
