@@ -221,7 +221,7 @@
     },
     "/vessel-reports/{vessel-report-id}/suggested-routes": {
       "get": {
-        "description": "Authentication: `superuser`.",
+        "description": "Authentication: `superuser`, `admin`, `operator`.",
         "summary": "Get suggested routes by vessel report ID",
         "tags": ["Suggested Routes"],
         "operationId": "SuggestedRoutesByVesselReportId",

@@ -34,7 +34,7 @@ router.get("/:id", authorizeUser(ROLES.SUPER_USER), function(req, res, next) {
 // ENDPOINT: /api/vessel-reports/:vessel-report-id/suggested-routes
 router.get(
   "/:vessel_report_id/suggested-routes",
-  authorizeUser(ROLES.SUPER_USER),
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   function(req, res, next) {
     vesselReportsController
       .getSuggestedRoutesByVesselReportId(req.params.vessel_report_id)
