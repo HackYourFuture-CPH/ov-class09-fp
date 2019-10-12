@@ -551,33 +551,6 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
-      }
-    },
-    "/voyages/{voyage_id}/vessel-reports": {
-      "get": {
-        "description": "Returns vessel reports for a given voyage.\n\nAuthentication: `superuser`, `admin` & `operator`.",
-        "summary": "Get Vessel Reports by Voyage",
-        "tags": ["Vessel Report"],
-        "operationId": "VesselsVesselReportsByVesselIdGet",
-        "deprecated": false,
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "voyage_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
         }
       }
     },
@@ -1153,7 +1126,7 @@
         "target_arrival_time": "2019-09-10 21:20:09",
         "forwarddraft": 8.596,
         "aftdraft": 8.785,
-        "optimisation_type": 9.852,
+        "optimisation_type": "fixed_eta",
         "depart_from_port": 8,
         "arrive_at_port": 7,
         "hfocost": 89.63,
