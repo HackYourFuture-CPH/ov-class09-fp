@@ -67,15 +67,12 @@ const editVessel = async ({ body }) => {
   const { id, organization_id, mmsi, name } = body;
   const vessel = await knex
     .from("vessels")
-    .select("*")
-    .where({
-      name
-    })
+    .where({ id })
     .first();
   if (vessel.length === 0) {
     throw new HttpError(
       "Bad request",
-      `Cannot find vessel with name ${name}!`,
+      `Cannot find vessel with id ${id}!`,
       404
     );
   }
