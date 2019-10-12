@@ -43,6 +43,7 @@ SuggestedRoutesList.propTypes = {
   id: PropTypes.number.isRequired,
   isSelected: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
+  key: PropTypes.number,
   time: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   eta: PropTypes.string.isRequired,
