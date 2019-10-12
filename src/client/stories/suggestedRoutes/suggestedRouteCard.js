@@ -1,11 +1,15 @@
 import React from "react";
 import SuggestedRouteCard from "../../components/SuggestedRoutes/SuggestedRouteCard";
-import { text, number } from "@storybook/addon-knobs";
+import { text, number, boolean } from "@storybook/addon-knobs";
 
 export function suggestedRouteCard() {
   return (
     <SuggestedRouteCard
       id={number("id", 1)}
+      isSelected={boolean("Is selected?", false)}
+      handleClick={() => {
+        console.log("Route selected");
+      }}
       time={number("Time", 24)}
       price={number("Price", 104.207)}
       eta={text("ETA", "2020-03-02 06:50:33")}
