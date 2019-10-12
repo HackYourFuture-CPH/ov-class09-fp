@@ -607,6 +607,39 @@
         }
       }
     },
+    "/organizations/{organization_id}/voyages?status={voyage_status}": {
+      "get": {
+        "description": "Returns all voyages for a given organization.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get voyages by organization",
+        "tags": ["Voyage"],
+        "operationId": "OrganizationsVoyagesByOrganizationGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "voyage_status",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/selected_routes": {
       "post": {
         "description": "Creates a route selection.\n\nAuthentication: `superuser`, `admin` & `operator`.",
