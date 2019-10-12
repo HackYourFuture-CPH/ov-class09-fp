@@ -1,10 +1,10 @@
 import React from "react";
 import "@storybook/addon-knobs/register";
-import SelectedTableComponent from "../components/SelectedTable";
+import SuggestedRouteTable from "../components/SuggestedRouteTable";
 
 import { object } from "@storybook/addon-knobs";
 
-export function SuggestedTableStory() {
+export function SuggestedRouteTableStory() {
   const data = object("Data", [
     {
       date: "2019-02-21 01:58:33",
@@ -28,5 +28,5 @@ export function SuggestedTableStory() {
       estimated_rpm: 61
     }
   ]);
-  return <SelectedTableComponent data={data} />;
+  return <SuggestedRouteTable data={data} />;
 }

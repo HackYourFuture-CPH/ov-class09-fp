@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
-import { SuggestedTableStory } from "./SuggestedTableStory";
+import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
@@ -22,7 +22,7 @@ const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
 storiesOf("Selected Table", module)
-  .add("Table", SuggestedTableStory)
+  .add("Table", SuggestedRouteTableStory)
   .addDecorator(withKnobs);
 
 const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(

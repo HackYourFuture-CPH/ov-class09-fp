@@ -7,7 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-function SelectedTableComponent({ data = [] }) {
+function SuggestedRouteTable({ data = [] }) {
   return (
     <div>
       <h3>SELECTED ROUTE</h3>
@@ -40,4 +40,4 @@ function SelectedTableComponent({ data = [] }) {
   );
 }
 
-export default SelectedTableComponent;
+export default SuggestedRouteTable;
