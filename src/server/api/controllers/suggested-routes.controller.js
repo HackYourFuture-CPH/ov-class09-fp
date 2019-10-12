@@ -86,36 +86,43 @@ const createSuggestedRouteWithWaypoints = async ({ body }) => {
       404
     );
   }
+  return knex.transaction(transaction => {
+    return knex("suggested_routes")
+      .returning("total_cost")
+      .transacting(transaction)
+      .insert({
+        vessel_report_id,
+        eta: etaDateTimeFormat,
+        max_wave_height,
+        hfo,
+        lsfo,
+        total_cost,
+        distance_over_ground,
+        distance_through_water,
+        avgspeed
+      })
+      .then(function([id]) {
+        let sequence_id = 1;
+        const routeWaypoints = waypoints.map(waypoint => {
+          const { latitude, longitude, speed, rpm } = waypoint;
 
-  return await knex("suggested_routes")
-    .insert({
-      vessel_report_id,
-      eta: etaDateTimeFormat,
-      max_wave_height,
-      hfo,
-      lsfo,
-      total_cost,
-      distance_over_ground,
-      distance_through_water,
-      avgspeed
-    })
-    .then(function([id]) {
-      let sequence_id = 1;
-      const routeWaypoints = waypoints.map(waypoint => {
-        const { latitude, longitude, speed, rpm } = waypoint;
-
-        return {
-          suggested_route_id: id,
-          sequence_id: sequence_id++,
-          latitude: latitude,
-          longitude: longitude,
-          speed: speed,
-          rpm: rpm
-        };
-      });
-
-      return knex("waypoints").insert(routeWaypoints);
-    });
+          return {
+            suggested_route_id: id,
+            sequence_id: sequence_id++,
+            latitude: latitude,
+            longitude: longitude,
+            speed: speed,
+            rpm: rpm
+          };
+        });
+        return knex("waypoints")
+          .returning("latitude")
+          .transacting(transaction)
+          .insert(routeWaypoints);
+      })
+      .then(transaction.commit)
+      .catch(transaction.rollback);
+  });
 };
 module.exports = {
   getSuggestedRoutes,
