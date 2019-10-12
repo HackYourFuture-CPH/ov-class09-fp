@@ -17,10 +17,7 @@ const getSuggestedRoutes = async req => {
 const getSuggestedRouteById = async id => {
   let suggested_route_id = Number(id);
   try {
-    const suggestedRoute = await knex
-      .from("suggested_routes")
-      .select("*")
-      .where({ id });
+    const suggestedRoute = await knex.from("suggested_routes").where({ id });
     const waypoints = await knex("waypoints")
       .select("*")
       .where({ suggested_route_id: id });
@@ -45,9 +42,9 @@ const getSuggestedRouteById = async id => {
 // Get a suggested-routes by voyage id
 const getSuggestedRouteByVoyageId = async id => {
   try {
-    const suggested_routesByVoyageId = await knex("suggested_routes")
-      .select("*")
-      .where({ voyage_id: id });
+    const suggested_routesByVoyageId = await knex("suggested_routes").where({
+      voyage_id: id
+    });
     if (suggested_routesByVoyageId.length === 0) {
       throw new HttpError(
         "Bad request",
@@ -64,7 +61,7 @@ const getSuggestedRouteByVoyageId = async id => {
 // Create a route
 const createSuggestedRouteWithWaypoints = async ({ body }) => {
   const {
-    voyage_id,
+    vessel_report_id,
     eta,
     max_wave_height,
     hfo,
@@ -79,39 +76,45 @@ const createSuggestedRouteWithWaypoints = async ({ body }) => {
   // using momentJS for formating datetime
   const etaDateTimeFormat = moment(eta).format("YYYY-MM-DD HH:mm:ss");
 
-  const voyage = await knex
-    .from("voyages")
-    .select("*")
-    .where({ id: voyage_id });
-  console.log(voyage);
-  if (voyage.length === 0) {
-    throw new HttpError("Bad request", "voyage doesn't  exists!", 404);
+  const vessel_reports = await knex
+    .from("vessel_reports")
+    .where({ id: vessel_report_id });
+  if (vessel_reports.length === 0) {
+    throw new HttpError(
+      "Bad request",
+      `Vessel report ${vessel_report_id} doesn't  exists!`,
+      404
+    );
   }
 
   return await knex("suggested_routes")
     .insert({
-      voyage_id,
+      vessel_report_id,
       eta: etaDateTimeFormat,
-      max_wave_height: max_wave_height,
-      hfo: hfo,
-      lsfo: lsfo,
-      total_cost: total_cost,
-      distance_over_ground: distance_over_ground,
-      distance_through_water: distance_through_water,
-      avgspeed: avgspeed
+      max_wave_height,
+      hfo,
+      lsfo,
+      total_cost,
+      distance_over_ground,
+      distance_through_water,
+      avgspeed
     })
     .then(function([id]) {
       let sequence_id = 1;
-      const waypointsForRoute = waypoints.map(waypoint => {
+      const routeWaypoints = waypoints.map(waypoint => {
+        const { latitude, longitude, speed, rpm } = waypoint;
+
         return {
           suggested_route_id: id,
           sequence_id: sequence_id++,
-          longitude: waypoint.longitude,
-          latitude: waypoint.latitude
+          latitude: latitude,
+          longitude: longitude,
+          speed: speed,
+          rpm: rpm
         };
       });
 
-      return knex("waypoints").insert(waypointsForRoute);
+      return knex("waypoints").insert(routeWaypoints);
     });
 };
 module.exports = {
