@@ -742,6 +742,32 @@
         }
       }
     },
+    "/user-roles/{role}/users": {
+      "get": {
+        "description": "Returns users with the sepcific role.\n\nAuthentication: `superuser`, `admin`.",
+        "summary": "Get Users by specific role",
+        "tags": ["User by difference roles"],
+        "operationId": "usersByRoleGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/favorite-vessels": {
       "post": {
         "description": "Creates a favorite vessel (association between user and vessel).\n\nAuthentication: `superuser`, `admin` & `operator`.",
