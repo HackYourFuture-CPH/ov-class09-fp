@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import Field from "../Field";
 
 export default function SuggestedRouteDetails({
@@ -24,3 +25,12 @@ export default function SuggestedRouteDetails({
     </Fragment>
   );
 }
+
+SuggestedRouteDetails.propTypes = {
+  eta: PropTypes.string.isRequired,
+  sailDays: PropTypes.number.isRequired,
+  maxWaveHs: PropTypes.number.isRequired,
+  avgSpeed: PropTypes.number.isRequired,
+  hireCost: PropTypes.number.isRequired,
+  consumption: PropTypes.number.isRequired
+};

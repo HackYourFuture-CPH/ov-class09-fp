@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Field({ title, description }) {
   return (
@@ -8,3 +9,8 @@ export default function Field({ title, description }) {
     </div>
   );
 }
+
+Field.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};

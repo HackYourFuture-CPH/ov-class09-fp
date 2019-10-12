@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Field from "../Field";
 
 export default function SuggestedRouteSummary({
@@ -22,3 +23,11 @@ export default function SuggestedRouteSummary({
     </div>
   );
 }
+
+SuggestedRouteSummary.propTypes = {
+  id: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired
+};
