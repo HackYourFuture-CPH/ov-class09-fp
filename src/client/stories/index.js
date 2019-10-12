@@ -13,6 +13,11 @@ import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
 
+import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
+import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
+import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
+import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
+
 storiesOf("Button", module)
   .add("with text", WithTextStory)
   .add("with emoji", WithEmojiStory);
@@ -41,3 +46,10 @@ const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageList", VoyageListStory)
   .add("VoyageTeaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
+
+const SuggestedRouteSummaryStories = storiesOf("SuggestedRoutes", module)
+  .add("suggestedRouteSummary", suggestedRouteSummary)
+  .add("suggestedRouteDetails", suggestedRouteDetails)
+  .add("suggestedRouteCard", suggestedRouteCard)
+  .add("suggestedRoutesList", suggestedRoutesList);
+SuggestedRouteSummaryStories.addDecorator(withKnobs);
