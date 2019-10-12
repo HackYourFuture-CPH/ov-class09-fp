@@ -4,16 +4,12 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
 
-import { VesselDetailsStory } from "./VesselDetails";
+import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
 
-import { VesselsListStory } from "./Vessels";
-import { VesselTeaserStory } from "./VesselTeaser";
-import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
-import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
-import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
-import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
+import { VoyageListStory } from "./Voyages";
+import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
 
@@ -24,11 +20,11 @@ storiesOf("Button", module)
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
-const VesselDetailsStories = storiesOf("VesselDetails", module).add(
-  "VesselDetails",
-  VesselDetailsStory
+const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
+  "VoyageDetails",
+  VoyageDetailsStory
 );
-VesselDetailsStories.addDecorator(withKnobs);
+VoyageDetailsStories.addDecorator(withKnobs);
 
 const CardStories = storiesOf("Card", module)
   .add("DataCard", DataCardStory)
@@ -41,14 +37,7 @@ const CostWidgetStories = storiesOf("Cost Widget", module).add(
 );
 CostWidgetStories.addDecorator(withKnobs);
 
-const VesselsListStories = storiesOf("Vessels", module)
-  .add("VesselList", VesselsListStory)
-  .add("Vessel Teaser", VesselTeaserStory);
-VesselsListStories.addDecorator(withKnobs);
-
-const DisplaySuggestedRoutes = storiesOf("Display Suggested Routes", module)
-  .add("suggestedRouteSummary", suggestedRouteSummary)
-  .add("suggestedRouteDetails", suggestedRouteDetails)
-  .add("suggestedRouteCard", suggestedRouteCard)
-  .add("suggestedRoutesList", suggestedRoutesList);
-DisplaySuggestedRoutes.addDecorator(withKnobs);
+const VoyagesListStories = storiesOf("Voyages", module)
+  .add("VoyageList", VoyageListStory)
+  .add("VoyageTeaser", VoyageTeaserStory);
+VoyagesListStories.addDecorator(withKnobs);
