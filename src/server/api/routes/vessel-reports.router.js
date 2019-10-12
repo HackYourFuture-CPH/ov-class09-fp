@@ -31,13 +31,13 @@ router.get("/:id", authorizeUser(ROLES.SUPER_USER), function(req, res, next) {
     .catch(next);
 });
 
-// ENDPOINT: /api/vessel-reports/:vessel-report-id/suggested-route
+// ENDPOINT: /api/vessel-reports/:vessel-report-id/suggested-routes
 router.get(
-  "/:vessel_report_id/suggested-route",
+  "/:vessel_report_id/suggested-routes",
   authorizeUser(ROLES.SUPER_USER),
   function(req, res, next) {
     vesselReportsController
-      .getsuggestedRouteByVesselReportId(req.params.vessel_report_id)
+      .getSuggestedRoutesByVesselReportId(req.params.vessel_report_id)
       .then(result => res.json(result))
       .catch(next);
   }

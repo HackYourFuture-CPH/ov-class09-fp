@@ -74,8 +74,8 @@ const getVesselReportById = async id => {
   }
 };
 
-//Get Suggested-route by vessel-report-id
-const getsuggestedRouteByVesselReportId = async id => {
+//Get Suggested-routes by vessel-report-id
+const getSuggestedRoutesByVesselReportId = async id => {
   try {
     const suggestedRoutes = await knex("suggested_routes")
       .select("*")
@@ -97,5 +97,5 @@ module.exports = {
   createVesselReport,
   getVesselReportById,
   getVesselsReportByVoyageId,
-  getsuggestedRouteByVesselReportId
+  getSuggestedRoutesByVesselReportId
 };
