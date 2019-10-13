@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Checkbox extends Component {
   render() {
@@ -11,4 +12,8 @@ class Checkbox extends Component {
     );
   }
 }
+Checkbox.PropTypes = {
+  label: PropTypes.string,
+  handleCheckbox: PropTypes.func
+};
 export default Checkbox;

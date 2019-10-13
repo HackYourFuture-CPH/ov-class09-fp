@@ -3,6 +3,7 @@ import DateTime from "./DateTime";
 import InputFieldNumber from "./InputFieldNumber";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
+import PropTypes from "prop-types";
 
 class StartVoyage extends Component {
   state = {
@@ -25,15 +26,6 @@ class StartVoyage extends Component {
     arrivalDate: "",
     arrivalTime: "",
     isChecked: false
-  };
-
-  static defaultProps = {
-    draft_step: 0.01,
-    draft_unit: "m",
-    fuelCost_step: 0.01,
-    fuelCost_unit: "USD",
-    rate_step: 0.01,
-    rate_unit: "USD"
   };
 
   handleDateInputChange = e => {
@@ -107,13 +99,13 @@ class StartVoyage extends Component {
     const {
       vessels,
       ports,
-      voyages, //optimisationType
-      draft_step,
+      voyages,
       draft_unit,
-      fuelCost_step,
       fuelCost_unit,
-      rate_step,
       rate_unit
+      /*rate_step,
+      draft_step,
+      fuelCost_step*/
     } = this.props;
 
     let checkBoxLogic;
@@ -122,8 +114,7 @@ class StartVoyage extends Component {
         <InputFieldNumber
           label="Hire Rate"
           name="hirerate"
-          step={rate_step}
-          unit={rate_unit}
+          unit="USD"
           value={hirerate}
           onDataInputChange={this.handleDataInputChange}
         />
@@ -135,6 +126,7 @@ class StartVoyage extends Component {
           <Dropdown
             label="Choose vessel"
             optionsMap={vessels}
+            optionNameKey="name"
             handleSelection={this.handleVesselSelection}
           />
           <Checkbox
@@ -147,6 +139,7 @@ class StartVoyage extends Component {
           <Dropdown
             label="Depart from"
             optionsMap={ports}
+            optionNameKey="name"
             handleSelection={this.handleDeparturePortSelection}
           />
           <DateTime
@@ -160,6 +153,7 @@ class StartVoyage extends Component {
           <Dropdown
             label="Destination"
             optionsMap={ports}
+            optionNameKey="name"
             handleSelection={this.handleArrivalPortSelection}
           />
           <DateTime
@@ -172,38 +166,35 @@ class StartVoyage extends Component {
           />
           <Dropdown
             label="Optimisation type"
-            optionsMap={voyages} //optimisationType
+            optionsMap={voyages}
+            optionNameKey="optimisation_type"
             handleSelection={this.handleOptimisationTypeSelection}
           />
           <InputFieldNumber
             label="Forward Draft"
             name="forwarddraft"
-            step={draft_step}
-            unit={draft_unit}
+            unit="m"
             value={forwarddraft}
             onDataInputChange={this.handleDataInputChange}
           />
           <InputFieldNumber
             label="Aft Draft"
             name="aftdraft"
-            step={draft_step}
-            unit={draft_unit}
+            unit="m"
             value={aftdraft}
             onDataInputChange={this.handleDataInputChange}
           />
           <InputFieldNumber
             label="Low Sulfor Fuel Oil Cost"
             name="lfsocost"
-            step={fuelCost_step}
-            unit={fuelCost_unit}
+            unit="USD"
             value={lfsocost}
             onDataInputChange={this.handleDataInputChange}
           />
           <InputFieldNumber
             label="Heavy Fuel Oil Cost"
             name="hfocost"
-            step={fuelCost_step}
-            unit={fuelCost_unit}
+            unit="USD"
             value={hfocost}
             onDataInputChange={this.handleDataInputChange}
           />
@@ -212,4 +203,45 @@ class StartVoyage extends Component {
     );
   }
 }
+StartVoyage.PropTypes = {
+  name: PropTypes.string,
+  label: PropTypes.string,
+  fuelCost_unit: PropTypes.string,
+  draft_unit: PropTypes.string,
+  rate_unit: PropTypes.string,
+  departureDate: PropTypes.string,
+  departureTime: PropTypes.string,
+  arrivalDate: PropTypes.string,
+  arrivalTime: PropTypes.string,
+  hirerate: PropTypes.number,
+  forwarddraft: PropTypes.number,
+  aftdraft: PropTypes.number,
+  lfsocost: PropTypes.number,
+  hfocost: PropTypes.number,
+  handleVesselSelection: PropTypes.func,
+  handleToggleCheckbox: PropTypes.func,
+  handleOptimisationTypeSelection: PropTypes.func,
+  handleDeparturePortSelection: PropTypes.func,
+  handleArrivalPortSelection: PropTypes.func,
+  handleTimeInputChange: PropTypes.func,
+  handleDateInputChange: PropTypes.func,
+  handleDataInputChange: PropTypes.func,
+
+  voyages: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]),
+  ports: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]),
+  vessels: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ])
+};
+
 export default StartVoyage;

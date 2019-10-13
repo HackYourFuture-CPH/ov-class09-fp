@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class DateTime extends Component {
   render() {
@@ -37,3 +38,13 @@ export default class DateTime extends Component {
     );
   }
 }
+
+DateTime.PropTypes = {
+  name: PropTypes.string,
+  label: PropTypes.string,
+  time: PropTypes.string,
+  date: PropTypes.string,
+  value: PropTypes.number,
+  onDateInputChange: PropTypes.func,
+  onTimeInputChange: PropTypes.func
+};

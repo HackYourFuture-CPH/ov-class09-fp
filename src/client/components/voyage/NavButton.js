@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class NavButton extends Component {
   render() {
@@ -10,5 +11,10 @@ class NavButton extends Component {
     );
   }
 }
+
+NavButton.PropTypes = {
+  label: PropTypes.string,
+  handleClick: PropTypes.func
+};
 
 export default NavButton;

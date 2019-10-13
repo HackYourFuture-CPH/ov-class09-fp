@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Dropdown extends Component {
   render() {
@@ -14,5 +15,16 @@ class Dropdown extends Component {
     );
   }
 }
+
+Dropdown.propTypes = {
+  label: PropTypes.string,
+  optionNameKey: PropTypes.string,
+  optionsMap: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]),
+  handleSelection: PropTypes.func
+};
 
 export default Dropdown;
