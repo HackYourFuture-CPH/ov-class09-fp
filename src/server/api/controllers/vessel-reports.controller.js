@@ -4,12 +4,10 @@ const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 
 //Get vessels reports by vessel id
-const getVesselsReportByVesselId = async id => {
-  const vesselReports = await knex
-    .from("vessel_reports")
-    .where({ vessel_id: id });
+const getVesselsReportByVoyageId = async voyage_id => {
+  const vesselReports = await knex.from("vessel_reports").where({ voyage_id });
   if (vesselReports.length === 0) {
-    return `no vessel exist with that id ${id} `;
+    return `No voyage exist with that id ${voyage_id}.`;
   }
   return vesselReports;
 };
@@ -17,29 +15,33 @@ const getVesselsReportByVesselId = async id => {
 //create vessel-reports
 const createVesselReport = async ({ body }) => {
   const {
-    vessel_id,
-    position_waypoint,
+    voyage_id,
     current_speed,
+    eta,
     hfo_consumption,
-    lsfo_consumption
+    lsfo_consumption,
+    latitude,
+    longitude
   } = body;
 
-  const vessel = await knex
-    .from("vessels")
+  const voyage = await knex
+    .from("voyages")
     .select("*")
     .where({
-      id: vessel_id
+      id: voyage_id
     });
-  if (vessel.length === 0) {
-    throw new HttpError("Bad request", `${vessel_id} vessel not found!`, 404);
+  if (voyage.length === 0) {
+    throw new HttpError("Bad request", `${voyage_id} voyage not found!`, 404);
   }
 
   const vesselReport = await knex("vessel_reports").insert({
-    vessel_id: vessel[0].id,
-    position_waypoint: position_waypoint,
-    current_speed: current_speed,
-    hfo_consumption: hfo_consumption,
-    lsfo_consumption: lsfo_consumption
+    voyage_id: voyage[0].id,
+    current_speed,
+    eta,
+    hfo_consumption,
+    lsfo_consumption,
+    latitude,
+    longitude
   });
   return vesselReport;
 };
@@ -50,17 +52,19 @@ const getVesselReportById = async id => {
     const vesselReport = await knex("vessel_reports")
       .select(
         "vessel_reports.id as id",
-        "vessel_id",
-        "position_waypoint",
+        "voyage_id",
         "current_speed",
+        "eta",
         "hfo_consumption",
-        "lsfo_consumption"
+        "lsfo_consumption",
+        "latitude",
+        "longitude"
       )
-      .where({ id: id });
+      .where({ id });
     if (vesselReport.length === 0) {
       throw new HttpError(
         "Bad request",
-        `Cannot find vessel reports for ID ${id}!`,
+        `Cannot find any vessel reports for Voyage ID ${id}!`,
         404
       );
     }
@@ -121,7 +125,7 @@ const getSelectedSuggestedRoute = async id => {
 module.exports = {
   createVesselReport,
   getVesselReportById,
-  getVesselsReportByVesselId,
+  getVesselsReportByVoyageId,
   selectSuggestedRoute,
   getSelectedSuggestedRoute
 };

@@ -17,17 +17,26 @@ const getSuggestedRoutes = async req => {
 const getSuggestedRouteById = async id => {
   let suggested_route_id = Number(id);
   try {
-    const suggested_route = await knex
+    const suggestedRoute = await knex
       .from("suggested_routes")
-      .innerJoin("waypoints", "suggested_route_id", "=", suggested_route_id);
-    if (suggested_route.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `Cannot find suggested route for ID ${id}!`,
-        404
-      );
+      .select("*")
+      .where({ id });
+    const waypoints = await knex("waypoints")
+      .select("*")
+      .where({ suggested_route_id: id });
+
+    if (suggestedRoute.length > 0) {
+      const suggestedRouteWaypoints = suggestedRoute.map(elem => {
+        elem.waypoints = waypoints;
+        return elem;
+      });
+      return suggestedRouteWaypoints;
     }
-    return suggested_route;
+    throw new HttpError(
+      "Bad request",
+      `Cannot find suggested route for ID ${id}!`,
+      404
+    );
   } catch (err) {
     return err.message;
   }
