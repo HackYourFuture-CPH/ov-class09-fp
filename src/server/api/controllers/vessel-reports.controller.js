@@ -74,28 +74,8 @@ const getVesselReportById = async id => {
   }
 };
 
-//Get Suggested-routes by vessel-report-id
-const getSuggestedRoutesByVesselReportId = async id => {
-  try {
-    const suggestedRoutes = await knex("suggested_routes")
-      .select("*")
-      .where({ vessel_report_id: id });
-    if (suggestedRoutes.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `Cannot find any Suggested route for Vessel-report ID ${id}!`,
-        404
-      );
-    }
-    return suggestedRoutes;
-  } catch (err) {
-    return err.message;
-  }
-};
-
 module.exports = {
   createVesselReport,
   getVesselReportById,
-  getVesselsReportByVoyageId,
-  getSuggestedRoutesByVesselReportId
+  getVesselsReportByVoyageId
 };
