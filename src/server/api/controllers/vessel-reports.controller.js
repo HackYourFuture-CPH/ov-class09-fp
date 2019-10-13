@@ -75,9 +75,9 @@ const selectSuggestedRoute = async ({ id, body }) => {
     const suggestedRoute = await knex("suggested_routes").where({
       id: suggested_route_id
     });
-    const selectedRoutes = await knex("vessel_reports").where("id", "=", id);
+    const vesselReport = await knex("vessel_reports").where("id", "=", id);
 
-    if (selectedRoutes.length !== 0) {
+    if (vesselReport.length !== 0) {
       return await knex("vessel_reports")
         .where("id", "=", id)
         .update({
