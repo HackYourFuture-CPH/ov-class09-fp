@@ -12,6 +12,7 @@ import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
+import { LoginFormStory } from "./LoginForm";
 
 storiesOf("Button", module)
   .add("with text", WithTextStory)
@@ -41,3 +42,9 @@ const VesselsListStories = storiesOf("Vessels", module)
   .add("VesselList", VesselsListStory)
   .add("Vessel Teaser", VesselTeaserStory);
 VesselsListStories.addDecorator(withKnobs);
+
+const LoginFormStories = storiesOf("Login Form", module).add(
+  "LoginForm",
+  LoginFormStory
+);
+LoginFormStories.addDecorator(withKnobs);
