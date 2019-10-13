@@ -15,6 +15,7 @@ const ROLES = require("../../constants/roles");
 const organizationController = require("../controllers/organization.controller");
 const vesselsController = require("../controllers/vessel.controller");
 const userController = require("../controllers/user.controller");
+const voyagesController = require("../controllers/voyages.controller");
 
 // /api/organizations/ :POST
 router.post(
@@ -82,6 +83,18 @@ router.get(
   }
 );
 
+//ENDPOINT: /api/organization/:organization_id/voyages?status=ongoing
+router.get(
+  "/:id/voyages?",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    voyagesController
+      .getVoyagesByOrganization(req.params.id, req.query.status)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 //ENDPOINT /api/organizations/:organization_id/users/ :POST
 router.post(
   "/:id/users/",
@@ -89,6 +102,18 @@ router.post(
   (req, res, next) => {
     userController
       .createAdminBySuperUser(req.params.id, req.body)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+//ENDPOINT /api/organizations/:organization_id/users/ :get
+router.get(
+  "/:organization_id/users",
+  authorizeUser(ROLES.SUPER_USER),
+  (req, res, next) => {
+    userController
+      .getUsersbyOrganizationId(req.params.organization_id)
       .then(result => res.json(result))
       .catch(next);
   }

@@ -16,6 +16,15 @@ const createFavoriteVessel = async ({ body }) => {
     .select("*")
     .where({ id: vessel_id });
 
+  const favoriteVessels = await knex
+    .from("favorite_vessels")
+    .select("*")
+    .where({ user_id, vessel_id });
+
+  if (favoriteVessels.length !== 0) {
+    throw new HttpError("Bad request", "favorite vessel already exists!", 409);
+  }
+
   if (checkUserId.length === 0 || checkVesselsId.length === 0) {
     throw new HttpError(
       "Bad request",
