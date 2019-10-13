@@ -72,15 +72,20 @@ const getVesselReportById = async id => {
 const selectSuggestedRoute = async ({ id, body }) => {
   const { suggested_route_id } = body;
   try {
+    const suggestedRoute = await knex("suggested_routes").where({
+      id: suggested_route_id
+    });
     const selectedRoutes = await knex("vessel_reports").where("id", "=", id);
 
     if (selectedRoutes.length !== 0) {
       return await knex("vessel_reports")
         .where("id", "=", id)
         .update({
-          selected_route_id: suggested_route_id
+          selected_route_id: suggested_route_id,
+          eta: suggestedRoute[0].eta
         });
     }
+
     throw new HttpError(
       "Bad request",
       `Cannot find vessel reports for ID ${id}!`,
