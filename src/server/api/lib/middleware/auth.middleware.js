@@ -58,6 +58,39 @@ function authorizeUser(...permittedRoles) {
   };
 }
 
+function authorizeOrganization() {
+  return async function(req, res, next) {
+    const jwt = req.headers.authorization || req.body.authorization;
+    if (jwt === undefined) {
+      return res
+        .status(401)
+        .json(new HttpError("Bad request", 400, "no role defined"));
+    }
+
+    let verifiedJwt;
+    try {
+      verifiedJwt = await verify(jwt, secret);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log("for token", verifiedJwt);
+    if (verifiedJwt) {
+      const result = await knex("users")
+        .join("organizations", "users.organization_id", "organizations.id")
+        .select("organization_id")
+        .where({ "users.id": verifiedJwt.id });
+      console.log("from query", result[0].organization_id);
+      if (result[0].organization_id === parseInt(req.params.id)) {
+        next();
+      } else {
+        return res.status(400).json({
+          message: "bad request, Organization not authorized"
+        });
+      }
+    }
+  };
+}
+
 module.exports = {
   extractIp: extractIp,
   authorizeUser: authorizeUser
