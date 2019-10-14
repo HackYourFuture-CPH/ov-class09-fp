@@ -45,7 +45,7 @@ router.post(
   }
 );
 
-/*//ENDPOINT: /api/voyages/:voyage_id/vessel-reports/
+//ENDPOINT: /api/voyages/:voyage_id/vessel-reports/
 router.get(
   "/:id/vessel-reports",
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
@@ -55,7 +55,7 @@ router.get(
       .then(result => res.json(result))
       .catch(next);
   }
-);*/
+);
 
 //ENDPOINT: /api/voyages/:voyage_id/vessel-reports/?offset=0&limit=50&orderBy="desc"
 router.get(
@@ -63,7 +63,7 @@ router.get(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     vesselReportsController
-      .getVesselsReportByVoyageIdWithParams(req.params.id, req.query.limit)
+      .getVesselsReportByVoyageIdWithParams(req.params.id, req.query)
       .then(result => res.json(result))
       .catch(next);
   }
