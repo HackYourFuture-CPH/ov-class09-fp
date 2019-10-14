@@ -11,6 +11,7 @@ import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
+import { LoginForm, LoginFormStory } from "./login-form";
 
 import { LogoutButtonStory } from "./Buttons";
 import { ButtonStory } from "./Buttons";
@@ -43,3 +44,10 @@ VoyagesListStories.addDecorator(withKnobs);
 storiesOf("Buttons", module)
   .add("Button", ButtonStory)
   .add("Logout Button", LogoutButtonStory);
+
+const LoginFormStories = storiesOf("Loginform", module).add(
+  "LoginForm",
+  LoginFormStory
+);
+
+LoginFormStories.addDecorator(withKnobs);
