@@ -11,7 +11,7 @@ const { authorizeUser } = require("../lib/middleware/auth.middleware");
 const ROLES = require("../../constants/roles");
 
 // controllers
-const vesselReportsController = require("../controllers/suggested-routes.controller");
+const vesselReportsController = require("../controllers/suggested -routes.controller");
 
 // ENDPOINT: /api/vessel-reports/ :POST
 router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
