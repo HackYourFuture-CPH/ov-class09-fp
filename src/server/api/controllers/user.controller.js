@@ -33,6 +33,21 @@ const getUserById = async id => {
   }
 };
 
+const getUsersByRole = async role => {
+  try {
+    const users = await knex("users")
+      .join("user_roles", "user_roles.id", "users.role_id")
+      .select("*")
+      .where({ role: role });
+    if (users.length === 0) {
+      throw new HttpError("Bad request", `Cannot find user for ${role}!`, 404);
+    }
+    return users;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 const getAccount = async req => {
   const { id } = req.user;
   try {
@@ -341,6 +356,7 @@ module.exports = {
   changePasswordRandomly,
   deleteUser,
   getUserById,
+  getUsersByRole,
   editUserRole,
   createAdminBySuperUser,
   getUsersbyOrganizationId

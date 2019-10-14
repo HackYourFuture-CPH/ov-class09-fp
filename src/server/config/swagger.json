@@ -551,33 +551,6 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
-      }
-    },
-    "/voyages/{voyage_id}/vessel-reports": {
-      "get": {
-        "description": "Returns vessel reports for a given voyage.\n\nAuthentication: `superuser`, `admin` & `operator`.",
-        "summary": "Get Vessel Reports by Voyage",
-        "tags": ["Vessel Report"],
-        "operationId": "VesselsVesselReportsByVesselIdGet",
-        "deprecated": false,
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "voyage_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
         }
       }
     },
@@ -769,6 +742,58 @@
         }
       }
     },
+    "/vessel-reports/{vessel_report_id}/suggested-routes": {
+      "get": {
+        "description": "Returns suggested routes with vessel report ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Suggested Routes by vessel report ID",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesByVesselReportIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user-roles/{role}/users": {
+      "get": {
+        "description": "Returns users with the sepcific role.\n\nAuthentication: `superuser`, `admin`.",
+        "summary": "Get Users by specific role",
+        "tags": ["User by difference roles"],
+        "operationId": "usersByRoleGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/favorite-vessels": {
       "post": {
         "description": "Creates a favorite vessel (association between user and vessel).\n\nAuthentication: `superuser`, `admin` & `operator`.",
@@ -919,6 +944,7 @@
       "title": "EditUserRequest",
       "example": {
         "email": "test3@test3.com",
+        "password": "1234",
         "name": "Joey Dosik"
       },
       "type": "object",
@@ -926,11 +952,14 @@
         "email": {
           "type": "string"
         },
+        "password": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         }
       },
-      "required": ["email", "name"]
+      "required": ["email", "password", "name"]
     },
     "CreateAdminUserRequest": {
       "title": "CreateAdminUserRequest",
@@ -1153,7 +1182,7 @@
         "target_arrival_time": "2019-09-10 21:20:09",
         "forwarddraft": 8.596,
         "aftdraft": 8.785,
-        "optimisation_type": 9.852,
+        "optimisation_type": "fixed_eta",
         "depart_from_port": 8,
         "arrive_at_port": 7,
         "hfocost": 89.63,
@@ -1309,8 +1338,8 @@
     "CreateFavoriteVesselRequest": {
       "title": "CreateFavoriteVesselRequest",
       "example": {
-        "user_id": 1,
-        "vessel_id": 1
+        "user_id": 10,
+        "vessel_id": 11
       },
       "type": "object",
       "properties": {
