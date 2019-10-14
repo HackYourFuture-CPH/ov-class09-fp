@@ -1,5 +1,5 @@
 import React from "react";
-import Map from "../components/ScVesselsMap";
+import Map from "../components/VesselsOnMap";
 import {
   withKnobs,
   text,
@@ -8,7 +8,7 @@ import {
   array,
   object
 } from "@storybook/addon-knobs";
-export function SCMapStory() {
+export function VesselsOnMapStory() {
   const centerMapCoordinates = array("centerMapCoordinates", [
     55.698478,
     12.604377
@@ -42,7 +42,7 @@ export function SCMapStory() {
       vessels={vessels}
       suggestedRoute={suggestedRoute}
       elapsedRoute={elapsedRoute}
-      marker={{ color: "blue" }}
+      // marker={{ color: "blue" }}
     />
   );
 }

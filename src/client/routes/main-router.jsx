@@ -6,6 +6,7 @@ import Home from "./../Home";
 import LoginForm from "./../components/login-form";
 import PrivateRoute from "./../components/PrivateRoute";
 import AppLayout from "./../components/AppLayout";
+import VoyageContainer from "./../components/VoyageContainer";
 
 const MainRouter = props => {
   return (
@@ -14,6 +15,7 @@ const MainRouter = props => {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginForm} />
         <PrivateRoute path="/app" component={AppLayout} />
+        <Route path="/voyage" component={VoyageContainer} />
       </div>
     </React.Fragment>
   );
