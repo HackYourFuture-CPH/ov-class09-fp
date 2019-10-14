@@ -3,23 +3,17 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
 import { WithTextStory, WithEmojiStory } from "./Buttons";
-import { StartVoyageStory } from "./voyage/StartVoyage";
-import { DateTimeStory } from "./voyage/DateTime";
-import { InputFieldNumberStory } from "./voyage/InputFieldNumber";
-import { DropdownStory } from "./voyage/Dropdown";
+import { StartVoyageStory } from "./StartVoyage";
+import { DateTimeStory } from "./DateTime";
+import { InputFieldNumberStory } from "./InputFieldNumber";
+import { DropdownStory } from "./Dropdown";
 import { NavButtonStory } from "./navigation/NavButton";
-import { CheckboxStory } from "./voyage/Checkbox";
-//import { VesselDetailsStory } from "./VesselDetails";
-//import { DataCardStory } from "./DataCardStory";
-//import { CardGroupStory } from "./CardGroupStory";
-
+import { CheckboxStory } from "./Checkbox";
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
-
 import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
-
 import { CostWidgetStory } from "./CostWidgetStory";
 
 storiesOf("Button", module)
