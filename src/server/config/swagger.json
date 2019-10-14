@@ -752,7 +752,7 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "id",
+            "name": "vessel_report_id",
             "in": "path",
             "required": true,
             "type": "integer",
