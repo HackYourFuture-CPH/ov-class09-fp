@@ -47,40 +47,6 @@ const getVesselsReportByVoyageIdWithParams = async (voyage_id, query) => {
     }
     return vesselReports;
   }
-
-  if (query.limit === null) {
-    const vesselReports = await knex
-      .from("vessel_reports")
-      .where({ voyage_id })
-      .orderBy("id", "desc")
-      .limit(50)
-      .offset(0);
-
-    if (vesselReports.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `No vessel-reports exist with that voyage id ${voyage_id}.`,
-        404
-      );
-    }
-    return vesselReports;
-  } else {
-    const vesselReports = await knex
-      .from("vessel_reports")
-      .where({ voyage_id })
-      .orderBy("id", "desc")
-      .limit(query.limit)
-      .offset(0);
-
-    if (vesselReports.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `No vessel-reports exist with that voyage id ${voyage_id}.`,
-        404
-      );
-    }
-    return vesselReports;
-  }
 };
 
 //create vessel-reports
