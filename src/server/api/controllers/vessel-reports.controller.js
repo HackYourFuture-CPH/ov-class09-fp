@@ -23,7 +23,11 @@ const getVesselsReportByVoyageIdWithParams = async (voyage_id, query) => {
       .offset(0);
 
     if (vesselReports.length === 0) {
-      return `No vessel-reports exist with that voyage id ${voyage_id}.`;
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
     }
     return vesselReports;
   } else {
@@ -35,7 +39,11 @@ const getVesselsReportByVoyageIdWithParams = async (voyage_id, query) => {
       .offset(0);
 
     if (vesselReports.length === 0) {
-      return `No vessel-reports exist with that voyage id ${voyage_id}.`;
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
     }
     return vesselReports;
   }
@@ -49,7 +57,11 @@ const getVesselsReportByVoyageIdWithParams = async (voyage_id, query) => {
       .offset(0);
 
     if (vesselReports.length === 0) {
-      return `No vessel-reports exist with that voyage id ${voyage_id}.`;
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
     }
     return vesselReports;
   } else {
@@ -61,7 +73,11 @@ const getVesselsReportByVoyageIdWithParams = async (voyage_id, query) => {
       .offset(0);
 
     if (vesselReports.length === 0) {
-      return `No vessel-reports exist with that voyage id ${voyage_id}.`;
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
     }
     return vesselReports;
   }
