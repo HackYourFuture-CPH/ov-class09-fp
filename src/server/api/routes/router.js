@@ -21,6 +21,7 @@ const organizationRouter = require("./organizations.router");
 const vesselRouter = require("./vessel.router");
 
 const favoriteVesselsRouter = require("./favorite-vessels.router");
+const userRolesRouter = require("./user-roles.router");
 
 // swagger-ui-express
 const swaggerUi = require("swagger-ui-express");
@@ -47,5 +48,6 @@ router.use(`${process.env.API_PATH}/suggested-routes`, suggestedRoutesRouter);
 router.use(`${process.env.API_PATH}/favorite-vessels`, favoriteVesselsRouter);
 router.use(`${process.env.API_PATH}/waypoints`, waypointsRouter);
 router.use(`${process.env.API_PATH}/vessel-reports`, vesselReportRouter);
+router.use(`${process.env.API_PATH}/user-roles`, userRolesRouter);
 
 module.exports = router;

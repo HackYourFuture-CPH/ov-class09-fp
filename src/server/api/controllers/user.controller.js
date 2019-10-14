@@ -33,6 +33,21 @@ const getUserById = async id => {
   }
 };
 
+const getUsersByRole = async role => {
+  try {
+    const users = await knex("users")
+      .join("user_roles", "user_roles.id", "users.role_id")
+      .select("*")
+      .where({ role: role });
+    if (users.length === 0) {
+      throw new HttpError("Bad request", `Cannot find user for ${role}!`, 404);
+    }
+    return users;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 const getAccount = async req => {
   const { id } = req.user;
   try {
@@ -321,6 +336,16 @@ const createAdminBySuperUser = async (id, body) => {
   });
 };
 
+const getUsersbyOrganizationId = async organization_id => {
+  const usersByOrganizationId = await knex
+    .from("users")
+    .where({ organization_id });
+  if (usersByOrganizationId.length === 0) {
+    throw new HttpError("Bad request", "This Organization have no users!", 404);
+  }
+  return usersByOrganizationId;
+};
+
 module.exports = {
   createUser,
   getUsers,
@@ -331,6 +356,8 @@ module.exports = {
   changePasswordRandomly,
   deleteUser,
   getUserById,
+  getUsersByRole,
   editUserRole,
-  createAdminBySuperUser
+  createAdminBySuperUser,
+  getUsersbyOrganizationId
 };

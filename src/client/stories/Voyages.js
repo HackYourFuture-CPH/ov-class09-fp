@@ -1,8 +1,8 @@
 import React from "react";
-import VesselsList from "../components/VesselsList";
+import VoyageList from "../components/VoyageList";
 import { withKnobs, text, object } from "@storybook/addon-knobs";
-export function VesselsListStory() {
-  const vesselsList = object("vessels", [
+export function VoyageListStory() {
+  const voyageList = object("vessels", [
     {
       id: 1,
       vesselName: "Yeniser River",
@@ -28,5 +28,6 @@ export function VesselsListStory() {
       eta: "2019-08-24 10:54"
     }
   ]);
-  return <VesselsList vessels={vesselsList} />;
+
+  return <VoyageList voyages={voyageList} />;
 }
