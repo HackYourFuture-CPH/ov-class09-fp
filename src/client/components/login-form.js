@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
 
   render() {
     const { email, password, isLoggedin } = this.state;
-    const { from } = this.props.location.state || {
+    const { from } = (this.props.location && this.props.location.state) || {
       from: { pathname: "/home" }
     };
 
