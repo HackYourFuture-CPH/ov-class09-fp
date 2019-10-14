@@ -742,6 +742,32 @@
         }
       }
     },
+    "/vessel-reports/{vessel_report_id}/suggested-routes": {
+      "get": {
+        "description": "Returns suggested routes with vessel report ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Suggested Routes by vessel report ID",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesByVesselReportIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/user-roles/{role}/users": {
       "get": {
         "description": "Returns users with the sepcific role.\n\nAuthentication: `superuser`, `admin`.",
