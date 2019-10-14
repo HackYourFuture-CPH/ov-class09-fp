@@ -11,6 +11,7 @@ const ROLES = require("../../constants/roles");
 // controllers
 const voyagesController = require("../controllers/voyages.controller");
 const suggestedRoutesController = require("../controllers/suggested-routes.controller");
+const vesselReportsController = require("../controllers/vessel-reports.controller");
 
 // ENDPOINT: /api/voyages/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
@@ -39,6 +40,18 @@ router.post(
   (req, res, next) => {
     voyagesController
       .createVoyage({ body: req.body })
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
+//ENDPOINT: /api/voyages/:voyage_id/vessel-reports/
+router.get(
+  "/:id/vessel-reports",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    vesselReportsController
+      .getVesselsReportByVoyageId(req.params.id)
       .then(result => res.json(result))
       .catch(next);
   }

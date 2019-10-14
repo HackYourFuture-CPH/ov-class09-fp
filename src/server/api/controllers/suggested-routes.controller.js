@@ -15,18 +15,28 @@ const getSuggestedRoutes = async req => {
 
 // Get a suggested-route by id
 const getSuggestedRouteById = async id => {
+  let suggested_route_id = Number(id);
   try {
-    const suggested_route = await knex("suggested_routes")
+    const suggestedRoute = await knex
+      .from("suggested_routes")
       .select("*")
       .where({ id });
-    if (suggested_route.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `Cannot find vessel for ID ${id}!`,
-        404
-      );
+    const waypoints = await knex("waypoints")
+      .select("*")
+      .where({ suggested_route_id: id });
+
+    if (suggestedRoute.length > 0) {
+      const suggestedRouteWaypoints = suggestedRoute.map(elem => {
+        elem.waypoints = waypoints;
+        return elem;
+      });
+      return suggestedRouteWaypoints;
     }
-    return suggested_route;
+    throw new HttpError(
+      "Bad request",
+      `Cannot find suggested route for ID ${id}!`,
+      404
+    );
   } catch (err) {
     return err.message;
   }
@@ -46,6 +56,25 @@ const getSuggestedRouteByVoyageId = async id => {
       );
     }
     return suggested_routesByVoyageId;
+  } catch (err) {
+    return err.message;
+  }
+};
+
+//Get Suggested-routes by vessel-report-id
+const getSuggestedRoutesByVesselReportId = async id => {
+  try {
+    const suggestedRoutes = await knex("suggested_routes")
+      .select("*")
+      .where({ vessel_report_id: id });
+    if (suggestedRoutes.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `Cannot find any Suggested route for Vessel-report ID ${id}!`,
+        404
+      );
+    }
+    return suggestedRoutes;
   } catch (err) {
     return err.message;
   }
@@ -108,5 +137,6 @@ module.exports = {
   getSuggestedRoutes,
   getSuggestedRouteById,
   getSuggestedRouteByVoyageId,
+  getSuggestedRoutesByVesselReportId,
   createSuggestedRouteWithWaypoints
 };

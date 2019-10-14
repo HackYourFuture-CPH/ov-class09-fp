@@ -33,6 +33,21 @@ const getUserById = async id => {
   }
 };
 
+const getUsersByRole = async role => {
+  try {
+    const users = await knex("users")
+      .join("user_roles", "user_roles.id", "users.role_id")
+      .select("*")
+      .where({ role: role });
+    if (users.length === 0) {
+      throw new HttpError("Bad request", `Cannot find user for ${role}!`, 404);
+    }
+    return users;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 const getAccount = async req => {
   const { id } = req.user;
   try {
@@ -295,6 +310,41 @@ const editUserRole = async ({ body, id }) => {
       .update(queryData);
   } else return "No edit fields passed, nothing updated!";
 };
+const createAdminBySuperUser = async (id, body) => {
+  const users = await knex
+    .from("users")
+    .select("*")
+    .where({ email: body.email });
+  if (users.length !== 0) {
+    throw new HttpError("Bad request", "user already exists!", 409);
+  }
+  const hashedPassword = await hashPassword(body.password);
+  const role = await knex
+    .from("user_roles")
+    .select("*")
+    .where({
+      role: "admin"
+    });
+
+  return knex("users").insert({
+    role_id: role[0].id,
+    organization_id: id,
+    email: body.email,
+    password: hashedPassword,
+    name: body.name,
+    status: false
+  });
+};
+
+const getUsersbyOrganizationId = async organization_id => {
+  const usersByOrganizationId = await knex
+    .from("users")
+    .where({ organization_id });
+  if (usersByOrganizationId.length === 0) {
+    throw new HttpError("Bad request", "This Organization have no users!", 404);
+  }
+  return usersByOrganizationId;
+};
 
 module.exports = {
   createUser,
@@ -306,5 +356,8 @@ module.exports = {
   changePasswordRandomly,
   deleteUser,
   getUserById,
-  editUserRole
+  getUsersByRole,
+  editUserRole,
+  createAdminBySuperUser,
+  getUsersbyOrganizationId
 };
