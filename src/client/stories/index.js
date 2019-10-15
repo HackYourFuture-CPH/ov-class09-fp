@@ -7,6 +7,7 @@ import { WithTextStory, WithEmojiStory } from "./Buttons";
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
+import { SecondaryNavigationBarStory } from "./SecondaryNavigationBarStory";
 
 import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
@@ -37,6 +38,12 @@ const CostWidgetStories = storiesOf("Cost Widget", module).add(
   CostWidgetStory
 );
 CostWidgetStories.addDecorator(withKnobs);
+
+const SecondaryNavigationBarStories = storiesOf(
+  "Secondary Navigation",
+  module
+).add("Secondary Navigation Bar", SecondaryNavigationBarStory);
+SecondaryNavigationBarStories.addDecorator(withKnobs);
 
 const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageList", VoyageListStory)
