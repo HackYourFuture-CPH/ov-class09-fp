@@ -1276,14 +1276,28 @@
       "title": "CreateSuggestedRouteRequest",
       "example": {
         "vessel_report_id": 1,
-        "eta": "2019-09-01",
-        "max_wave_height": 2.3,
-        "hfo": 24,
-        "lsfo": 43,
-        "total_cost": 224243,
-        "distance_over_ground": 2434,
-        "distance_through_water": 5254,
-        "avgspeed": 18.2
+        "eta": "2012-03-19T07:32Z",
+        "max_wave_height": 3.1,
+        "hfo": 32.1,
+        "lsfo": 11.2,
+        "total_cost": 142042,
+        "distance_over_ground": 1534.23,
+        "distance_through_water": 1832.23,
+        "avgspeed": 14.2,
+        "waypoints": [
+          {
+            "longitude": 55.65646,
+            "latitude": 12.53635,
+            "speed": 12,
+            "rpm": 800
+          },
+          {
+            "longitude": 55.65646,
+            "latitude": 12.53635,
+            "speed": 12,
+            "rpm": 800
+          }
+        ]
       },
       "type": "object",
       "properties": {
@@ -1321,6 +1335,12 @@
         "avgspeed": {
           "type": "number",
           "format": "double"
+        },
+        "waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Waypoint"
+          }
         }
       },
       "required": [
@@ -1332,7 +1352,8 @@
         "total_cost",
         "distance_over_ground",
         "distance_through_water",
-        "avgspeed"
+        "avgspeed",
+        "waypoints"
       ]
     },
     "CreateFavoriteVesselRequest": {
