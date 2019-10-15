@@ -16,23 +16,23 @@ export function VesselsOnMapStory() {
   const pathColor = text("pathColor", "red");
   const displayMarkers = boolean("displayMarkers", true);
   const vessels = object("vessels", [
-    { lat: 55.721114, lng: 12.646547, waypointMessage: "waypoint 1" },
-    { lat: 55.698478, lng: 12.604377, waypointMessage: "waypoint 2" },
-    { lat: 55.687535, lng: 12.601538, waypointMessage: "waypoint 3" },
-    { lat: 55.679846, lng: 12.596304, waypointMessage: "waypoint 4" },
-    { lat: 55.677632, lng: 12.592699, waypointMessage: "waypoint 5" }
+    { latitude: 55.721114, longitude: 12.646547, vessel_name: "waypoint 1" },
+    { latitude: 55.698478, longitude: 12.604377, vessel_name: "waypoint 2" },
+    { latitude: 55.687535, longitude: 12.601538, vessel_name: "waypoint 3" },
+    { latitude: 55.679846, longitude: 12.596304, vessel_name: "waypoint 4" },
+    { latitude: 55.677632, longitude: 12.592699, vessel_name: "waypoint 5" }
   ]);
   const suggestedRoute = object("suggestedRoute", [
-    { lat: 55.721114, lng: 12.646547, waypointMessage: "waypoint 1" },
-    { lat: 55.698478, lng: 12.604377, waypointMessage: "waypoint 2" },
-    { lat: 55.687535, lng: 12.601538, waypointMessage: "waypoint 3" },
-    { lat: 55.679846, lng: 12.596304, waypointMessage: "waypoint 4" },
-    { lat: 55.677632, lng: 12.592699, waypointMessage: "waypoint 5" }
+    { latitude: 55.721114, longitude: 12.646547, vessel_name: "waypoint 1" },
+    { latitude: 55.698478, longitude: 12.604377, vessel_name: "waypoint 2" },
+    { latitude: 55.687535, longitude: 12.601538, vessel_name: "waypoint 3" },
+    { latitude: 55.679846, longitude: 12.596304, vessel_name: "waypoint 4" },
+    { latitude: 55.677632, longitude: 12.592699, vessel_name: "waypoint 5" }
   ]);
   const elapsedRoute = object("elapsedRoute", [
-    { lat: 55.721114, lng: 12.646547, waypointMessage: "waypoint 1" },
-    { lat: 55.698478, lng: 12.604377, waypointMessage: "waypoint 2" },
-    { lat: 55.687535, lng: 12.601538, waypointMessage: "waypoint 3" }
+    { latitude: 55.721114, longitude: 12.646547, vessel_name: "waypoint 1" },
+    { latitude: 55.698478, longitude: 12.604377, vessel_name: "waypoint 2" },
+    { latitude: 55.687535, longitude: 12.601538, vessel_name: "waypoint 3" }
   ]);
   return (
     <Map
@@ -42,7 +42,6 @@ export function VesselsOnMapStory() {
       vessels={vessels}
       suggestedRoute={suggestedRoute}
       elapsedRoute={elapsedRoute}
-      // marker={{ color: "blue" }}
     />
   );
 }

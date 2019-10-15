@@ -4,27 +4,27 @@ import MapMarker from "./Marker";
 
 function MapComponent({
   centerMapCoordinates,
-  zoom = 12,
-  vessels = [
-    {
-      vessel_id: 1,
-      lat: 12.298037,
-      lng: 55.589353
-    }
-  ], // array containing vessels
-  suggestedRoute = [], // An array of suggested routes to be drawn on the map
-  elapsedRoute = [], //An array of elapsed routes to be drawn on the map
+  zoom = 1,
+  vessels = [],
+  suggestedRoute = [],
+  elapsedRoute = [],
   style = {
     suggestedRouteColor: "#000",
     elapsedRouteColor: "#fff",
     vesselMarker: "<MarkerComponent>"
   },
   //   pathColor = "red",
-  displayMarkers = false
-  //   waypoints = []
+  displayMarkers = true
 }) {
-  const polyline = suggestedRoute.map(({ lat, lng }) => [lat, lng]);
-  const polyline1 = elapsedRoute.map(({ lat, lng }) => [lat, lng]);
+  const polyline = suggestedRoute.map(({ latitude, longitude }) => [
+    latitude,
+    longitude
+  ]);
+  const polyline1 = elapsedRoute.map(({ latitude, longitude }) => [
+    latitude,
+    longitude
+  ]);
+
   return (
     <Map center={centerMapCoordinates} zoom={zoom}>
       <TileLayer
@@ -34,12 +34,16 @@ function MapComponent({
       <Polyline color={"blue"} positions={polyline} />
       <Polyline color={"orange"} positions={polyline1} />
       {displayMarkers &&
-        vessels.map(({ lat, lng, message }) => (
-          <MapMarker key={`${lat}-${lng}`} position={[lat, lng]}>
-            <Popup>{message}</Popup>
+        vessels.map(({ latitude, longitude, vessel_name }) => (
+          <MapMarker
+            key={`${latitude}-${longitude}`}
+            position={[latitude, longitude]}
+          >
+            <Popup>{vessel_name}</Popup>
           </MapMarker>
         ))}
-      {/* { style.vesselMarker } */}
+
+      {/* {style.vesselMarker} */}
     </Map>
   );
 }

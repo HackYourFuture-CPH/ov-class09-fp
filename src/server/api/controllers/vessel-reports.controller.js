@@ -3,13 +3,84 @@
 const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 
-//Get vessels reports by vessel id
-const getVesselsReportByVoyageId = async voyage_id => {
-  const vesselReports = await knex.from("vessel_reports").where({ voyage_id });
-  if (vesselReports.length === 0) {
-    return `No voyage exist with that id ${voyage_id}.`;
+//Get vessels reports by voyage_id with limit, offset=0 and order =desc
+const getVesselsReportByVoyageIdWithParams = async (voyage_id, query) => {
+  const voyage = await knex.from("voyages").where({ id: voyage_id });
+
+  if (voyage.length === 0) {
+    throw new HttpError(
+      "Bad request",
+      `No voyage exist with that id ${voyage_id}.`,
+      404
+    );
   }
-  return vesselReports;
+  if (query.orderBy === undefined) {
+    const vesselReports = await knex
+      .from("vessel_reports")
+      .where({ voyage_id })
+      .orderBy("id", "desc")
+      .limit(query.limit)
+      .offset(0);
+
+    if (vesselReports.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
+    }
+    return vesselReports;
+  } else {
+    const vesselReports = await knex
+      .from("vessel_reports")
+      .where({ voyage_id })
+      .orderBy("id", query.orderBy)
+      .limit(50)
+      .offset(0);
+
+    if (vesselReports.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
+    }
+    return vesselReports;
+  }
+
+  if (query.limit === null) {
+    const vesselReports = await knex
+      .from("vessel_reports")
+      .where({ voyage_id })
+      .orderBy("id", "desc")
+      .limit(50)
+      .offset(0);
+
+    if (vesselReports.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
+    }
+    return vesselReports;
+  } else {
+    const vesselReports = await knex
+      .from("vessel_reports")
+      .where({ voyage_id })
+      .orderBy("id", "desc")
+      .limit(query.limit)
+      .offset(0);
+
+    if (vesselReports.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `No vessel-reports exist with that voyage id ${voyage_id}.`,
+        404
+      );
+    }
+    return vesselReports;
+  }
 };
 
 //create vessel-reports
@@ -77,5 +148,5 @@ const getVesselReportById = async id => {
 module.exports = {
   createVesselReport,
   getVesselReportById,
-  getVesselsReportByVoyageId
+  getVesselsReportByVoyageIdWithParams
 };

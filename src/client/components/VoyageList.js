@@ -6,17 +6,17 @@ function VoyageList({ voyages }) {
   const voyageList = voyages.map(
     ({
       id,
-      vesselName,
-      departureFrom,
-      arrivesAt,
+      vessel_name,
+      depart_from,
+      arrive_at,
       departure_time,
       target_arrival_time
     }) => (
       <VoyageTeaser
         key={id}
-        vesselName={vesselName}
-        departureFrom={departureFrom}
-        arrivesAt={arrivesAt}
+        vessel_name={vessel_name}
+        depart_from={depart_from}
+        arrive_at={arrive_at}
         departure_time={departure_time}
         target_arrival_time={target_arrival_time}
       />
@@ -30,13 +30,12 @@ VoyageList.propTypes = {
   voyages: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      vesselName: PropTypes.string,
-      departureFrom: PropTypes.string,
+      vessel_name: PropTypes.string,
+      depart_from: PropTypes.string,
       departure_time: PropTypes.string,
-      arrivesAt: PropTypes.string,
+      arrive_at: PropTypes.string,
       target_arrival_time: PropTypes.string
     })
   )
 };
-
 export default VoyageList;
