@@ -30,12 +30,17 @@ const NavigationStories = storiesOf("Navigation", module).add(
 );
 NavigationStories.addDecorator(withKnobs);
 
-const VoyageStories = storiesOf("Start Voyage", module)
-  .add("StartVoyage", StartVoyageStory)
+const FormStories = storiesOf("Forms elements", module)
   .add("DateTimeComponent", DateTimeStory)
   .add("InputFieldNumberComponent", InputFieldNumberStory)
   .add("DropdownComponent", DropdownStory)
   .add("CheckboxComponent", CheckboxStory);
+FormStories.addDecorator(withKnobs);
+
+const VoyageStories = storiesOf("Start Voyage", module).add(
+  "StartVoyage",
+  StartVoyageStory
+);
 VoyageStories.addDecorator(withKnobs);
 
 const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
