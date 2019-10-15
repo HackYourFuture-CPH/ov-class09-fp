@@ -73,9 +73,56 @@ const getVesselReportById = async id => {
     return err.message;
   }
 };
+const selectSuggestedRoute = async ({ id, body }) => {
+  const { suggested_route_id } = body;
+  try {
+    const suggestedRoute = await knex("suggested_routes").where({
+      id: suggested_route_id
+    });
+    const vesselReport = await knex("vessel_reports").where("id", "=", id);
 
+    if (vesselReport.length !== 0) {
+      return await knex("vessel_reports")
+        .where("id", "=", id)
+        .update({
+          selected_route_id: suggested_route_id,
+          eta: suggestedRoute[0].eta
+        });
+    }
+
+    throw new HttpError(
+      "Bad request",
+      `Cannot find vessel reports for ID ${id}!`,
+      404
+    );
+  } catch (err) {
+    return err.message;
+  }
+};
+const getSelectedSuggestedRoute = async id => {
+  try {
+    const vesselReport = await knex("vessel_reports")
+      .select("*")
+      .where({ id: id });
+
+    if (vesselReport !== 0 && vesselReport[0].selected_route_id !== null) {
+      return await knex("suggested_routes")
+        .select("*")
+        .where({ id: vesselReport[0].selected_route_id });
+    }
+    throw new HttpError(
+      "Bad request",
+      `Cannot find selected route for vessel reports  ID ${id}!`,
+      404
+    );
+  } catch (err) {
+    return err.message;
+  }
+};
 module.exports = {
   createVesselReport,
   getVesselReportById,
-  getVesselsReportByVoyageId
+  getVesselsReportByVoyageId,
+  selectSuggestedRoute,
+  getSelectedSuggestedRoute
 };
