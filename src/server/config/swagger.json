@@ -393,6 +393,55 @@
         }
       }
     },
+    "/voyages/{voyage_id}/vessel-reports?orderBy={orderBy}&limit={limit}&offset={offset}": {
+      "get": {
+        "description": "Returns all vessel-reports for a given voyage id.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get vessel-reports by voyage",
+        "tags": ["Vessel Reports"],
+        "operationId": "VesselReportsByVoyagesGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "voyage_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": "The Voyage ID."
+          },
+          {
+            "name": "limit",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum number of items to fetch."
+          },
+          {
+            "name": "orderBy",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Order in ascending (oldest first) `asc` or descending (newest first) `desc` order based on ID."
+          },
+          {
+            "name": "offset",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "Offset the starting point of the query."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/vessels": {
       "post": {
         "description": "Authentication: `superuser` only.",
@@ -727,6 +776,32 @@
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/vessel-reports/{vessel_report_id}/suggested-routes": {
+      "get": {
+        "description": "Returns suggested routes with vessel report ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Suggested Routes by vessel report ID",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesByVesselReportIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -1250,14 +1325,28 @@
       "title": "CreateSuggestedRouteRequest",
       "example": {
         "vessel_report_id": 1,
-        "eta": "2019-09-01",
-        "max_wave_height": 2.3,
-        "hfo": 24,
-        "lsfo": 43,
-        "total_cost": 224243,
-        "distance_over_ground": 2434,
-        "distance_through_water": 5254,
-        "avgspeed": 18.2
+        "eta": "2012-03-19T07:32Z",
+        "max_wave_height": 3.1,
+        "hfo": 32.1,
+        "lsfo": 11.2,
+        "total_cost": 142042,
+        "distance_over_ground": 1534.23,
+        "distance_through_water": 1832.23,
+        "avgspeed": 14.2,
+        "waypoints": [
+          {
+            "longitude": 55.65646,
+            "latitude": 12.53635,
+            "speed": 12,
+            "rpm": 800
+          },
+          {
+            "longitude": 55.65646,
+            "latitude": 12.53635,
+            "speed": 12,
+            "rpm": 800
+          }
+        ]
       },
       "type": "object",
       "properties": {
@@ -1295,6 +1384,12 @@
         "avgspeed": {
           "type": "number",
           "format": "double"
+        },
+        "waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Waypoint"
+          }
         }
       },
       "required": [
@@ -1306,7 +1401,8 @@
         "total_cost",
         "distance_over_ground",
         "distance_through_water",
-        "avgspeed"
+        "avgspeed",
+        "waypoints"
       ]
     },
     "CreateFavoriteVesselRequest": {

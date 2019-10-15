@@ -2,7 +2,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
-import { WithTextStory, WithEmojiStory } from "./Buttons";
 
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
@@ -12,10 +11,10 @@ import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
+import { LoginForm, LoginFormStory } from "./login-form";
 
-storiesOf("Button", module)
-  .add("with text", WithTextStory)
-  .add("with emoji", WithEmojiStory);
+import { LogoutButtonStory } from "./Buttons";
+import { ButtonStory } from "./Buttons";
 
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
@@ -41,3 +40,14 @@ const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageList", VoyageListStory)
   .add("VoyageTeaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
+
+storiesOf("Buttons", module)
+  .add("Button", ButtonStory)
+  .add("Logout Button", LogoutButtonStory);
+
+const LoginFormStories = storiesOf("Loginform", module).add(
+  "LoginForm",
+  LoginFormStory
+);
+
+LoginFormStories.addDecorator(withKnobs);
