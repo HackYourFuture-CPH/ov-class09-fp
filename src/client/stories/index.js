@@ -21,7 +21,7 @@ storiesOf("Button", module)
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
-storiesOf("Selected Table", module)
+storiesOf("Suggested Route Table", module)
   .add("Table", SuggestedRouteTableStory)
   .addDecorator(withKnobs);
 

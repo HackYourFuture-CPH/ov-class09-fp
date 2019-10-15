@@ -7,22 +7,23 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-function SuggestedRouteTable({ data = [] }) {
+const SuggestedRouteTable = props => {
+  const tableCellName = props.tableNames;
   return (
     <div>
       <h3>SELECTED ROUTE</h3>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>DATE</TableCell>
-            <TableCell align="right">LATITUDE</TableCell>
-            <TableCell align="right">LONGTIDUE</TableCell>
-            <TableCell align="right">SPEED</TableCell>
-            <TableCell align="right">EST.RPM</TableCell>
+            <TableCell>{tableCellName[0]}</TableCell>
+            <TableCell align="right">{tableCellName[1]}</TableCell>
+            <TableCell align="right">{tableCellName[2]}</TableCell>
+            <TableCell align="right">{tableCellName[3]}</TableCell>
+            <TableCell align="right">{tableCellName[4]}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(row => (
+          {props.data.map(row => (
             <TableRow key={row.key}>
               <TableCell component="th" scope="row">
                 {row.date}
@@ -38,6 +39,6 @@ function SuggestedRouteTable({ data = [] }) {
       <h4>Currently optimizing for the cheapest possible route.</h4>
     </div>
   );
-}
+};
 
 export default SuggestedRouteTable;

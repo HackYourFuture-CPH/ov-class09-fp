@@ -28,5 +28,10 @@ export function SuggestedRouteTableStory() {
       estimated_rpm: 61
     }
   ]);
-  return <SuggestedRouteTable data={data} />;
+  return (
+    <SuggestedRouteTable
+      data={data}
+      tableNames={["DATE", "LATITUDE", "LONGTIDUE", "SPEED", "EST.RPM"]}
+    />
+  );
 }
