@@ -15,6 +15,7 @@ import { LoginForm, LoginFormStory } from "./login-form";
 
 import { LogoutButtonStory } from "./Buttons";
 import { ButtonStory } from "./Buttons";
+import { VesselsOnMapStory } from "./VesselsOnMap";
 
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
@@ -51,3 +52,8 @@ const LoginFormStories = storiesOf("Loginform", module).add(
 );
 
 LoginFormStories.addDecorator(withKnobs);
+const VesselsOnMapStories = storiesOf("VesselsOnMap", module).add(
+  "VesselsOnMap",
+  VesselsOnMapStory
+);
+VesselsOnMapStories.addDecorator(withKnobs);

@@ -1,30 +1,31 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Popup, Polyline } from "react-leaflet";
 import MapMarker from "./Marker";
+import PropTypes from "prop-types";
 
 function MapComponent({
   centerMapCoordinates,
-  zoom = 12,
-  vessels = [
-    {
-      vessel_id: 1,
-      lat: 12.298037,
-      lng: 55.589353
-    }
-  ], // array containing vessels
-  suggestedRoute = [], // An array of suggested routes to be drawn on the map
-  elapsedRoute = [], //An array of elapsed routes to be drawn on the map
-  style = {
-    suggestedRouteColor: "#000",
-    elapsedRouteColor: "#fff",
-    vesselMarker: "<MarkerComponent>"
-  },
+  zoom = 1,
+  vessels = [],
+  suggestedRoute = [],
+  elapsedRoute = [],
+  // style = {
+  //   suggestedRouteColor: "#000",
+  //   elapsedRouteColor: "#fff",
+  //   vesselMarker: "<MarkerComponent>"
+  // },
   //   pathColor = "red",
-  displayMarkers = false
-  //   waypoints = []
+  displayMarkers = true
 }) {
-  const polyline = suggestedRoute.map(({ lat, lng }) => [lat, lng]);
-  const polyline1 = elapsedRoute.map(({ lat, lng }) => [lat, lng]);
+  const polyline = suggestedRoute.map(({ latitude, longitude }) => [
+    latitude,
+    longitude
+  ]);
+  const polyline1 = elapsedRoute.map(({ latitude, longitude }) => [
+    latitude,
+    longitude
+  ]);
+
   return (
     <Map center={centerMapCoordinates} zoom={zoom}>
       <TileLayer
@@ -34,14 +35,44 @@ function MapComponent({
       <Polyline color={"blue"} positions={polyline} />
       <Polyline color={"orange"} positions={polyline1} />
       {displayMarkers &&
-        vessels.map(({ lat, lng, message }) => (
-          <MapMarker key={`${lat}-${lng}`} position={[lat, lng]}>
-            <Popup>{message}</Popup>
+        vessels.map(({ latitude, longitude, vessel_name }) => (
+          <MapMarker
+            key={`${latitude}-${longitude}`}
+            position={[latitude, longitude]}
+          >
+            <Popup>{vessel_name}</Popup>
           </MapMarker>
         ))}
-      {/* { style.vesselMarker } */}
+
+      {/* {style.vesselMarker} */}
     </Map>
   );
 }
+
+MapComponent.propTypes = {
+  centerMapCoordinates: PropTypes.array,
+  // pathColor: PropTypes.string,
+  displayMarkers: PropTypes.bool,
+  zoom: PropTypes.number,
+  vessels: PropTypes.arrayOf(
+    PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      vessel_name: PropTypes.string
+    })
+  ),
+  suggestedRoute: PropTypes.arrayOf(
+    PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number
+    })
+  ),
+  elapsedRoute: PropTypes.arrayOf(
+    PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number
+    })
+  )
+};
 
 export default MapComponent;
