@@ -3,12 +3,29 @@
 const HttpError = require("../lib/utils/http-error");
 const knex = require("../../config/db");
 
-//Get vessels reports by vessel id
-const getVesselsReportByVoyageId = async voyage_id => {
-  const vesselReports = await knex.from("vessel_reports").where({ voyage_id });
-  if (vesselReports.length === 0) {
-    return `No voyage exist with that id ${voyage_id}.`;
+//Get vessels reports by voyage_id with limit, offset=0 and order =desc
+const getVesselsReportByVoyageId = async (voyage_id, query) => {
+  const voyage = await knex.from("voyages").where({ id: voyage_id });
+
+  const limit = parseInt(query.limit, 10) || 50;
+  const offset = parseInt(query.offset, 10) || 0;
+  const orderBy = query.orderBy || "desc";
+
+  if (voyage.length === 0) {
+    throw new HttpError(
+      "Bad request",
+      `No voyage exist with that id ${voyage_id}.`,
+      404
+    );
   }
+
+  const vesselReports = await knex
+    .from("vessel_reports")
+    .where({ voyage_id })
+    .orderBy("id", orderBy)
+    .limit(limit)
+    .offset(offset);
+
   return vesselReports;
 };
 
