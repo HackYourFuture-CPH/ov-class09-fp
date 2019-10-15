@@ -51,7 +51,7 @@ router.get(
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     vesselReportsController
-      .getVesselsReportByVoyageIdWithParams(req.params.id, req.query)
+      .getVesselsReportByVoyageId(req.params.id, req.query)
       .then(result => res.json(result))
       .catch(next);
   }
