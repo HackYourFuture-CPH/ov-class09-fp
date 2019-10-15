@@ -2,8 +2,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
-import { WithTextStory, WithEmojiStory } from "./Buttons";
-import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
@@ -13,10 +11,14 @@ import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
+import { LoginFormStory } from "./login-form";
 
-storiesOf("Button", module)
-  .add("with text", WithTextStory)
-  .add("with emoji", WithEmojiStory);
+import { ButtonStory, LogoutButtonStory } from "./Buttons";
+import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
+import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
+import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
+import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
+import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
@@ -46,3 +48,18 @@ const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageList", VoyageListStory)
   .add("VoyageTeaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
+
+const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
+  .add("Suggested Route Summary", suggestedRouteSummary)
+  .add("Suggested Route Details", suggestedRouteDetails)
+  .add("Suggested Route Card", suggestedRouteCard)
+  .add("Suggested Routes List", suggestedRoutesList);
+SuggestedRouteSummaryStories.addDecorator(withKnobs);
+
+storiesOf("Buttons", module).add("Button", ButtonStory);
+
+const LoginFormStories = storiesOf("Authentication", module)
+  .add("Login Form", LoginFormStory)
+  .add("Logout Button", LogoutButtonStory);
+
+LoginFormStories.addDecorator(withKnobs);

@@ -5,7 +5,7 @@ const knex = require("../../config/db");
 const getWaypointsById = async id => {
   try {
     const waypoints = await knex("waypoints")
-      .select("id", "longitude", "latitude", "created_at", "updated_at")
+      .select("*")
       .where({ id: id });
     if (waypoints.length === 0) {
       throw new HttpError(
@@ -23,7 +23,7 @@ const getWaypointsById = async id => {
 // Method for creating a waypoints
 
 const createWaypoints = async ({ body }) => {
-  const { latitude, longitude, suggested_route_id } = body;
+  const { latitude, longitude, suggested_route_id, speed, rpm } = body;
 
   // 1. Get the route
   const routes = await knex
@@ -43,32 +43,13 @@ const createWaypoints = async ({ body }) => {
   return await knex("waypoints").insert({
     latitude,
     longitude,
+    speed,
+    rpm,
     suggested_route_id: routes[0].id
   });
 };
 
-// Method for getting waypoints by route id
-const getWaypointsForRoute = async id => {
-  try {
-    const waypointsForRoute = await knex("waypoints").where({
-      suggested_route_id: id
-    });
-
-    if (waypointsForRoute.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `Cannot find waypoints for route ID ${id}!`,
-        404
-      );
-    }
-    return waypointsForRoute;
-  } catch (err) {
-    return err.message;
-  }
-};
-
 module.exports = {
   getWaypointsById,
-  createWaypoints,
-  getWaypointsForRoute
+  createWaypoints
 };

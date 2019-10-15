@@ -1,68 +1,60 @@
-CREATE TABLE `companies`
-(
+CREATE TABLE `organizations` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) UNIQUE NOT NULL,
-  `logo` text COMMENT 'Logo url',
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `name` varchar(100) UNIQUE NOT NULL,
+  `logo` text DEFAULT null,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `ecas`
-(
+CREATE TABLE `ecas` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `lon` float NOT NULL,
-  `lat` float NOT NULL,
-  `name` varchar(255) NOT NULL COMMENT 'Following zones exist: "hawaiian islands", "northeurope", "northamericanatlantic", "northamericanpacific", "usacaribbean"'
+  `longitude` decimal(11, 8) NOT NULL,
+  `latitude` decimal(10, 8) NOT NULL,
+  `name` varchar(50) NOT NULL
 );
 
-CREATE TABLE `ports`
-(
+CREATE TABLE `ports` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) UNIQUE NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `name` varchar(100) NOT NULL,
+  `latitude` decimal(10, 8) NOT NULL,
+  `longitude` decimal(11, 8) NOT NULL,
+  `depth` decimal NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `roles`
-(
+CREATE TABLE `user_roles` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(255) NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `role` varchar(30) NOT NULL,
+  `status` tinyint NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `selected_routes`
-(
-  `fk_voyage_id` int COMMENT 'TODO: Create composite key',
-  `fk_route_id` int COMMENT 'TODO: Create composite key',
-  `created_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Create composite key'
-);
-
-CREATE TABLE `users`
-(
+CREATE TABLE `users` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `confirmed` boolean COMMENT 'Has user confirmed email address?',
+  `role_id` int NOT NULL,
   `email` varchar(255) UNIQUE NOT NULL,
-  `role` ENUM ('operator', 'admin', 'super_user') NOT NULL DEFAULT 'operator',
-  `fk_company_id` int,
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `organization_id` int NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `status` tinyint,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `session_token` text DEFAULT null,
+  `refreshing_token` text DEFAULT null
 );
 
-CREATE TABLE `favorite_vessels`
-(
-  `user_id` integer COMMENT 'TODO: Make composite key',
-  `vessel_id` integer COMMENT 'TODO: Make composite key',
-  `created_on` timestamp NOT NULL DEFAULT (now())
+CREATE TABLE `favorite_vessels` (
+  `user_id` int NOT NULL,
+  `vessel_id` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`, `vessel_id`)
 );
 
-CREATE TABLE `routes`
-(
+CREATE TABLE `suggested_routes` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `fk_id_voyage` int,
-  `eta` datetime NOT NULL,
-  `sailtime` float NOT NULL,
+  `eta` datetime DEFAULT null,
   `max_wave_height` float NOT NULL,
   `hfo` float NOT NULL,
   `lsfo` float NOT NULL,
@@ -70,87 +62,75 @@ CREATE TABLE `routes`
   `distance_over_ground` float NOT NULL,
   `distance_through_water` float NOT NULL,
   `avgspeed` float NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `vessel_report_id` int NOT NULL
 );
 
-CREATE TABLE `vessels`
-(
+CREATE TABLE `vessels` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `fk_id_company` int,
-  `mmsi` numeric UNIQUE NOT NULL,
-  `name` varchar(255) UNIQUE NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `organization_id` int NOT NULL,
+  `mmsi` varchar(9) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `vessel_reports`
-(
+CREATE TABLE `vessel_reports` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `fk_vessel_id` int,
-  `position` int,
+  `voyage_id` int NOT NULL,
+  `latitude` decimal(10, 8) NOT NULL,
+  `longitude` decimal(11, 8) NOT NULL,
+  `eta` timestamp, 
   `current_speed` float NOT NULL,
   `hfo_consumption` float NOT NULL,
   `lsfo_consumption` float NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT (now())
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `selected_route_id` int DEFAULT null
 );
 
-CREATE TABLE `voyages`
-(
+CREATE TABLE `voyages` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `fk_id_vessel` int,
-  `etd` datetime NOT NULL COMMENT 'Estimate time of departure',
-  `eta` datetime NOT NULL COMMENT 'Estimate time of arrival',
-  `forwarddraft` float NOT NULL COMMENT 'Forward draft in meters. Measured perpendicular of the bow.',
-  `aftdraft` float NOT NULL COMMENT 'Aft draft in meters. Measured perpendicular to the stern.',
-  `optimisation_type` ENUM ('fixed_eta', 'least_cost_arrival', 'earliest_arrival') NOT NULL DEFAULT 'least_cost_arrival',
-  `depart_from` int NOT NULL COMMENT 'Departure waypoint',
-  `arrive_at` int NOT NULL COMMENT 'Arrival waypoint',
-  `sailtime` float NOT NULL DEFAULT 0 COMMENT 'Sailtime in hours',
-  `hfocost` float NOT NULL DEFAULT 0 COMMENT 'Heavy Fuel Oil (HFO) cost in US dollars.',
-  `lsfocost` float NOT NULL DEFAULT 0 COMMENT 'Low Sulfor Fuel Oil (LSFO) cost in US dollars.',
-  `hirerate` float COMMENT 'Hire rate per day. Optional, must only be filled out if the vessel is chartered.',
-  `status` ENUM ('created', 'ongoing', 'completed') NOT NULL DEFAULT 'created',
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `vessel_id` int NOT NULL,
+  `departure_time` datetime DEFAULT null,
+  `target_arrival_time` datetime DEFAULT null,
+  `forwarddraft` float NOT NULL,
+  `aftdraft` float NOT NULL,
+  `optimisation_type` ENUM ("earliest_arrival", "fixed_eta", "least_cost_arrival") DEFAULT "earliest_arrival",
+  `depart_from_port` int DEFAULT null,
+  `arrive_at_port` int DEFAULT null,
+  `hfocost` float DEFAULT 0,
+  `lsfocost` float DEFAULT 0,
+  `hirerate` float DEFAULT 0,
+  `status` ENUM ("created", "ongoing", "completed") NOT NULL DEFAULT "created",
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `waypoints`
-(
+CREATE TABLE `waypoints` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `fk_route_id` int,
-  `fk_port_id` int,
-  `lon` float NOT NULL,
-  `lat` float NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT (now()),
-  `updated_on` timestamp NOT NULL DEFAULT (now()) COMMENT 'TODO: Add ON UPDATE ON UPDATE CURRENT_TIMESTAMP'
+  `suggested_route_id` int,
+  `longitude` decimal(11, 8) NOT NULL,
+  `latitude` decimal(10, 8) NOT NULL,
+  `speed` decimal NOT NULL,
+  `rpm` decimal NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `sequence_id` int DEFAULT null
 );
 
-ALTER TABLE `users` ADD FOREIGN KEY (`fk_company_id`) REFERENCES `companies` (`id`);
+ALTER TABLE `suggested_routes` ADD FOREIGN KEY (`vessel_report_id`) REFERENCES `vessel_reports` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `voyages` ADD FOREIGN KEY (`fk_id_vessel`) REFERENCES `vessels` (`id`);
+ALTER TABLE `users` ADD FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`id`) ON DELETE CASCADE;
+ALTER TABLE `users` ADD FOREIGN KEY (`role_id`) REFERENCES `user_roles` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `routes` ADD FOREIGN KEY (`fk_id_voyage`) REFERENCES `voyages` (`id`);
+ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`selected_route_id`) REFERENCES `suggested_routes` (`id`) ON DELETE SET NULL;
+ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyages` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `waypoints` ADD FOREIGN KEY (`fk_route_id`) REFERENCES `routes` (`id`);
+ALTER TABLE `vessels` ADD FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `waypoints` ADD FOREIGN KEY (`fk_port_id`) REFERENCES `ports` (`id`);
+ALTER TABLE `voyages` ADD FOREIGN KEY (`arrive_at_port`) REFERENCES `ports` (`id`) ON DELETE CASCADE;
+ALTER TABLE `voyages` ADD FOREIGN KEY (`depart_from_port`) REFERENCES `ports` (`id`) ON DELETE CASCADE;
+ALTER TABLE `voyages` ADD FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `vessels` ADD FOREIGN KEY (`fk_id_company`) REFERENCES `companies` (`id`);
-
-ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`fk_vessel_id`) REFERENCES `vessels` (`id`);
-
-ALTER TABLE `voyages` ADD FOREIGN KEY (`depart_from`) REFERENCES `waypoints` (`id`);
-
-ALTER TABLE `voyages` ADD FOREIGN KEY (`arrive_at`) REFERENCES `waypoints` (`id`);
-
-ALTER TABLE `vessel_reports` ADD FOREIGN KEY (`position`) REFERENCES `waypoints` (`id`);
-
-ALTER TABLE `selected_routes` ADD FOREIGN KEY (`fk_route_id`) REFERENCES `routes` (`id`);
-
-ALTER TABLE `selected_routes` ADD FOREIGN KEY (`fk_voyage_id`) REFERENCES `voyages` (`id`);
-
-ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
-ALTER TABLE `favorite_vessels` ADD FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`);
-
+ALTER TABLE `waypoints` ADD FOREIGN KEY (`suggested_route_id`) REFERENCES `suggested_routes` (`id`) ON DELETE CASCADE;

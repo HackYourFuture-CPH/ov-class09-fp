@@ -15,18 +15,25 @@ const getSuggestedRoutes = async req => {
 
 // Get a suggested-route by id
 const getSuggestedRouteById = async id => {
+  let suggested_route_id = Number(id);
   try {
-    const suggested_route = await knex("suggested_routes")
+    const suggestedRoute = await knex.from("suggested_routes").where({ id });
+    const waypoints = await knex("waypoints")
       .select("*")
-      .where({ id });
-    if (suggested_route.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `Cannot find vessel for ID ${id}!`,
-        404
-      );
+      .where({ suggested_route_id: id });
+
+    if (suggestedRoute.length > 0) {
+      const suggestedRouteWaypoints = suggestedRoute.map(elem => {
+        elem.waypoints = waypoints;
+        return elem;
+      });
+      return suggestedRouteWaypoints;
     }
-    return suggested_route;
+    throw new HttpError(
+      "Bad request",
+      `Cannot find suggested route for ID ${id}!`,
+      404
+    );
   } catch (err) {
     return err.message;
   }
@@ -35,9 +42,9 @@ const getSuggestedRouteById = async id => {
 // Get a suggested-routes by voyage id
 const getSuggestedRouteByVoyageId = async id => {
   try {
-    const suggested_routesByVoyageId = await knex("suggested_routes")
-      .select("*")
-      .where({ voyage_id: id });
+    const suggested_routesByVoyageId = await knex("suggested_routes").where({
+      voyage_id: id
+    });
     if (suggested_routesByVoyageId.length === 0) {
       throw new HttpError(
         "Bad request",
@@ -51,10 +58,29 @@ const getSuggestedRouteByVoyageId = async id => {
   }
 };
 
+//Get Suggested-routes by vessel-report-id
+const getSuggestedRoutesByVesselReportId = async id => {
+  try {
+    const suggestedRoutes = await knex("suggested_routes")
+      .select("*")
+      .where({ vessel_report_id: id });
+    if (suggestedRoutes.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `Cannot find any Suggested route for Vessel-report ID ${id}!`,
+        404
+      );
+    }
+    return suggestedRoutes;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 // Create a route
 const createSuggestedRouteWithWaypoints = async ({ body }) => {
   const {
-    voyage_id,
+    vessel_report_id,
     eta,
     max_wave_height,
     hfo,
@@ -69,44 +95,58 @@ const createSuggestedRouteWithWaypoints = async ({ body }) => {
   // using momentJS for formating datetime
   const etaDateTimeFormat = moment(eta).format("YYYY-MM-DD HH:mm:ss");
 
-  const voyage = await knex
-    .from("voyages")
-    .select("*")
-    .where({ id: voyage_id });
-  console.log(voyage);
-  if (voyage.length === 0) {
-    throw new HttpError("Bad request", "voyage doesn't  exists!", 404);
+  const vessel_reports = await knex
+    .from("vessel_reports")
+    .where({ id: vessel_report_id });
+  if (vessel_reports.length === 0) {
+    throw new HttpError(
+      "Bad request",
+      `Vessel report ${vessel_report_id} doesn't  exists!`,
+      404
+    );
   }
+  return knex.transaction(transaction => {
+    return knex("suggested_routes")
+      .returning("total_cost")
+      .transacting(transaction)
+      .insert({
+        vessel_report_id,
+        eta: etaDateTimeFormat,
+        max_wave_height,
+        hfo,
+        lsfo,
+        total_cost,
+        distance_over_ground,
+        distance_through_water,
+        avgspeed
+      })
+      .then(function([id]) {
+        let sequence_id = 1;
+        const routeWaypoints = waypoints.map(waypoint => {
+          const { latitude, longitude, speed, rpm } = waypoint;
 
-  return await knex("suggested_routes")
-    .insert({
-      voyage_id,
-      eta: etaDateTimeFormat,
-      max_wave_height: max_wave_height,
-      hfo: hfo,
-      lsfo: lsfo,
-      total_cost: total_cost,
-      distance_over_ground: distance_over_ground,
-      distance_through_water: distance_through_water,
-      avgspeed: avgspeed
-    })
-    .then(function([id]) {
-      let sequence_id = 1;
-      const waypointsForRoute = waypoints.map(waypoint => {
-        return {
-          suggested_route_id: id,
-          sequence_id: sequence_id++,
-          longitude: waypoint.longitude,
-          latitude: waypoint.latitude
-        };
-      });
-
-      return knex("waypoints").insert(waypointsForRoute);
-    });
+          return {
+            suggested_route_id: id,
+            sequence_id: sequence_id++,
+            latitude: latitude,
+            longitude: longitude,
+            speed: speed,
+            rpm: rpm
+          };
+        });
+        return knex("waypoints")
+          .returning("latitude")
+          .transacting(transaction)
+          .insert(routeWaypoints);
+      })
+      .then(transaction.commit)
+      .catch(transaction.rollback);
+  });
 };
 module.exports = {
   getSuggestedRoutes,
   getSuggestedRouteById,
   getSuggestedRouteByVoyageId,
+  getSuggestedRoutesByVesselReportId,
   createSuggestedRouteWithWaypoints
 };

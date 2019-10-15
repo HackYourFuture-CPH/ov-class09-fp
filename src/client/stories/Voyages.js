@@ -28,5 +28,6 @@ export function VoyageListStory() {
       eta: "2019-08-24 10:54"
     }
   ]);
+
   return <VoyageList voyages={voyageList} />;
 }
