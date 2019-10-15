@@ -393,6 +393,55 @@
         }
       }
     },
+    "/voyages/{voyage_id}/vessel-reports?orderBy={orderBy}&limit={limit}&offset={offset}": {
+      "get": {
+        "description": "Returns all vessel-reports for a given voyage id.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get vessel-reports by voyage",
+        "tags": ["Vessel Reports"],
+        "operationId": "VesselReportsByVoyagesGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "voyage_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "limit",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "orderBy",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "offset",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/vessels": {
       "post": {
         "description": "Authentication: `superuser` only.",
