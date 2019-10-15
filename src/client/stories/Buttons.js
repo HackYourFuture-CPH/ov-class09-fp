@@ -1,15 +1,18 @@
 import React from "react";
-import { Button } from "@storybook/react/demo";
+import LogoutButton from "../components/LogoutButton";
+import Button from "../components/Button";
 
-export function WithTextStory() {
-  return <Button>Hello there Button</Button>;
-}
-export function WithEmojiStory() {
+export function ButtonStory() {
   return (
-    <Button>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
+    <Button
+      label={"Button"}
+      handleClick={() => {
+        console.log("Button Click");
+      }}
+    />
   );
+}
+
+export function LogoutButtonStory() {
+  return <LogoutButton />;
 }
