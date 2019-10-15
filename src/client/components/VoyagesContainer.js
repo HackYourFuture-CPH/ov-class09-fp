@@ -12,9 +12,9 @@ export class VoyagesContainer extends Component {
     };
   }
 
-  FetchVesselReport(elem) {
+  FetchVesselReport(voyage) {
     fetch(
-      `/api/voyages/${elem.id}/vessel-reports?offset=0&limit=50&orderBy="desc"`,
+      `/api/voyages/${voyage.id}/vessel-reports?offset=0&limit=50&orderBy="desc"`,
       {
         method: "GET",
         headers: {
@@ -26,10 +26,10 @@ export class VoyagesContainer extends Component {
     )
       .then(res => res.json())
       .then(vesselReportData => {
-        elem["eta"] = vesselReportData[0].eta;
-        elem["latitude"] = vesselReportData[0].latitude;
-        elem["longitude"] = vesselReportData[0].longitude;
-        this.emptyArray = [...this.emptyArray, elem];
+        voyage["eta"] = vesselReportData[0].eta;
+        voyage["latitude"] = vesselReportData[0].latitude;
+        voyage["longitude"] = vesselReportData[0].longitude;
+        this.emptyArray = [...this.emptyArray, voyage];
       })
       .then(() => this.setState({ currentVoyages: this.emptyArray }));
   }
@@ -48,7 +48,7 @@ export class VoyagesContainer extends Component {
     })
       .then(res => res.json())
       .then(voyageData => {
-        voyageData.voyages.map(elem => this.FetchVesselReport(elem));
+        voyageData.voyages.map(voyage => this.FetchVesselReport(voyage));
       });
   }
 

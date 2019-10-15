@@ -20,7 +20,7 @@ const MainRouter = props => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={LoginForm} />
           <PrivateRoute path="/app" component={AppLayout} />
-          <PrivateRoute exact path="/voyages" component={VoyagesContainer} />
+          <Route exact path="/voyages" component={VoyagesContainer} />
           <PrivateRoute
             path="/voyages-summary"
             component={VoyagesSummaryContainer}
