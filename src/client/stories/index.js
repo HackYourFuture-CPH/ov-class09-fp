@@ -23,10 +23,6 @@ import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
 
-storiesOf("Suggested Route Table", module)
-  .add("Table", SuggestedRouteTableStory)
-  .addDecorator(withKnobs);
-
 const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
   "VoyageDetails",
   VoyageDetailsStory
@@ -53,7 +49,8 @@ const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
   .add("Suggested Route Summary", suggestedRouteSummary)
   .add("Suggested Route Details", suggestedRouteDetails)
   .add("Suggested Route Card", suggestedRouteCard)
-  .add("Suggested Routes List", suggestedRoutesList);
+  .add("Suggested Routes List", suggestedRoutesList)
+  .add("Suggested Route Table", SuggestedRouteTableStory);
 SuggestedRouteSummaryStories.addDecorator(withKnobs);
 
 storiesOf("Buttons", module).add("Button", ButtonStory);
