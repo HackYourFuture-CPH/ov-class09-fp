@@ -48,13 +48,14 @@ const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageTeaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
 
-const SuggestedRouteSummaryStories = storiesOf("SuggestedRoutes", module)
-  .add("suggestedRouteSummary", suggestedRouteSummary)
-  .add("suggestedRouteDetails", suggestedRouteDetails)
-  .add("suggestedRouteCard", suggestedRouteCard)
-  .add("suggestedRoutesList", suggestedRoutesList);
+const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
+  .add("Suggested Route Summary", suggestedRouteSummary)
+  .add("Suggested Route Details", suggestedRouteDetails)
+  .add("Suggested Route Card", suggestedRouteCard)
+  .add("Suggested Routes List", suggestedRoutesList);
 SuggestedRouteSummaryStories.addDecorator(withKnobs);
-const LoginFormStories = storiesOf("Loginform", module).add(
+
+const LoginFormStories = storiesOf("Login Form", module).add(
   "LoginForm",
   LoginFormStory
 );
