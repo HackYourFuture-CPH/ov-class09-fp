@@ -61,6 +61,25 @@ const getSuggestedRouteByVoyageId = async id => {
   }
 };
 
+//Get Suggested-routes by vessel-report-id
+const getSuggestedRoutesByVesselReportId = async id => {
+  try {
+    const suggestedRoutes = await knex("suggested_routes")
+      .select("*")
+      .where({ vessel_report_id: id });
+    if (suggestedRoutes.length === 0) {
+      throw new HttpError(
+        "Bad request",
+        `Cannot find any Suggested route for Vessel-report ID ${id}!`,
+        404
+      );
+    }
+    return suggestedRoutes;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 // Create a route
 const createSuggestedRouteWithWaypoints = async ({ body }) => {
   const {
@@ -118,5 +137,6 @@ module.exports = {
   getSuggestedRoutes,
   getSuggestedRouteById,
   getSuggestedRouteByVoyageId,
+  getSuggestedRoutesByVesselReportId,
   createSuggestedRouteWithWaypoints
 };
