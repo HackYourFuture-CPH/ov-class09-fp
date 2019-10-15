@@ -742,6 +742,58 @@
         }
       }
     },
+    "/vessel-reports/{vessel_report_id}/suggested-routes": {
+      "get": {
+        "description": "Returns suggested routes with vessel report ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Get Suggested Routes by vessel report ID",
+        "tags": ["Suggested Routes"],
+        "operationId": "SuggestedRoutesByVesselReportIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user-roles/{role}/users": {
+      "get": {
+        "description": "Returns users with the sepcific role.\n\nAuthentication: `superuser`, `admin`.",
+        "summary": "Get Users by specific role",
+        "tags": ["User by difference roles"],
+        "operationId": "usersByRoleGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/favorite-vessels": {
       "post": {
         "description": "Creates a favorite vessel (association between user and vessel).\n\nAuthentication: `superuser`, `admin` & `operator`.",
