@@ -30,7 +30,6 @@ InputFieldNumber.PropTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   unit: PropTypes.string,
-  step: PropTypes.number,
   value: PropTypes.number,
   onDataInputChange: PropTypes.func
 };

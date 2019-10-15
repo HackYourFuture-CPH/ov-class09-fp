@@ -96,17 +96,7 @@ class StartVoyage extends Component {
       hfocost
     } = this.state;
 
-    const {
-      vessels,
-      ports,
-      voyages,
-      draft_unit,
-      fuelCost_unit,
-      rate_unit
-      /*rate_step,
-      draft_step,
-      fuelCost_step*/
-    } = this.props;
+    const { vessels, ports, voyages } = this.props;
 
     let checkBoxLogic;
     if (this.state.isChecked === true) {

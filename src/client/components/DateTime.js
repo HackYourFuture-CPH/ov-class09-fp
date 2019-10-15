@@ -11,7 +11,7 @@ function DateTime({
 }) {
   return (
     <React.Fragment>
-      <label>{label} </label>
+      <label>{label}</label>
       <label>
         Date
         <input
