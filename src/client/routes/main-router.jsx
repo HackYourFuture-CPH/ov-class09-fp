@@ -10,6 +10,7 @@ import VoyagesContainer from "../components/VoyagesContainer";
 import VoyagesSummaryContainer from "../components/VoyagesSummaryContainer";
 import AdminContainer from "../components/AdminContainer";
 import VoyageDetailsContainer from "../components/VoyageDetailsContainer";
+import SelectedRouteContainer from "../components/SelectedRouteContainer";
 import UnMatch from "../components/UnMatch";
 
 const MainRouter = props => {
@@ -27,8 +28,13 @@ const MainRouter = props => {
           />
           <PrivateRoute path="/admin" component={AdminContainer} />
           <PrivateRoute
+            exact
             path="/voyages/:voyage_id"
             component={VoyageDetailsContainer}
+          />
+          <PrivateRoute
+            path="/voyages/:voyage_id/vessel_reports/:vessel_reports_id/suggested-routes"
+            component={SelectedRouteContainer}
           />
           <Route path="*" component={UnMatch} />
         </Switch>
