@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
+import { MapMarkerStory } from "./MapMarkerStory";
 
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
@@ -19,7 +20,9 @@ import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 
-const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
+const MapStories = storiesOf("Map", module)
+  .add("Map", MapStory)
+  .add("Map Marker", MapMarkerStory);
 MapStories.addDecorator(withKnobs);
 
 const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
