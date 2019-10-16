@@ -1,13 +1,7 @@
 import React from "react";
 import InputFieldNumber from "../components/InputFieldNumber";
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  array,
-  object
-} from "@storybook/addon-knobs";
+import { text, number } from "@storybook/addon-knobs";
+
 export function InputFieldNumberStory() {
   const label = text("label", "Numerical Input");
   const step = number("step", 0.01);

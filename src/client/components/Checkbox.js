@@ -10,7 +10,7 @@ function Checkbox({ label, handleCheckbox }) {
   );
 }
 
-Checkbox.PropTypes = {
+Checkbox.propTypes = {
   label: PropTypes.string,
   handleCheckbox: PropTypes.func
 };

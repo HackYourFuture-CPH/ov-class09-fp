@@ -16,11 +16,11 @@ class StartVoyage extends Component {
     departure_time: "",
     target_arrival_time: "",
     optimisation_type: {},
-    hirerate: "",
-    forwarddraft: "",
-    aftdraft: "",
-    lfsocost: "",
-    hfocost: "",
+    hirerate: 0,
+    forwarddraft: 0,
+    aftdraft: 0,
+    lfsocost: 0,
+    hfocost: 0,
     departureDate: "",
     departureTime: "",
     arrivalDate: "",
@@ -123,9 +123,7 @@ class StartVoyage extends Component {
             label="Chartered vessel"
             handleCheckbox={this.handleToggleCheckbox}
           />
-
           {checkBoxLogic}
-
           <Dropdown
             label="Depart from"
             optionsMap={ports}
@@ -193,7 +191,7 @@ class StartVoyage extends Component {
     );
   }
 }
-StartVoyage.PropTypes = {
+StartVoyage.propTypes = {
   departureDate: PropTypes.string,
   departureTime: PropTypes.string,
   arrivalDate: PropTypes.string,
@@ -211,22 +209,26 @@ StartVoyage.PropTypes = {
   handleTimeInputChange: PropTypes.func,
   handleDateInputChange: PropTypes.func,
   handleDataInputChange: PropTypes.func,
-
-  voyages: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object
-  ]),
-  ports: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object
-  ]),
-  vessels: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object
-  ])
+  voyages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      optimization_type: PropTypes.string
+    })
+  ),
+  ports: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      latitude: PropTypes.number,
+      depth: PropTypes.number,
+      longitude: PropTypes.number
+    })
+  ),
+  vessels: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string
+    })
+  )
 };
 
 export default StartVoyage;
