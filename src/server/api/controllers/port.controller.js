@@ -20,8 +20,8 @@ const getPortById = async id => {
 const createPort = async ({ body }) => {
   const { name, depth, latitude, longitude } = body;
 
-  if (name.length === 0) {
-    throw new HttpError("Bad request", "Port name is missing!", 409);
+  if (name.length === 0 && waypoint.length == 0) {
+    throw new HttpError("Bad request", "Port name/waypoint is missing!", 409);
   }
 
   const ports = await knex

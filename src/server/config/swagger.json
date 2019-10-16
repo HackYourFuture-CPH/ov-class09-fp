@@ -1066,20 +1066,20 @@
         "name": {
           "type": "string"
         },
-        "waypoints": {
-          "type": "array",
+        "waypoint": {
+          "type": "object",
           "items": {
             "$ref": "#/definitions/Waypoint"
           }
         }
       },
-      "required": ["name", "waypoints"]
+      "required": ["name", "waypoint"]
     },
     "Waypoint": {
       "title": "Waypoint",
       "example": {
-        "lon": 55.65646,
-        "lat": 12.53635
+        "longitude": 55.65646,
+        "latitude": 12.53635
       },
       "type": "object",
       "properties": {
