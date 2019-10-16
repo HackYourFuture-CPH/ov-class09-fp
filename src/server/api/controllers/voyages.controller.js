@@ -68,7 +68,7 @@ const getVoyagesByOrganization = async (organizationID, query) => {
         404
       );
     }
-    const voyagesStatus = query.status;
+    const voyageStatus = query.status;
     const limit = parseInt(query.limit, 10) || 50;
     const offset = parseInt(query.offset, 10) || 0;
     const orderBy = query.orderBy || "desc";
@@ -77,7 +77,7 @@ const getVoyagesByOrganization = async (organizationID, query) => {
       .join("vessels as ves", "ves.organization_id", "org.id")
       .where("ves.organization_id", organizationID)
       .join("voyages as voy", "voy.vessel_id", "ves.id")
-      .where("voy.status", voyagesStatus)
+      .where("voy.status", voyageStatus)
       .join("ports as p1", "p1.id", "voy.depart_from_port")
       .join("ports as p2", "p2.id", "voy.arrive_at_port")
       .select(
@@ -108,7 +108,7 @@ const getVoyagesByOrganization = async (organizationID, query) => {
     if (voyages.length === 0) {
       throw new HttpError(
         "Bad request",
-        `There are no ${voyagesStatus} Voyages for Organization with ID ${organizationID}!`,
+        `There are no ${voyageStatus} Voyages for Organization with ID ${organizationID}!`,
         404
       );
     }
