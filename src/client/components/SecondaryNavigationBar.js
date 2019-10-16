@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Button from "./Button";
 class SecondaryNavigationBar extends Component {
   state = {
     userName: "",
@@ -7,10 +7,6 @@ class SecondaryNavigationBar extends Component {
   };
 
   render() {
-    // this.setState({
-    //     userName: "Fowad",
-    //     userRole: "superuser"
-    // });
     if (
       this.props.userRole.toLowerCase() === "admin" ||
       this.props.userRole.toLowerCase() === "superuser"
@@ -21,12 +17,14 @@ class SecondaryNavigationBar extends Component {
           <p>
             <a href="">Administration</a>
           </p>
+          <Button label={"Logout"} />
         </div>
       );
     } else {
       return (
         <div>
           <h4>{this.props.userName}</h4>
+          <Button label={"Logout"} />
         </div>
       );
     }
