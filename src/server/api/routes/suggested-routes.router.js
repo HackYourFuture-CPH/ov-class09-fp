@@ -13,7 +13,6 @@ const ROLES = require("../../constants/roles");
 // controllers
 const suggestedRoutesController = require("../controllers/suggested-routes.controller");
 // controllers
-const waypointsController = require("../controllers/waypoints.controller");
 
 // ENDPOINT: /api/suggested-routes/ :GET
 router.get("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
@@ -43,14 +42,6 @@ router.post("/", authorizeUser(ROLES.SUPER_USER), (req, res, next) => {
     .createSuggestedRouteWithWaypoints({
       body: req.body
     })
-    .then(result => res.json(result))
-    .catch(next);
-});
-
-// ENDPOINT: /api/suggested-routes/:suggested_route_id/waypoints/ :GET
-router.get("/:suggested_route_id/waypoints", (req, res, next) => {
-  waypointsController
-    .getWaypointsForRoute(req.params.suggested_route_id)
     .then(result => res.json(result))
     .catch(next);
 });
