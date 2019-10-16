@@ -20,18 +20,30 @@ export class VoyagesContainer extends Component {
         headers: {
           "Content-Type": "application/json",
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTE1NTg1NiwiZXhwIjoxNTcxMTkxODU2fQ.iUbAtbxDl7DXiWhsxIct9aNR9ezd3AcQpALn7NUD_Gk"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTI0MzUxNywiZXhwIjoxNTcxMjc5NTE3fQ.RfZyHFCxPh8Qot4lQP8IGfIfj0gPZL0zdUj2z4KtRZU"
         }
       }
     )
       .then(res => res.json())
       .then(vesselReportData => {
-        voyage["eta"] = vesselReportData[0].eta;
-        voyage["latitude"] = vesselReportData[0].latitude;
-        voyage["longitude"] = vesselReportData[0].longitude;
+        // voyage["eta"] = vesselReportData[0].eta;
+        // voyage["latitude"] = vesselReportData[0].latitude;
+        // voyage["longitude"] = vesselReportData[0].longitude;
+        // vesselObj["vessel_id"] = voyage.vessel_id;
+        // vesselObj["vessel_reports"] = [
+        //   {
+        //     'latitude': vesselReportData[0].latitude,
+        //     'longitude': vesselReportData[0].longitude
+        //   }
+        // ];
+        voyage["vessel_reports"] = [vesselReportData[0]];
         this.emptyArray = [...this.emptyArray, voyage];
       })
-      .then(() => this.setState({ currentVoyages: this.emptyArray }));
+      .then(() =>
+        this.setState({ currentVoyages: this.emptyArray }, () =>
+          console.log(this.state)
+        )
+      );
   }
 
   componentDidMount() {
@@ -43,7 +55,7 @@ export class VoyagesContainer extends Component {
       headers: {
         "Content-Type": "application/json",
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTE1NTg1NiwiZXhwIjoxNTcxMTkxODU2fQ.iUbAtbxDl7DXiWhsxIct9aNR9ezd3AcQpALn7NUD_Gk"
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTI0MzUxNywiZXhwIjoxNTcxMjc5NTE3fQ.RfZyHFCxPh8Qot4lQP8IGfIfj0gPZL0zdUj2z4KtRZU"
       }
     })
       .then(res => res.json())

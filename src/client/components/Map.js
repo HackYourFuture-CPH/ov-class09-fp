@@ -5,38 +5,72 @@ import PropTypes from "prop-types";
 
 function MapComponent({
   centerMapCoordinates,
-  pathColor = "red",
-  displayMarkers = false,
-  zoom = 12,
-  waypoints = []
+  zoom = 1,
+  vessels = [],
+  suggestedRoute = [],
+  elapsedRoute = [],
+  // style = {
+  //   suggestedRouteColor: "#000",
+  //   elapsedRouteColor: "#fff",
+  //   vesselMarker: "<MarkerComponent>"
+  // },
+  //   pathColor = "red",
+  displayMarkers = true
 }) {
-  const polyline = waypoints.map(({ lat, lng }) => [lat, lng]);
+  const polyline = suggestedRoute.map(({ vessel_reports }) => [
+    vessel_reports[0].latitude,
+    vessel_reports[0].longitude
+  ]);
+  const polyline1 = elapsedRoute.map(({ vessel_reports }) => [
+    vessel_reports[0].latitude,
+    vessel_reports[0].longitude
+  ]);
+  console.log(vessels);
   return (
     <Map center={centerMapCoordinates} zoom={zoom}>
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Polyline color={pathColor} positions={polyline} />
+      <Polyline color={"blue"} positions={polyline} />
+      <Polyline color={"orange"} positions={polyline1} />
       {displayMarkers &&
-        waypoints.map(({ lat, lng }) => (
-          <MapMarker key={`${lat}-${lng}`} position={[lat, lng]}>
-            <Popup>{}</Popup>
+        vessels.map(({ vessel_name, vessel_reports }) => (
+          <MapMarker
+            key={`${vessel_reports[0].latitude}-${vessel_reports[0].longitude}`}
+            position={[vessel_reports[0].latitude, vessel_reports[0].longitude]}
+          >
+            <Popup>{vessel_name}</Popup>
           </MapMarker>
         ))}
+
+      {/* {style.vesselMarker} */}
     </Map>
   );
 }
 
 MapComponent.propTypes = {
   centerMapCoordinates: PropTypes.array,
-  pathColor: PropTypes.string,
+  // pathColor: PropTypes.string,
   displayMarkers: PropTypes.bool,
   zoom: PropTypes.number,
-  waypoints: PropTypes.arrayOf(
+  vessels: PropTypes.arrayOf(
     PropTypes.shape({
-      lat: PropTypes.number,
-      lng: PropTypes.number
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      vessel_name: PropTypes.string
+    })
+  ),
+  suggestedRoute: PropTypes.arrayOf(
+    PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number
+    })
+  ),
+  elapsedRoute: PropTypes.arrayOf(
+    PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number
     })
   )
 };

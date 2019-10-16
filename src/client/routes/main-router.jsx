@@ -26,7 +26,7 @@ const MainRouter = props => {
             component={VoyagesSummaryContainer}
           />
           <PrivateRoute path="/admin" component={AdminContainer} />
-          <PrivateRoute
+          <Route
             path="/voyages/:voyage_id"
             component={VoyageDetailsContainer}
           />

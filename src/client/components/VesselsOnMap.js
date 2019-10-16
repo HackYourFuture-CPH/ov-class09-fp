@@ -17,15 +17,15 @@ function MapComponent({
   //   pathColor = "red",
   displayMarkers = true
 }) {
-  const polyline = suggestedRoute.map(({ latitude, longitude }) => [
-    latitude,
-    longitude
+  const polyline = suggestedRoute.map(({ vessel_reports }) => [
+    vessel_reports[0].latitude,
+    vessel_reports[0].longitude
   ]);
-  const polyline1 = elapsedRoute.map(({ latitude, longitude }) => [
-    latitude,
-    longitude
+  const polyline1 = elapsedRoute.map(({ vessel_reports }) => [
+    vessel_reports[0].latitude,
+    vessel_reports[0].longitude
   ]);
-
+  console.log(vessels);
   return (
     <Map center={centerMapCoordinates} zoom={zoom}>
       <TileLayer
@@ -35,10 +35,10 @@ function MapComponent({
       <Polyline color={"blue"} positions={polyline} />
       <Polyline color={"orange"} positions={polyline1} />
       {displayMarkers &&
-        vessels.map(({ latitude, longitude, vessel_name }) => (
+        vessels.map(({ vessel_name, vessel_reports }) => (
           <MapMarker
-            key={`${latitude}-${longitude}`}
-            position={[latitude, longitude]}
+            key={`${vessel_reports[0].latitude}-${vessel_reports[0].longitude}`}
+            position={[vessel_reports[0].latitude, vessel_reports[0].longitude]}
           >
             <Popup>{vessel_name}</Popup>
           </MapMarker>

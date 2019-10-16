@@ -6,19 +6,20 @@ function VoyageList({ voyages }) {
   const voyageList = voyages.map(
     ({
       id,
-      vessel_name,
-      depart_from,
-      arrive_at,
-      departure_time,
-      target_arrival_time
+      vessel_name: vesselName,
+      depart_from: departFrom,
+      arrive_at: arriveAt,
+      departure_time: departureTime,
+      vessel_reports: vesselReports
     }) => (
       <VoyageTeaser
         key={id}
-        vessel_name={vessel_name}
-        depart_from={depart_from}
-        arrive_at={arrive_at}
-        departure_time={departure_time}
-        target_arrival_time={target_arrival_time}
+        id={id}
+        vessel_name={vesselName}
+        depart_from={departFrom}
+        arrive_at={arriveAt}
+        departure_time={departureTime}
+        eta={vesselReports[0].eta}
       />
     )
   );
@@ -34,7 +35,7 @@ VoyageList.propTypes = {
       depart_from: PropTypes.string,
       departure_time: PropTypes.string,
       arrive_at: PropTypes.string,
-      target_arrival_time: PropTypes.string
+      eta: PropTypes.string
     })
   )
 };
