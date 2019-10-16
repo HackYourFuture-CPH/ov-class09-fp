@@ -33,14 +33,9 @@ VoyageDetailsStories.addDecorator(withKnobs);
 
 const CardStories = storiesOf("Card", module)
   .add("DataCard", DataCardStory)
-  .add("CardGroup", CardGroupStory);
+  .add("CardGroup", CardGroupStory)
+  .add("Cost Widget Card", CostWidgetStory);
 CardStories.addDecorator(withKnobs);
-
-const CostWidgetStories = storiesOf("Cost Widget", module).add(
-  "Cost Widget Card",
-  CostWidgetStory
-);
-CostWidgetStories.addDecorator(withKnobs);
 
 const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageList", VoyageListStory)
