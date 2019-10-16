@@ -27,7 +27,8 @@ const login = async ({ body }) => {
         const jwtSignObject = {
           id: user.id,
           role: user.role,
-          organization_id: user.organization_id
+          organization_id: user.organization_id,
+          user_name: user.name
         };
 
         const token = jwt.sign(jwtSignObject, process.env.SECRET_KEY, {
