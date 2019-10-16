@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, withRouter, Switch } from "react-router-dom";
+import { Route, withRouter, Switch, Redirect } from "react-router-dom";
 
 import Home from "./../Home";
 import LoginForm from "./../components/login-form";
@@ -17,7 +17,6 @@ const MainRouter = props => {
     <React.Fragment>
       <div className="container">
         <Switch>
-          <Route exact path="/" component={Home} />
           <Route exact path="/login" component={LoginForm} />
           <PrivateRoute path="/app" component={AppLayout} />
           <Route exact path="/voyages" component={VoyagesContainer} />
@@ -29,6 +28,11 @@ const MainRouter = props => {
           <PrivateRoute
             path="/voyages/:voyage_id"
             component={VoyageDetailsContainer}
+          />
+          <Route
+            exact
+            path="/"
+            component={() => <Redirect from="/" to="/voyages" />}
           />
           <Route path="*" component={UnMatch} />
         </Switch>
