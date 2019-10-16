@@ -6,7 +6,7 @@
     "description": "API documentation for the Optimum Voyage app.",
     "contact": {}
   },
-  "host": "localhost:3000",
+  "host": "",
   "basePath": "/api",
   "securityDefinitions": {
     "Authorization": {
