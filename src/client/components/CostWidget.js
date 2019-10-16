@@ -26,11 +26,11 @@ function CostWidget({
 }
 
 CostWidget.propTypes = {
-  totalCost: PropTypes.number,
-  hfoCost: PropTypes.number,
-  lsfoCost: PropTypes.number,
-  hfoConsumption: PropTypes.number,
-  lsfoConsumption: PropTypes.number
+  totalCost: PropTypes.number.isRequired,
+  hfoCost: PropTypes.number.isRequired,
+  lsfoCost: PropTypes.number.isRequired,
+  hfoConsumption: PropTypes.number.isRequired,
+  lsfoConsumption: PropTypes.number.isRequired
 };
 
 export default CostWidget;
