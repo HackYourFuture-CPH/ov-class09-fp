@@ -194,11 +194,6 @@ class StartVoyage extends Component {
   }
 }
 StartVoyage.PropTypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
-  fuelCost_unit: PropTypes.string,
-  draft_unit: PropTypes.string,
-  rate_unit: PropTypes.string,
   departureDate: PropTypes.string,
   departureTime: PropTypes.string,
   arrivalDate: PropTypes.string,

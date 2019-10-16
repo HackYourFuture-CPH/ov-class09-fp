@@ -37,7 +37,7 @@ function DateTime({
 }
 
 DateTime.PropTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
   time: PropTypes.string,
   date: PropTypes.string,

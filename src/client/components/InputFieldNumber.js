@@ -27,7 +27,7 @@ class InputFieldNumber extends Component {
 }
 
 InputFieldNumber.PropTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
   unit: PropTypes.string,
   value: PropTypes.number,

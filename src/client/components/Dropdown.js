@@ -15,12 +15,12 @@ function Dropdown({ label, optionsMap, optionNameKey, handleSelection }) {
 
 Dropdown.propTypes = {
   label: PropTypes.string,
-  optionNameKey: PropTypes.string,
+  optionNameKey: PropTypes.string.isRequired,
   optionsMap: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.object
-  ]),
+  ]).isRequired,
   handleSelection: PropTypes.func
 };
 
