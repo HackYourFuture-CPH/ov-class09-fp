@@ -11,12 +11,13 @@ const cors = require("cors");
 const HttpError = require("./api/lib/utils/http-error");
 const buildPath = path.join(__dirname, "../../dist");
 
-const router = require("./api/routes/router");
+const apiRouter = require("./api/routes/api-router");
 
 require("./config/db");
 let app = express();
 
 app.use(express.static(buildPath));
+
 app.locals.ENV = process.env.NODE_ENV;
 app.locals.ENV_DEVELOPMENT = process.env.NODE_ENV === "development";
 
@@ -35,7 +36,8 @@ app.use(
 app.use(cookieParser());
 app.use(cors());
 
-app.use("/", router);
+app.use(process.env.API_PATH, apiRouter);
+
 app.use((err, req, res, next) => {
   if (err instanceof HttpError) {
     res.status(err.httpStatus);
@@ -51,8 +53,12 @@ app.use((err, req, res, next) => {
 });
 
 // If "/api" is called, redirect to the API documentation.
-app.get("/api", function(req, res) {
+app.use("/api", function(req, res) {
   res.redirect(`${process.env.API_PATH}/documentation`);
+});
+
+app.use("*", (req, res) => {
+  res.sendFile(path.join(`${buildPath}/index.html`));
 });
 
 module.exports = app;
