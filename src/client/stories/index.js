@@ -1,27 +1,31 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
-import { WithTextStory, WithEmojiStory } from "./Buttons";
 import { StartVoyageStory } from "./StartVoyage";
 import { DateTimeStory } from "./DateTime";
 import { InputFieldNumberStory } from "./InputFieldNumber";
 import { DropdownStory } from "./Dropdown";
 import { NavButtonStory } from "./navigation/NavButton";
 import { CheckboxStory } from "./Checkbox";
+import { MapMarkerStory } from "./MapMarkerStory";
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
 import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
 import { CostWidgetStory } from "./CostWidgetStory";
-import { LoginForm, LoginFormStory } from "./login-form";
+import { LoginFormStory } from "./login-form";
 
-storiesOf("Button", module)
-  .add("with text", WithTextStory)
-  .add("with emoji", WithEmojiStory);
+import { ButtonStory, LogoutButtonStory } from "./Buttons";
+import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
+import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
+import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
+import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
+import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
-const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
+const MapStories = storiesOf("Map", module)
+  .add("Map", MapStory)
+  .add("Map Marker", MapMarkerStory);
 MapStories.addDecorator(withKnobs);
 
 const NavigationStories = storiesOf("Navigation", module).add(
@@ -51,23 +55,27 @@ VoyageDetailsStories.addDecorator(withKnobs);
 
 const CardStories = storiesOf("Card", module)
   .add("DataCard", DataCardStory)
-  .add("CardGroup", CardGroupStory);
+  .add("CardGroup", CardGroupStory)
+  .add("Cost Widget Card", CostWidgetStory);
 CardStories.addDecorator(withKnobs);
-
-const CostWidgetStories = storiesOf("Cost Widget", module).add(
-  "Cost Widget Card",
-  CostWidgetStory
-);
-CostWidgetStories.addDecorator(withKnobs);
 
 const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageList", VoyageListStory)
   .add("VoyageTeaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
 
-const LoginFormStories = storiesOf("Loginform", module).add(
-  "LoginForm",
-  LoginFormStory
-);
+const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
+  .add("Suggested Route Summary", suggestedRouteSummary)
+  .add("Suggested Route Details", suggestedRouteDetails)
+  .add("Suggested Route Card", suggestedRouteCard)
+  .add("Suggested Routes List", suggestedRoutesList)
+  .add("Suggested Route Table", SuggestedRouteTableStory);
+SuggestedRouteSummaryStories.addDecorator(withKnobs);
+
+storiesOf("Buttons", module).add("Button", ButtonStory);
+
+const LoginFormStories = storiesOf("Authentication", module)
+  .add("Login Form", LoginFormStory)
+  .add("Logout Button", LogoutButtonStory);
 
 LoginFormStories.addDecorator(withKnobs);
