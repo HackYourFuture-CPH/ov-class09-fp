@@ -629,7 +629,7 @@
         }
       }
     },
-    "/organizations/{organization_id}/voyages?status={voyage_status}": {
+    "/organizations/{organization_id}/voyages?status={voyage_status}&orderBy={orderBy}&limit={limit}&offset={offset}": {
       "get": {
         "description": "Returns all voyages for a given organization.\n\nAuthentication: `superuser`, `admin` & `operator`.",
         "summary": "Get voyages by organization",
@@ -652,6 +652,29 @@
             "required": true,
             "type": "string",
             "description": ""
+          },
+          {
+            "name": "limit",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum number of items to fetch."
+          },
+          {
+            "name": "orderBy",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Order in ascending (oldest first) `asc` or descending (newest first) `desc` order based on ID."
+          },
+          {
+            "name": "offset",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "Offset the starting point of the query."
           }
         ],
         "responses": {
