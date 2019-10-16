@@ -12,11 +12,7 @@ import { VesselsListStory } from "./Vessels";
 import { VesselTeaserStory } from "./VesselTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
-import { AllVoyagesStory } from "./AllVoyagesStory";
-
-storiesOf("Button", module)
-  .add("with text", WithTextStory)
-  .add("with emoji", WithEmojiStory);
+import { VoyagesSummaryStory } from "./VoyagesSummaryStory";
 
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
@@ -43,6 +39,6 @@ const VesselsListStories = storiesOf("Vessels", module)
   .add("Vessel Teaser", VesselTeaserStory);
 VesselsListStories.addDecorator(withKnobs);
 
-storiesOf("All Voyages", module)
-  .add("Table", AllVoyagesStory)
+storiesOf("Voyage Summary", module)
+  .add("All Voyage Summary Tables", VoyagesSummaryStory)
   .addDecorator(withKnobs);
