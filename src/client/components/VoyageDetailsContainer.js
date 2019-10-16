@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
+import VoyageDetails from "./VoyageDetails";
+import CostWidget from "./CostWidget";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
     voyageId: this.props.match.params.voyage_id,
     vessel_report: [],
     suggested_routes: [],
-    vessel_report_id: []
+    vessel_report_id: [],
+    suggested_route_id: []
   };
   componentDidMount() {
     const headerObject = {
@@ -33,29 +36,12 @@ export default class VoyageDetailsContainer extends Component {
       .then(data => (data = data.data))
       .then(data =>
         this.setState({
-          suggested_routes: data
+          suggested_routes: data,
+          suggested_routes_id: data.map(({ id }) => id)
         })
       );
 
-    /*  axios
-      .get(`/api/voyages/${this.state.voyageId}/vessel-reports`, headerObject)
-      .then(data =>
-        this.setState({
-          vessel_report: data.data,
-          vessel_report_id: data.data.map(({ id }) => id)
-        })
-      );
-    console.log("this.state.vessel_report_id", this.state.vessel_report_id);
-    
-      axios
-        .get(`/api/vessel-reports/${id}/suggested-routes`, headerObject)
-        .then(data =>
-          this.setState({
-            suggested_routes: data.data
-          })
-        );
-    });
-
+    /*  
      axios
       .get(
         `/api/vessel-reports/${
@@ -74,6 +60,38 @@ export default class VoyageDetailsContainer extends Component {
     console.log(this.state);
     //console.log(this.state.vessel_report_id[0]);
 
-    return <div></div>;
+    /* vesselName,-voyages
+    departsFrom,-voyages
+    arrivesAt,--vessel report
+    departure_time,--voyage
+    target_arrival_time,---voyage
+    date, --vessel report
+    latitude,---vessel report
+    longitude, ---vessel report
+    hsfo,---suggested route
+    ulsfo-- suggested route*/
+
+    /* hfo -- suggested_routes
+    lsfo -- suggested_routes
+    hfocosts --- voyageId
+    lsfocosts---voyageId
+    totalcost ---suggested_route
+    */
+
+    /*
+    created -vessel report/waypoints
+    lon -vessel report/waypoints
+    lat -vessel report/waypoints
+    speed -vessel report/waypoints
+    rpm--/waypoints
+    */
+    return (
+      <div>
+        <VoyageDetails />
+        <CostWidget />
+        <h1>Suggested route</h1>
+        <h1>Map Component</h1>
+      </div>
+    );
   }
 }
