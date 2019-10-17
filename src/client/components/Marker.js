@@ -3,6 +3,10 @@ import { Marker } from "react-leaflet";
 import L from "leaflet";
 import PropTypes from "prop-types";
 
+// const customMarker = L.circleMarker({
+//   iconUrl: require("../assets/images/marker.png"),
+//   iconSize: 50
+// });
 const customMarker = L.icon({
   iconUrl: require("../assets/images/marker.png"),
   iconSize: 50

@@ -1,30 +1,30 @@
 // Voyage Map API
 // Voyage List: All vessels, only last vessel report, no suggested routes
-const voyageList = [
+const voyages = [
   {
     vessel_id: 23,
     vessel_reports: [
       {
-        latitude: 45.24234,
-        longitude: 101.323
+        latitude: 55.721114,
+        longitude: 12.646547
       }
     ]
   },
   {
-    vessel_id: 23,
+    vessel_id: 24,
     vessel_reports: [
       {
-        latitude: 45.24234,
-        longitude: 101.323
+        latitude: 55.698478,
+        longitude: 12.604377
       }
     ]
   },
   {
-    vessel_id: 23,
+    vessel_id: 25,
     vessel_reports: [
       {
-        latitude: 45.24234,
-        longitude: 101.323
+        latitude: 55.687535,
+        longitude: 12.601538
       }
     ]
   }
@@ -32,7 +32,7 @@ const voyageList = [
 
 //  Voyage Details: Only one vessel, last vessel report on each vessel, show only selected suggested route
 
-const voyageDetails = [
+const voyage = [
   {
     vessel_id: 23,
     vessel_reports: [
@@ -44,11 +44,11 @@ const voyageDetails = [
             suggested_route_id: 22,
             waypoints: [
               {
-                latitude: 24.52434,
+                latitude: 27.52434,
                 longitude: 87.2323
               },
               {
-                latitude: 24.52434,
+                latitude: 29.52434,
                 longitude: 87.2323
               }
             ]
@@ -158,7 +158,7 @@ const routes = [
 ];
 
 module.exports = {
-  voyageList,
-  voyageDetails,
+  voyages,
+  voyage,
   routes
 };

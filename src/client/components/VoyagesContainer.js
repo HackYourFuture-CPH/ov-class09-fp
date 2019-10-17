@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import VoyageList from "./VoyageList";
-import Map from "./VesselsOnMap";
+//import Map from "./VesselsOnMap";
 
 export class VoyagesContainer extends Component {
   constructor(props) {
@@ -60,19 +60,18 @@ export class VoyagesContainer extends Component {
     if (currentVoyages.length > 0) {
       return (
         <div>
-          <Map
-            centerMapCoordinates={centerMapCoordinates}
-            displayMarkers={displayMarkers}
-            pathColor={pathColor}
-            vessels={currentVoyages}
-          />
           <VoyageList voyages={currentVoyages} />
         </div>
       );
-    } else {
-      return <div></div>;
     }
   }
 }
 
 export default VoyagesContainer;
+/*
+ <Map
+            centerMapCoordinates={centerMapCoordinates}
+            displayMarkers={displayMarkers}
+            pathColor={pathColor}
+            vessels={currentVoyages}
+          /> */

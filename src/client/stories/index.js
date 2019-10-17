@@ -1,7 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
-import { MapStory } from "./Map";
+import { MapVoyagesList } from "./MapVoyagesList";
+import { MapVoyageDetails } from "./MapVoyageDetails";
+import { MapSuggestedRoutes } from "./MapSuggestedRoutes";
 import { MapMarkerStory } from "./MapMarkerStory";
 
 import { VoyageDetailsStory } from "./VoyageDetails";
@@ -12,7 +14,6 @@ import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
 
 import { CostWidgetStory } from "./CostWidgetStory";
-import { VesselsOnMapStory } from "./VesselsOnMap";
 import { LoginFormStory } from "./login-form";
 
 import { ButtonStory, LogoutButtonStory } from "./Buttons";
@@ -21,9 +22,13 @@ import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
+import { VesselsOnMapStory } from "./VoyagesContainer";
+import { VesselRoutesStory } from "./VesselRoutes";
 
 const MapStories = storiesOf("Map", module)
-  .add("Map", MapStory)
+  .add("Map Voyages List", MapVoyagesList)
+  .add("Map Voyage Details", MapVoyageDetails)
+  // .add("Map Suggested Routes", MapSuggestedRoutes)
   .add("Map Marker", MapMarkerStory);
 MapStories.addDecorator(withKnobs);
 
@@ -59,8 +64,15 @@ const LoginFormStories = storiesOf("Authentication", module)
   .add("Logout Button", LogoutButtonStory);
 
 LoginFormStories.addDecorator(withKnobs);
-const VesselsOnMapStories = storiesOf("VesselsOnMap", module).add(
-  "VesselsOnMap",
+
+const VesselsOnMapStories = storiesOf("Vessels Location", module).add(
+  "Vessels Location",
   VesselsOnMapStory
 );
 VesselsOnMapStories.addDecorator(withKnobs);
+
+const VesselRoutesStories = storiesOf("Vessel Routes", module).add(
+  "Vessel Routes",
+  VesselRoutesStory
+);
+VesselRoutesStories.addDecorator(withKnobs);
