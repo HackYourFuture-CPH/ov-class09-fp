@@ -38,15 +38,28 @@ function MapComponent({ voyages, options }) {
     }
   });
 
-  // Get flattened array of suggested routes
   const vesselReportsWithsuggestedRoutes = vesselReports.filter(
     vesselReport => {
-      debugger;
-      return vesselReport.suggested_route;
+      return (
+        !!vesselReport.suggested_routes &&
+        vesselReport.suggested_routes.length > 0
+      );
     }
   );
 
-  console.log(vesselReportsWithsuggestedRoutes);
+  const routes = vesselReportsWithsuggestedRoutes.map(vesselReport => {
+    return vesselReport.suggested_routes.map(route => {
+      return route.waypoints.map(waypoint => {
+        return Object.values(waypoint);
+      });
+    });
+  });
+
+  const suggestedRoutes = routes.flat().map((route, index) => {
+    return <Polyline positions={route} color={"red"} key={index} />;
+  });
+
+  console.log(suggestedRoutes);
 
   // console.log(vesselReport.suggested_routes);
   // return Object.keys(vesselReport).suggested_routes.map(suggested_route => {
@@ -66,7 +79,7 @@ function MapComponent({ voyages, options }) {
       />
       {elapsedRouteMarkers.length > 0 && elapsedRouteMarkers}
       {suggestedRouteMarkers.length > 0 && suggestedRouteMarkers}
-      {/* {suggestedRoutes.length > 0 && suggestedRoutes} */}
+      {suggestedRoutes.length > 0 && suggestedRoutes}
     </Map>
   );
 }
