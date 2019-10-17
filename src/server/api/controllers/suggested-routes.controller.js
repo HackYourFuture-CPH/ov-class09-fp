@@ -39,39 +39,59 @@ const getSuggestedRouteById = async id => {
   }
 };
 
-// Get a suggested-routes by voyage id
-const getSuggestedRouteByVoyageId = async id => {
-  try {
-    const suggested_routesByVoyageId = await knex("suggested_routes").where({
-      voyage_id: id
-    });
-    if (suggested_routesByVoyageId.length === 0) {
-      throw new HttpError(
-        "Bad request",
-        `Cannot find suggested routes for ID ${id}!`,
-        404
-      );
-    }
-    return suggested_routesByVoyageId;
-  } catch (err) {
-    return err.message;
-  }
-};
-
 //Get Suggested-routes by vessel-report-id
 const getSuggestedRoutesByVesselReportId = async id => {
   try {
-    const suggestedRoutes = await knex("suggested_routes")
-      .select("*")
-      .where({ vessel_report_id: id });
-    if (suggestedRoutes.length === 0) {
+    const voyageID = await knex("vessel_reports")
+      .select("voyage_id as id")
+      .where({ id });
+
+    const suggestedRoutes = await knex("suggested_routes as SR")
+      .where({
+        "SR.vessel_report_id": id
+      })
+      .join("vessel_reports as VR")
+      .where({ "VR.id": id })
+      .join("voyages as VG")
+      .where({ "VG.id": voyageID[0].id })
+      .select(
+        "SR.id",
+        "SR.eta",
+        "SR.avgspeed",
+        "SR.max_wave_height",
+        "SR.hfo",
+        "SR.lsfo",
+        "SR.total_cost",
+        "VG.hirerate",
+        "VG.departure_time",
+        "VR.selected_route_id"
+      );
+
+    if (suggestedRoutes < 0) {
       throw new HttpError(
         "Bad request",
         `Cannot find any Suggested route for Vessel-report ID ${id}!`,
         404
       );
     }
-    return suggestedRoutes;
+
+    const suggestedRouteIds = suggestedRoutes.map(item => item.id);
+
+    const waypoints = await knex("waypoints").whereIn(
+      "suggested_route_id",
+      suggestedRouteIds
+    );
+
+    return suggestedRoutes.map(item => {
+      item.waypoint = [];
+      waypoints.forEach(elem => {
+        if (item.id === elem.suggested_route_id) {
+          item.waypoint.push(elem);
+        }
+      });
+
+      return item;
+    });
   } catch (err) {
     return err.message;
   }
@@ -143,10 +163,10 @@ const createSuggestedRouteWithWaypoints = async ({ body }) => {
       .catch(transaction.rollback);
   });
 };
+
 module.exports = {
   getSuggestedRoutes,
   getSuggestedRouteById,
-  getSuggestedRouteByVoyageId,
   getSuggestedRoutesByVesselReportId,
   createSuggestedRouteWithWaypoints
 };
