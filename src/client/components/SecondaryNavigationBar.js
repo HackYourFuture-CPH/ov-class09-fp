@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from "./Button";
+import LogoutButton from "./LogoutButton";
 class SecondaryNavigationBar extends Component {
   state = {
     userName: "",
@@ -17,14 +17,14 @@ class SecondaryNavigationBar extends Component {
           <p>
             <a href="">Administration</a>
           </p>
-          <Button label={"Logout"} />
+          <LogoutButton />
         </div>
       );
     } else {
       return (
         <div>
           <h4>{this.props.userName}</h4>
-          <Button label={"Logout"} />
+          <LogoutButton />
         </div>
       );
     }
