@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import VoyageDetails from "./VoyageDetails";
 import CostWidget from "./CostWidget";
+import SuggestedRouteTable from "./SuggestedRouteTable";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
@@ -87,9 +88,30 @@ export default class VoyageDetailsContainer extends Component {
     */
     return (
       <div>
-        <VoyageDetails />
-        <CostWidget />
-        <h1>Suggested route</h1>
+        <VoyageDetails
+          vesselName={vesselName}
+          departureFrom={departsFrom}
+          arrivesAt={arrivesAt}
+          etd={etd}
+          eta={eta}
+          date={date}
+          latitude={latitude}
+          longitude={longitude}
+          hsfo={hsfo}
+          ulsfo={ulsfo}
+        />
+
+        <CostWidget
+          totalCost={number("Total Cost", 200)}
+          hfoCost={number("hfo Cost", 10)}
+          lsfoCost={number("lsfo Cost", 10)}
+          hfoConsumption={number("hfo Consumption", 10)}
+          lsfoConsumption={number("lsfo Consumption", 10)}
+        />
+        <SuggestedRouteTable
+          data={data}
+          tableNames={["DATE", "LATITUDE", "LONGTIDUE", "SPEED", "EST.RPM"]}
+        />
         <h1>Map Component</h1>
       </div>
     );
