@@ -83,13 +83,13 @@ router.get(
   }
 );
 
-//ENDPOINT: /api/organization/:organization_id/voyages?status=ongoing
+//ENDPOINT: /api/organization/:organization_id/voyages?status=ongoing&offset=0&limit=50&orderBy="desc"
 router.get(
   "/:id/voyages?",
   authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
   (req, res, next) => {
     voyagesController
-      .getVoyagesByOrganization(req.params.id, req.query.status)
+      .getVoyagesByOrganization(req.params.id, req.query)
       .then(result => res.json(result))
       .catch(next);
   }
