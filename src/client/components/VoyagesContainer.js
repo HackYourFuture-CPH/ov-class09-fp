@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import VoyageList from "./VoyageList";
-import Map from "./VesselsOnMap";
+import Map from "./Map";
 
 export class VoyagesContainer extends Component {
   constructor(props) {
     super(props);
-
     this.emptyArray = [];
     this.state = {
       currentVoyages: []
@@ -20,22 +19,12 @@ export class VoyagesContainer extends Component {
         headers: {
           "Content-Type": "application/json",
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTI0MzUxNywiZXhwIjoxNTcxMjc5NTE3fQ.RfZyHFCxPh8Qot4lQP8IGfIfj0gPZL0zdUj2z4KtRZU"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwMzgxOCwiZXhwIjoxNTcxMzM5ODE4fQ.luA1YJM-_d1GzkaD8g1uVw5ZgboKT48lZiQZv4co_78"
         }
       }
     )
       .then(res => res.json())
       .then(vesselReportData => {
-        // voyage["eta"] = vesselReportData[0].eta;
-        // voyage["latitude"] = vesselReportData[0].latitude;
-        // voyage["longitude"] = vesselReportData[0].longitude;
-        // vesselObj["vessel_id"] = voyage.vessel_id;
-        // vesselObj["vessel_reports"] = [
-        //   {
-        //     'latitude': vesselReportData[0].latitude,
-        //     'longitude': vesselReportData[0].longitude
-        //   }
-        // ];
         voyage["vessel_reports"] = [vesselReportData[0]];
         this.emptyArray = [...this.emptyArray, voyage];
       })
@@ -55,7 +44,7 @@ export class VoyagesContainer extends Component {
       headers: {
         "Content-Type": "application/json",
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTI0MzUxNywiZXhwIjoxNTcxMjc5NTE3fQ.RfZyHFCxPh8Qot4lQP8IGfIfj0gPZL0zdUj2z4KtRZU"
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwMzgxOCwiZXhwIjoxNTcxMzM5ODE4fQ.luA1YJM-_d1GzkaD8g1uVw5ZgboKT48lZiQZv4co_78"
       }
     })
       .then(res => res.json())
