@@ -6,10 +6,10 @@ export default class SelectedRouteContainer extends React.Component {
     console.log("this is props", this.props.match.params.voyage_id);
     const { voyage_id } = this.props.match.params;
     axios
-      .get(`http://localhost:3000/api/vessel-reports/3/suggested-routes`, {
+      .get(`http://localhost:3000/api/`, {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTIxNzY5MiwiZXhwIjoxNTcxMjUzNjkyfQ.GLBygWbn6nO6M-ly4ACX7wKefIXpq4wT6ocLUjzdV-M"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwNDUxMiwiZXhwIjoxNTcxMzQwNTEyfQ.e0SpiNoeKV-Oqymae0XjvEJ77Is0hLT6zl66y-OSdJY"
         }
       })
       .then(data => console.log(data));
