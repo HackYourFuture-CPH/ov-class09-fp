@@ -77,10 +77,17 @@ const getSuggestedRoutesByVesselReportId = async id => {
 
     const suggestedRouteIds = suggestedRoutes.map(item => item.id);
 
-    const waypoints = await knex("waypoints").whereIn(
-      "suggested_route_id",
-      suggestedRouteIds
-    );
+    const waypoints = await knex("waypoints")
+      .whereIn("suggested_route_id", suggestedRouteIds)
+      .select(
+        "id",
+        "longitude",
+        "latitude",
+        "suggested_route_id",
+        "speed",
+        "rpm",
+        "sequence_id"
+      );
 
     return suggestedRoutes.map(item => {
       item.waypoint = [];
