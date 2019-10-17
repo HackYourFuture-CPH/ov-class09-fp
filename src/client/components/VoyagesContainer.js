@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import VoyageList from "./VoyageList";
 import Map from "./Map";
+import axios from "axios";
+import getTokenData from "../utilities/getTokenData";
 
 export class VoyagesContainer extends Component {
   constructor(props) {
     super(props);
+    this.headersObject = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwMzgxOCwiZXhwIjoxNTcxMzM5ODE4fQ.luA1YJM-_d1GzkaD8g1uVw5ZgboKT48lZiQZv4co_78"
+      }
+    };
     this.emptyArray = [];
     this.state = {
       currentVoyages: []
@@ -12,20 +21,13 @@ export class VoyagesContainer extends Component {
   }
 
   FetchVesselReport(voyage) {
-    fetch(
-      `/api/voyages/${voyage.id}/vessel-reports?offset=0&limit=50&orderBy="desc"`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwMzgxOCwiZXhwIjoxNTcxMzM5ODE4fQ.luA1YJM-_d1GzkaD8g1uVw5ZgboKT48lZiQZv4co_78"
-        }
-      }
-    )
-      .then(res => res.json())
-      .then(vesselReportData => {
-        voyage["vessel_reports"] = [vesselReportData[0]];
+    axios
+      .get(
+        `/api/voyages/${voyage.id}/vessel-reports?offset=0&limit=50&orderBy="desc"`,
+        this.headersObject
+      )
+      .then(res => {
+        voyage["vessel_reports"] = [res.data[0]];
         this.emptyArray = [...this.emptyArray, voyage];
       })
       .then(() =>
@@ -36,20 +38,17 @@ export class VoyagesContainer extends Component {
   }
 
   componentDidMount() {
-    // const { orgnaization_id } = this.props;
-    const orgnaization_id = 3;
+    // const { organization_id } = this.props;
+    // const organization_id = 3;
+    const organization_id = getTokenData("organization_id");
 
-    fetch(`/api/organizations/${orgnaization_id}/voyages?status=ongoing`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwMzgxOCwiZXhwIjoxNTcxMzM5ODE4fQ.luA1YJM-_d1GzkaD8g1uVw5ZgboKT48lZiQZv4co_78"
-      }
-    })
-      .then(res => res.json())
-      .then(voyageData => {
-        voyageData.voyages.map(voyage => this.FetchVesselReport(voyage));
+    axios
+      .get(
+        `/api/organizations/${organization_id}/voyages?status=ongoing`,
+        this.headersObject
+      )
+      .then(res => {
+        res.data.voyages.map(voyage => this.FetchVesselReport(voyage));
       });
   }
 

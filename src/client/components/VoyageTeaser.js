@@ -12,7 +12,7 @@ function VoyageTeaser({
 }) {
   return (
     <div>
-      <Link to={`/voyages/${id}`}>
+      <a href={`/voyages/${id}`}>
         <h1>{vessel_name}</h1>
         <label>Departure</label>
         <h3>{depart_from}</h3>
@@ -20,7 +20,7 @@ function VoyageTeaser({
         <label>ETA</label>
         <h3>{arrive_at}</h3>
         <p>{eta}</p>
-      </Link>
+      </a>
     </div>
   );
 }
