@@ -24,27 +24,23 @@ export default class VoyageDetailsContainer extends Component {
     console.log("Inside the component didcomponent");
     axios
       .get(`/api/voyages/${this.state.voyageId}/vessel-reports`, headerObject)
-      .then(data => (data = data.data))
-      .then(
-        data => console.log(data[0].id)
-        //this.setState({
-        //  vessel_report: data,
-        //  vessel_report_id: data[0].id
-        //}),
-      );
-    console.log(this.state.vessel_report_id);
-    axios
-      .get(
-        `/api/vessel-reports/${this.state.vessel_report_id}/suggested-routes`,
-        headerObject
-      )
-      .then(data => (data = data.data))
-      .then(data => {
-        this.setState({
-          suggested_routes: data
-          // suggested_route_id: data.id,
-          //suggested_routes_id: data.map(({ id }) => id)
-        });
+      .then(resp => (resp = resp.data))
+      .then(reportsArr => {
+        axios
+          .get(
+            `/api/vessel-reports/${reportsArr[0].id}/suggested-routes`,
+            headerObject
+          )
+          .then(data => (data = data.data))
+          .then(data => {
+            this.setState({
+              suggested_routes: data,
+              vessel_report: reportsArr,
+              vessel_report_id: reportsArr[0].id
+              // suggested_route_id: data.id,
+              //suggested_routes_id: data.map(({ id }) => id)
+            });
+          });
       });
 
     /*  
