@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 
 function VoyageDetails({
   vesselName,
-  departsFrom,
-  arrivesAt,
-  departure_time,
-  target_arrival_time,
+  departFrom,
+  arriveAt,
+  departureTime,
+  targetArrivalTime,
   date,
   latitude,
   longitude,
@@ -20,10 +20,10 @@ function VoyageDetails({
     <div>
       <VoyageTeaser
         vesselName={vesselName}
-        departureFrom={departsFrom}
-        arrivesAt={arrivesAt}
-        departure_time={departure_time}
-        target_arrival_time={target_arrival_time}
+        departFrom={departFrom}
+        arriveAt={arriveAt}
+        departureTime={departureTime}
+        targetArrivalTime={targetArrivalTime}
       />
 
       <CardGroupHeader title="Position" />
