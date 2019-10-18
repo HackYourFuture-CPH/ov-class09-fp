@@ -10,15 +10,39 @@ export default class VoyageDetailsContainer extends Component {
     vessel_report: [],
     suggested_routes: [],
     vessel_report_id: [],
-    suggested_route_id: []
+    suggested_route_id: [],
+    voyageList: null,
+
+    departure_time: "",
+    hfocosts: null,
+    lsfocosts: null,
+    vessel_id: null,
+    vesselName: "",
+    departsFrom: "",
+    arrivesAt: "",
+    departure_time: "",
+    vessel_eta: "",
+    date: "",
+    latitude: "",
+    longitude: "",
+    hsfo: null,
+    ulsfo: null,
+    hfo: null,
+    lsfo: null,
+    hfocosts: null,
+    lsfocosts: null,
+    totalcost: null,
+    depart_from_port: null
+    //arrive_at_port: null
   };
+
   componentDidMount() {
     const headerObject = {
       // method: "GET",
       headers: {
         "Content-Type": "application/json",
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwNDM4MywiZXhwIjoxNTcxMzQwMzgzfQ.uRHGFpSjYx4WVB4Tv3AcD94vStfV9VDsIMVAd6JECiI"
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTM4MTI0NSwiZXhwIjoxNTcxNDE3MjQ1fQ.AWtUrRse7Q2_Z0FC0zcAqK1r2BR8BVBCaUz4Snc3Iy0"
       }
     };
     console.log("Inside the component didcomponent");
@@ -36,30 +60,68 @@ export default class VoyageDetailsContainer extends Component {
             this.setState({
               suggested_routes: data,
               vessel_report: reportsArr,
-              vessel_report_id: reportsArr[0].id
-              // suggested_route_id: data.id,
-              //suggested_routes_id: data.map(({ id }) => id)
+              vessel_report_id: reportsArr[0].id,
+              vessel_eta: reportsArr[0].eta,
+              longitute: reportsArr[0].longitude,
+              latitude: reportsArr[0].latitude,
+              hfo_comsumption: reportsArr[0].hfo_consumption,
+              lsfo_comsumption: reportsArr[0].lsfo_consumption,
+              date: reportsArr[0].created_at,
+              hsfo: data[0].hfo,
+              ulsfo: data[0].lsfo,
+              hfo: data[0].hfo,
+              lsfo: data[0].lsfo,
+              totalcost: data[0].total_cost
             });
           });
       });
 
-    /*  
-     axios
-      .get(
-        `/api/vessel-reports/${
-          this.state.vessel_report_id[0]
-        }/suggested-routes`,
-        headerObject
+    axios
+      .get("/api/voyages/", headerObject)
+      .then(resp => (resp = resp.data))
+      .then(voyageArr =>
+        voyageArr.filter(voyage => voyage.id === parseInt(this.state.voyageId))
       )
-      .then()
-      .then(data =>
-        this.setState({
-          suggested_routes: data.data
-        })
-      );*/
+      .then(voyageobj => {
+        console.log("voyajeobj", voyageobj);
+        axios
+          .get(`/api/vessels/${voyageobj[0].vessel_id}/`, headerObject)
+          .then(res => (res = res.data))
+          .then(vesselobj => {
+            this.setState({
+              vesselName: vesselobj[0].name,
+              departure_time: voyageobj[0].departure_time,
+              hfocosts: voyageobj[0].hfocost,
+              lsfocosts: voyageobj[0].lsfocost,
+              vessel_id: voyageobj[0].vessel_id,
+              depart_from_port: voyageobj[0].depart_from_port,
+              arrive_at_port: voyageobj[0].arrive_at_port
+            });
+          });
+        axios
+          .get(`/api/ports/${voyageobj[0].depart_from_port}/`, headerObject)
+          .then(res => (res = res.data))
+          .then(portobj =>
+            this.setState({
+              departsFrom: portobj[0].name
+            })
+          );
+
+        axios
+          .get(`/api/ports/${voyageobj[0].arrive_at_port}/`, headerObject)
+          .then(res => (res = res.data))
+          .then(portobj =>
+            this.setState({
+              arrivesAt: portobj[0].name
+            })
+          );
+      });
   }
+
   render() {
     console.log(this.state);
+
+    // console.log("selected_voyage", this.state.);
     // console.log(this.state.vessel_report_id);
 
     /* vesselName,-voyages
