@@ -18,8 +18,8 @@ export function VoyageDetailsStory() {
       vesselName={vesselName}
       departureFrom={departsFrom}
       arrivesAt={arrivesAt}
-      etd={etd}
-      eta={eta}
+      departure_time={etd}
+      target_arrival_time={eta}
       date={date}
       latitude={latitude}
       longitude={longitude}
