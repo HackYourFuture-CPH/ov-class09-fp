@@ -5,7 +5,6 @@ import axios from "axios";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
-//import Map from "./VesselsOnMap";
 
 export default class VoyagesContainer extends Component {
   state = {

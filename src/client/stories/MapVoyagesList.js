@@ -67,11 +67,5 @@ export function MapVoyagesList() {
     }
   };
 
-  return (
-    <MapComponent
-      vesselReports={vesselReports}
-      // suggestedRoutes={suggestedRoutes}
-      options={mapOptions}
-    />
-  );
+  return <MapComponent vesselReports={vesselReports} options={mapOptions} />;
 }
