@@ -1,18 +1,21 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapVoyagesList } from "./MapVoyagesList";
 import { MapVoyageDetails } from "./MapVoyageDetails";
 import { MapSuggestedRoutes } from "./MapSuggestedRoutes";
+import { MapStory } from "./Map";
+import { StartVoyageStory } from "./StartVoyage";
+import { DateTimeStory } from "./DateTime";
+import { InputFieldNumberStory } from "./InputFieldNumber";
+import { DropdownStory } from "./Dropdown";
+import { NavButtonStory } from "./navigation/NavButton";
+import { CheckboxStory } from "./Checkbox";
 import { MapMarkerStory } from "./MapMarkerStory";
-
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
-
 import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
-
 import { CostWidgetStory } from "./CostWidgetStory";
 import { LoginFormStory } from "./login-form";
 
@@ -31,6 +34,25 @@ const MapStories = storiesOf("Map", module)
   // .add("Map Suggested Routes", MapSuggestedRoutes)
   .add("Map Marker", MapMarkerStory);
 MapStories.addDecorator(withKnobs);
+
+const NavigationStories = storiesOf("Navigation", module).add(
+  "ButtonComponent",
+  NavButtonStory
+);
+NavigationStories.addDecorator(withKnobs);
+
+const FormStories = storiesOf("Forms elements", module)
+  .add("DateTimeComponent", DateTimeStory)
+  .add("InputFieldNumberComponent", InputFieldNumberStory)
+  .add("DropdownComponent", DropdownStory)
+  .add("CheckboxComponent", CheckboxStory);
+FormStories.addDecorator(withKnobs);
+
+const VoyageStories = storiesOf("Start Voyage", module).add(
+  "StartVoyage",
+  StartVoyageStory
+);
+VoyageStories.addDecorator(withKnobs);
 
 const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
   "VoyageDetails",
