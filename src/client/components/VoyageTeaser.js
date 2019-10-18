@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 //import material-ui
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 //CSS Colors: #F2F2F2,#D9D9D9,#595959,#262626,#0D0D0D
@@ -63,9 +61,6 @@ function VoyageTeaser({
             {target_arrival_time}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Show Details</Button>
-        </CardActions>
       </CardContent>
     </Card>
   );
