@@ -132,7 +132,7 @@ export default class VoyageDetailsContainer extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.state.selected_route_table[0].waypoints);
     const {
       vesselName,
       departsFrom,
@@ -146,10 +146,12 @@ export default class VoyageDetailsContainer extends Component {
       lsfocosts,
       hfo_comsumption,
       lsfo_comsumption,
-      totalcost
+      totalcost,
+      selected_route_table
     } = this.state;
     let latitude = parseInt(this.state.latitude);
     let longitude = parseInt(this.state.longitude);
+    let suggested_route_table = selected_route_table.waypoints;
 
     return (
       <>
