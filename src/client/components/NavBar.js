@@ -10,10 +10,10 @@ const useStyles = makeStyles({
     flexGrow: 1
   },
   toolbarColor: {
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#0b3c61"
   },
   MenuItemColor: {
-    color: "#000000"
+    color: "#FFFFFF"
   }
 });
 
@@ -23,9 +23,6 @@ const NavBar = () => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar className={classes.toolbarColor}>
-          <div className="Logo">
-            <img src={logoSource} width="400px"></img>
-          </div>
           <div className={classes.grow} />
           <MenuItem className={classes.MenuItemColor}>MAP</MenuItem>
           <MenuItem className={classes.MenuItemColor}>START VOYAGES</MenuItem>
