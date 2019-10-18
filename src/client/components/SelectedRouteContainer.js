@@ -1,22 +1,89 @@
 import React from "react";
 import axios from "axios";
+import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
 
 export default class SelectedRouteContainer extends React.Component {
-  componentDidMount() {
-    console.log("this is props", this.props.match.params.voyage_id);
-    const { voyage_id } = this.props.match.params;
+  state = {
+    suggestedRoutes: [],
+    suggested_route_id: null
+  };
+  componentDidUpdate(_, prevState) {
+    if (prevState.suggested_route_id !== this.state.suggested_route_id) {
+      this.fetchSuggestedRoutes();
+      this.setState({
+        suggested_route_id: null
+      });
+    }
+  }
+  handleSelectRoute = id => {
+    const { vessel_reports_id } = this.props.match.params;
+
+    const data = { suggested_route_id: id };
     axios
-      .get(`http://localhost:3000/api/`, {
+      .post(`api/vessel-reports/${vessel_reports_id}/select-route`, data, {
         headers: {
+          "Content-Type": "application/json",
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMwNDUxMiwiZXhwIjoxNTcxMzQwNTEyfQ.e0SpiNoeKV-Oqymae0XjvEJ77Is0hLT6zl66y-OSdJY"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTM4Njk4NiwiZXhwIjoxNTcxNDIyOTg2fQ.i1YlnxSOlC5nC8fjLdsUCidZWyebh2nx-9VEoUSFFqY"
         }
       })
-      .then(data => console.log(data));
+      .then(
+        response => {
+          this.setState({ suggested_route_id: data.id });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  };
+  // selectRoute = vessel_reports_id => {
+  //   const data = { suggested_route_id: this.state.suggested_route_id };
+  //   axios
+  //     .post(`api/vessel-reports/${vessel_reports_id}/select-route`, data, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         authorization:
+  //           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMyMDg2NiwiZXhwIjoxNTcxMzU2ODY2fQ.b9MNVl1e0Oegaq-cZpvxBwW0RAG2Voko4jFtddlppW8"
+  //       }
+  //     })
+  //     .then(
+  //       response => {
+  //         console.log("this is the response from axios ", response);
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       }
+  //     );
+  // };
+  componentDidMount() {
+    this.fetchSuggestedRoutes();
   }
+  fetchSuggestedRoutes = () => {
+    const { voyage_id, vessel_reports_id } = this.props.match.params;
+    axios
+      .get(`/api/vessel-reports/${vessel_reports_id}/suggested-routes`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTM4Njk4NiwiZXhwIjoxNTcxNDIyOTg2fQ.i1YlnxSOlC5nC8fjLdsUCidZWyebh2nx-9VEoUSFFqY"
+        }
+      })
+      .then(data =>
+        this.setState({
+          suggestedRoutes: data.data
+        })
+      );
+  };
 
   render() {
-    console.log(this.props.match);
-    return <div>hello</div>;
+    const { suggestedRoutes } = this.state;
+    console.log("TCL: render -> suggestedRoutes", suggestedRoutes);
+
+    return (
+      <SuggestedRouteList
+        handleSelectRoute={this.handleSelectRoute}
+        routeslist={suggestedRoutes}
+      />
+    );
   }
 }

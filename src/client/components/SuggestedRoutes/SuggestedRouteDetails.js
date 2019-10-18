@@ -4,23 +4,23 @@ import Field from "../Field";
 
 export default function SuggestedRouteDetails({
   eta,
-  sailDays,
+  hfo,
   maxWaveHs,
   avgSpeed,
   hireCost,
-  consumption
+  lsfo
 }) {
   return (
     <Fragment>
       <div>
         <Field title={"ETA"} description={eta} />
-        <Field title={"SAIL DAYS"} description={sailDays} />
-        <Field title={"MAX WAVE HS"} description={maxWaveHs} />
+        <Field title={"HFO CONSUMPTION"} description={hfo} />
+        <Field title={"MAX WAVE HS"} description={`${maxWaveHs}m`} />
       </div>
       <div>
-        <Field title={"AVG SPEED"} description={avgSpeed} />
-        <Field title={"HIRE COST"} description={hireCost} />
-        <Field title={"CONSUMPTION"} description={consumption} />
+        <Field title={"AVG SPEED"} description={`${avgSpeed}kn`} />
+        <Field title={"HIRE COST"} description={`$${hireCost}`} />
+        <Field title={"LSFO CONSUMPTION"} description={lsfo} />
       </div>
     </Fragment>
   );
@@ -28,9 +28,9 @@ export default function SuggestedRouteDetails({
 
 SuggestedRouteDetails.propTypes = {
   eta: PropTypes.string.isRequired,
-  sailDays: PropTypes.number.isRequired,
+  hfo: PropTypes.number.isRequired,
   maxWaveHs: PropTypes.number.isRequired,
   avgSpeed: PropTypes.number.isRequired,
   hireCost: PropTypes.number.isRequired,
-  consumption: PropTypes.number.isRequired
+  lsfo: PropTypes.number.isRequired
 };

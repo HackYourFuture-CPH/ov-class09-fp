@@ -6,28 +6,60 @@ export default function SuggestedRouteSummary({
   id,
   isSelected,
   handleClick,
-  time,
+  duration,
   price
 }) {
   const selectRouteBtn = () => {
     handleClick(id);
   };
+  console.log("this is selected", isSelected);
   return (
     <div>
-      {isSelected ? <h4>SELECTED ROUTE</h4> : null}
-      <Field title="HOURS" description={time} />
-      <Field title="TOTAL COST" description={price} />
+      <>
+        {!isSelected ? (
+          <>
+            <Field title="DURATION" description={duration} />
+            <Field title="TOTAL COST" description={`$${price}`} />
+            <button onClick={selectRouteBtn}>SELECT ROUTE </button>
+          </>
+        ) : (
+          <>
+            <h2>Selected Route</h2>
+            <Field title="DURATION" description={duration} />
+            <Field title="TOTAL COST" description={`$${price}`} />
+          </>
+        )}
+      </>
+
+      {/* {isSelected ? (
+        <>
+          <Field title="DURATION" description={duration} />
+          <Field title="TOTAL COST" description={`$${price}`} />
+          <button onClick={selectRouteBtn}>SELECT ROUTE </button>
+        </>
+      ) : (
+        <>
+          <h2>Selected Route</h2>
+          <Field title="DURATION" description={duration} />
+          <Field title="TOTAL COST" description={`$${price}`} />
+        </>
+      )} */}
+
+      {/* {isSelected ? <h4>SELECTED ROUTE</h4>
+      <Field title="DURATION" description={duration} />
+      <Field title="TOTAL COST" description={`$${price}`} /> : null}
+      
       {!isSelected ? (
-        <button onClick={selectRouteBtn}>SELECT ROUTE</button>
-      ) : null}
+        <button onClick={selectRouteBtn}>SELECT ROUTE BTNNNNNNNN</button>
+      ) : null} */}
     </div>
   );
 }
 
 SuggestedRouteSummary.propTypes = {
   id: PropTypes.number.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
-  time: PropTypes.number.isRequired,
+  duration: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired
 };
