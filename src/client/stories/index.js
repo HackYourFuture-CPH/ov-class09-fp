@@ -3,7 +3,6 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { MapVoyagesList } from "./MapVoyagesList";
 import { MapVoyageDetails } from "./MapVoyageDetails";
 import { MapSuggestedRoutes } from "./MapSuggestedRoutes";
-//import { MapStory } from "./Map";
 import { StartVoyageStory } from "./StartVoyage";
 import { DateTimeStory } from "./DateTime";
 import { InputFieldNumberStory } from "./InputFieldNumber";
