@@ -23,8 +23,8 @@ export default class VoyageDetailsContainer extends Component {
     departure_time: "",
     vessel_eta: "",
     date: "",
-    latitude: "",
-    longitude: "",
+    latitude: null,
+    longitude: null,
     hsfo: null,
     ulsfo: null,
     hfo: null,
@@ -62,7 +62,7 @@ export default class VoyageDetailsContainer extends Component {
               vessel_report: reportsArr,
               vessel_report_id: reportsArr[0].id,
               vessel_eta: reportsArr[0].eta,
-              longitute: reportsArr[0].longitude,
+              longitude: reportsArr[0].longitude,
               latitude: reportsArr[0].latitude,
               hfo_comsumption: reportsArr[0].hfo_consumption,
               lsfo_comsumption: reportsArr[0].lsfo_consumption,
@@ -120,9 +120,18 @@ export default class VoyageDetailsContainer extends Component {
 
   render() {
     console.log(this.state);
-
-    // console.log("selected_voyage", this.state.);
-    // console.log(this.state.vessel_report_id);
+    const {
+      vesselName,
+      departsFrom,
+      arrivesAt,
+      departure_time,
+      eta,
+      date,
+      hsfo,
+      lsfo
+    } = this.state;
+    let latitude = parseInt(this.latitude);
+    let longitude = parseInt(this.longitude);
 
     /* vesselName,-voyages
     departsFrom,-voyages
@@ -150,9 +159,18 @@ export default class VoyageDetailsContainer extends Component {
     rpm--/waypoints
     */
     return (
-      <div>
-        <h1>Hello this is VoyageDetailsContainer for {this.state.voyageId}</h1>
-      </div>
+      <VoyageDetails
+        vesselName={vesselName}
+        departureFrom={departsFrom}
+        arrivesAt={arrivesAt}
+        etd={departure_time}
+        eta={eta}
+        date={date}
+        latitude={latitude}
+        longitude={longitude}
+        hsfo={hsfo}
+        ulsfo={lsfo}
+      />
     );
   }
 }
