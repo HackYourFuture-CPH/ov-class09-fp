@@ -88,7 +88,7 @@ export default class VoyageDetailsContainer extends Component {
           .then(res => camelcaseKeys((res = res.data)))
           .then(selectedRoute => {
             this.setState({
-              selectedRouteTableId: selectedRoute,
+              selectedRouteTableId: selectedRoute[0],
               selectedRouteTable: selectedRoute[0].waypoints
             });
           });
@@ -152,10 +152,13 @@ export default class VoyageDetailsContainer extends Component {
       lsfoComsumption,
       totalcost,
       selectedRouteTable,
-      selectedRouteTableId
+      selectedRouteTableId,
+      vesselReport
     } = this.state;
     let latitude = parseInt(this.state.latitude);
     let longitude = parseInt(this.state.longitude);
+
+    // Filtering properties from selected route table
     let suggestedRouteTableFiltered = selectedRouteTable.map(
       ({ created_at, latitude, longitude, speed, rpm }) => ({
         created_at,
@@ -165,6 +168,7 @@ export default class VoyageDetailsContainer extends Component {
         rpm
       })
     );
+    // renaming the property as per the component requirement
     var suggestedRouteTableData = suggestedRouteTableFiltered.map(waypoint => ({
       date: waypoint.created_at,
       latitude: waypoint.latitude,
@@ -172,16 +176,31 @@ export default class VoyageDetailsContainer extends Component {
       speed: waypoint.speed,
       estimated_rpm: waypoint.rpm
     }));
-    console.log("suggestedRouteTableData", suggestedRouteTableData);
-    let suggestedRouteMap = selectedRouteTableId.map(({ id, waypoints }) => ({
+
+    // Data for vessel reports  for map
+    let vesselReportFilteredMap = vesselReport.map(
+      ({ id, latitude, longitude }) => ({ id, latitude, longitude })
+    );
+    console.log("vesselReportFilteredMap", vesselReportFilteredMap);
+
+    // Data for suggested route for map
+    let waypoints = selectedRouteTable.map(({ id, latitude, longitude }) => ({
       id,
-      waypoints
+      latitude,
+      longitude
     }));
-    // let suggestedRoutesMapData = [{ selectedRouteTableId, suggestedRouteMap }];
-    console.log("suggestedRoutesMap", suggestedRouteMap);
+    let id = selectedRouteTableId.id;
+    let suggestedRouteMap = [];
+    suggestedRouteMap.push(id);
+    suggestedRouteMap.push(waypoints);
+    console.log("suggestedRouteMap", suggestedRouteMap);
 
     return (
       <>
+        <MapComponent
+          vesselReports={vesselReportFilteredMap}
+          options={mapOptions}
+        />
         <VoyageDetails
           vesselName={vesselName}
           departFrom={departFrom}
