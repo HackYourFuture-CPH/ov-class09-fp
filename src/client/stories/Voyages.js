@@ -8,24 +8,24 @@ export function VoyageListStory() {
       vesselName: "Yeniser River",
       departureFrom: "Sabetta",
       arrivesAt: "Rotterdam",
-      etd: "2012-08-17 21:18",
-      eta: "2012-08-24 06:43"
+      departure_time: "2012-08-17 21:18",
+      target_arrival_time: "2012-08-24 06:43"
     },
     {
       id: 2,
       vesselName: "Serenade of the seas",
       departureFrom: "Alesund",
       arrivesAt: "Kristiansand",
-      etd: "2019-08-22 19:57",
-      eta: "2019-08-24 07:36"
+      departure_time: "2019-08-22 19:57",
+      target_arrival_time: "2019-08-24 07:36"
     },
     {
       id: 3,
       vesselName: "Msc Meraviglia",
       departureFrom: "St Petersbrug",
       arrivesAt: "Kiel",
-      etd: "2019-08-22 20:18",
-      eta: "2019-08-24 10:54"
+      departure_time: "2019-08-22 20:18",
+      target_arrival_time: "2019-08-24 10:54"
     }
   ]);
 
