@@ -125,52 +125,41 @@ export default class VoyageDetailsContainer extends Component {
       departsFrom,
       arrivesAt,
       departure_time,
-      eta,
+      vessel_eta,
       date,
       hsfo,
-      lsfo
+      lsfo,
+      hfocosts,
+      lsfocosts,
+      hfo_comsumption,
+      lsfo_comsumption,
+      totalcost
     } = this.state;
-    let latitude = parseInt(this.latitude);
-    let longitude = parseInt(this.longitude);
+    let latitude = parseInt(this.state.latitude);
+    let longitude = parseInt(this.state.longitude);
 
-    /* vesselName,-voyages
-    departsFrom,-voyages
-    arrivesAt,--vessel report
-    departure_time,--voyage
-    target_arrival_time,---voyage
-    date, --vessel report
-    latitude,---vessel report
-    longitude, ---vessel report
-    hsfo,---suggested route
-    ulsfo-- suggested route*/
-
-    /* hfo -- suggested_routes
-    lsfo -- suggested_routes
-    hfocosts --- voyageId
-    lsfocosts---voyageId
-    totalcost ---suggested_route
-    */
-
-    /*
-    created -vessel report/waypoints
-    lon -vessel report/waypoints
-    lat -vessel report/waypoints
-    speed -vessel report/waypoints
-    rpm--/waypoints
-    */
     return (
-      <VoyageDetails
-        vesselName={vesselName}
-        departureFrom={departsFrom}
-        arrivesAt={arrivesAt}
-        etd={departure_time}
-        eta={eta}
-        date={date}
-        latitude={latitude}
-        longitude={longitude}
-        hsfo={hsfo}
-        ulsfo={lsfo}
-      />
+      <>
+        <VoyageDetails
+          vesselName={vesselName}
+          departureFrom={departsFrom}
+          arrivesAt={arrivesAt}
+          etd={departure_time}
+          eta={vessel_eta}
+          date={date}
+          latitude={latitude}
+          longitude={longitude}
+          hsfo={hsfo}
+          ulsfo={lsfo}
+        />
+        <CostWidget
+          totalCost={totalcost}
+          hfoCost={hfocosts}
+          lsfoCost={lsfocosts}
+          hfoConsumption={hfo_comsumption}
+          lsfoConsumption={lsfo_comsumption}
+        />
+      </>
     );
   }
 }
