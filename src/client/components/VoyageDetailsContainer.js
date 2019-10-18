@@ -84,7 +84,7 @@ export default class VoyageDetailsContainer extends Component {
           .then(res => (res = res.data))
           .then(selectedRoute => {
             this.setState({
-              selected_route_table: selectedRoute
+              selected_route_table: selectedRoute[0].waypoints
             });
           });
       });
@@ -132,7 +132,7 @@ export default class VoyageDetailsContainer extends Component {
   }
 
   render() {
-    console.log(this.state.selected_route_table[0].waypoints);
+    // console.log(this.state.selected_route_table);
     const {
       vesselName,
       departsFrom,
@@ -151,7 +151,23 @@ export default class VoyageDetailsContainer extends Component {
     } = this.state;
     let latitude = parseInt(this.state.latitude);
     let longitude = parseInt(this.state.longitude);
-    let suggested_route_table = selected_route_table.waypoints;
+    let suggestedRouteTableFiltered = selected_route_table.map(
+      ({ created_at, latitude, longitude, speed, rpm }) => ({
+        created_at,
+        latitude,
+        longitude,
+        speed,
+        rpm
+      })
+    );
+    var suggestedRouteTableData = suggestedRouteTableFiltered.map(waypoint => ({
+      date: waypoint.created_at,
+      latitude: waypoint.latitude,
+      longitude: waypoint.longitude,
+      speed: waypoint.speed,
+      estimated_rpm: waypoint.rpm
+    }));
+    console.log("suggestedRouteTableData", suggestedRouteTableData);
 
     return (
       <>
