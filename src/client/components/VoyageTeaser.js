@@ -13,7 +13,8 @@ import Typography from "@material-ui/core/Typography";
 const voyage_teaser = makeStyles({
   card: {
     display: "inline-block",
-    backgroundColor: "#F2F2F2"
+    backgroundColor: "#F2F2F2",
+    minWidth: 300
   },
   summery: {
     display: "inline-block"
