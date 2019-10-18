@@ -3,7 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
-import logoSource from "../assets/images/Logo.png";
 
 const useStyles = makeStyles({
   grow: {
