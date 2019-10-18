@@ -1,5 +1,5 @@
 import React from "react";
-import Map from "../components/Map";
+import MapComponent from "../components/MapComponent";
 import mapApi from "./data/mapApi";
 import MapMarker from "../components/MapMarker";
 import {
@@ -29,7 +29,7 @@ export function VesselsOnMapStory() {
     )
   });
 
-  return <Map options={options} />;
+  return <MapComponent options={options} />;
 }
 
 /*

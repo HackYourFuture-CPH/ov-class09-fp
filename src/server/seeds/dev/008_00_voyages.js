@@ -140,7 +140,7 @@ exports.seed = function(knex, Promise) {
           status: "completed"
         },
         {
-          vessel_id: 3,
+          vessel_id: 167,
           departure_time: "2018-10-24 13:06:30",
           target_arrival_time: "2019-03-10 16:00:50",
           forwarddraft: 2532.63,
@@ -179,7 +179,7 @@ exports.seed = function(knex, Promise) {
           hfocost: 648.99,
           lsfocost: 173.51,
           hirerate: 93684.54,
-          status: "completed"
+          status: "ongoing"
         },
         {
           vessel_id: 145,

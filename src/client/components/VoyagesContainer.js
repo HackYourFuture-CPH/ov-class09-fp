@@ -1,77 +1,94 @@
 import React, { Component } from "react";
 import VoyageList from "./VoyageList";
+import { getTokenData, getAuthToken } from "../utilities/getTokenData";
+import axios from "axios";
+import camelcaseKeys from "camelcase-keys";
+import MapComponent from "./MapComponent";
+import Marker from "./Marker";
 //import Map from "./VesselsOnMap";
 
-export class VoyagesContainer extends Component {
-  constructor(props) {
-    super(props);
+export default class VoyagesContainer extends Component {
+  state = {
+    organizationId: getTokenData("organization_id"),
+    voyages: [],
+    vesselReports: []
+  };
 
-    this.emptyArray = [];
-    this.state = {
-      currentVoyages: []
-    };
+  // Get Voyages by organization. Response will be camelCased. Returns Promise.
+  getVoyages(organizationId) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`/api/organizations/${organizationId}/voyages?status=ongoing`, {
+          headers: { authorization: getAuthToken() }
+        })
+        .then(response => {
+          resolve(camelcaseKeys(response.data.voyages));
+        })
+        .catch(error => reject(error));
+    });
   }
 
-  FetchVesselReport(voyage) {
-    fetch(
-      `/api/voyages/${voyage.id}/vessel-reports?offset=0&limit=50&orderBy="desc"`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTE1NTg1NiwiZXhwIjoxNTcxMTkxODU2fQ.iUbAtbxDl7DXiWhsxIct9aNR9ezd3AcQpALn7NUD_Gk"
-        }
-      }
-    )
-      .then(res => res.json())
-      .then(vesselReportData => {
-        voyage["eta"] = vesselReportData[0].eta;
-        voyage["latitude"] = vesselReportData[0].latitude;
-        voyage["longitude"] = vesselReportData[0].longitude;
-        this.emptyArray = [...this.emptyArray, voyage];
-      })
-      .then(() => this.setState({ currentVoyages: this.emptyArray }));
+  // Get Vessel Reports by voyage ID. Response will be camelCased. Returns Promise.
+  async getLatestVesselReport(voyageId) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `/api/voyages/${voyageId}/vessel-reports?orderBy=desc&limit=1&offset=0`,
+          {
+            headers: { authorization: getAuthToken() }
+          }
+        )
+        .then(response => {
+          resolve(camelcaseKeys(response.data[0]));
+        })
+        .catch(error => reject(error));
+    });
   }
 
   componentDidMount() {
-    // const { orgnaization_id } = this.props;
-    const orgnaization_id = 3;
-
-    fetch(`/api/organizations/${orgnaization_id}/voyages?status=ongoing`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTE1NTg1NiwiZXhwIjoxNTcxMTkxODU2fQ.iUbAtbxDl7DXiWhsxIct9aNR9ezd3AcQpALn7NUD_Gk"
-      }
-    })
-      .then(res => res.json())
-      .then(voyageData => {
-        voyageData.voyages.map(voyage => this.FetchVesselReport(voyage));
+    // Populate state from Voyages
+    this.getVoyages(this.state.organizationId)
+      .then(voyages => {
+        this.setState({ voyages });
+      })
+      .then(() => {
+        // Populate state from Vessel Reports
+        this.state.voyages.map(voyage => {
+          this.getLatestVesselReport(voyage.id).then(vesselReport => {
+            this.setState({
+              vesselReports: [...this.state.vesselReports, vesselReport]
+            });
+          });
+        });
       });
   }
 
   render() {
-    const { currentVoyages } = this.state;
-    const centerMapCoordinates = [0, 0];
-    const pathColor = "red";
-    const displayMarkers = true;
-    if (currentVoyages.length > 0) {
-      return (
-        <div>
-          <VoyageList voyages={currentVoyages} />
-        </div>
-      );
-    }
+    return (
+      <div>
+        <MapComponent
+          vesselReports={this.state.vesselReports}
+          options={mapOptions}
+        />
+        <VoyageList voyages={this.state.voyages} />
+      </div>
+    );
   }
 }
 
-export default VoyagesContainer;
-/*
- <Map
-            centerMapCoordinates={centerMapCoordinates}
-            displayMarkers={displayMarkers}
-            pathColor={pathColor}
-            vessels={currentVoyages}
-          /> */
+// Configuration object for Map
+const mapOptions = {
+  centerMapCoordinates: [12.5244140625, 55.640398956687356],
+  zoom: 1,
+  style: {
+    color: {
+      suggestedRoute: "red",
+      elapsedRoute: "blue"
+    },
+    marker: {
+      markerComponent: Marker,
+      defaultSize: "sm",
+      selectedSize: "md"
+    }
+  }
+};

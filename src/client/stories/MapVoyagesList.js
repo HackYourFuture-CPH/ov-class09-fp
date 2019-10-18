@@ -1,62 +1,77 @@
 import React from "react";
-import Map from "../components/Map";
+import MapComponent from "../components/MapComponent";
 import MapMarker from "../components/Marker";
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  array,
-  object
-} from "@storybook/addon-knobs";
+import { number, array, object } from "@storybook/addon-knobs";
 export function MapVoyagesList() {
-  const options = object("options", {
-    centerMapCoordinates: array("centerMapCoordinates", [55.698478, 12.604377]),
-    zoom: number("zoom", 12),
-    style: object(
-      "color",
-      {
-        suggestedRoute: "#F8AA13",
-        elapsedRoute: "#1353F8"
-      },
-      "marker",
-      {
-        MarkerComponent: MapMarker,
-        defaultSize: "sm",
-        selectedSize: "md"
-      }
-    )
-  });
-
-  const voyages = [
+  const vesselReports = [
     {
-      vessel_id: 23,
-      vessel_reports: [
-        {
-          latitude: 55.721114,
-          longitude: 12.646547
-        }
-      ]
+      id: 1,
+      longitude: 12.60955810546875,
+      latitude: 55.697711785689854
     },
     {
-      vessel_id: 24,
-      vessel_reports: [
-        {
-          latitude: 55.698478,
-          longitude: 12.604377
-        }
-      ]
+      id: 2,
+      longitude: 12.71392822265625,
+      latitude: 55.77039358162004
     },
     {
-      vessel_id: 25,
-      vessel_reports: [
-        {
-          latitude: 55.687535,
-          longitude: 12.601538
-        }
-      ]
+      id: 3,
+      longitude: 12.601318359374998,
+      latitude: 55.94458588614092
+    },
+    {
+      id: 4,
+      longitude: 12.645263671875,
+      latitude: 56.05516872561129
+    },
+    {
+      id: 5,
+      longitude: 12.28546142578125,
+      latitude: 56.19295271544726
+    },
+    {
+      id: 6,
+      longitude: 11.1181640625,
+      latitude: 58.03137242177637
+    },
+    {
+      id: 7,
+      longitude: 5.42724609375,
+      latitude: 56.992882804633986
+    },
+    {
+      id: 8,
+      longitude: 3.44970703125,
+      latitude: 52.64306343665892
+    },
+    {
+      id: 9,
+      longitude: 3.955078125,
+      latitude: 51.83577752045248
     }
   ];
 
-  return <Map options={options} voyages={voyages} />;
+  const mapOptions = {
+    centerMapCoordinates: [12.5244140625, 55.640398956687356],
+    zoom: 1,
+    style: {
+      color: {
+        suggestedRoute: "#F8AA13",
+        elapsedRoute: "#1353F8"
+      },
+      marker: {
+        markerComponent: null,
+        defaultSize: "sm",
+        selectedSize: "md"
+      }
+    }
+  };
+
+  return (
+    <MapComponent
+      vesselReports={vesselReports}
+      // suggestedRoutes={suggestedRoutes}
+      options={mapOptions}
+    />
+  );
 }
