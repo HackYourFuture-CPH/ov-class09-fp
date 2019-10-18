@@ -47,12 +47,6 @@ const VoyageStories = storiesOf("Start Voyage", module).add(
 );
 VoyageStories.addDecorator(withKnobs);
 
-const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
-  "VoyageDetails",
-  VoyageDetailsStory
-);
-VoyageDetailsStories.addDecorator(withKnobs);
-
 const CardStories = storiesOf("Card", module)
   .add("DataCard", DataCardStory)
   .add("CardGroup", CardGroupStory)
@@ -60,8 +54,9 @@ const CardStories = storiesOf("Card", module)
 CardStories.addDecorator(withKnobs);
 
 const VoyagesListStories = storiesOf("Voyages", module)
-  .add("VoyageList", VoyageListStory)
-  .add("VoyageTeaser", VoyageTeaserStory);
+  .add("Voyage Details", VoyageDetailsStory)
+  .add("Voyage List", VoyageListStory)
+  .add("Voyage Teaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
 
 const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
