@@ -190,7 +190,10 @@ export default class VoyageDetailsContainer extends Component {
           hfoConsumption={hfo_comsumption}
           lsfoConsumption={lsfo_comsumption}
         />
-        <SuggestedRouteTable />
+        <SuggestedRouteTable
+          data={suggestedRouteTableData}
+          tableNames={["DATE", "LATITUDE", "LONGTIDUE", "SPEED", "EST.RPM"]}
+        />
       </>
     );
   }
