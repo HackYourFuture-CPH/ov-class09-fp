@@ -12,7 +12,7 @@ export default class VoyageDetailsContainer extends Component {
     vessel_report_id: [],
     suggested_route_id: [],
     voyageList: null,
-
+    selected_route_id: null,
     departure_time: "",
     hfocosts: null,
     lsfocosts: null,
@@ -56,24 +56,31 @@ export default class VoyageDetailsContainer extends Component {
             headerObject
           )
           .then(data => (data = data.data))
-          .then(data => {
+          .then(suggestedRoute => {
             this.setState({
-              suggested_routes: data,
+              suggested_routes: suggestedRoute,
               vessel_report: reportsArr,
               vessel_report_id: reportsArr[0].id,
               vessel_eta: reportsArr[0].eta,
               longitude: reportsArr[0].longitude,
               latitude: reportsArr[0].latitude,
+              selected_route_id: reportsArr[0].selected_route_id,
               hfo_comsumption: reportsArr[0].hfo_consumption,
               lsfo_comsumption: reportsArr[0].lsfo_consumption,
               date: reportsArr[0].created_at,
-              hsfo: data[0].hfo,
-              ulsfo: data[0].lsfo,
-              hfo: data[0].hfo,
-              lsfo: data[0].lsfo,
-              totalcost: data[0].total_cost
+              hsfo: suggestedRoute[0].hfo,
+              ulsfo: suggestedRoute[0].lsfo,
+              hfo: suggestedRoute[0].hfo,
+              lsfo: suggestedRoute[0].lsfo,
+              totalcost: suggestedRoute[0].total_cost
             });
           });
+        /* axios
+          .get(`/api/vessel-reports/1001/suggested-routes`, headerObject)
+          .then(res => (res = res.data))
+          .then(selectedRoute => {
+            console.log("selected route table", selectedRoute);
+          });*/
       });
 
     axios
