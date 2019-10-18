@@ -13,6 +13,7 @@ export default class VoyageDetailsContainer extends Component {
     suggested_route_id: [],
     voyageList: null,
     selected_route_id: null,
+    selected_route_table: [],
     departure_time: "",
     hfocosts: null,
     lsfocosts: null,
@@ -75,12 +76,17 @@ export default class VoyageDetailsContainer extends Component {
               totalcost: suggestedRoute[0].total_cost
             });
           });
-        /* axios
-          .get(`/api/vessel-reports/1001/suggested-routes`, headerObject)
+        axios
+          .get(
+            `/api/suggested-routes/${reportsArr[0].selected_route_id}`,
+            headerObject
+          )
           .then(res => (res = res.data))
           .then(selectedRoute => {
-            console.log("selected route table", selectedRoute);
-          });*/
+            this.setState({
+              selected_route_table: selectedRoute
+            });
+          });
       });
 
     axios
