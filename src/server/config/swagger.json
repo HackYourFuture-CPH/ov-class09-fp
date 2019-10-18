@@ -769,7 +769,7 @@
             "required": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/CreateSelectedRouteRequest"
+              "$ref": "#/definitions/CreateSelectSuggestedRouteRequest"
             }
           }
         ],
@@ -1402,6 +1402,24 @@
         }
       },
       "required": ["vessel_report_id", "suggested_route_id"]
+    },
+    "CreateSelectSuggestedRouteRequest": {
+      "title": "CreateSelectSuggestedRouteRequest",
+      "example": {
+        "suggested_route_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "vessel_report_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "suggested_route_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["suggested_route_id"]
     },
     "CreateSuggestedRouteRequest": {
       "title": "CreateSuggestedRouteRequest",
