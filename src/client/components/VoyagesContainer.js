@@ -9,6 +9,7 @@ import Marker from "./Marker";
 
 export default class VoyagesContainer extends Component {
   state = {
+    // Get auth token from localstorage
     organizationId: getTokenData("organization_id"),
     voyages: [],
     vesselReports: []
