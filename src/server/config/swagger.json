@@ -746,6 +746,65 @@
         }
       }
     },
+    "/vessel-reports/{vessel_report_id}/select-route/": {
+      "post": {
+        "description": "Selects suggested route by vessel report ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Selects suggested Route",
+        "tags": ["Selected Routes"],
+        "operationId": "SelectSuggestedRoutePost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateSelectSuggestedRouteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns selected route by vessel report ID.\n\nAuthentication: `superuser`, `admin`, `operator` only.",
+        "summary": "Get Selected Route by vessel report ID",
+        "tags": ["Selected Routes"],
+        "operationId": "SelectSuggestedRouteGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/suggested-routes": {
       "post": {
         "description": "Creates a suggested route.\n\nAuthentication: `superuser` only.",
@@ -1343,6 +1402,24 @@
         }
       },
       "required": ["vessel_report_id", "suggested_route_id"]
+    },
+    "CreateSelectSuggestedRouteRequest": {
+      "title": "CreateSelectSuggestedRouteRequest",
+      "example": {
+        "suggested_route_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "vessel_report_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "suggested_route_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["suggested_route_id"]
     },
     "CreateSuggestedRouteRequest": {
       "title": "CreateSuggestedRouteRequest",
