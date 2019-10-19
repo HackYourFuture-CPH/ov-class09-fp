@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import LogoutButton from "./LogoutButton";
+import { getTokenData } from "../utilities/getTokenData";
 class SecondaryNavigationBar extends Component {
   state = {
     userName: "",
     userRole: ""
   };
-
   render() {
+    let userData = getTokenData;
+    console.log("This is", userData);
+
     if (
       this.props.userRole.toLowerCase() === "admin" ||
       this.props.userRole.toLowerCase() === "superuser"

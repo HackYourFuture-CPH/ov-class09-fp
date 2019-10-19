@@ -6,7 +6,7 @@
     "description": "API documentation for the Optimum Voyage app.",
     "contact": {}
   },
-  "host": "localhost:3000",
+  "host": "",
   "basePath": "/api",
   "securityDefinitions": {
     "Authorization": {
@@ -154,6 +154,30 @@
             "schema": {
               "$ref": "#/definitions/CreateAdminUserRequest"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns all admin users for a given organization.\n\nAuthentication: `superuser` only.",
+        "summary": "Get admin users by organization",
+        "tags": ["User"],
+        "operationId": "OrganizationsUsersByOrganizationIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
           }
         ],
         "responses": {
@@ -629,7 +653,7 @@
         }
       }
     },
-    "/organizations/{organization_id}/voyages?status={voyage_status}": {
+    "/organizations/{organization_id}/voyages?status={voyage_status}&orderBy={orderBy}&limit={limit}&offset={offset}": {
       "get": {
         "description": "Returns all voyages for a given organization.\n\nAuthentication: `superuser`, `admin` & `operator`.",
         "summary": "Get voyages by organization",
@@ -652,6 +676,29 @@
             "required": true,
             "type": "string",
             "description": ""
+          },
+          {
+            "name": "limit",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum number of items to fetch."
+          },
+          {
+            "name": "orderBy",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Order in ascending (oldest first) `asc` or descending (newest first) `desc` order based on ID."
+          },
+          {
+            "name": "offset",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "Offset the starting point of the query."
           }
         ],
         "responses": {
@@ -715,6 +762,65 @@
         "deprecated": false,
         "produces": ["application/json"],
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/vessel-reports/{vessel_report_id}/select-route/": {
+      "post": {
+        "description": "Selects suggested route by vessel report ID.\n\nAuthentication: `superuser`, `admin` & `operator`.",
+        "summary": "Selects suggested Route",
+        "tags": ["Selected Routes"],
+        "operationId": "SelectSuggestedRoutePost",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateSelectSuggestedRouteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns selected route by vessel report ID.\n\nAuthentication: `superuser`, `admin`, `operator` only.",
+        "summary": "Get Selected Route by vessel report ID",
+        "tags": ["Selected Routes"],
+        "operationId": "SelectSuggestedRouteGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "vessel_report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -1066,20 +1172,20 @@
         "name": {
           "type": "string"
         },
-        "waypoints": {
-          "type": "array",
+        "waypoint": {
+          "type": "object",
           "items": {
             "$ref": "#/definitions/Waypoint"
           }
         }
       },
-      "required": ["name", "waypoints"]
+      "required": ["name", "waypoint"]
     },
     "Waypoint": {
       "title": "Waypoint",
       "example": {
-        "lon": 55.65646,
-        "lat": 12.53635
+        "longitude": 55.65646,
+        "latitude": 12.53635
       },
       "type": "object",
       "properties": {
@@ -1320,6 +1426,24 @@
         }
       },
       "required": ["vessel_report_id", "suggested_route_id"]
+    },
+    "CreateSelectSuggestedRouteRequest": {
+      "title": "CreateSelectSuggestedRouteRequest",
+      "example": {
+        "suggested_route_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "vessel_report_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "suggested_route_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["suggested_route_id"]
     },
     "CreateSuggestedRouteRequest": {
       "title": "CreateSuggestedRouteRequest",

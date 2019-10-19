@@ -1,24 +1,52 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { MapStory } from "./Map";
-
+import { StartVoyageStory } from "./StartVoyage";
+import { DateTimeStory } from "./DateTime";
+import { InputFieldNumberStory } from "./InputFieldNumber";
+import { DropdownStory } from "./Dropdown";
+import { NavButtonStory } from "./navigation/NavButton";
+import { CheckboxStory } from "./Checkbox";
+import { MapMarkerStory } from "./MapMarkerStory";
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
 import { SecondaryNavigationBarStory } from "./SecondaryNavigationBarStory";
-
 import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
-
 import { CostWidgetStory } from "./CostWidgetStory";
-import { LoginForm, LoginFormStory } from "./login-form";
+import { LoginFormStory } from "./login-form";
 
-import { LogoutButtonStory } from "./Buttons";
-import { ButtonStory } from "./Buttons";
+import { ButtonStory, LogoutButtonStory } from "./Buttons";
+import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
+import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
+import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
+import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
+import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
-const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
+const MapStories = storiesOf("Map", module)
+  .add("Map", MapStory)
+  .add("Map Marker", MapMarkerStory);
 MapStories.addDecorator(withKnobs);
+
+const NavigationStories = storiesOf("Navigation", module).add(
+  "ButtonComponent",
+  NavButtonStory
+);
+NavigationStories.addDecorator(withKnobs);
+
+const FormStories = storiesOf("Forms elements", module)
+  .add("DateTimeComponent", DateTimeStory)
+  .add("InputFieldNumberComponent", InputFieldNumberStory)
+  .add("DropdownComponent", DropdownStory)
+  .add("CheckboxComponent", CheckboxStory);
+FormStories.addDecorator(withKnobs);
+
+const VoyageStories = storiesOf("Start Voyage", module).add(
+  "StartVoyage",
+  StartVoyageStory
+);
+VoyageStories.addDecorator(withKnobs);
 
 const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
   "VoyageDetails",
@@ -28,14 +56,9 @@ VoyageDetailsStories.addDecorator(withKnobs);
 
 const CardStories = storiesOf("Card", module)
   .add("DataCard", DataCardStory)
-  .add("CardGroup", CardGroupStory);
+  .add("CardGroup", CardGroupStory)
+  .add("Cost Widget Card", CostWidgetStory);
 CardStories.addDecorator(withKnobs);
-
-const CostWidgetStories = storiesOf("Cost Widget", module).add(
-  "Cost Widget Card",
-  CostWidgetStory
-);
-CostWidgetStories.addDecorator(withKnobs);
 
 const SecondaryNavigationBarStories = storiesOf(
   "Secondary Navigation",
@@ -48,13 +71,18 @@ const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageTeaser", VoyageTeaserStory);
 VoyagesListStories.addDecorator(withKnobs);
 
-storiesOf("Buttons", module)
-  .add("Button", ButtonStory)
-  .add("Logout Button", LogoutButtonStory);
+const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
+  .add("Suggested Route Summary", suggestedRouteSummary)
+  .add("Suggested Route Details", suggestedRouteDetails)
+  .add("Suggested Route Card", suggestedRouteCard)
+  .add("Suggested Routes List", suggestedRoutesList)
+  .add("Suggested Route Table", SuggestedRouteTableStory);
+SuggestedRouteSummaryStories.addDecorator(withKnobs);
 
-const LoginFormStories = storiesOf("Loginform", module).add(
-  "LoginForm",
-  LoginFormStory
-);
+storiesOf("Buttons", module).add("Button", ButtonStory);
+
+const LoginFormStories = storiesOf("Authentication", module)
+  .add("Login Form", LoginFormStory)
+  .add("Logout Button", LogoutButtonStory);
 
 LoginFormStories.addDecorator(withKnobs);
