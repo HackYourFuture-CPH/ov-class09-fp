@@ -18,6 +18,7 @@ import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
 import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
+import { AdminContainerStory } from "./AdminContainer";
 
 const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 MapStories.addDecorator(withKnobs);
@@ -58,3 +59,7 @@ const LoginFormStories = storiesOf("Authentication", module)
   .add("Logout Button", LogoutButtonStory);
 
 LoginFormStories.addDecorator(withKnobs);
+
+storiesOf("Admin Panel", module)
+  .add("Admin Container", AdminContainerStory)
+  .addDecorator(withKnobs);
