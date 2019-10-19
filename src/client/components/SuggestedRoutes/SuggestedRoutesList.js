@@ -14,7 +14,7 @@ export default class SuggestedRoutesList extends Component {
           let eta = moment(route.eta);
           let departureTime = moment(route.departure_time);
           let duration = moment.duration(eta.diff(departureTime));
-          const d = `${duration.days()} Days ${duration.hours()} Hours`;
+          const durationString = `${duration.days()} Days ${duration.hours()} Hours`;
 
           const hoursInDays = duration.days() + duration.hours() / 24;
 
@@ -26,7 +26,7 @@ export default class SuggestedRoutesList extends Component {
               isSelected={route.selected_route_id === route.id}
               handleClick={handleSelectRoute}
               key={route.id}
-              duration={d}
+              duration={durationString}
               price={route.total_cost}
               eta={moment(route.eta).format("YYYY-MM-DD HH:MM")}
               hfo={route.hfo}
