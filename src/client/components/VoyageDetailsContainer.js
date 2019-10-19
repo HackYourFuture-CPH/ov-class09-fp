@@ -6,241 +6,158 @@ import SuggestedRouteTable from "./SuggestedRouteTable";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
-import { getTokenData, getAuthToken } from "../utilities/getTokenData";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
     voyageId: this.props.match.params.voyage_id,
-    vesselReport: [],
-    suggestedRoutes: [],
-    vesselReportId: [],
-    suggestedRouteId: [],
-    voyageList: null,
-    selectedRouteId: null,
-    selectedRouteTable: [],
-    departureTime: "",
-    hfocosts: null,
-    lsfocosts: null,
-    vesselId: null,
-    vesselName: "",
-    departFrom: "",
-    arriveAt: "",
-    departureTime: "",
-    vesselEta: "",
-    date: "",
-    latitude: null,
-    longitude: null,
-    hsfo: null,
-    ulsfo: null,
-    hfo: null,
-    lsfo: null,
-    hfocosts: null,
-    lsfocosts: null,
-    totalcost: null,
-    depart_from_port: null,
-    selectedRouteTableId: []
+    voyage: {},
+    vesselReports: [],
+    latestVesselReport: {},
+    selectedRoute: [],
+    departFromPort: "",
+    arriveAtPort: "",
+    vessel: {}
   };
 
   componentDidMount() {
-    const headerObject = {
-      // method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsIm9yZ2FuaXphdGlvbl9pZCI6MSwidXNlcl9uYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzE0Njk1NzYsImV4cCI6MTU3MTUwNTU3Nn0.3e7jkf0e5RSFqwrZSD8Z_TuWJqYQFT0YgzIeeQuRG5E"
-      }
-    };
-    console.log("Inside the component didcomponent");
     axios
-      .get(`/api/voyages/${this.state.voyageId}/vessel-reports`, headerObject)
-      .then(resp => camelcaseKeys((resp = resp.data)))
-      .then(reportsArr => {
+      .get(`/api/voyages/${this.state.voyageId}`)
+      .then(voyage => {
+        this.setState({
+          voyage: camelcaseKeys(voyage.data[0])
+        });
+      })
+      .then(() => {
+        // TODO: This should come from get voyage by ID endpoint
         axios
-          .get(
-            `/api/vessel-reports/${reportsArr[0].id}/suggested-routes`,
-            headerObject
-          )
-          .then(data => camelcaseKeys((data = data.data)))
-          .then(suggestedRoute => {
+          .get(`/api/ports/${this.state.voyage.departFromPort}`)
+          .then(departFromPort => {
             this.setState({
-              suggestedRoutes: suggestedRoute,
-              vesselReport: reportsArr,
-              vesselReportId: reportsArr[0].id,
-              vesselEta: reportsArr[0].eta,
-              longitude: reportsArr[0].longitude,
-              latitude: reportsArr[0].latitude,
-              selectedRouteId: reportsArr[0].selectedRouteId,
-              hfoComsumption: reportsArr[0].hfoConsumption,
-              lsfoComsumption: reportsArr[0].lsfoConsumption,
-              date: reportsArr[0].createdAt,
-              hsfo: suggestedRoute[0].hfo,
-              ulsfo: suggestedRoute[0].lsfo,
-              hfo: suggestedRoute[0].hfo,
-              lsfo: suggestedRoute[0].lsfo,
-              totalcost: suggestedRoute[0].totalCost
+              departFromPort: departFromPort.data[0].name
             });
           });
+
+        // TODO: This should come from get voyage by ID endpoint
+        axios
+          .get(`/api/ports/${this.state.voyage.arriveAtPort}`)
+          .then(arriveAtPort => {
+            this.setState({
+              arriveAtPort: arriveAtPort.data[0].name
+            });
+          });
+
+        // TODO: This should come from get voyage by ID endpoint
+        axios.get(`/api/vessels/${this.state.voyage.vesselId}`).then(vessel => {
+          this.setState({ vessel: camelcaseKeys(vessel.data[0]) });
+        });
+      });
+
+    axios
+      .get(`/api/voyages/${this.state.voyageId}/vessel-reports`)
+      .then(vesselReports => {
+        const vesselReportsData = camelcaseKeys(vesselReports.data);
+
+        this.setState({
+          vesselReports: vesselReportsData,
+          latestVesselReport: vesselReportsData[0]
+        });
+      })
+      .then(() => {
         axios
           .get(
-            `/api/suggested-routes/${reportsArr[0].selectedRouteId}`,
-            headerObject
+            `/api/vessel-reports/${this.state.latestVesselReport.id}/select-route/`
           )
-          .then(res => camelcaseKeys((res = res.data)))
           .then(selectedRoute => {
-            this.setState({
-              selectedRouteTableId: selectedRoute[0],
-              selectedRouteTable: selectedRoute[0].waypoints
-            });
-          });
-      });
+            const selectedRouteId = selectedRoute.data[0].id;
+            axios
+              .get(`/api/suggested-routes/${selectedRouteId}`)
+              .then(selectedRoute => {
+                //debugger;
 
-    axios
-      .get("/api/voyages/", headerObject)
-      .then(resp => camelcaseKeys((resp = resp.data)))
-      .then(voyageArr =>
-        voyageArr.filter(voyage => voyage.id === parseInt(this.state.voyageId))
-      )
-      .then(voyageobj => {
-        console.log("voyajeobj", voyageobj);
-        axios
-          .get(`/api/vessels/${voyageobj[0].vesselId}/`, headerObject)
-          .then(res => camelcaseKeys((res = res.data)))
-          .then(vesselobj => {
-            this.setState({
-              vesselName: vesselobj[0].name,
-              departureTime: voyageobj[0].departureTime,
-              hfocosts: voyageobj[0].hfocost,
-              lsfocosts: voyageobj[0].lsfocost,
-              vesselId: voyageobj[0].vesselId,
-              departFromPort: voyageobj[0].departFromPort,
-              arriveAtPort: voyageobj[0].arriveAtPort
-            });
+                this.setState({
+                  selectedRoute: camelcaseKeys(selectedRoute.data, {
+                    deep: true
+                  })
+                });
+              });
           });
-        axios
-          .get(`/api/ports/${voyageobj[0].departFromPort}/`, headerObject)
-          .then(res => camelcaseKeys((res = res.data)))
-          .then(portobj =>
-            this.setState({
-              departFrom: portobj[0].name
-            })
-          );
-
-        axios
-          .get(`/api/ports/${voyageobj[0].arriveÅtPort}/`, headerObject)
-          .then(res => camelcaseKeys((res = res.data)))
-          .then(portobj =>
-            this.setState({
-              arriveAt: portobj[0].name
-            })
-          );
-      });
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
     const {
-      vesselName,
-      departFrom,
-      arriveAt,
-      departureTime,
-      vesselEta,
-      date,
-      hsfo,
-      lsfo,
-      hfocosts,
-      lsfocosts,
-      hfoComsumption,
-      lsfoComsumption,
-      totalcost,
-      selectedRouteTable,
-      selectedRouteTableId,
-      vesselReport
+      voyage,
+      vesselReports,
+      latestVesselReport,
+      departFromPort,
+      arriveAtPort,
+      vessel,
+      selectedRoute
     } = this.state;
-    let latitude = parseInt(this.state.latitude);
-    let longitude = parseInt(this.state.longitude);
 
-    // Filtering properties from selected route table
-    let suggestedRouteTableFiltered = selectedRouteTable.map(
-      ({ created_at, latitude, longitude, speed, rpm }) => ({
-        created_at,
-        latitude,
-        longitude,
-        speed,
-        rpm
-      })
-    );
-    // renaming the property as per the component requirement
-    var suggestedRouteTableData = suggestedRouteTableFiltered.map(waypoint => ({
-      date: waypoint.created_at,
-      latitude: waypoint.latitude,
-      longitude: waypoint.longitude,
-      speed: waypoint.speed,
-      estimated_rpm: waypoint.rpm
-    }));
+    let totalCost = 0;
 
-    // Data for vessel reports  for map
-    let vesselReportFilteredMap = vesselReport.map(
-      ({ id, latitude, longitude }) => ({ id, latitude, longitude })
-    );
-    console.log("vesselReportFilteredMap", vesselReportFilteredMap);
+    if (selectedRoute.length > 0 && selectedRoute[0].totalCost) {
+      totalCost = selectedRoute[0].totalCost;
+    }
 
-    // Data for suggested route for map
-    let waypoints = selectedRouteTable.map(({ latitude, longitude }) => ({
-      latitude,
-      longitude
-    }));
-    let id = selectedRouteTableId.id;
-    let suggestedRouteMap = [];
-    suggestedRouteMap.push(id);
-    suggestedRouteMap.push(waypoints);
-    console.log("suggestedRouteMap", suggestedRouteMap);
+    // Configuration object for Map
+    const mapOptions = {
+      centerMapCoordinates: [12.5244140625, 55.640398956687356],
+      zoom: 1,
+      style: {
+        color: {
+          suggestedRoute: "red",
+          elapsedRoute: "blue"
+        },
+        marker: {
+          markerComponent: Marker,
+          defaultSize: "sm",
+          selectedSize: "md"
+        }
+      }
+    };
 
     return (
       <>
         <MapComponent
-          vesselReports={vesselReportFilteredMap}
-          /* {suggestedRoutes={suggestedRouteMap}} */
+          vesselReports={vesselReports}
+          suggestedRoutes={selectedRoute}
           options={mapOptions}
         />
         <VoyageDetails
-          vesselName={vesselName}
-          departFrom={departFrom}
-          arriveAt={arriveAt}
-          etd={departureTime}
-          eta={vesselEta}
-          date={date}
-          latitude={latitude}
-          longitude={longitude}
-          hsfo={hsfo}
-          ulsfo={lsfo}
+          vesselName={vessel.name}
+          departFrom={departFromPort}
+          arriveAt={arriveAtPort}
+          etd={voyage.departureTime}
+          eta={latestVesselReport.eta}
+          date={latestVesselReport.createdAt}
+          latitude={latestVesselReport.latitude}
+          longitude={latestVesselReport.longitude}
+          hsfo={latestVesselReport.hfoConsumption}
+          ulsfo={latestVesselReport.lsfoConsumption}
         />
-        <CostWidget
-          totalCost={totalcost}
-          hfoCost={hfocosts}
-          lsfoCost={lsfocosts}
-          hfoConsumption={hfoComsumption}
-          lsfoConsumption={lsfoComsumption}
-        />
-        <SuggestedRouteTable
-          data={suggestedRouteTableData}
-          tableNames={["DATE", "LATITUDE", "LONGTIDUE", "SPEED", "EST.RPM"]}
-        />
+        {totalCost &&
+          voyage.hfoCost &&
+          voyage.lsfoCost &&
+          latestVesselReport.hfoConsumption &&
+          latestVesselReport.lsfoConsumption && (
+            <CostWidget
+              totalCost={totalCost}
+              hfoCost={voyage.hfoCost}
+              lsfoCost={voyage.lsfoCost}
+              hfoConsumption={latestVesselReport.hfoConsumption}
+              lsfoConsumption={latestVesselReport.lsfoConsumption}
+            />
+          )}
+        {selectedRoute.length > 0 && selectedRoute[0].waypoints ? (
+          <SuggestedRouteTable
+            data={selectedRoute[0].waypoints}
+            tableNames={["DATE", "LATITUDE", "LONGTIDUE", "SPEED", "EST.RPM"]}
+          />
+        ) : null}
       </>
     );
   }
 }
-// Configuration object for Map
-const mapOptions = {
-  centerMapCoordinates: [12.5244140625, 55.640398956687356],
-  zoom: 1,
-  style: {
-    color: {
-      suggestedRoute: "red",
-      elapsedRoute: "blue"
-    },
-    marker: {
-      markerComponent: Marker,
-      defaultSize: "sm",
-      selectedSize: "md"
-    }
-  }
-};

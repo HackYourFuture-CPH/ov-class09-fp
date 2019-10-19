@@ -9,13 +9,7 @@ const getVoyages = () => {
 };
 
 const getVoyageById = voyage_id => {
-  return knex("voyages as voy")
-    .join("vessels as ves", "voy.vessel_id", "voy.id")
-    .where("voy.vessel_id", voyage_id)
-    .join("voyages", "voy.vessel_id", "ves.id")
-    .join("ports as p1", "p1.id", "voy.depart_from_port")
-    .join("ports as p2", "p2.id", "voy.arrive_at_port")
-    .select("ves.name as vessel_name");
+  return knex("voyages").where({ id: voyage_id });
 };
 
 //to create a voyage
