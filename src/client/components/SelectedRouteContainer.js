@@ -5,24 +5,24 @@ import { getAuthToken } from "../utilities/getTokenData";
 export default class SelectedRouteContainer extends React.Component {
   state = {
     suggestedRoutes: [],
-    suggested_route_id: null,
-    vessel_reports_id: this.props.match.params.vessel_reports_id,
-    voyage_id: this.props.match.params.voyage_id
+    suggestedRouteID: null,
+    vesselReportId: this.props.match.params.vessel_reports_id,
+    voyageId: this.props.match.params.voyage_id
   };
   componentDidUpdate(_, prevState) {
-    if (prevState.suggested_route_id !== this.state.suggested_route_id) {
+    if (prevState.suggestedRouteID !== this.state.suggestedRouteID) {
       this.fetchSuggestedRoutes();
       this.setState({
-        suggested_route_id: null
+        suggestedRouteID: null
       });
     }
   }
   handleSelectRoute = id => {
-    const { vessel_reports_id } = this.state;
+    const { vesselReportId } = this.state;
 
     const data = { suggested_route_id: id };
     axios
-      .post(`api/vessel-reports/${vessel_reports_id}/select-route`, data, {
+      .post(`api/vessel-reports/${vesselReportId}/select-route`, data, {
         headers: {
           "Content-Type": "application/json",
           authorization: getAuthToken()
@@ -30,7 +30,7 @@ export default class SelectedRouteContainer extends React.Component {
       })
       .then(
         response => {
-          this.setState({ suggested_route_id: data.id });
+          this.setState({ suggestedRouteID: data.id });
         },
         error => {
           console.log(error);
@@ -41,9 +41,9 @@ export default class SelectedRouteContainer extends React.Component {
     this.fetchSuggestedRoutes();
   }
   fetchSuggestedRoutes = () => {
-    const { voyage_id, vessel_reports_id } = this.state;
+    const { voyageId, vesselReportId } = this.state;
     axios
-      .get(`/api/vessel-reports/${vessel_reports_id}/suggested-routes`, {
+      .get(`/api/vessel-reports/${vesselReportId}/suggested-routes`, {
         headers: {
           "Content-Type": "application/json",
           authorization: getAuthToken()
