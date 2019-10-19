@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import TextField from "@material-ui/core/TextField";
 class InputFieldNumber extends Component {
   static defaultProps = {
     step: 0.01,
@@ -9,19 +10,24 @@ class InputFieldNumber extends Component {
 
   render() {
     const { label, name, unit, value, onDataInputChange } = this.props;
+
     return (
-      <label>
-        {label}
-        <input
-          type="number"
+      <form>
+        <TextField
+          label="Number"
           name={name}
           value={value}
           step={this.props.step}
           placeholder={this.props.placeholder}
           onChange={e => onDataInputChange(e)}
+          type="number"
+          InputLabelProps={{
+            shrink: true
+          }}
+          margin="normal"
         />
         <span className="unit">{unit}</span>
-      </label>
+      </form>
     );
   }
 }

@@ -1,12 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Checkbox from "@material-ui/core/Checkbox";
 
-function Checkbox({ label, handleCheckbox }) {
+function CheckBox({ label, handleCheckbox }) {
   return (
-    <label>
-      {label}
-      <input type="checkbox" onClick={e => handleCheckbox(e)} />
-    </label>
+    <div>
+      <Checkbox
+        defaultChecked
+        color="default"
+        value="checked"
+        inputProps={{
+          "aria-label": "checkbox with default color"
+        }}
+      />
+    </div>
   );
 }
 
@@ -14,4 +21,4 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   handleCheckbox: PropTypes.func
 };
-export default Checkbox;
+export default CheckBox;
