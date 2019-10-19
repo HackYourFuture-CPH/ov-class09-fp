@@ -47,7 +47,7 @@ export default class VoyageDetailsContainer extends Component {
       headers: {
         "Content-Type": "application/json",
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsIm9yZ2FuaXphdGlvbl9pZCI6MSwidXNlcl9uYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzE0MjU3ODEsImV4cCI6MTU3MTQ2MTc4MX0.f55T-lzSbkqrlY1oM5wfTwSdywzCBt15dwZUT55b6vo"
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsIm9yZ2FuaXphdGlvbl9pZCI6MSwidXNlcl9uYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzE0Njk1NzYsImV4cCI6MTU3MTUwNTU3Nn0.3e7jkf0e5RSFqwrZSD8Z_TuWJqYQFT0YgzIeeQuRG5E"
       }
     };
     console.log("Inside the component didcomponent");
@@ -184,8 +184,7 @@ export default class VoyageDetailsContainer extends Component {
     console.log("vesselReportFilteredMap", vesselReportFilteredMap);
 
     // Data for suggested route for map
-    let waypoints = selectedRouteTable.map(({ id, latitude, longitude }) => ({
-      id,
+    let waypoints = selectedRouteTable.map(({ latitude, longitude }) => ({
       latitude,
       longitude
     }));
@@ -199,6 +198,7 @@ export default class VoyageDetailsContainer extends Component {
       <>
         <MapComponent
           vesselReports={vesselReportFilteredMap}
+          suggestedRoutes={suggestedRouteMap}
           options={mapOptions}
         />
         <VoyageDetails
