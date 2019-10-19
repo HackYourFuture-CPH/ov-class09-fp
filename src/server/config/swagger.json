@@ -162,6 +162,30 @@
             "headers": {}
           }
         }
+      },
+      "get": {
+        "description": "Returns all admin users for a given organization.\n\nAuthentication: `superuser` only.",
+        "summary": "Get admin users by organization",
+        "tags": ["User"],
+        "operationId": "OrganizationsUsersByOrganizationIdGet",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
       }
     },
     "/auth/login": {
