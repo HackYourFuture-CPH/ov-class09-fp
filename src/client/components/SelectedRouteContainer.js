@@ -5,7 +5,9 @@ import { getAuthToken } from "../utilities/getTokenData";
 export default class SelectedRouteContainer extends React.Component {
   state = {
     suggestedRoutes: [],
-    suggested_route_id: null
+    suggested_route_id: null,
+    vessel_reports_id: this.props.match.params.vessel_reports_id,
+    voyage_id: this.props.match.params.voyage_id
   };
   componentDidUpdate(_, prevState) {
     if (prevState.suggested_route_id !== this.state.suggested_route_id) {
@@ -16,7 +18,7 @@ export default class SelectedRouteContainer extends React.Component {
     }
   }
   handleSelectRoute = id => {
-    const { vessel_reports_id } = this.props.match.params;
+    const { vessel_reports_id } = this.state;
 
     const data = { suggested_route_id: id };
     axios
@@ -35,30 +37,11 @@ export default class SelectedRouteContainer extends React.Component {
         }
       );
   };
-  // selectRoute = vessel_reports_id => {
-  //   const data = { suggested_route_id: this.state.suggested_route_id };
-  //   axios
-  //     .post(`api/vessel-reports/${vessel_reports_id}/select-route`, data, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         authorization:
-  //           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTMyMDg2NiwiZXhwIjoxNTcxMzU2ODY2fQ.b9MNVl1e0Oegaq-cZpvxBwW0RAG2Voko4jFtddlppW8"
-  //       }
-  //     })
-  //     .then(
-  //       response => {
-  //         console.log("this is the response from axios ", response);
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       }
-  //     );
-  // };
   componentDidMount() {
     this.fetchSuggestedRoutes();
   }
   fetchSuggestedRoutes = () => {
-    const { voyage_id, vessel_reports_id } = this.props.match.params;
+    const { voyage_id, vessel_reports_id } = this.state;
     axios
       .get(`/api/vessel-reports/${vessel_reports_id}/suggested-routes`, {
         headers: {
@@ -75,8 +58,6 @@ export default class SelectedRouteContainer extends React.Component {
 
   render() {
     const { suggestedRoutes } = this.state;
-    console.log("TCL: render -> suggestedRoutes", suggestedRoutes);
-
     return (
       <SuggestedRouteList
         handleSelectRoute={this.handleSelectRoute}
