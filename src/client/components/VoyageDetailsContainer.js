@@ -43,12 +43,7 @@ export default class VoyageDetailsContainer extends Component {
 
   componentDidMount() {
     const headerObject = {
-      // method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsIm9yZ2FuaXphdGlvbl9pZCI6MSwidXNlcl9uYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzE0Njk1NzYsImV4cCI6MTU3MTUwNTU3Nn0.3e7jkf0e5RSFqwrZSD8Z_TuWJqYQFT0YgzIeeQuRG5E"
-      }
+      headers: { authorization: getAuthToken() }
     };
     console.log("Inside the component didcomponent");
     axios
