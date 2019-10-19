@@ -2,7 +2,108 @@ import React from "react";
 import MapComponent from "../components/MapComponent";
 
 export function MapVoyageDetails() {
-  const vesselReports = [];
+  const vesselReports = [
+    {
+      id: 951,
+      latitude: -6.4024844,
+      longitude: 106.7942405
+    },
+    {
+      id: 947,
+      latitude: 48.9308651,
+      longitude: 6.0376291
+    },
+    {
+      id: 944,
+      latitude: 41.7936783,
+      longitude: -8.3338509
+    },
+    {
+      id: 930,
+      latitude: 30.66044,
+      longitude: 120.013991
+    },
+    {
+      id: 862,
+      latitude: 34.0577762,
+      longitude: 131.6460781
+    },
+    {
+      id: 833,
+      latitude: 31.2457401,
+      longitude: 121.4824439
+    },
+    {
+      id: 828,
+      latitude: 30.3617348,
+      longitude: -81.6966306
+    },
+    {
+      id: 760,
+      latitude: 7.1453088,
+      longitude: 3.3590446
+    },
+    {
+      id: 742,
+      latitude: 7.9877141,
+      longitude: -10.8479688
+    },
+    {
+      id: 736,
+      latitude: 15.1042521,
+      longitude: 101.0768333
+    },
+    {
+      id: 641,
+      latitude: -6.5055,
+      longitude: 106.4959
+    },
+    {
+      id: 594,
+      latitude: 43.46802,
+      longitude: 132.46674
+    },
+    {
+      id: 579,
+      latitude: -6.2167736,
+      longitude: 106.5230542
+    },
+    {
+      id: 575,
+      latitude: 41.554479,
+      longitude: 121.725015
+    },
+    {
+      id: 547,
+      latitude: 32.92312,
+      longitude: 115.805297
+    },
+    {
+      id: 485,
+      latitude: 12.6234721,
+      longitude: -87.1273253
+    },
+    {
+      id: 419,
+      latitude: -8.3124202,
+      longitude: 123.7238308
+    },
+    {
+      id: 402,
+      latitude: 39.9226132,
+      longitude: 116.4606871
+    },
+    {
+      id: 333,
+      latitude: 31.221517,
+      longitude: 121.544379
+    },
+    {
+      id: 280,
+      latitude: 40.4095521,
+      longitude: 49.7653156
+    }
+  ];
 
   const suggestedRoutes = [
     {
