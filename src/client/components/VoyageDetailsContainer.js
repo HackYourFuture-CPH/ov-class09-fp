@@ -198,7 +198,7 @@ export default class VoyageDetailsContainer extends Component {
       <>
         <MapComponent
           vesselReports={vesselReportFilteredMap}
-          suggestedRoutes={suggestedRouteMap}
+          /* {suggestedRoutes={suggestedRouteMap}} */
           options={mapOptions}
         />
         <VoyageDetails
