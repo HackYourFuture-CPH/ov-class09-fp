@@ -627,6 +627,32 @@
         }
       }
     },
+    "/voyages/{voyage_id}": {
+      "get": {
+        "description": "Get a single voyage by ID.\n\nAuthentication: `superuser` only.",
+        "summary": "Get Voyage",
+        "tags": ["Voyage"],
+        "operationId": "VoyagesGetById",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "voyage_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": "Voyage ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/vessels/{vessel_id}/voyages": {
       "get": {
         "description": "Get all voyages for a given vessel.\n\nAuthentication: `superuser`, `admin` & `operator`.",
