@@ -1,22 +1,68 @@
 import React from "react";
 import axios from "axios";
-
+import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
+import { getAuthToken } from "../utilities/getTokenData";
 export default class SelectedRouteContainer extends React.Component {
-  componentDidMount() {
-    console.log("this is props", this.props.match.params.voyage_id);
-    const { voyage_id } = this.props.match.params;
+  state = {
+    suggestedRoutes: [],
+    suggestedRouteID: null,
+    vesselReportId: this.props.match.params.vessel_reports_id,
+    voyageId: this.props.match.params.voyage_id
+  };
+  componentDidUpdate(_, prevState) {
+    if (prevState.suggestedRouteID !== this.state.suggestedRouteID) {
+      this.fetchSuggestedRoutes();
+      this.setState({
+        suggestedRouteID: null
+      });
+    }
+  }
+  handleSelectRoute = id => {
+    const { vesselReportId } = this.state;
+
+    const data = { suggested_route_id: id };
     axios
-      .get(`http://localhost:3000/api/vessel-reports/3/suggested-routes`, {
+      .post(`api/vessel-reports/${vesselReportId}/select-route`, data, {
         headers: {
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTIxNzY5MiwiZXhwIjoxNTcxMjUzNjkyfQ.GLBygWbn6nO6M-ly4ACX7wKefIXpq4wT6ocLUjzdV-M"
+          "Content-Type": "application/json",
+          authorization: getAuthToken()
         }
       })
-      .then(data => console.log(data));
+      .then(
+        response => {
+          this.setState({ suggestedRouteID: data.id });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  };
+  componentDidMount() {
+    this.fetchSuggestedRoutes();
   }
+  fetchSuggestedRoutes = () => {
+    const { voyageId, vesselReportId } = this.state;
+    axios
+      .get(`/api/vessel-reports/${vesselReportId}/suggested-routes`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: getAuthToken()
+        }
+      })
+      .then(data =>
+        this.setState({
+          suggestedRoutes: data.data
+        })
+      );
+  };
 
   render() {
-    console.log(this.props.match);
-    return <div>hello</div>;
+    const { suggestedRoutes } = this.state;
+    return (
+      <SuggestedRouteList
+        handleSelectRoute={this.handleSelectRoute}
+        routeslist={suggestedRoutes}
+      />
+    );
   }
 }
