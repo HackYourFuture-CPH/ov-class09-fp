@@ -6,28 +6,38 @@ export default function SuggestedRouteSummary({
   id,
   isSelected,
   handleClick,
-  time,
+  duration,
   price
 }) {
   const selectRouteBtn = () => {
     handleClick(id);
   };
+
   return (
     <div>
-      {isSelected ? <h4>SELECTED ROUTE</h4> : null}
-      <Field title="HOURS" description={time} />
-      <Field title="TOTAL COST" description={price} />
-      {!isSelected ? (
-        <button onClick={selectRouteBtn}>SELECT ROUTE</button>
-      ) : null}
+      <>
+        {!isSelected ? (
+          <>
+            <Field title="DURATION" description={duration} />
+            <Field title="TOTAL COST" description={`$${price}`} />
+            <button onClick={selectRouteBtn}>SELECT ROUTE </button>
+          </>
+        ) : (
+          <>
+            <h2>Selected Route</h2>
+            <Field title="DURATION" description={duration} />
+            <Field title="TOTAL COST" description={`$${price}`} />
+          </>
+        )}
+      </>
     </div>
   );
 }
 
 SuggestedRouteSummary.propTypes = {
   id: PropTypes.number.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
-  time: PropTypes.number.isRequired,
+  duration: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired
 };

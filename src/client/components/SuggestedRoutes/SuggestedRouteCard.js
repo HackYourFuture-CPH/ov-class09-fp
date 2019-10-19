@@ -4,34 +4,35 @@ import SuggestedRouteDetails from "./SuggestedRouteDetails";
 import SuggestedRouteSummary from "./SuggestedRouteSummary";
 
 export default function SuggestedRouteCard({
-  time,
+  duration,
   price,
   id,
   isSelected,
   handleClick,
   eta,
-  sailDays,
+  hfo,
   maxWaveHs,
   avgSpeed,
   hireCost,
-  consumption
+  lsfo
 }) {
   return (
     <div>
       <SuggestedRouteSummary
-        time={time}
+        duration={duration}
         price={price}
         id={id}
         isSelected={isSelected}
         handleClick={handleClick}
       />
+      <h2>{isSelected}</h2>
       <SuggestedRouteDetails
         eta={eta}
-        sailDays={sailDays}
+        hfo={hfo}
         maxWaveHs={maxWaveHs}
         avgSpeed={avgSpeed}
         hireCost={hireCost}
-        consumption={consumption}
+        lsfo={lsfo}
       />
     </div>
   );
