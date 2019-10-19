@@ -3,7 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { MapVoyagesList } from "./MapVoyagesList";
 import { MapVoyageDetails } from "./MapVoyageDetails";
 import { MapSuggestedRoutes } from "./MapSuggestedRoutes";
-import { MapStory } from "./Map";
+
 import { StartVoyageStory } from "./StartVoyage";
 import { DateTimeStory } from "./DateTime";
 import { InputFieldNumberStory } from "./InputFieldNumber";
@@ -25,8 +25,6 @@ import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
-import { VesselsOnMapStory } from "./VoyagesContainer";
-import { VesselRoutesStory } from "./VesselRoutes";
 
 const MapStories = storiesOf("Map", module)
   .add("Map Voyages List", MapVoyagesList)
@@ -86,15 +84,3 @@ const LoginFormStories = storiesOf("Authentication", module)
   .add("Logout Button", LogoutButtonStory);
 
 LoginFormStories.addDecorator(withKnobs);
-
-const VesselsOnMapStories = storiesOf("Vessels Location", module).add(
-  "Vessels Location",
-  VesselsOnMapStory
-);
-VesselsOnMapStories.addDecorator(withKnobs);
-
-const VesselRoutesStories = storiesOf("Vessel Routes", module).add(
-  "Vessel Routes",
-  VesselRoutesStory
-);
-VesselRoutesStories.addDecorator(withKnobs);
