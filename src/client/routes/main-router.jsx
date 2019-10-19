@@ -32,7 +32,7 @@ const MainRouter = props => {
             component={VoyageDetailsContainer}
           />
           <PrivateRoute
-            path="/voyages/:voyage_id/vessel_reports/:vessel_reports_id/suggested-routes"
+            path="/voyages/:voyage_id/vessel-reports/:vessel_reports_id/suggested-routes"
             component={SelectedRouteContainer}
           />
           <Route
