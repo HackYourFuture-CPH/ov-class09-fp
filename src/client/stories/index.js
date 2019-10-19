@@ -15,10 +15,7 @@ import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
 import { CostWidgetStory } from "./CostWidgetStory";
 import { VoyagesSummaryStory } from "./VoyagesSummaryStory";
-
-const MapStories = storiesOf("Map", module).add("MapComponent", MapStory);
 import { LoginFormStory } from "./login-form";
-
 import { ButtonStory, LogoutButtonStory } from "./Buttons";
 import { suggestedRouteSummary } from "./suggestedRoutes/suggestedRouteSummary";
 import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
@@ -81,7 +78,6 @@ const LoginFormStories = storiesOf("Authentication", module)
   .add("Login Form", LoginFormStory)
   .add("Logout Button", LogoutButtonStory);
 LoginFormStories.addDecorator(withKnobs);
-
 
 storiesOf("Voyage Summary", module)
   .add("All Voyage Summary Tables", VoyagesSummaryStory)
