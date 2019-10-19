@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
-
+import { getAuthToken } from "../utilities/getTokenData";
 export default class SelectedRouteContainer extends React.Component {
   state = {
     suggestedRoutes: [],
@@ -23,8 +23,7 @@ export default class SelectedRouteContainer extends React.Component {
       .post(`api/vessel-reports/${vessel_reports_id}/select-route`, data, {
         headers: {
           "Content-Type": "application/json",
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTM4Njk4NiwiZXhwIjoxNTcxNDIyOTg2fQ.i1YlnxSOlC5nC8fjLdsUCidZWyebh2nx-9VEoUSFFqY"
+          authorization: getAuthToken()
         }
       })
       .then(
@@ -64,8 +63,7 @@ export default class SelectedRouteContainer extends React.Component {
       .get(`/api/vessel-reports/${vessel_reports_id}/suggested-routes`, {
         headers: {
           "Content-Type": "application/json",
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU3MTM4Njk4NiwiZXhwIjoxNTcxNDIyOTg2fQ.i1YlnxSOlC5nC8fjLdsUCidZWyebh2nx-9VEoUSFFqY"
+          authorization: getAuthToken()
         }
       })
       .then(data =>
