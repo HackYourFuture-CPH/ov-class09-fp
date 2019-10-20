@@ -7,25 +7,17 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  card: {
-    minWidth: 275
-  },
   cardHeader: {
-    color: "red"
+    fontSize: "0.5rem"
   },
   infoText: {
-    color: "blue",
-    fontSize: "0.9rem",
-    marginBottom: "5px",
-    paddingLeft: "16px"
+    fontSize: "0.9rem"
   },
   describeText: {
-    color: "yellow",
-    fontSize: "1.2rem",
-    marginBottom: "30px",
-    paddingLeft: "16px"
+    fontSize: "1.2rem"
   }
 });
 
@@ -43,7 +35,7 @@ export default function SuggestedRouteSummary({
   };
 
   return (
-    <Card className={classes.card}>
+    <Card>
       {!isSelected ? (
         <CardContent>
           <Typography className={classes.infoText}>DURATION</Typography>
@@ -52,18 +44,23 @@ export default function SuggestedRouteSummary({
           <Typography
             className={classes.describeText}
           >{`$${price}`}</Typography>
-          <button onClick={selectRouteBtn}>SELECT ROUTE </button>
+          <Button onClick={selectRouteBtn}>SELECT ROUTE</Button>
         </CardContent>
       ) : (
-        <CardContent>
+        <>
           <CardHeader className={classes.cardHeader} title="SELECTED ROUTES" />
-          <Typography className={classes.infoText}>DURATION</Typography>
-          <Typography className={classes.describeText}>{duration}</Typography>
-          <Typography className={classes.infoText}>TOTAL COST</Typography>
-          <Typography
-            className={classes.describeText}
-          >{`$${price}`}</Typography>
-        </CardContent>
+          <CardContent>
+            <Typography className={classes.infoText}>DURATION</Typography>
+            <Typography className={classes.describeText} gutterBottom>
+              {duration}
+            </Typography>
+            <Typography className={classes.infoText}>TOTAL COST</Typography>
+            <Typography
+              className={classes.describeText}
+              gutterBottom
+            >{`$${price}`}</Typography>
+          </CardContent>
+        </>
       )}
     </Card>
   );
