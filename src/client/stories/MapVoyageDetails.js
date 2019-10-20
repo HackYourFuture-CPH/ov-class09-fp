@@ -1,6 +1,5 @@
 import React from "react";
 import MapComponent from "../components/MapComponent";
-import MapMarker from "../components/MapMarker";
 
 export function MapVoyageDetails() {
   const vesselReports = [
@@ -190,7 +189,6 @@ export function MapVoyageDetails() {
 
   const mapOptions = {
     centerMapCoordinates: [12.5244140625, 55.640398956687356],
-    isElapsedRoute: true,
     zoom: 1,
     style: {
       color: {
