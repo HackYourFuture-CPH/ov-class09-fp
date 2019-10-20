@@ -47,7 +47,8 @@ function VoyageTeaser({
   departureFrom,
   arrivesAt,
   departure_time,
-  target_arrival_time
+  target_arrival_time,
+  activeDetails
 }) {
   const classes = useStyles();
 
@@ -76,9 +77,13 @@ function VoyageTeaser({
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions className={classes.actionCard}>
-        <Button className={classes.button}>Show Details</Button>
-      </CardActions>
+      {activeDetails ? (
+        <CardActions className={classes.actionCard}>
+          <Button href={`/voyages/${id}`} className={classes.button}>
+            Show Details
+          </Button>
+        </CardActions>
+      ) : null}
     </Card>
   );
 }
@@ -89,7 +94,8 @@ VoyageTeaser.propTypes = {
   departureFrom: PropTypes.string,
   departure_time: PropTypes.string,
   arrivesAt: PropTypes.string,
-  target_arrival_time: PropTypes.string
+  target_arrival_time: PropTypes.string,
+  activeDetails: PropTypes.bool
 };
 
 export default VoyageTeaser;

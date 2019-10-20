@@ -1,6 +1,6 @@
 import React from "react";
 import VoyageTeaser from "../components/VoyageTeaser";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 export function VoyageTeaserStory() {
   const vesselName = text("Vessel Name", "Yeniser River");
   const departureFrom = text("Departure From", "Sabetta");
@@ -15,6 +15,7 @@ export function VoyageTeaserStory() {
       arrivesAt={arrivesAt}
       departure_time={departure_time}
       target_arrival_time={target_arrival_time}
+      activeDetails={boolean("activeDetails", false)}
     />
   );
 }
