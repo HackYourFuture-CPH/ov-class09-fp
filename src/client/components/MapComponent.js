@@ -104,20 +104,3 @@ MapComponent.propTypes = {
 };
 
 export default MapComponent;
-
-/*
-// Map showing a vessel current & elapsed route
-  if (vesselReports && options.isElapsedRoute) {
-    elapsedRouteMarkers = vesselReports.map(vesselReport => {
-      <Polyline
-        key={vesselReport.id}
-        positions={[vesselReport.latitude, vesselReport.longitude]}
-        dashArray={options.style.polyline.dashArray}
-        color={options.style.color.elapsedRoute}
-        opacity={options.style.polyline.opacity}
-        lineJoin={options.style.polyline.lineJoin}
-        stroke={options.style.polyline.stroke}
-      />
-    });
-  }
-*/
