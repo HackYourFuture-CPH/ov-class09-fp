@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import TextField from "@material-ui/core/TextField";
 
 function DateTime({
   label,
@@ -11,27 +12,30 @@ function DateTime({
 }) {
   return (
     <React.Fragment>
-      <label>{label}</label>
-      <label>
-        Date
-        <input
-          name={name}
-          type="text"
-          value={date}
-          placeholder="yyyy-mm-dd"
-          onChange={e => onDateInputChange(e)}
+      <form>
+        <TextField
+          id="date"
+          label="Date"
+          type="date"
+          defaultValue="2019-10-19"
+          InputLabelProps={{
+            shrink: true
+          }}
         />
-      </label>
-      <label>
-        Time
-        <input
-          name={name}
-          type="text"
-          value={time}
-          placeholder="hh:mm"
-          onChange={e => onTimeInputChange(e)}
+
+        <TextField
+          id="time"
+          label="Time"
+          type="time"
+          defaultValue="04:20"
+          InputLabelProps={{
+            shrink: true
+          }}
+          inputProps={{
+            step: 300 // 5 min
+          }}
         />
-      </label>
+      </form>
     </React.Fragment>
   );
 }

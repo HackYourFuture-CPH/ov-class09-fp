@@ -45,4 +45,16 @@ router.get(
   }
 );
 
+//ENDPOINT: /api/voyages/:id
+router.get(
+  "/:id",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  (req, res, next) => {
+    voyagesController
+      .getVoyageById(req.params.id)
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 module.exports = router;

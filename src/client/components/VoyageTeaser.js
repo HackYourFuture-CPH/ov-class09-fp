@@ -11,7 +11,6 @@ import { Grid } from "@material-ui/core";
 import CardHeader from "@material-ui/core/CardHeader";
 import Button from "@material-ui/core/Button";
 
-//CSS Colors: #F2F2F2,#D9D9D9,#595959,#262626,#0D0D0D
 const useStyles = makeStyles({
   card: {
     minWidth: 300,
@@ -44,10 +43,10 @@ const useStyles = makeStyles({
 function VoyageTeaser({
   id,
   vesselName,
-  departureFrom,
-  arrivesAt,
-  departure_time,
-  target_arrival_time,
+  departFrom,
+  arriveAt,
+  departureTime,
+  targetArrivalTime,
   link
 }) {
   const classes = useStyles();
@@ -60,19 +59,17 @@ function VoyageTeaser({
           <Grid item xs={6} sm={3}>
             <Typography className={classes.infoTitle}>DEPARTURE</Typography>
             <Typography className={classes.describeText}>
-              {departureFrom}
+              {departFrom}
             </Typography>
             <Typography className={classes.describeText}>
-              {departure_time}
+              {departureTime}
             </Typography>
           </Grid>
           <Grid itemxs={6} sm={3}>
             <Typography className={classes.infoTitle}>ETA</Typography>
+            <Typography className={classes.describeText}>{arriveAt}</Typography>
             <Typography className={classes.describeText}>
-              {arrivesAt}
-            </Typography>
-            <Typography className={classes.describeText}>
-              {target_arrival_time}
+              {targetArrivalTime}
             </Typography>
           </Grid>
         </Grid>
@@ -91,11 +88,10 @@ function VoyageTeaser({
 VoyageTeaser.propTypes = {
   id: PropTypes.number,
   vesselName: PropTypes.string,
-  departureFrom: PropTypes.string,
-  departure_time: PropTypes.string,
-  arrivesAt: PropTypes.string,
-  target_arrival_time: PropTypes.string,
-  activeDetails: PropTypes.bool
+  departFrom: PropTypes.string,
+  departureTime: PropTypes.string,
+  arriveAt: PropTypes.string,
+  targetArrivalTime: PropTypes.string
 };
 
 export default VoyageTeaser;
