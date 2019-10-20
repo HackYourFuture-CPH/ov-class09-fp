@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DataCard from "./DataCard";
 import { CardGroup, CardGroupHeader } from "./CardGroup";
 import VoyageTeaser from "./VoyageTeaser";
+import ShowAllRoutes from "./ShowAllRoutesButton";
 import PropTypes from "prop-types";
 
 function VoyageDetails({
@@ -39,6 +40,7 @@ function VoyageDetails({
         <DataCard title="ULSFO" data={ulsfo} />
         <DataCard title="FOC Total" data={hsfo + ulsfo} />
       </CardGroup>
+      <ShowAllRoutes />
     </div>
   );
 }
