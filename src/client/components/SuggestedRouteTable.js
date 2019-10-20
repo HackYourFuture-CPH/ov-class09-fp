@@ -7,31 +7,30 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-const SuggestedRouteTable = props => {
-  const tableCellName = props.tableNames;
+const SuggestedRouteTable = ({ data, tableNames }) => {
   return (
     <div>
       <h3>SELECTED ROUTE</h3>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>{tableCellName[0]}</TableCell>
-            <TableCell align="right">{tableCellName[1]}</TableCell>
-            <TableCell align="right">{tableCellName[2]}</TableCell>
-            <TableCell align="right">{tableCellName[3]}</TableCell>
-            <TableCell align="right">{tableCellName[4]}</TableCell>
+            <TableCell>{tableNames[0]}</TableCell>
+            <TableCell align="right">{tableNames[1]}</TableCell>
+            <TableCell align="right">{tableNames[2]}</TableCell>
+            <TableCell align="right">{tableNames[3]}</TableCell>
+            <TableCell align="right">{tableNames[4]}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.data.map(row => (
+          {data.map(row => (
             <TableRow key={row.key}>
               <TableCell component="th" scope="row">
-                {row.date}
+                {row.createdAt}
               </TableCell>
               <TableCell align="right">{row.latitude}</TableCell>
               <TableCell align="right">{row.longitude}</TableCell>
               <TableCell align="right">{row.speed}</TableCell>
-              <TableCell align="right">{row.estimated_rpm}</TableCell>
+              <TableCell align="right">{row.rpm}</TableCell>
             </TableRow>
           ))}
         </TableBody>
