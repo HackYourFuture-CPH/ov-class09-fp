@@ -83,7 +83,7 @@ const createUser = async ({ body }) => {
     });
 
   if (role.length > 0) {
-    var password = generatePassword.generate({
+    const password = generatePassword.generate({
       length: 10,
       numbers: true
     });
