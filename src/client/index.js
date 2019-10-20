@@ -8,6 +8,9 @@ import axios from "axios";
 import { getAuthToken } from "./utilities/getTokenData";
 
 axios.defaults.headers.common["Authorization"] = getAuthToken();
+axios.defaults.headers.common["Content-Type"] =
+  "application/json;charset=UTF-8";
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 ReactDOM.render(
   <Router>

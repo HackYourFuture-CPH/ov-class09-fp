@@ -1153,7 +1153,7 @@ exports.seed = function(knex, Promise) {
           name: "Tasha"
         },
         {
-          organization_id: 5,
+          organization_id: 1,
           mmsi: "624571448",
           name: "The Black Freighter"
         },
@@ -1168,7 +1168,7 @@ exports.seed = function(knex, Promise) {
           name: "The Flying Wasp"
         },
         {
-          organization_id: 2,
+          organization_id: 1,
           mmsi: "625736343",
           name: "The Fuwalda"
         },

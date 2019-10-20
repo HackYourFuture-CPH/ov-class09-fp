@@ -7,18 +7,18 @@ function VoyageList({ voyages }) {
     ({
       id,
       vesselName,
-      departureFrom,
-      arrivesAt,
-      departure_time,
-      target_arrival_time
+      departFrom,
+      arriveAt,
+      departureTime,
+      targetArrivalTime
     }) => (
       <VoyageTeaser
         key={id}
         vesselName={vesselName}
-        departureFrom={departureFrom}
-        arrivesAt={arrivesAt}
-        departure_time={departure_time}
-        target_arrival_time={target_arrival_time}
+        departFrom={departFrom}
+        arriveAt={arriveAt}
+        departureTime={departureTime}
+        targetArrivalTime={targetArrivalTime}
       />
     )
   );
@@ -31,12 +31,11 @@ VoyageList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       vesselName: PropTypes.string,
-      departureFrom: PropTypes.string,
-      departure_time: PropTypes.string,
-      arrivesAt: PropTypes.string,
-      target_arrival_time: PropTypes.string
+      departFrom: PropTypes.string,
+      departureTime: PropTypes.string,
+      arriveAt: PropTypes.string,
+      targetArrivalTime: PropTypes.string
     })
   )
 };
-
 export default VoyageList;
