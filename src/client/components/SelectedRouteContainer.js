@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
-import { getAuthToken } from "../utilities/getTokenData";
+
 import Grid from "@material-ui/core/Grid";
 
 import MapComponent from "./MapComponent";
@@ -53,13 +53,12 @@ export default class SelectedRouteContainer extends React.Component {
       .then(() => this.getSuggestedRoutes());
   }
   getSuggestedRoutes = () => {
-    const { voyageId, vesselReportId, vesselReports } = this.state;
+    const { vesselReportId } = this.state;
 
     axios
       .get(`/api/vessel-reports/${vesselReportId}/suggested-routes`)
       .then(suggestedRoutes => {
         let selectedRoutes = [];
-
         if (this.state.vesselReports.length > 0) {
           selectedRoutes = suggestedRoutes.data.filter(
             suggestedRoute =>
@@ -69,7 +68,6 @@ export default class SelectedRouteContainer extends React.Component {
         }
         this.setState({
           suggestedRoutes: suggestedRoutes.data
-          // selectedRoute:selectedRoutes
         });
       })
       .then(() => {
@@ -82,21 +80,8 @@ export default class SelectedRouteContainer extends React.Component {
           });
       });
   };
-  getVesselsReportByVoyageId = () => {
-    // const { voyageId } = this.state;
-    // axios.get(`api/voyages/${voyageId}/vessel-reports`).then(data =>
-    //   this.setState({
-    //     vesselReports: data.data
-    //   })
-    // );
-  };
   render() {
-    const {
-      suggestedRoutes,
-      vesselReports,
-      selectedRoutes,
-      suggestedRouteID
-    } = this.state;
+    const { suggestedRoutes, vesselReports, selectedRoutes } = this.state;
     return (
       <div>
         <Grid container>
