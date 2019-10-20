@@ -1050,7 +1050,6 @@
       "example": {
         "name": "John Doe",
         "email": "test3@test3.com",
-        "password": "test3",
         "organization_id": 1
       },
       "type": "object",
@@ -1059,9 +1058,6 @@
           "type": "string"
         },
         "email": {
-          "type": "string"
-        },
-        "password": {
           "type": "string"
         },
         "organization_id": {
