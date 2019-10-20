@@ -5,11 +5,13 @@ import axios from "axios";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
+import Grid from "@material-ui/core/Grid";
 
 export default class VoyagesContainer extends Component {
   state = {
     // Get auth token from localstorage
     organizationId: getTokenData("organization_id"),
+    // organizationId: 3,
     voyages: [],
     vesselReports: []
   };
@@ -61,11 +63,17 @@ export default class VoyagesContainer extends Component {
   render() {
     return (
       <div>
-        <MapComponent
-          vesselReports={this.state.vesselReports}
-          options={mapOptions}
-        />
-        <VoyageList voyages={this.state.voyages} />
+        <Grid container>
+          <Grid item xs={8}>
+            <MapComponent
+              vesselReports={this.state.vesselReports}
+              options={mapOptions}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <VoyageList voyages={this.state.voyages} />
+          </Grid>
+        </Grid>
       </div>
     );
   }
