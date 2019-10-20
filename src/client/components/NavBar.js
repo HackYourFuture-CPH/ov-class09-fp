@@ -1,4 +1,11 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch
+} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -23,9 +30,23 @@ const NavBar = () => {
       <AppBar position="static">
         <Toolbar className={classes.toolbarColor}>
           <div className={classes.grow} />
-          <MenuItem className={classes.MenuItemColor}>MAP</MenuItem>
-          <MenuItem className={classes.MenuItemColor}>START VOYAGES</MenuItem>
-          <MenuItem className={classes.MenuItemColor}>ALL VOYAGES</MenuItem>
+          <MenuItem>
+            <Link className={classes.MenuItemColor} to="/voyages">
+              MAP
+            </Link>
+          </MenuItem>
+          <Route>
+            <MenuItem>
+              <Link className={classes.MenuItemColor} to="/start-voyage">
+                START VOYAGE
+              </Link>
+            </MenuItem>
+          </Route>
+          <MenuItem>
+            <Link className={classes.MenuItemColor} to="/voyages-summary">
+              ALL VOYAGES
+            </Link>
+          </MenuItem>
         </Toolbar>
       </AppBar>
     </div>
