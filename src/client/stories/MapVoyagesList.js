@@ -1,7 +1,8 @@
 import React from "react";
 import MapComponent from "../components/MapComponent";
-import MapMarker from "../components/Marker";
+import MapMarker from "../components/MapMarker";
 import { number, array, object } from "@storybook/addon-knobs";
+
 export function MapVoyagesList() {
   const vesselReports = [
     {
@@ -53,6 +54,7 @@ export function MapVoyagesList() {
 
   const mapOptions = {
     centerMapCoordinates: [12.5244140625, 55.640398956687356],
+    isElapsedRoute: false,
     zoom: 1,
     style: {
       color: {
@@ -61,8 +63,19 @@ export function MapVoyagesList() {
       },
       marker: {
         markerComponent: null,
-        defaultSize: "sm",
-        selectedSize: "md"
+        color: "blue",
+        fill: true,
+        fillColor: "blue",
+        fillOpacity: 0.8,
+        radius: 4
+      },
+      polyline: {
+        dashArray: "10,5",
+        lineJoin: "round",
+        weight: 5,
+        opacity: 0.7,
+        color: "blue",
+        stroke: true
       }
     }
   };

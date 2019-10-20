@@ -1,18 +1,42 @@
-import React, { Component } from "react";
-import { Map, TileLayer, Popup, Polyline } from "react-leaflet";
+import React from "react";
+import MapMarker from "../components/MapMarker";
+import { Map, CircleMarker, TileLayer, Popup, Polyline } from "react-leaflet";
 import PropTypes from "prop-types";
-import Marker from "./Marker";
 
 function MapComponent({ vesselReports, suggestedRoutes, options }) {
   let elapsedRouteMarkers, suggestedRouteMarkers;
 
-  if (vesselReports) {
+  // Map showing all vessels current position
+  if (vesselReports && !options.isElapsedRoute) {
     elapsedRouteMarkers = vesselReports.map(vesselReport => (
-      <Marker
-        position={[vesselReport.latitude, vesselReport.longitude]}
-        color={options.style.color.elapsedRoute}
+      <CircleMarker
+        center={[vesselReport.latitude, vesselReport.longitude]}
         key={vesselReport.id}
-      />
+        color={options.style.marker.color}
+        fill={options.style.marker.fill}
+        fillColor={options.style.marker.fillColor}
+        fillOpacity={options.style.marker.fillOpacity}
+        radius={options.style.marker.radius}
+      >
+        <Popup>
+          <span>vessel id: {vesselReport.id}</span>
+        </Popup>
+      </CircleMarker>
+    ));
+  }
+
+  // Map showing a vessel current & elapsed route
+  if (vesselReports && options.isElapsedRoute) {
+    elapsedRouteMarkers = vesselReports.map(vesselReport => (
+      <CircleMarker
+        key={vesselReport.id}
+        center={[vesselReport.latitude, vesselReport.longitude]}
+        color={options.style.marker.color}
+        fill={options.style.marker.fill}
+        fillColor={options.style.marker.fillColor}
+        fillOpacity={options.style.marker.fillOpacity}
+        radius={options.style.marker.radius}
+      ></CircleMarker>
     ));
   }
 
@@ -25,9 +49,13 @@ function MapComponent({ vesselReports, suggestedRoutes, options }) {
 
       return (
         <Polyline
-          positions={positions}
-          color={options.style.color.suggestedRoute}
           key={suggestedRoute.id}
+          positions={positions}
+          dashArray={options.style.polyline.dashArray}
+          color={options.style.color.suggestedRoute}
+          opacity={options.style.polyline.opacity}
+          lineJoin={options.style.polyline.lineJoin}
+          stroke={options.style.polyline.stroke}
         />
       );
     });
@@ -55,9 +83,41 @@ MapComponent.propTypes = {
       color: PropTypes.shape({
         suggestedRoute: PropTypes.string,
         elapsedRoute: PropTypes.string
+      }),
+      marker: PropTypes.shape({
+        color: PropTypes.string,
+        fill: PropTypes.boolean,
+        fillColor: PropTypes.string,
+        fillOpacity: PropTypes.number,
+        radius: PropTypes.number
+      }),
+      polyline: PropTypes.shape({
+        dashArray: PropTypes.string,
+        lineJoin: PropTypes.string,
+        weight: PropTypes.number,
+        opacity: PropTypes.number,
+        color: PropTypes.string,
+        stroke: PropTypes.boolean
       })
     })
   }).isRequired
 };
 
 export default MapComponent;
+
+/*
+// Map showing a vessel current & elapsed route
+  if (vesselReports && options.isElapsedRoute) {
+    elapsedRouteMarkers = vesselReports.map(vesselReport => {
+      <Polyline
+        key={vesselReport.id}
+        positions={[vesselReport.latitude, vesselReport.longitude]}
+        dashArray={options.style.polyline.dashArray}
+        color={options.style.color.elapsedRoute}
+        opacity={options.style.polyline.opacity}
+        lineJoin={options.style.polyline.lineJoin}
+        stroke={options.style.polyline.stroke}
+      />
+    });
+  }
+*/

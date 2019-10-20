@@ -1,5 +1,6 @@
 import React from "react";
 import MapComponent from "../components/MapComponent";
+import MapMarker from "../components/MapMarker";
 
 export function MapVoyageDetails() {
   const vesselReports = [
@@ -189,6 +190,7 @@ export function MapVoyageDetails() {
 
   const mapOptions = {
     centerMapCoordinates: [12.5244140625, 55.640398956687356],
+    isElapsedRoute: true,
     zoom: 1,
     style: {
       color: {
@@ -197,8 +199,19 @@ export function MapVoyageDetails() {
       },
       marker: {
         markerComponent: null,
-        defaultSize: "sm",
-        selectedSize: "md"
+        color: "blue",
+        fill: true,
+        fillColor: "blue",
+        fillOpacity: 0.8,
+        radius: 4
+      },
+      polyline: {
+        dashArray: "10,5",
+        lineJoin: "round",
+        weight: 5,
+        opacity: 0.7,
+        color: "orange",
+        stroke: true
       }
     }
   };
