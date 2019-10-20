@@ -123,9 +123,25 @@ const getSelectedSuggestedRoute = async id => {
       .where({ id: id });
 
     if (vesselReport !== 0 && vesselReport[0].selected_route_id !== null) {
-      return await knex("suggested_routes")
+      const selectedRoute = await knex("suggested_routes")
         .select("*")
         .where({ id: vesselReport[0].selected_route_id });
+      console.log(selectedRoute[0].id);
+      const waypoints = await knex("waypoints")
+        .where("suggested_route_id", selectedRoute[0].id)
+        .select(
+          "longitude",
+          "latitude",
+          "suggested_route_id",
+          "speed",
+          "rpm",
+          "sequence_id"
+        );
+
+      return {
+        ...selectedRoute[0],
+        waypoints
+      };
     }
     throw new HttpError(
       "Bad request",
