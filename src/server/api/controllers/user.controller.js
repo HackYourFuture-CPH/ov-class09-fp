@@ -83,7 +83,14 @@ const createUser = async ({ body }) => {
     });
 
   if (role.length > 0) {
-    const hashedPassword = await hashPassword(body.password);
+    const password = generatePassword.generate({
+      length: 10,
+      numbers: true
+    });
+
+    console.log(password);
+
+    const hashedPassword = await hashPassword(password);
 
     return knex("users").insert({
       role_id: role[0].id,
