@@ -5,27 +5,27 @@ export function VoyageListStory() {
   const voyageList = object("vessels", [
     {
       id: 1,
-      vesselName: "Yeniser River",
-      departureFrom: "Sabetta",
-      arrivesAt: "Rotterdam",
-      etd: "2012-08-17 21:18",
-      eta: "2012-08-24 06:43"
+      vessel_Name: "Yeniser River",
+      depart_from: "Sabetta",
+      arrive_at: "Rotterdam",
+      departure_time: "2012-08-17 21:18",
+      target_arrival_time: "2012-08-24 06:43"
     },
     {
       id: 2,
-      vesselName: "Serenade of the seas",
-      departureFrom: "Alesund",
-      arrivesAt: "Kristiansand",
-      etd: "2019-08-22 19:57",
-      eta: "2019-08-24 07:36"
+      vessel_Name: "Serenade of the seas",
+      depart_from: "Alesund",
+      arrive_at: "Kristiansand",
+      departure_time: "2019-08-22 19:57",
+      target_arrival_time: "2019-08-24 07:36"
     },
     {
       id: 3,
-      vesselName: "Msc Meraviglia",
-      departureFrom: "St Petersbrug",
-      arrivesAt: "Kiel",
-      etd: "2019-08-22 20:18",
-      eta: "2019-08-24 10:54"
+      vessel_Name: "Msc Meraviglia",
+      depart_from: "St Petersbrug",
+      arrive_at: "Kiel",
+      departure_time: "2019-08-22 20:18",
+      target_arrival_time: "2019-08-24 10:54"
     }
   ]);
 

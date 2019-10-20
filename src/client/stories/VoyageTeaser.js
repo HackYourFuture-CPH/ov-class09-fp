@@ -10,11 +10,11 @@ export function VoyageTeaserStory() {
 
   return (
     <VoyageTeaser
-      vesselName={vesselName}
-      departureFrom={departureFrom}
-      arrivesAt={arrivesAt}
-      etd={etd}
-      eta={eta}
+      vessel_name={vesselName}
+      depart_from={departureFrom}
+      arrive_at={arrivesAt}
+      departure_time={etd}
+      target_arrival_time={eta}
     />
   );
 }

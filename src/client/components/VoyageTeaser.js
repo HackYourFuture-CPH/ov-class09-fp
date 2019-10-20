@@ -4,20 +4,20 @@ import PropTypes from "prop-types";
 function VoyageTeaser({
   id,
   vesselName,
-  departureFrom,
-  arrivesAt,
-  departure_time,
-  target_arrival_time
+  departFrom,
+  arriveAt,
+  departureTime,
+  targetArrivalTime
 }) {
   return (
     <div>
       <h1>{vesselName}</h1>
       <label>Departure</label>
-      <h3>{departureFrom}</h3>
-      <p>{departure_time}</p>
+      <h3>{departFrom}</h3>
+      <p>{departureTime}</p>
       <label>ETA</label>
-      <h3>{arrivesAt}</h3>
-      <p>{target_arrival_time}</p>
+      <h3>{arriveAt}</h3>
+      <p>{targetArrivalTime}</p>
     </div>
   );
 }
@@ -25,10 +25,10 @@ function VoyageTeaser({
 VoyageTeaser.propTypes = {
   id: PropTypes.number,
   vesselName: PropTypes.string,
-  departureFrom: PropTypes.string,
-  departure_time: PropTypes.string,
-  arrivesAt: PropTypes.string,
-  target_arrival_time: PropTypes.string
+  departFrom: PropTypes.string,
+  departureTime: PropTypes.string,
+  arriveAt: PropTypes.string,
+  targetArrivalTime: PropTypes.string
 };
 
 export default VoyageTeaser;

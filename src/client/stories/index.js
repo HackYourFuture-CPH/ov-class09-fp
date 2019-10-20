@@ -1,6 +1,9 @@
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
-import { MapStory } from "./Map";
+import { MapVoyagesList } from "./MapVoyagesList";
+import { MapVoyageDetails } from "./MapVoyageDetails";
+import { MapSuggestedRoutes } from "./MapSuggestedRoutes";
+
 import { StartVoyageStory } from "./StartVoyage";
 import { DateTimeStory } from "./DateTime";
 import { InputFieldNumberStory } from "./InputFieldNumber";
@@ -24,7 +27,9 @@ import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
 const MapStories = storiesOf("Map", module)
-  .add("Map", MapStory)
+  .add("Map Voyages List", MapVoyagesList)
+  .add("Map Voyage Details", MapVoyageDetails)
+  // .add("Map Suggested Routes", MapSuggestedRoutes)
   .add("Map Marker", MapMarkerStory);
 MapStories.addDecorator(withKnobs);
 
