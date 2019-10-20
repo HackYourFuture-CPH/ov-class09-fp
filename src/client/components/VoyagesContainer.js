@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import VoyageList from "./VoyageList";
-import { getTokenData, getAuthToken } from "../utilities/getTokenData";
+import { getTokenData } from "../utilities/getTokenData";
 import axios from "axios";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
+import Grid from "@material-ui/core/Grid";
 
 export default class VoyagesContainer extends Component {
   state = {
@@ -59,13 +60,20 @@ export default class VoyagesContainer extends Component {
   }
 
   render() {
+    //console.log("Voyages container:", vesselReports)
     return (
       <div>
-        <MapComponent
-          vesselReports={this.state.vesselReports}
-          options={mapOptions}
-        />
-        <VoyageList voyages={this.state.voyages} />
+        <Grid container>
+          <Grid item xs={8}>
+            <MapComponent
+              vesselReports={this.state.vesselReports}
+              options={mapOptions}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <VoyageList voyages={this.state.voyages} />
+          </Grid>
+        </Grid>
       </div>
     );
   }
@@ -77,13 +85,24 @@ const mapOptions = {
   zoom: 1,
   style: {
     color: {
-      suggestedRoute: "red",
-      elapsedRoute: "blue"
+      suggestedRoute: "#F8AA13",
+      elapsedRoute: "#1353F8"
     },
     marker: {
-      markerComponent: Marker,
-      defaultSize: "sm",
-      selectedSize: "md"
+      markerComponent: null,
+      color: "blue",
+      fill: true,
+      fillColor: "blue",
+      fillOpacity: 0.8,
+      radius: 4
+    },
+    polyline: {
+      dashArray: "10,5",
+      lineJoin: "round",
+      weight: 5,
+      opacity: 0.7,
+      color: "blue",
+      stroke: true
     }
   }
 };

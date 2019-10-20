@@ -1,36 +1,15 @@
 import React from "react";
-import MapMarker from "../components/MapMarker";
 import { Map, CircleMarker, TileLayer, Popup, Polyline } from "react-leaflet";
 import PropTypes from "prop-types";
 
 function MapComponent({ vesselReports, suggestedRoutes, options }) {
   let elapsedRouteMarkers, suggestedRouteMarkers;
 
-  // Map showing all vessels current position
-  if (vesselReports && !options.isElapsedRoute) {
+  if (vesselReports) {
     elapsedRouteMarkers = vesselReports.map(vesselReport => (
       <CircleMarker
         center={[vesselReport.latitude, vesselReport.longitude]}
         key={vesselReport.id}
-        color={options.style.marker.color}
-        fill={options.style.marker.fill}
-        fillColor={options.style.marker.fillColor}
-        fillOpacity={options.style.marker.fillOpacity}
-        radius={options.style.marker.radius}
-      >
-        <Popup>
-          <span>vessel id: {vesselReport.id}</span>
-        </Popup>
-      </CircleMarker>
-    ));
-  }
-
-  // Map showing a vessel current & elapsed route
-  if (vesselReports && options.isElapsedRoute) {
-    elapsedRouteMarkers = vesselReports.map(vesselReport => (
-      <CircleMarker
-        key={vesselReport.id}
-        center={[vesselReport.latitude, vesselReport.longitude]}
         color={options.style.marker.color}
         fill={options.style.marker.fill}
         fillColor={options.style.marker.fillColor}
