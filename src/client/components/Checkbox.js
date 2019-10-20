@@ -1,17 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 function CheckBox({ label, handleCheckbox }) {
   return (
     <div>
-      <Checkbox
-        defaultChecked
-        color="default"
-        value="checked"
-        inputProps={{
-          "aria-label": "checkbox with default color"
-        }}
+      <FormControlLabel
+        control={<Checkbox value="remember" color="primary" />}
+        label="Checked"
       />
     </div>
   );

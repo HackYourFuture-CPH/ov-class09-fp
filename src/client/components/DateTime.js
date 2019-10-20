@@ -1,16 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
-/* <label>
-        Date
-        <input
-          name={name}
-          type="text"
-          value={date}
-          placeholder="yyyy-mm-dd"
-          onChange={e => onDateInputChange(e)}
-        />
-      </label> */
+
 function DateTime({
   label,
   name,

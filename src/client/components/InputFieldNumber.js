@@ -24,7 +24,6 @@ class InputFieldNumber extends Component {
           InputLabelProps={{
             shrink: true
           }}
-          margin="normal"
         />
         <span className="unit">{unit}</span>
       </form>
