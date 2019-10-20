@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "../components/Checkbox";
+import CheckBox from "../components/Checkbox";
 import {
   withKnobs,
   text,
@@ -10,5 +10,5 @@ import {
 } from "@storybook/addon-knobs";
 export function CheckboxStory() {
   const label = text("label", "Checkbox");
-  return <Checkbox label={label} />;
+  return <CheckBox label={label} />;
 }
