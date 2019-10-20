@@ -1,6 +1,5 @@
 import React from "react";
 import MapComponent from "../components/MapComponent";
-import MapMarker from "../components/MapMarker";
 import { number, array, object } from "@storybook/addon-knobs";
 
 export function MapVoyagesList() {
@@ -54,7 +53,6 @@ export function MapVoyagesList() {
 
   const mapOptions = {
     centerMapCoordinates: [12.5244140625, 55.640398956687356],
-    isElapsedRoute: false,
     zoom: 1,
     style: {
       color: {
