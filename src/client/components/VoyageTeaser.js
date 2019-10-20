@@ -6,10 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import CardHeader from "@material-ui/core/CardHeader";
+import Button from "@material-ui/core/Button";
 
 //CSS Colors: #F2F2F2,#D9D9D9,#595959,#262626,#0D0D0D
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   button: {
     fontSize: "1.25rem",
     fontWeight: "bold",
-    color: "#D9D9D9"
+    color: "#0B3C61"
   },
   actionCard: {
     float: "right"
@@ -48,7 +48,7 @@ function VoyageTeaser({
   arrivesAt,
   departure_time,
   target_arrival_time,
-  activeDetails
+  link
 }) {
   const classes = useStyles();
 
@@ -77,9 +77,9 @@ function VoyageTeaser({
           </Grid>
         </Grid>
       </CardContent>
-      {activeDetails ? (
+      {link ? (
         <CardActions className={classes.actionCard}>
-          <Button href={`/voyages/${id}`} className={classes.button}>
+          <Button variant="contained" href={link} className={classes.button}>
             Show Details
           </Button>
         </CardActions>
