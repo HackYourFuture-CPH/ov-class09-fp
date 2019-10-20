@@ -18,9 +18,12 @@ class InputText extends Component {
           id="standard-name"
           label="Email"
           value={email}
-          type="text"
           onChange={e => onDataInputTextChange(e)}
           margin="normal"
+          type="email"
+          name="email"
+          autoComplete="email"
+          variant="filled"
         />
       </form>
     );
