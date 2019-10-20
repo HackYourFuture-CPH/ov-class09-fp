@@ -21,21 +21,14 @@ export default class SelectedRouteContainer extends React.Component {
     const { vesselReportId } = this.state;
 
     const data = { suggested_route_id: id };
-    axios
-      .post(`api/vessel-reports/${vesselReportId}/select-route`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: getAuthToken()
-        }
-      })
-      .then(
-        response => {
-          this.setState({ suggestedRouteID: data.id });
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    axios.post(`api/vessel-reports/${vesselReportId}/select-route`, data).then(
+      response => {
+        this.setState({ suggestedRouteID: data.id });
+      },
+      error => {
+        console.log(error);
+      }
+    );
   };
   componentDidMount() {
     this.fetchSuggestedRoutes();
@@ -43,12 +36,7 @@ export default class SelectedRouteContainer extends React.Component {
   fetchSuggestedRoutes = () => {
     const { voyageId, vesselReportId } = this.state;
     axios
-      .get(`/api/vessel-reports/${vesselReportId}/suggested-routes`, {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: getAuthToken()
-        }
-      })
+      .get(`/api/vessel-reports/${vesselReportId}/suggested-routes`)
       .then(data =>
         this.setState({
           suggestedRoutes: data.data
