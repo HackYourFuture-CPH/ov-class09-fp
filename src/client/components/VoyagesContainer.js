@@ -18,9 +18,7 @@ export default class VoyagesContainer extends Component {
   getVoyages(organizationId) {
     return new Promise((resolve, reject) => {
       axios
-        .get(`/api/organizations/${organizationId}/voyages?status=ongoing`, {
-          headers: { authorization: getAuthToken() }
-        })
+        .get(`/api/organizations/${organizationId}/voyages?status=ongoing`)
         .then(response => {
           resolve(camelcaseKeys(response.data.voyages));
         })
@@ -33,10 +31,7 @@ export default class VoyagesContainer extends Component {
     return new Promise((resolve, reject) => {
       axios
         .get(
-          `/api/voyages/${voyageId}/vessel-reports?orderBy=desc&limit=1&offset=0`,
-          {
-            headers: { authorization: getAuthToken() }
-          }
+          `/api/voyages/${voyageId}/vessel-reports?orderBy=desc&limit=1&offset=0`
         )
         .then(response => {
           resolve(camelcaseKeys(response.data[0]));

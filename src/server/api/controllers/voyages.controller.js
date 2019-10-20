@@ -8,6 +8,10 @@ const getVoyages = () => {
   return knex("voyages").select("*");
 };
 
+const getVoyageById = voyage_id => {
+  return knex("voyages").where({ id: voyage_id });
+};
+
 //to create a voyage
 const createVoyage = async ({ body }) => {
   const {
@@ -120,6 +124,7 @@ const getVoyagesByOrganization = async (organizationID, query) => {
 
 module.exports = {
   getVoyages,
+  getVoyageById,
   createVoyage,
   getVoyagesByVesselId,
   getVoyagesByOrganization
