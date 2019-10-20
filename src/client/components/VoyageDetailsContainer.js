@@ -6,6 +6,7 @@ import SuggestedRouteTable from "./SuggestedRouteTable";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
+import SecondaryNavigationBar from "../components/SecondaryNavigationBar";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
@@ -121,6 +122,7 @@ export default class VoyageDetailsContainer extends Component {
 
     return (
       <>
+        <SecondaryNavigationBar />
         <MapComponent
           vesselReports={vesselReports}
           suggestedRoutes={selectedRoute}

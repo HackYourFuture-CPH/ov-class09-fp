@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
 import { getAuthToken } from "../utilities/getTokenData";
+import SecondaryNavigationBar from "../components/SecondaryNavigationBar";
+
 export default class SelectedRouteContainer extends React.Component {
   state = {
     suggestedRoutes: [],
@@ -59,10 +61,13 @@ export default class SelectedRouteContainer extends React.Component {
   render() {
     const { suggestedRoutes } = this.state;
     return (
-      <SuggestedRouteList
-        handleSelectRoute={this.handleSelectRoute}
-        routeslist={suggestedRoutes}
-      />
+      <>
+        <SecondaryNavigationBar />
+        <SuggestedRouteList
+          handleSelectRoute={this.handleSelectRoute}
+          routeslist={suggestedRoutes}
+        />
+      </>
     );
   }
 }

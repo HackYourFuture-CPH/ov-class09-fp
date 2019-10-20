@@ -5,6 +5,7 @@ import axios from "axios";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
+import SecondaryNavigationBar from "../components/SecondaryNavigationBar";
 
 export default class VoyagesContainer extends Component {
   state = {
@@ -61,6 +62,7 @@ export default class VoyagesContainer extends Component {
   render() {
     return (
       <div>
+        <SecondaryNavigationBar />
         <MapComponent
           vesselReports={this.state.vesselReports}
           options={mapOptions}

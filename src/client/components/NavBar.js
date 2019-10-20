@@ -26,30 +26,32 @@ const useStyles = makeStyles({
 const NavBar = () => {
   const classes = useStyles();
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar className={classes.toolbarColor}>
-          <div className={classes.grow} />
-          <MenuItem>
-            <Link className={classes.MenuItemColor} to="/voyages">
-              MAP
-            </Link>
-          </MenuItem>
-          <Route>
+    <Router>
+      <div className={classes.grow}>
+        <AppBar position="static">
+          <Toolbar className={classes.toolbarColor}>
+            <div className={classes.grow} />
             <MenuItem>
-              <Link className={classes.MenuItemColor} to="/start-voyage">
-                START VOYAGE
+              <Link className={classes.MenuItemColor} to="/voyages">
+                MAP
               </Link>
             </MenuItem>
-          </Route>
-          <MenuItem>
-            <Link className={classes.MenuItemColor} to="/voyages-summary">
-              ALL VOYAGES
-            </Link>
-          </MenuItem>
-        </Toolbar>
-      </AppBar>
-    </div>
+            <Route>
+              <MenuItem>
+                <Link className={classes.MenuItemColor} to="/start-voyage">
+                  START VOYAGE
+                </Link>
+              </MenuItem>
+            </Route>
+            <MenuItem>
+              <Link className={classes.MenuItemColor} to="/voyages-summary">
+                ALL VOYAGES
+              </Link>
+            </MenuItem>
+          </Toolbar>
+        </AppBar>
+      </div>
+    </Router>
   );
 };
 
