@@ -27,6 +27,7 @@ import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
 import { NavBarStory } from "./NavBarStory";
+import { InputTextStory } from "./InputText";
 
 const MapStories = storiesOf("Map", module)
   .add("Map Voyages List", MapVoyagesList)
@@ -86,3 +87,9 @@ storiesOf("Header", module).add("Navigation Bar", NavBarStory);
 storiesOf("Voyage Summary", module)
   .add("All Voyage Summary Tables", VoyagesSummaryStory)
   .addDecorator(withKnobs);
+
+const InputTextStories = storiesOf("Input Text", module).add(
+  "InputText",
+  InputTextStory
+);
+InputTextStories.addDecorator(withKnobs);
