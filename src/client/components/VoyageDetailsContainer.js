@@ -72,8 +72,6 @@ export default class VoyageDetailsContainer extends Component {
             axios
               .get(`/api/suggested-routes/${selectedRouteId}`)
               .then(selectedRoute => {
-                //debugger;
-
                 this.setState({
                   selectedRoute: camelcaseKeys(selectedRoute.data, {
                     deep: true
@@ -133,8 +131,8 @@ export default class VoyageDetailsContainer extends Component {
           etd={voyage.departureTime}
           eta={latestVesselReport.eta}
           date={latestVesselReport.createdAt}
-          latitude={latestVesselReport.latitude}
-          longitude={latestVesselReport.longitude}
+          latitude={parseFloat(latestVesselReport.latitude)}
+          longitude={parseFloat(latestVesselReport.longitude)}
           hsfo={latestVesselReport.hfoConsumption}
           ulsfo={latestVesselReport.lsfoConsumption}
         />
