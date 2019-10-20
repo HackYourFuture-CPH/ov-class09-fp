@@ -26,6 +26,8 @@ import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
 
+import { NavBarStory } from "./NavBarStory";
+
 const MapStories = storiesOf("Map", module)
   .add("Map Voyages List", MapVoyagesList)
   .add("Map Voyage Details", MapVoyageDetails)
@@ -78,6 +80,8 @@ const LoginFormStories = storiesOf("Authentication", module)
   .add("Login Form", LoginFormStory)
   .add("Logout Button", LogoutButtonStory);
 LoginFormStories.addDecorator(withKnobs);
+
+storiesOf("Header", module).add("Navigation Bar", NavBarStory);
 
 storiesOf("Voyage Summary", module)
   .add("All Voyage Summary Tables", VoyagesSummaryStory)
