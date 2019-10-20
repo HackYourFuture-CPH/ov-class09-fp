@@ -25,6 +25,7 @@ import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
+import { PasswordFieldStory } from "./PasswordField";
 
 import { NavBarStory } from "./NavBarStory";
 
@@ -86,3 +87,9 @@ storiesOf("Header", module).add("Navigation Bar", NavBarStory);
 storiesOf("Voyage Summary", module)
   .add("All Voyage Summary Tables", VoyagesSummaryStory)
   .addDecorator(withKnobs);
+
+const PasswordStory = storiesOf("Password", module).add(
+  "Password",
+  PasswordFieldStory
+);
+PasswordStory.addDecorator(withKnobs);
