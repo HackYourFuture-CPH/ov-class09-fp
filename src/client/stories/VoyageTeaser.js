@@ -7,6 +7,7 @@ export function VoyageTeaserStory() {
   const arrivesAt = text("Arrives At", "Rotterdam");
   const departure_time = text("ETD", "2012-08-17 21:18");
   const target_arrival_time = text("ETA", "2012-08-24 06:43");
+  const link = text("Link to", "#home");
 
   return (
     <VoyageTeaser
@@ -15,7 +16,7 @@ export function VoyageTeaserStory() {
       arrivesAt={arrivesAt}
       departure_time={departure_time}
       target_arrival_time={target_arrival_time}
-      activeDetails={boolean("activeDetails", false)}
+      link={link}
     />
   );
 }
