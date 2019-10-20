@@ -25,6 +25,7 @@ import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
+import { VesselDetailsPageStory } from "./VesselDetailsPageStory";
 
 import { NavBarStory } from "./NavBarStory";
 
@@ -63,7 +64,8 @@ CardStories.addDecorator(withKnobs);
 const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageTeaser", VoyageTeaserStory)
   .add("VoyageDetails", VoyageDetailsStory)
-  .add("VoyageList", VoyageListStory);
+  .add("VoyageList", VoyageListStory)
+  .add("VesselDetailsPage", VesselDetailsPageStory);
 VoyagesListStories.addDecorator(withKnobs);
 
 const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
