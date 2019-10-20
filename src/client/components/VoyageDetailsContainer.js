@@ -129,7 +129,7 @@ export default class VoyageDetailsContainer extends Component {
         }
       }
     };
-    const classes = useStyles();
+
     return (
       <>
         <Grid container spacing={1}>
