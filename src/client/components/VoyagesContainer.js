@@ -11,7 +11,6 @@ export default class VoyagesContainer extends Component {
   state = {
     // Get auth token from localstorage
     organizationId: getTokenData("organization_id"),
-    // organizationId: 3,
     voyages: [],
     vesselReports: []
   };
