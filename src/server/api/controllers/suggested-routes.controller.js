@@ -90,10 +90,10 @@ const getSuggestedRoutesByVesselReportId = async id => {
       );
 
     return suggestedRoutes.map(item => {
-      item.waypoint = [];
+      item.waypoints = [];
       waypoints.forEach(elem => {
         if (item.id === elem.suggested_route_id) {
-          item.waypoint.push(elem);
+          item.waypoints.push(elem);
         }
       });
 
