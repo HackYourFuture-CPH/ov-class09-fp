@@ -126,7 +126,7 @@ const getSelectedSuggestedRoute = async id => {
       const selectedRoute = await knex("suggested_routes")
         .select("*")
         .where({ id: vesselReport[0].selected_route_id });
-      console.log(selectedRoute[0].id);
+
       const waypoints = await knex("waypoints")
         .where("suggested_route_id", selectedRoute[0].id)
         .select(
