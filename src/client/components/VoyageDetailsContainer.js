@@ -140,7 +140,7 @@ export default class VoyageDetailsContainer extends Component {
               options={mapOptions}
             />
           </Grid>
-          <Grid container item xs={4}>
+          <Grid container item xs={4} alignContent={"flex-start"}>
             <VoyageDetails
               vesselName={vessel.name}
               departFrom={departFromPort}

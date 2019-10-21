@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 300,
+    width: "100%",
     marginTop: "0.75rem",
     marginRight: "0.75rem",
     marginLeft: "0.75rem"
