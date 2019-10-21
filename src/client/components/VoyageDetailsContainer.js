@@ -153,20 +153,16 @@ export default class VoyageDetailsContainer extends Component {
               hsfo={latestVesselReport.hfoConsumption}
               ulsfo={latestVesselReport.lsfoConsumption}
             />
-            {totalCost &&
-              voyage.hfoCost &&
-              voyage.lsfoCost &&
-              latestVesselReport.hfoConsumption &&
-              latestVesselReport.lsfoConsumption && (
-                <CostWidget
-                  totalCost={totalCost}
-                  hfoCost={voyage.hfoCost}
-                  lsfoCost={voyage.lsfoCost}
-                  hfoConsumption={latestVesselReport.hfoConsumption}
-                  lsfoConsumption={latestVesselReport.lsfoConsumption}
-                />
-              )}
-            {selectedRoute.length > 0 && selectedRoute[0].waypoints ? (
+            {selectedRoute.length > 0 && (
+              <CostWidget
+                totalCost={totalCost}
+                hfoCost={voyage.hfoCost}
+                lsfoCost={voyage.lsfoCost}
+                hfoConsumption={latestVesselReport.hfoConsumption}
+                lsfoConsumption={latestVesselReport.lsfoConsumption}
+              />
+            )}
+            {selectedRoute.length > 0 && selectedRoute[0].waypoints && (
               <SuggestedRouteTable
                 data={selectedRoute[0].waypoints}
                 tableNames={[
@@ -177,7 +173,7 @@ export default class VoyageDetailsContainer extends Component {
                   "EST.RPM"
                 ]}
               />
-            ) : null}
+            )}
           </Grid>
         </Grid>
       </>
