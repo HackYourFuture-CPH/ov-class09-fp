@@ -5,6 +5,7 @@ import axios from "axios";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
+import SecondaryNavigationBar from "../components/SecondaryNavigationBar";
 import Grid from "@material-ui/core/Grid";
 
 export default class VoyagesContainer extends Component {
@@ -63,6 +64,12 @@ export default class VoyagesContainer extends Component {
     //console.log("Voyages container:", vesselReports)
     return (
       <div>
+        <SecondaryNavigationBar />
+        <MapComponent
+          vesselReports={this.state.vesselReports}
+          options={mapOptions}
+        />
+        <VoyageList voyages={this.state.voyages} />
         <Grid container>
           <Grid item xs={8}>
             <MapComponent

@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
+import { getAuthToken } from "../utilities/getTokenData";
+import SecondaryNavigationBar from "../components/SecondaryNavigationBar";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -83,23 +85,30 @@ export default class SelectedRouteContainer extends React.Component {
   render() {
     const { suggestedRoutes, vesselReports, selectedRoutes } = this.state;
     return (
-      <div>
-        <Grid container>
-          <Grid item xs={8}>
-            <MapComponent
-              vesselReports={vesselReports}
-              suggestedRoutes={selectedRoutes}
-              options={mapOptions}
-            />
+      <>
+        <SecondaryNavigationBar />
+        <SuggestedRouteList
+          handleSelectRoute={this.handleSelectRoute}
+          routeslist={suggestedRoutes}
+        />
+        <div>
+          <Grid container>
+            <Grid item xs={8}>
+              <MapComponent
+                vesselReports={vesselReports}
+                suggestedRoutes={selectedRoutes}
+                options={mapOptions}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <SuggestedRouteList
+                handleSelectRoute={this.handleSelectRoute}
+                routeslist={suggestedRoutes}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <SuggestedRouteList
-              handleSelectRoute={this.handleSelectRoute}
-              routeslist={suggestedRoutes}
-            />
-          </Grid>
-        </Grid>
-      </div>
+        </div>
+      </>
     );
   }
 }

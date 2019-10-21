@@ -6,6 +6,7 @@ import MainRouter from "./routes/main-router";
 import "./App.css";
 
 import NavBar from "./components/NavBar";
+import SecondaryNavigationBar from "./components/SecondaryNavigationBar";
 class App extends Component {
   render() {
     return (

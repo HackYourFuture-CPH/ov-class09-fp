@@ -14,6 +14,7 @@ import { MapMarkerStory } from "./MapMarkerStory";
 import { VoyageDetailsStory } from "./VoyageDetails";
 import { DataCardStory } from "./DataCardStory";
 import { CardGroupStory } from "./CardGroupStory";
+import { SecondaryNavigationBarStory } from "./SecondaryNavigationBarStory";
 import { VoyageListStory } from "./Voyages";
 import { VoyageTeaserStory } from "./VoyageTeaser";
 import { CostWidgetStory } from "./CostWidgetStory";
@@ -60,6 +61,12 @@ const CardStories = storiesOf("Card", module)
   .add("CardGroup", CardGroupStory)
   .add("Cost Widget Card", CostWidgetStory);
 CardStories.addDecorator(withKnobs);
+
+const SecondaryNavigationBarStories = storiesOf(
+  "Secondary Navigation",
+  module
+).add("Secondary Navigation Bar", SecondaryNavigationBarStory);
+SecondaryNavigationBarStories.addDecorator(withKnobs);
 
 const VoyagesListStories = storiesOf("Voyages", module)
   .add("VoyageTeaser", VoyageTeaserStory)
