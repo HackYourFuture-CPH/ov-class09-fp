@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 300,
+    width: "100%",
     marginTop: "0.75rem",
     marginRight: "0.75rem",
     marginLeft: "0.75rem"
@@ -56,7 +56,7 @@ function VoyageTeaser({
       <CardHeader className={classes.headerTitle} title={vesselName} />
       <CardContent>
         <Grid container>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={6}>
             <Typography className={classes.infoTitle}>DEPARTURE</Typography>
             <Typography className={classes.describeText}>
               {departFrom}
@@ -65,7 +65,7 @@ function VoyageTeaser({
               {departureTime}
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={6}>
             <Typography className={classes.infoTitle}>ETA</Typography>
             <Typography className={classes.describeText}>{arriveAt}</Typography>
             <Typography className={classes.describeText}>
