@@ -21,22 +21,24 @@ function MapComponent({ vesselReports, suggestedRoutes, options }) {
 
   if (suggestedRoutes) {
     suggestedRouteMarkers = suggestedRoutes.map(suggestedRoute => {
-      const positions = suggestedRoute.waypoints.map(waypoint => [
-        waypoint.latitude,
-        waypoint.longitude
-      ]);
+      if (suggestedRoute.waypoints) {
+        const positions = suggestedRoute.waypoints.map(waypoint => [
+          waypoint.latitude,
+          waypoint.longitude
+        ]);
 
-      return (
-        <Polyline
-          key={suggestedRoute.id}
-          positions={positions}
-          dashArray={options.style.polyline.dashArray}
-          color={options.style.color.suggestedRoute}
-          opacity={options.style.polyline.opacity}
-          lineJoin={options.style.polyline.lineJoin}
-          stroke={options.style.polyline.stroke}
-        />
-      );
+        return (
+          <Polyline
+            key={suggestedRoute.id}
+            positions={positions}
+            dashArray={options.style.polyline.dashArray}
+            color={options.style.color.suggestedRoute}
+            opacity={options.style.polyline.opacity}
+            lineJoin={options.style.polyline.lineJoin}
+            stroke={options.style.polyline.stroke}
+          />
+        );
+      }
     });
   }
 
