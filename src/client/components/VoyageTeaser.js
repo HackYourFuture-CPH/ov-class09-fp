@@ -56,7 +56,7 @@ function VoyageTeaser({
       <CardHeader className={classes.headerTitle} title={vesselName} />
       <CardContent>
         <Grid container>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={6}>
             <Typography className={classes.infoTitle}>DEPARTURE</Typography>
             <Typography className={classes.describeText}>
               {departFrom}
@@ -65,7 +65,7 @@ function VoyageTeaser({
               {departureTime}
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={6}>
             <Typography className={classes.infoTitle}>ETA</Typography>
             <Typography className={classes.describeText}>{arriveAt}</Typography>
             <Typography className={classes.describeText}>
