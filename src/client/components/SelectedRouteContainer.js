@@ -5,6 +5,7 @@ import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
 import Grid from "@material-ui/core/Grid";
 
 import MapComponent from "./MapComponent";
+import ScrollWrapper from "./ScrollWrapper";
 
 export default class SelectedRouteContainer extends React.Component {
   state = {
@@ -93,10 +94,12 @@ export default class SelectedRouteContainer extends React.Component {
             />
           </Grid>
           <Grid item xs={4}>
-            <SuggestedRouteList
-              handleSelectRoute={this.handleSelectRoute}
-              routeslist={suggestedRoutes}
-            />
+            <ScrollWrapper height="calc(100vh - 72px)">
+              <SuggestedRouteList
+                handleSelectRoute={this.handleSelectRoute}
+                routeslist={suggestedRoutes}
+              />
+            </ScrollWrapper>
           </Grid>
         </Grid>
       </div>

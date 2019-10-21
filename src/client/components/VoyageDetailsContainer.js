@@ -7,6 +7,7 @@ import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
 import Grid from "@material-ui/core/Grid";
+import ScrollWrapper from "./ScrollWrapper";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
@@ -141,39 +142,41 @@ export default class VoyageDetailsContainer extends Component {
             />
           </Grid>
           <Grid container item xs={4} alignContent={"flex-start"}>
-            <VoyageDetails
-              vesselName={vessel.name}
-              departFrom={departFromPort}
-              arriveAt={arriveAtPort}
-              etd={voyage.departureTime}
-              eta={latestVesselReport.eta}
-              date={latestVesselReport.createdAt}
-              latitude={parseFloat(latestVesselReport.latitude)}
-              longitude={parseFloat(latestVesselReport.longitude)}
-              hsfo={latestVesselReport.hfoConsumption}
-              ulsfo={latestVesselReport.lsfoConsumption}
-            />
-            {selectedRoute.length > 0 && (
-              <CostWidget
-                totalCost={totalCost}
-                hfoCost={voyage.hfoCost}
-                lsfoCost={voyage.lsfoCost}
-                hfoConsumption={latestVesselReport.hfoConsumption}
-                lsfoConsumption={latestVesselReport.lsfoConsumption}
+            <ScrollWrapper height={"100vh"}>
+              <VoyageDetails
+                vesselName={vessel.name}
+                departFrom={departFromPort}
+                arriveAt={arriveAtPort}
+                etd={voyage.departureTime}
+                eta={latestVesselReport.eta}
+                date={latestVesselReport.createdAt}
+                latitude={parseFloat(latestVesselReport.latitude)}
+                longitude={parseFloat(latestVesselReport.longitude)}
+                hsfo={latestVesselReport.hfoConsumption}
+                ulsfo={latestVesselReport.lsfoConsumption}
               />
-            )}
-            {selectedRoute.length > 0 && selectedRoute[0].waypoints && (
-              <SuggestedRouteTable
-                data={selectedRoute[0].waypoints}
-                tableNames={[
-                  "DATE",
-                  "LATITUDE",
-                  "LONGTIDUE",
-                  "SPEED",
-                  "EST.RPM"
-                ]}
-              />
-            )}
+              {selectedRoute.length > 0 && (
+                <CostWidget
+                  totalCost={totalCost}
+                  hfoCost={voyage.hfoCost}
+                  lsfoCost={voyage.lsfoCost}
+                  hfoConsumption={latestVesselReport.hfoConsumption}
+                  lsfoConsumption={latestVesselReport.lsfoConsumption}
+                />
+              )}
+              {selectedRoute.length > 0 && selectedRoute[0].waypoints && (
+                <SuggestedRouteTable
+                  data={selectedRoute[0].waypoints}
+                  tableNames={[
+                    "DATE",
+                    "LATITUDE",
+                    "LONGTIDUE",
+                    "SPEED",
+                    "EST.RPM"
+                  ]}
+                />
+              )}
+            </ScrollWrapper>
           </Grid>
         </Grid>
       </>
