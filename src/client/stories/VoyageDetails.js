@@ -16,10 +16,10 @@ export function VoyageDetailsStory() {
   return (
     <VoyageDetails
       vesselName={vesselName}
-      departureFrom={departsFrom}
+      departsFrom={departsFrom}
       arrivesAt={arrivesAt}
-      etd={etd}
-      eta={eta}
+      departure_time={etd}
+      target_arrival_time={eta}
       date={date}
       latitude={latitude}
       longitude={longitude}

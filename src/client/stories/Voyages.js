@@ -1,31 +1,32 @@
 import React from "react";
 import VoyageList from "../components/VoyageList";
-import { withKnobs, text, object } from "@storybook/addon-knobs";
+import { object } from "@storybook/addon-knobs";
+
 export function VoyageListStory() {
   const voyageList = object("vessels", [
     {
       id: 1,
-      vessel_Name: "Yeniser River",
-      depart_from: "Sabetta",
-      arrive_at: "Rotterdam",
-      departure_time: "2012-08-17 21:18",
-      target_arrival_time: "2012-08-24 06:43"
+      vesselName: "Yeniser River",
+      departFrom: "Sabetta",
+      arriveAt: "Rotterdam",
+      departureTime: "2012-08-17 21:18",
+      targetArrivalTime: "2012-08-24 06:43"
     },
     {
       id: 2,
-      vessel_Name: "Serenade of the seas",
-      depart_from: "Alesund",
-      arrive_at: "Kristiansand",
-      departure_time: "2019-08-22 19:57",
-      target_arrival_time: "2019-08-24 07:36"
+      vesselName: "Serenade of the seas",
+      departFrom: "Alesund",
+      arriveAt: "Kristiansand",
+      departureTime: "2019-08-22 19:57",
+      targetArrivalTime: "2019-08-24 07:36"
     },
     {
       id: 3,
-      vessel_Name: "Msc Meraviglia",
-      depart_from: "St Petersbrug",
-      arrive_at: "Kiel",
-      departure_time: "2019-08-22 20:18",
-      target_arrival_time: "2019-08-24 10:54"
+      vesselName: "Msc Meraviglia",
+      departFrom: "St Petersbrug",
+      arriveAt: "Kiel",
+      departureTime: "2019-08-22 20:18",
+      targetArrivalTime: "2019-08-24 10:54"
     }
   ]);
 

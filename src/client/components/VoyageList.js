@@ -19,6 +19,7 @@ function VoyageList({ voyages }) {
         arriveAt={arriveAt}
         departureTime={departureTime}
         targetArrivalTime={targetArrivalTime}
+        link={`/voyages/${id}`}
       />
     )
   );

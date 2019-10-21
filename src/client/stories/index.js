@@ -26,6 +26,7 @@ import { suggestedRouteDetails } from "./suggestedRoutes/suggestedRouteDetails";
 import { suggestedRouteCard } from "./suggestedRoutes/suggestedRouteCard";
 import { suggestedRoutesList } from "./suggestedRoutes/suggestedRoutesList";
 import { SuggestedRouteTableStory } from "./SuggestedRouteTableStory";
+import { PasswordFieldStory } from "./PasswordField";
 
 import { NavBarStory } from "./NavBarStory";
 
@@ -55,12 +56,6 @@ const VoyageStories = storiesOf("Start Voyage", module).add(
 );
 VoyageStories.addDecorator(withKnobs);
 
-const VoyageDetailsStories = storiesOf("VoyageDetails", module).add(
-  "VoyageDetails",
-  VoyageDetailsStory
-);
-VoyageDetailsStories.addDecorator(withKnobs);
-
 const CardStories = storiesOf("Card", module)
   .add("DataCard", DataCardStory)
   .add("CardGroup", CardGroupStory)
@@ -74,8 +69,9 @@ const SecondaryNavigationBarStories = storiesOf(
 SecondaryNavigationBarStories.addDecorator(withKnobs);
 
 const VoyagesListStories = storiesOf("Voyages", module)
-  .add("VoyageList", VoyageListStory)
-  .add("VoyageTeaser", VoyageTeaserStory);
+  .add("VoyageTeaser", VoyageTeaserStory)
+  .add("VoyageDetails", VoyageDetailsStory)
+  .add("VoyageList", VoyageListStory);
 VoyagesListStories.addDecorator(withKnobs);
 
 const SuggestedRouteSummaryStories = storiesOf("Suggested Routes", module)
@@ -93,9 +89,14 @@ const LoginFormStories = storiesOf("Authentication", module)
   .add("Logout Button", LogoutButtonStory);
 LoginFormStories.addDecorator(withKnobs);
 
-storiesOf("Header", module)
-  .add("Navigation Bar", NavBarStory)
+storiesOf("Header", module).add("Navigation Bar", NavBarStory);
 
 storiesOf("Voyage Summary", module)
   .add("All Voyage Summary Tables", VoyagesSummaryStory)
   .addDecorator(withKnobs);
+
+const PasswordStory = storiesOf("Password", module).add(
+  "Password",
+  PasswordFieldStory
+);
+PasswordStory.addDecorator(withKnobs);

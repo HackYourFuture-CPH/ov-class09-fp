@@ -23,7 +23,7 @@ const SuggestedRouteTable = ({ data, tableNames }) => {
         </TableHead>
         <TableBody>
           {data.map(row => (
-            <TableRow key={row.key}>
+            <TableRow key={row.id}>
               <TableCell component="th" scope="row">
                 {row.createdAt}
               </TableCell>

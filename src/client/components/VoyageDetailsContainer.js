@@ -7,6 +7,7 @@ import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
 import Marker from "./Marker";
 import SecondaryNavigationBar from "../components/SecondaryNavigationBar";
+import Grid from "@material-ui/core/Grid";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
@@ -73,8 +74,6 @@ export default class VoyageDetailsContainer extends Component {
             axios
               .get(`/api/suggested-routes/${selectedRouteId}`)
               .then(selectedRoute => {
-                //debugger;
-
                 this.setState({
                   selectedRoute: camelcaseKeys(selectedRoute.data, {
                     deep: true
@@ -106,16 +105,28 @@ export default class VoyageDetailsContainer extends Component {
     // Configuration object for Map
     const mapOptions = {
       centerMapCoordinates: [12.5244140625, 55.640398956687356],
+      // isElapsedRoute: true,
       zoom: 1,
       style: {
         color: {
-          suggestedRoute: "red",
-          elapsedRoute: "blue"
+          suggestedRoute: "#F8AA13",
+          elapsedRoute: "#1353F8"
         },
         marker: {
-          markerComponent: Marker,
-          defaultSize: "sm",
-          selectedSize: "md"
+          markerComponent: null,
+          color: "blue",
+          fill: true,
+          fillColor: "blue",
+          fillOpacity: 0.8,
+          radius: 4
+        },
+        polyline: {
+          dashArray: "10,5",
+          lineJoin: "round",
+          weight: 5,
+          opacity: 0.7,
+          color: "orange",
+          stroke: true
         }
       }
     };
@@ -153,12 +164,54 @@ export default class VoyageDetailsContainer extends Component {
               lsfoConsumption={latestVesselReport.lsfoConsumption}
             />
           )}
-        {selectedRoute.length > 0 && selectedRoute[0].waypoints ? (
-          <SuggestedRouteTable
-            data={selectedRoute[0].waypoints}
-            tableNames={["DATE", "LATITUDE", "LONGTIDUE", "SPEED", "EST.RPM"]}
-          />
-        ) : null}
+        <Grid container spacing={1}>
+          <Grid item xs={8}>
+            <MapComponent
+              vesselReports={vesselReports}
+              suggestedRoutes={selectedRoute}
+              options={mapOptions}
+            />
+          </Grid>
+          <Grid container item xs={4}>
+            <VoyageDetails
+              vesselName={vessel.name}
+              departFrom={departFromPort}
+              arriveAt={arriveAtPort}
+              etd={voyage.departureTime}
+              eta={latestVesselReport.eta}
+              date={latestVesselReport.createdAt}
+              latitude={parseFloat(latestVesselReport.latitude)}
+              longitude={parseFloat(latestVesselReport.longitude)}
+              hsfo={latestVesselReport.hfoConsumption}
+              ulsfo={latestVesselReport.lsfoConsumption}
+            />
+            {totalCost &&
+              voyage.hfoCost &&
+              voyage.lsfoCost &&
+              latestVesselReport.hfoConsumption &&
+              latestVesselReport.lsfoConsumption && (
+                <CostWidget
+                  totalCost={totalCost}
+                  hfoCost={voyage.hfoCost}
+                  lsfoCost={voyage.lsfoCost}
+                  hfoConsumption={latestVesselReport.hfoConsumption}
+                  lsfoConsumption={latestVesselReport.lsfoConsumption}
+                />
+              )}
+            {selectedRoute.length > 0 && selectedRoute[0].waypoints ? (
+              <SuggestedRouteTable
+                data={selectedRoute[0].waypoints}
+                tableNames={[
+                  "DATE",
+                  "LATITUDE",
+                  "LONGTIDUE",
+                  "SPEED",
+                  "EST.RPM"
+                ]}
+              />
+            ) : null}
+          </Grid>
+        </Grid>
       </>
     );
   }
