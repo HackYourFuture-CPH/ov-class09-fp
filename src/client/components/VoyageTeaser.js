@@ -65,7 +65,7 @@ function VoyageTeaser({
               {departureTime}
             </Typography>
           </Grid>
-          <Grid itemxs={6} sm={3}>
+          <Grid item xs={6} sm={3}>
             <Typography className={classes.infoTitle}>ETA</Typography>
             <Typography className={classes.describeText}>{arriveAt}</Typography>
             <Typography className={classes.describeText}>
