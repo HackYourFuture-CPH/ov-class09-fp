@@ -5,9 +5,9 @@ import CostWidget from "./CostWidget";
 import SuggestedRouteTable from "./SuggestedRouteTable";
 import camelcaseKeys from "camelcase-keys";
 import MapComponent from "./MapComponent";
-import Marker from "./Marker";
 import Grid from "@material-ui/core/Grid";
 import ScrollWrapper from "./ScrollWrapper";
+import { mapOptions } from "../utilities/mapConfiguration";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
@@ -101,35 +101,6 @@ export default class VoyageDetailsContainer extends Component {
     if (selectedRoute.length > 0 && selectedRoute[0].totalCost) {
       totalCost = selectedRoute[0].totalCost;
     }
-
-    // Configuration object for Map
-    const mapOptions = {
-      centerMapCoordinates: [12.5244140625, 55.640398956687356],
-      // isElapsedRoute: true,
-      zoom: 1,
-      style: {
-        color: {
-          suggestedRoute: "#F8AA13",
-          elapsedRoute: "#1353F8"
-        },
-        marker: {
-          markerComponent: null,
-          color: "blue",
-          fill: true,
-          fillColor: "blue",
-          fillOpacity: 0.8,
-          radius: 4
-        },
-        polyline: {
-          dashArray: "10,5",
-          lineJoin: "round",
-          weight: 5,
-          opacity: 0.7,
-          color: "orange",
-          stroke: true
-        }
-      }
-    };
 
     return (
       <>

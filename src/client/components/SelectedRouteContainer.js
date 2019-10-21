@@ -1,11 +1,10 @@
 import React from "react";
 import axios from "axios";
 import SuggestedRouteList from "./SuggestedRoutes/SuggestedRoutesList";
-
 import Grid from "@material-ui/core/Grid";
-
 import MapComponent from "./MapComponent";
 import ScrollWrapper from "./ScrollWrapper";
+import { mapOptions } from "../utilities/mapConfiguration";
 
 export default class SelectedRouteContainer extends React.Component {
   state = {
@@ -106,29 +105,3 @@ export default class SelectedRouteContainer extends React.Component {
     );
   }
 }
-const mapOptions = {
-  centerMapCoordinates: [12.5244140625, 55.640398956687356],
-  zoom: 1,
-  style: {
-    color: {
-      suggestedRoute: "#F8AA13",
-      elapsedRoute: "#1353F8"
-    },
-    marker: {
-      markerComponent: null,
-      color: "blue",
-      fill: true,
-      fillColor: "blue",
-      fillOpacity: 0.8,
-      radius: 4
-    },
-    polyline: {
-      dashArray: "10,5",
-      lineJoin: "round",
-      weight: 5,
-      opacity: 0.7,
-      color: "blue",
-      stroke: true
-    }
-  }
-};
