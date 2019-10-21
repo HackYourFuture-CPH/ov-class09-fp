@@ -53,7 +53,7 @@ function VoyageDetails({
 }) {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
+    <>
       <VoyageTeaser
         vesselName={vesselName}
         departFrom={departFrom}
@@ -61,50 +61,54 @@ function VoyageDetails({
         departureTime={departureTime}
         targetArrivalTime={targetArrivalTime}
       />
-      <CardContent>
-        <CardHeader className={classes.headerTitle} title="Position" />
+      <Card className={classes.card}>
         <CardContent>
-          <Grid container>
-            <Grid item xs={6} sm={3}>
-              <Typography className={classes.infoTitle}>Date</Typography>
-              <Typography className={classes.describeText}>{date}</Typography>
+          <CardHeader className={classes.headerTitle} title="Position" />
+          <CardContent>
+            <Grid container>
+              <Grid item xs={6} sm={3}>
+                <Typography className={classes.infoTitle}>Date</Typography>
+                <Typography className={classes.describeText}>{date}</Typography>
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <Typography className={classes.infoTitle}>Latitude</Typography>
+                <Typography className={classes.describeText}>
+                  {latitude}
+                </Typography>
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <Typography className={classes.infoTitle}>Longitude</Typography>
+                <Typography className={classes.describeText}>
+                  {longitude}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={6} sm={3}>
-              <Typography className={classes.infoTitle}>Latitude</Typography>
-              <Typography className={classes.describeText}>
-                {latitude}
-              </Typography>
-            </Grid>
-            <Grid item xs={6} sm={3}>
-              <Typography className={classes.infoTitle}>Longitude</Typography>
-              <Typography className={classes.describeText}>
-                {longitude}
-              </Typography>
-            </Grid>
-          </Grid>
-        </CardContent>
+          </CardContent>
 
-        <CardHeader className={classes.headerTitle} title="Consumption" />
-        <CardContent>
-          <Grid container>
-            <Grid item xs={6} sm={3}>
-              <Typography className={classes.infoTitle}>HSFO</Typography>
-              <Typography className={classes.describeText}>{hsfo}</Typography>
+          <CardHeader className={classes.headerTitle} title="Consumption" />
+          <CardContent>
+            <Grid container>
+              <Grid item xs={6} sm={3}>
+                <Typography className={classes.infoTitle}>HSFO</Typography>
+                <Typography className={classes.describeText}>{hsfo}</Typography>
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <Typography className={classes.infoTitle}>ULSFO</Typography>
+                <Typography className={classes.describeText}>
+                  {ulsfo}
+                </Typography>
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <Typography className={classes.infoTitle}>FOC Total</Typography>
+                <Typography className={classes.describeText}>
+                  {hsfo + ulsfo}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={6} sm={3}>
-              <Typography className={classes.infoTitle}>ULSFO</Typography>
-              <Typography className={classes.describeText}>{ulsfo}</Typography>
-            </Grid>
-            <Grid item xs={6} sm={3}>
-              <Typography className={classes.infoTitle}>FOC Total</Typography>
-              <Typography className={classes.describeText}>
-                {hsfo + ulsfo}
-              </Typography>
-            </Grid>
-          </Grid>
+          </CardContent>
         </CardContent>
-      </CardContent>
-    </Card>
+      </Card>
+    </>
   );
 }
 
