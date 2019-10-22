@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("voyages").insert([
         {
-          vessel_id: 7,
+          vessel_id: 70,
           departure_time: "2018-12-05 23:06:33",
           target_arrival_time: "2018-10-20 04:07:28",
           forwarddraft: 2467.48,
@@ -140,7 +140,7 @@ exports.seed = function(knex, Promise) {
           status: "completed"
         },
         {
-          vessel_id: 167,
+          vessel_id: 239,
           departure_time: "2018-10-24 13:06:30",
           target_arrival_time: "2019-03-10 16:00:50",
           forwarddraft: 2532.63,
@@ -168,7 +168,7 @@ exports.seed = function(knex, Promise) {
           status: "completed"
         },
         {
-          vessel_id: 167,
+          vessel_id: 173,
           departure_time: "2019-10-07 17:00:29",
           target_arrival_time: "2020-03-17 03:20:56",
           forwarddraft: 16.86,
@@ -196,7 +196,7 @@ exports.seed = function(knex, Promise) {
           status: "completed"
         },
         {
-          vessel_id: 280,
+          vessel_id: 230,
           departure_time: "2019-11-20 23:13:31",
           target_arrival_time: "2020-04-22 03:26:11",
           forwarddraft: 12.36,
@@ -336,7 +336,8 @@ exports.seed = function(knex, Promise) {
           status: "created"
         },
         {
-          vessel_id: 240,
+          id: 24,
+          vessel_id: 158,
           departure_time: "2019-10-18 07:03:28",
           target_arrival_time: "2020-03-18 12:00:11",
           forwarddraft: 13.28,

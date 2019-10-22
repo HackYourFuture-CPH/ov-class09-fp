@@ -640,7 +640,8 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-11-19 07:53:30"
         },
         {
-          vessel_report_id: 614,
+          id: 53,
+          vessel_report_id: 992,
           eta: "2020-01-14 18:32:10",
           max_wave_height: 0.47,
           hfo: 80.53,
@@ -832,18 +833,6 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-11-14 14:15:10"
         },
         {
-          vessel_report_id: 998,
-          eta: "2020-05-22 22:10:37",
-          max_wave_height: 5.85,
-          hfo: 20.37,
-          lsfo: 111.8,
-          total_cost: 1682482.85,
-          distance_over_ground: 1753,
-          distance_through_water: 2945,
-          avgspeed: 25.14,
-          created_at: "2019-10-09 23:01:09"
-        },
-        {
           vessel_report_id: 118,
           eta: "2020-04-09 21:43:22",
           max_wave_height: 3.54,
@@ -914,18 +903,6 @@ exports.seed = function(knex, Promise) {
           distance_through_water: 2118,
           avgspeed: 3.37,
           created_at: "2019-11-11 18:04:34"
-        },
-        {
-          vessel_report_id: 992,
-          eta: "2020-01-29 12:07:39",
-          max_wave_height: 26.8,
-          hfo: 124.52,
-          lsfo: 168.68,
-          total_cost: 272840.37,
-          distance_over_ground: 1358,
-          distance_through_water: 348,
-          avgspeed: 14.96,
-          created_at: "2019-10-10 00:15:38"
         },
         {
           vessel_report_id: 775,
@@ -1120,7 +1097,8 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-10-26 19:12:45"
         },
         {
-          vessel_report_id: 24,
+          id: 91,
+          vessel_report_id: 992,
           eta: "2020-01-14 20:34:06",
           max_wave_height: 17.55,
           hfo: 151.07,
@@ -1394,18 +1372,6 @@ exports.seed = function(knex, Promise) {
           distance_through_water: 2125,
           avgspeed: 23.97,
           created_at: "2019-11-23 21:36:17"
-        },
-        {
-          vessel_report_id: 997,
-          eta: "2020-02-02 08:12:35",
-          max_wave_height: 14.16,
-          hfo: 162.33,
-          lsfo: 36.93,
-          total_cost: 2448763,
-          distance_over_ground: 3197,
-          distance_through_water: 1595,
-          avgspeed: 22.27,
-          created_at: "2019-11-03 06:12:02"
         },
         {
           vessel_report_id: 276,
@@ -3484,18 +3450,6 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-10-28 04:56:36"
         },
         {
-          vessel_report_id: 997,
-          eta: "2020-05-07 14:39:51",
-          max_wave_height: 2.5,
-          hfo: 133.29,
-          lsfo: 19.92,
-          total_cost: 2838879.47,
-          distance_over_ground: 2608,
-          distance_through_water: 1538,
-          avgspeed: 23.97,
-          created_at: "2019-11-02 01:04:59"
-        },
-        {
           vessel_report_id: 951,
           eta: "2020-04-19 08:38:07",
           max_wave_height: 20.24,
@@ -3952,18 +3906,6 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-11-30 21:06:20"
         },
         {
-          vessel_report_id: 998,
-          eta: "2020-04-21 15:18:50",
-          max_wave_height: 7.15,
-          hfo: 249.09,
-          lsfo: 167.48,
-          total_cost: 5589422,
-          distance_over_ground: 2089,
-          distance_through_water: 1692,
-          avgspeed: 5.76,
-          created_at: "2019-11-29 08:47:40"
-        },
-        {
           vessel_report_id: 295,
           eta: "2019-12-04 17:32:09",
           max_wave_height: 16.03,
@@ -4178,18 +4120,6 @@ exports.seed = function(knex, Promise) {
           distance_through_water: 408,
           avgspeed: 9.43,
           created_at: "2019-11-15 05:27:58"
-        },
-        {
-          vessel_report_id: 992,
-          eta: "2020-04-13 11:30:56",
-          max_wave_height: 14.75,
-          hfo: 182,
-          lsfo: 35.89,
-          total_cost: 4470520,
-          distance_over_ground: 776,
-          distance_through_water: 1612,
-          avgspeed: 27.78,
-          created_at: "2019-10-24 07:31:11"
         },
         {
           vessel_report_id: 673,
@@ -5486,18 +5416,6 @@ exports.seed = function(knex, Promise) {
           distance_through_water: 1549,
           avgspeed: 19.42,
           created_at: "2019-10-28 07:49:40"
-        },
-        {
-          vessel_report_id: 990,
-          eta: "2020-02-19 13:08:22",
-          max_wave_height: 22.39,
-          hfo: 174.15,
-          lsfo: 71.6,
-          total_cost: 4092406.89,
-          distance_over_ground: 1829,
-          distance_through_water: 773,
-          avgspeed: 5.44,
-          created_at: "2019-10-08 08:02:09"
         },
         {
           vessel_report_id: 985,
@@ -7396,18 +7314,6 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-10-10 08:41:49"
         },
         {
-          vessel_report_id: 995,
-          eta: "2020-02-18 17:36:09",
-          max_wave_height: 24.31,
-          hfo: 108.88,
-          lsfo: 244.65,
-          total_cost: 2731002.12,
-          distance_over_ground: 3138,
-          distance_through_water: 969,
-          avgspeed: 14.89,
-          created_at: "2019-11-15 09:56:22"
-        },
-        {
           vessel_report_id: 761,
           eta: "2020-05-16 16:24:02",
           max_wave_height: 17.46,
@@ -8140,7 +8046,8 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-10-15 00:12:38"
         },
         {
-          vessel_report_id: 24,
+          id: 670,
+          vessel_report_id: 992,
           eta: "2020-01-24 20:18:55",
           max_wave_height: 28.97,
           hfo: 183.18,
@@ -8678,18 +8585,6 @@ exports.seed = function(knex, Promise) {
           distance_through_water: 1210,
           avgspeed: 10.92,
           created_at: "2019-11-10 15:41:02"
-        },
-        {
-          vessel_report_id: 999,
-          eta: "2020-02-14 02:12:05",
-          max_wave_height: 10.12,
-          hfo: 142.86,
-          lsfo: 82.59,
-          total_cost: 1440603.99,
-          distance_over_ground: 3229,
-          distance_through_water: 3277,
-          avgspeed: 18.76,
-          created_at: "2019-10-21 06:31:27"
         },
         {
           vessel_report_id: 846,
@@ -9268,18 +9163,6 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-11-17 01:02:06"
         },
         {
-          vessel_report_id: 993,
-          eta: "2020-03-14 04:46:30",
-          max_wave_height: 17.56,
-          hfo: 196.26,
-          lsfo: 151.84,
-          total_cost: 2577211,
-          distance_over_ground: 3008,
-          distance_through_water: 1269,
-          avgspeed: 22.09,
-          created_at: "2019-10-15 05:49:11"
-        },
-        {
           vessel_report_id: 916,
           eta: "2020-05-14 22:39:37",
           max_wave_height: 21.29,
@@ -9472,7 +9355,8 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-11-10 01:26:53"
         },
         {
-          vessel_report_id: 24,
+          id: 779,
+          vessel_report_id: 992,
           eta: "2020-01-15 19:41:03",
           max_wave_height: 21.51,
           hfo: 181.93,

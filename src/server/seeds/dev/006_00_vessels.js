@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("vessels").insert([
         {
-          organization_id: 1,
+          organization_id: 13,
           mmsi: "477913600",
           name: "SS Martha"
         },
@@ -798,7 +798,7 @@ exports.seed = function(knex, Promise) {
           name: "Nathan Ross"
         },
         {
-          organization_id: 8,
+          organization_id: 1,
           mmsi: "645284063",
           name: "Nautilus"
         },
@@ -843,7 +843,7 @@ exports.seed = function(knex, Promise) {
           name: "Orca"
         },
         {
-          organization_id: 1,
+          organization_id: 11,
           mmsi: "520130039",
           name: "Patna"
         },
@@ -873,7 +873,7 @@ exports.seed = function(knex, Promise) {
           name: "Pocahontas"
         },
         {
-          organization_id: 6,
+          organization_id: 1,
           mmsi: "570741753",
           name: "Poseidon"
         },
@@ -1158,7 +1158,7 @@ exports.seed = function(knex, Promise) {
           name: "The Black Freighter"
         },
         {
-          organization_id: 13,
+          organization_id: 1,
           mmsi: "379448165",
           name: "The Flying Dutchman"
         },
@@ -1503,7 +1503,7 @@ exports.seed = function(knex, Promise) {
           name: "USS Tigerfish"
         },
         {
-          organization_id: 6,
+          organization_id: 1,
           mmsi: "755540661",
           name: "USS Ulysses"
         },

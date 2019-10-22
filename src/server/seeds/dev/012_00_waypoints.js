@@ -14,140 +14,147 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex("waypoints").insert([
         {
-          suggested_route_id: 1,
-          longitude: 107.1839024,
-          latitude: -6.1341119,
+          id: 1,
+          suggested_route_id: 53,
+          longitude: -16.3477,
+          latitude: 41.3768,
           rpm: 1161,
           speed: 14.84,
           sequence_id: 1
         },
+
         {
-          suggested_route_id: 1,
-          longitude: "20.94517",
-          latitude: "41.98803",
-          rpm: 951,
-          speed: 8.25,
-          sequence_id: 2
-        },
-        {
-          suggested_route_id: 2,
-          longitude: -105.248737,
-          latitude: 39.9799992,
+          id: 2,
+          suggested_route_id: 53,
+          longitude: -8.9648,
+          latitude: 35.2456,
           rpm: 59,
           speed: 10.44,
-          sequence_id: 1
+          sequence_id: 2
         },
         {
-          suggested_route_id: 3,
-          longitude: -71.6484804,
-          latitude: -35.4232444,
+          id: 3,
+          suggested_route_id: 53,
+          longitude: 12.085,
+          latitude: 39.4362,
+          rpm: 951,
+          speed: 8.25,
+          sequence_id: 3
+        },
+        {
+          id: 4,
+          suggested_route_id: 53,
+          longitude: 19.7314,
+          latitude: 34.0891,
           rpm: 315,
           speed: 23.03,
-          sequence_id: 1
+          sequence_id: 4
         },
         {
-          suggested_route_id: 3,
-          longitude: 35.6206178,
-          latitude: 49.8387221,
+          id: 5,
+          suggested_route_id: 53,
+          longitude: 29.0081,
+          latitude: 41.0077,
           rpm: 311,
           speed: 0.48,
-          sequence_id: 2
+          sequence_id: 5
         },
         {
-          suggested_route_id: 3,
-          longitude: -7.9013121,
-          latitude: 40.3159517,
+          suggested_route_id: 91,
+          longitude: -16.3477,
+          latitude: 41.3768,
           rpm: 1007,
           speed: 5.95,
-          sequence_id: 3
+          sequence_id: 1
         },
         {
-          suggested_route_id: 4,
-          longitude: 39.1374839,
-          latitude: 51.7421319,
+          suggested_route_id: 91,
+          longitude: -8.877,
+          latitude: 34.3797,
           rpm: 612,
           speed: 13.04,
-          sequence_id: 1
+          sequence_id: 2
         },
         {
-          suggested_route_id: 4,
-          longitude: 71.2874209,
-          latitude: 35.7244483,
+          suggested_route_id: 91,
+          longitude: 7.207,
+          latitude: 37.0902,
           rpm: 697,
           speed: 19.23,
-          sequence_id: 2
-        },
-        {
-          suggested_route_id: 5,
-          longitude: 20.9258628,
-          latitude: 52.4198041,
-          rpm: 464,
-          speed: 26.13,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 6,
-          longitude: 121.0298199,
-          latitude: 14.5672317,
-          rpm: 77,
-          speed: 19.27,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 6,
-          longitude: 13.5485237,
-          latitude: 59.8557818,
-          rpm: 343,
-          speed: 17.34,
-          sequence_id: 2
-        },
-        {
-          suggested_route_id: 6,
-          longitude: 9.660661,
-          latitude: 7.906903,
-          rpm: 1045,
-          speed: 3.58,
           sequence_id: 3
         },
         {
-          suggested_route_id: 7,
-          longitude: 118.75868,
-          latitude: 30.940195,
+          suggested_route_id: 91,
+          longitude: 14.8535,
+          latitude: 34.0891,
+          rpm: 464,
+          speed: 26.13,
+          sequence_id: 4
+        },
+        {
+          suggested_route_id: 91,
+          longitude: 22.4121,
+          latitude: 34.3797,
+          rpm: 77,
+          speed: 19.27,
+          sequence_id: 5
+        },
+        {
+          suggested_route_id: 91,
+          longitude: 29.0081,
+          latitude: 41.0077,
+          rpm: 343,
+          speed: 17.34,
+          sequence_id: 6
+        },
+
+        {
+          suggested_route_id: 670,
+          longitude: -16.3477,
+          latitude: 41.3768,
+          rpm: 1045,
+          speed: 3.58,
+          sequence_id: 1
+        },
+        {
+          suggested_route_id: 670,
+          longitude: -10.8105,
+          latitude: 32.4727,
           rpm: 944,
           speed: 26.27,
-          sequence_id: 1
+          sequence_id: 2
         },
         {
-          suggested_route_id: 10,
-          longitude: 139.7249685,
-          latitude: 36.0821986,
+          suggested_route_id: 670,
+          longitude: 5.2295,
+          latitude: 40.5472,
           rpm: 357,
           speed: 13.24,
-          sequence_id: 1
+          sequence_id: 3
         },
         {
-          suggested_route_id: 12,
-          longitude: 45.7756846,
-          latitude: 43.446712,
+          suggested_route_id: 670,
+          longitude: 13.4033,
+          latitude: 35.4249,
           rpm: 101,
           speed: 3.23,
-          sequence_id: 1
+          sequence_id: 4
         },
         {
-          suggested_route_id: 13,
-          longitude: 19.1172826,
-          latitude: 47.5271519,
+          suggested_route_id: 670,
+          longitude: 17.2266,
+          latitude: 33.5414,
           rpm: 97,
           speed: 19.42,
-          sequence_id: 1
+          sequence_id: 5
         },
         {
-          suggested_route_id: 13,
-          longitude: 16.6038816,
-          latitude: 49.090211,
+          suggested_route_id: 670,
+          longitude: 29.0081,
+          latitude: 41.0077,
           rpm: 178,
           speed: 19.35,
-          sequence_id: 2
+          sequence_id: 6
         },
         {
           suggested_route_id: 13,
@@ -806,7 +813,7 @@ exports.seed = function(knex, Promise) {
           sequence_id: 2
         },
         {
-          suggested_route_id: 91,
+          suggested_route_id: 95,
           longitude: 98.6270628,
           latitude: 3.6711541,
           rpm: 286,
@@ -814,7 +821,7 @@ exports.seed = function(knex, Promise) {
           sequence_id: 1
         },
         {
-          suggested_route_id: 91,
+          suggested_route_id: 97,
           longitude: "112.2944",
           latitude: "-8.0896",
           rpm: 56,
@@ -822,7 +829,7 @@ exports.seed = function(knex, Promise) {
           sequence_id: 2
         },
         {
-          suggested_route_id: 91,
+          suggested_route_id: 99,
           longitude: 30.7738154,
           latitude: 27.6791846,
           rpm: 400,
@@ -830,7 +837,7 @@ exports.seed = function(knex, Promise) {
           sequence_id: 3
         },
         {
-          suggested_route_id: 91,
+          suggested_route_id: 97,
           longitude: 1.7879685,
           latitude: 6.8050227,
           rpm: 370,
@@ -7932,86 +7939,6 @@ exports.seed = function(knex, Promise) {
           rpm: 716,
           speed: 8.06,
           sequence_id: 2
-        },
-        {
-          suggested_route_id: 991,
-          longitude: -47.6093177,
-          latitude: -15.4524821,
-          rpm: 576,
-          speed: 6.6,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 992,
-          longitude: -71.5500276,
-          latitude: -33.0153481,
-          rpm: 1128,
-          speed: 10.98,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 992,
-          longitude: 117.580995,
-          latitude: 39.263105,
-          rpm: 753,
-          speed: 4.74,
-          sequence_id: 2
-        },
-        {
-          suggested_route_id: 993,
-          longitude: 125.3448026,
-          latitude: 6.596349,
-          rpm: 1028,
-          speed: 21.99,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 995,
-          longitude: 109.213644,
-          latitude: 27.517896,
-          rpm: 558,
-          speed: 27.1,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 995,
-          longitude: 32.0029805,
-          latitude: 26.2354377,
-          rpm: 473,
-          speed: 5.44,
-          sequence_id: 2
-        },
-        {
-          suggested_route_id: 995,
-          longitude: 32.3008149,
-          latitude: 60.1163207,
-          rpm: 1178,
-          speed: 11.74,
-          sequence_id: 3
-        },
-        {
-          suggested_route_id: 998,
-          longitude: -6.5890166,
-          latitude: 5.7866228,
-          rpm: 1106,
-          speed: 8.34,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 999,
-          longitude: 104.0301606,
-          latitude: 1.12808,
-          rpm: 834,
-          speed: 12.3,
-          sequence_id: 1
-        },
-        {
-          suggested_route_id: 1000,
-          longitude: 114.3579131,
-          latitude: -7.798868,
-          rpm: 268,
-          speed: 9.07,
-          sequence_id: 1
         }
       ]);
     });
