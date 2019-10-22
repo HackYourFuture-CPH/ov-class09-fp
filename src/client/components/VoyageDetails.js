@@ -12,7 +12,7 @@ import { Grid } from "@material-ui/core";
 import CardHeader from "@material-ui/core/CardHeader";
 const useStyles = makeStyles({
   card: {
-    minWidth: 300,
+    width: "100%",
     marginTop: "0.75rem",
     marginRight: "0.75rem",
     marginLeft: "0.75rem"

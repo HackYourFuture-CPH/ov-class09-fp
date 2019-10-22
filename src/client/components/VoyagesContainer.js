@@ -7,6 +7,7 @@ import MapComponent from "./MapComponent";
 import Marker from "./Marker";
 import Grid from "@material-ui/core/Grid";
 import { mapOptions } from "../utilities/mapConfiguration";
+import ScrollWrapper from "./ScrollWrapper";
 
 export default class VoyagesContainer extends Component {
   state = {
@@ -71,7 +72,9 @@ export default class VoyagesContainer extends Component {
             />
           </Grid>
           <Grid item xs={4}>
-            <VoyageList voyages={this.state.voyages} />
+            <ScrollWrapper height={"calc(100vh - 64px)"}>
+              <VoyageList voyages={this.state.voyages} />
+            </ScrollWrapper>
           </Grid>
         </Grid>
       </div>
