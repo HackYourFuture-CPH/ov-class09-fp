@@ -1,7 +1,7 @@
 // Configuration object for Map
 export const mapOptions = {
-  centerMapCoordinates: [35, 0],
-  zoom: 2.5,
+  centerMapCoordinates: [50, 0],
+  zoom: 4,
   style: {
     color: {
       suggestedRoute: "#F8AA13",

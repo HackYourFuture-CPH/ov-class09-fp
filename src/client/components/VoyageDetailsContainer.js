@@ -70,16 +70,18 @@ export default class VoyageDetailsContainer extends Component {
             `/api/vessel-reports/${this.state.latestVesselReport.id}/select-route/`
           )
           .then(selectedRoute => {
-            const selectedRouteId = selectedRoute.data[0].id;
-            axios
-              .get(`/api/suggested-routes/${selectedRouteId}`)
-              .then(selectedRoute => {
-                this.setState({
-                  selectedRoute: camelcaseKeys(selectedRoute.data, {
-                    deep: true
-                  })
+            if (selectedRoute.data && selectedRoute.data.id) {
+              const selectedRouteId = selectedRoute.data.id;
+              axios
+                .get(`/api/suggested-routes/${selectedRouteId}`)
+                .then(selectedRoute => {
+                  this.setState({
+                    selectedRoute: camelcaseKeys(selectedRoute.data, {
+                      deep: true
+                    })
+                  });
                 });
-              });
+            }
           });
       })
       .catch(error => console.error(error));

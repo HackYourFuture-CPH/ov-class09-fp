@@ -285,16 +285,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 8394.48,
           created_at: "2020-02-02 11:07:48"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 31.511818,
-          longitude: 93.517216,
-          current_speed: 4.5,
-          hfo_consumption: 4883.31,
-          lsfo_consumption: 6412.55,
-          created_at: "2020-01-24 09:44:05"
-        },
+
         {
           voyage_id: 22,
           selected_route_id: null,
@@ -985,16 +976,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 7368.8,
           created_at: "2020-03-07 05:08:31"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 55.7242814,
-          longitude: 37.1853286,
-          current_speed: 0.6,
-          hfo_consumption: 8332.97,
-          lsfo_consumption: 3154.69,
-          created_at: "2019-12-04 01:47:27"
-        },
+
         {
           voyage_id: 1,
           selected_route_id: null,
@@ -1895,16 +1877,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 260.8,
           created_at: "2019-12-05 21:55:46"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 4.6096768,
-          longitude: 101.1064003,
-          current_speed: 22.8,
-          hfo_consumption: 597.05,
-          lsfo_consumption: 492.63,
-          created_at: "2020-01-12 16:20:41"
-        },
+
         {
           voyage_id: 40,
           selected_route_id: null,
@@ -2045,16 +2018,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 8411.8,
           created_at: "2019-12-31 02:10:00"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 36.3755668,
-          longitude: 36.9917125,
-          current_speed: 17.5,
-          hfo_consumption: 4662.42,
-          lsfo_consumption: 8567.39,
-          created_at: "2020-02-09 18:11:34"
-        },
+
         {
           voyage_id: 27,
           selected_route_id: null,
@@ -2445,16 +2409,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 2006.05,
           created_at: "2020-03-02 04:29:42"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: "45.3168",
-          longitude: "-75.0826",
-          current_speed: 22.1,
-          hfo_consumption: 3382.35,
-          lsfo_consumption: 3998.4,
-          created_at: "2020-01-28 22:12:27"
-        },
+
         {
           voyage_id: 18,
           selected_route_id: null,
@@ -2675,16 +2630,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 5438.02,
           created_at: "2019-11-12 01:25:44"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: "-7.34307",
-          longitude: "108.16434",
-          current_speed: 15.3,
-          hfo_consumption: 7027.93,
-          lsfo_consumption: 497.8,
-          created_at: "2019-12-05 01:27:01"
-        },
+
         {
           voyage_id: 1,
           selected_route_id: null,
@@ -2695,16 +2641,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 8146.89,
           created_at: "2019-12-04 15:00:30"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: -8.1788865,
-          longitude: 112.5388072,
-          current_speed: 1.0,
-          hfo_consumption: 8730.57,
-          lsfo_consumption: 6702.24,
-          created_at: "2019-11-07 16:41:36"
-        },
+
         {
           voyage_id: 2,
           selected_route_id: null,
@@ -3215,16 +3152,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 9805.01,
           created_at: "2019-11-19 03:03:54"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 36.639033,
-          longitude: 114.462061,
-          current_speed: 19.0,
-          hfo_consumption: 7646.32,
-          lsfo_consumption: 1732.42,
-          created_at: "2019-12-21 23:24:45"
-        },
+
         {
           voyage_id: 17,
           selected_route_id: null,
@@ -3615,16 +3543,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 6133.59,
           created_at: "2020-01-03 20:42:00"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 41.1082303,
-          longitude: -8.1579962,
-          current_speed: 13.7,
-          hfo_consumption: 2597.37,
-          lsfo_consumption: 5549.18,
-          created_at: "2019-11-14 21:51:03"
-        },
+
         {
           voyage_id: 17,
           selected_route_id: null,
@@ -4905,16 +4824,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 3091.35,
           created_at: "2020-01-22 21:30:46"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 33.7746886,
-          longitude: -84.2953464,
-          current_speed: 31.9,
-          hfo_consumption: 7723.79,
-          lsfo_consumption: 8648.56,
-          created_at: "2019-12-27 01:09:38"
-        },
+
         {
           voyage_id: 21,
           selected_route_id: null,
@@ -5795,16 +5705,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 8854.1,
           created_at: "2019-10-13 02:41:30"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 23.276324,
-          longitude: 113.57676,
-          current_speed: 0.5,
-          hfo_consumption: 4189.86,
-          lsfo_consumption: 5676.93,
-          created_at: "2020-01-05 23:37:56"
-        },
+
         {
           voyage_id: 2,
           selected_route_id: null,
@@ -6175,16 +6076,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 2378.98,
           created_at: "2020-03-01 16:16:54"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 10.8379491,
-          longitude: 124.0251538,
-          current_speed: 16.5,
-          hfo_consumption: 5180.34,
-          lsfo_consumption: 4633.29,
-          created_at: "2019-11-27 06:12:59"
-        },
+
         {
           voyage_id: 8,
           selected_route_id: null,
@@ -6225,16 +6117,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 2923.19,
           created_at: "2019-10-14 05:15:08"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 48.1997412,
-          longitude: 16.983641,
-          current_speed: 25.5,
-          hfo_consumption: 4806.09,
-          lsfo_consumption: 4994.11,
-          created_at: "2019-12-06 05:44:04"
-        },
+
         {
           voyage_id: 19,
           selected_route_id: null,
@@ -6295,16 +6178,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 3111.49,
           created_at: "2020-01-17 14:41:20"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 53.4004864,
-          longitude: 83.9124232,
-          current_speed: 18.5,
-          hfo_consumption: 4506.73,
-          lsfo_consumption: 4928.77,
-          created_at: "2019-11-25 05:59:20"
-        },
+
         {
           voyage_id: 44,
           selected_route_id: null,
@@ -6395,16 +6269,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 4347.77,
           created_at: "2019-11-23 06:44:42"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 59.8079805,
-          longitude: 17.6754261,
-          current_speed: 19.3,
-          hfo_consumption: 1290.45,
-          lsfo_consumption: 9678.49,
-          created_at: "2020-02-01 05:20:48"
-        },
+
         {
           voyage_id: 49,
           selected_route_id: null,
@@ -6645,16 +6510,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 5867.45,
           created_at: "2019-10-26 08:39:18"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 13.2944036,
-          longitude: 123.483279,
-          current_speed: 0.6,
-          hfo_consumption: 8423.69,
-          lsfo_consumption: 5657.04,
-          created_at: "2020-01-12 08:56:38"
-        },
+
         {
           voyage_id: 21,
           selected_route_id: null,
@@ -6725,16 +6581,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 5799.01,
           created_at: "2020-02-28 22:18:50"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: -7.9903162,
-          longitude: 113.7365072,
-          current_speed: 27.7,
-          hfo_consumption: 3414.46,
-          lsfo_consumption: 1148.85,
-          created_at: "2019-10-07 04:04:48"
-        },
+
         {
           voyage_id: 6,
           selected_route_id: null,
@@ -6945,16 +6792,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 8276.39,
           created_at: "2019-12-18 03:30:49"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 40.039377,
-          longitude: 48.9202533,
-          current_speed: 31.6,
-          hfo_consumption: 7619.14,
-          lsfo_consumption: 2924.61,
-          created_at: "2020-03-08 02:47:34"
-        },
+
         {
           voyage_id: 29,
           selected_route_id: null,
@@ -7585,16 +7423,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 3898.28,
           created_at: "2020-02-10 14:23:12"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 49.7961202,
-          longitude: 6.2871406,
-          current_speed: 17.6,
-          hfo_consumption: 9223.53,
-          lsfo_consumption: 6318.69,
-          created_at: "2020-03-07 09:50:09"
-        },
+
         {
           voyage_id: 49,
           selected_route_id: null,
@@ -8125,16 +7954,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 9498.24,
           created_at: "2019-12-28 06:07:36"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 3.6020791,
-          longitude: 98.4683053,
-          current_speed: 16.4,
-          hfo_consumption: 7492.44,
-          lsfo_consumption: 828.49,
-          created_at: "2019-10-28 23:10:24"
-        },
+
         {
           voyage_id: 43,
           selected_route_id: null,
@@ -8605,16 +8425,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 3409.32,
           created_at: "2019-12-17 13:35:26"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 8.7337105,
-          longitude: -82.4590282,
-          current_speed: 29.2,
-          hfo_consumption: 5310.12,
-          lsfo_consumption: 7127.93,
-          created_at: "2019-10-24 08:03:46"
-        },
+
         {
           voyage_id: 49,
           selected_route_id: null,
@@ -8745,16 +8556,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 3854.75,
           created_at: "2020-01-06 23:37:21"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 6.3188032,
-          longitude: 16.3758145,
-          current_speed: 27.6,
-          hfo_consumption: 8547.86,
-          lsfo_consumption: 9321.18,
-          created_at: "2019-11-29 10:49:58"
-        },
+
         {
           voyage_id: 4,
           selected_route_id: null,
@@ -9685,16 +9487,7 @@ exports.seed = function(knex, Promise) {
           lsfo_consumption: 9756.5,
           created_at: "2020-01-30 18:27:49"
         },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 46.0466966,
-          longitude: -71.0768076,
-          current_speed: 25.6,
-          hfo_consumption: 1125.7,
-          lsfo_consumption: 6106.23,
-          created_at: "2019-10-27 12:31:03"
-        },
+
         {
           voyage_id: 6,
           selected_route_id: null,
@@ -10104,6 +9897,56 @@ exports.seed = function(knex, Promise) {
           hfo_consumption: 8629.58,
           lsfo_consumption: 8778.53,
           created_at: "2020-01-12 01:08:38"
+        },
+        {
+          voyage_id: 24,
+          selected_route_id: null,
+          latitude: 55.74160767493425,
+          longitude: 12.625179290771484,
+          current_speed: 13.9,
+          hfo_consumption: 8629.58,
+          lsfo_consumption: 8778.53,
+          created_at: "2019-10-18 07:03:28"
+        },
+        {
+          voyage_id: 24,
+          selected_route_id: null,
+          latitude: 57.397624055000456,
+          longitude: 6.5478515625,
+          current_speed: 11.2,
+          hfo_consumption: 8629.58,
+          lsfo_consumption: 8778.53,
+          created_at: "2019-10-19 00:08:38"
+        },
+        {
+          voyage_id: 24,
+          selected_route_id: null,
+          latitude: 55.4040698270061,
+          longitude: -16.34765625,
+          current_speed: 10.2,
+          hfo_consumption: 8629.58,
+          lsfo_consumption: 8778.53,
+          created_at: "2019-10-20 00:12:18"
+        },
+        {
+          voyage_id: 24,
+          selected_route_id: null,
+          latitude: 41.376808565702355,
+          longitude: -16.34765625,
+          current_speed: 13.1,
+          hfo_consumption: 8629.58,
+          lsfo_consumption: 8778.53,
+          created_at: "2019-10-21 00:07:21"
+        },
+        {
+          voyage_id: 24,
+          selected_route_id: null,
+          latitude: 39.436192999314095,
+          longitude: 12.0849609375,
+          current_speed: 15.1,
+          hfo_consumption: 8629.58,
+          lsfo_consumption: 8778.53,
+          created_at: "2019-10-22 00:04:38"
         }
       ]);
     });
