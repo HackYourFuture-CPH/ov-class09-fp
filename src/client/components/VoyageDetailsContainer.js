@@ -113,7 +113,7 @@ export default class VoyageDetailsContainer extends Component {
             />
           </Grid>
           <Grid container item xs={4} alignContent={"flex-start"}>
-            <ScrollWrapper height={"100vh"}>
+            <ScrollWrapper height={"calc(100vh - 64px)"}>
               <VoyageDetails
                 vesselName={vessel.name}
                 departFrom={departFromPort}

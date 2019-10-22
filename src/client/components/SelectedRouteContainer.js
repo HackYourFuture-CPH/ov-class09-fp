@@ -93,7 +93,7 @@ export default class SelectedRouteContainer extends React.Component {
             />
           </Grid>
           <Grid item xs={4}>
-            <ScrollWrapper height="calc(100vh - 72px)">
+            <ScrollWrapper height="calc(100vh - 64px)">
               <SuggestedRouteList
                 handleSelectRoute={this.handleSelectRoute}
                 routeslist={suggestedRoutes}
