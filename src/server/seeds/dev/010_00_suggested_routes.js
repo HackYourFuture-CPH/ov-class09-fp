@@ -641,7 +641,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 53,
-          vessel_report_id: 992,
+          vessel_report_id: 991,
           eta: "2020-01-14 18:32:10",
           max_wave_height: 0.47,
           hfo: 80.53,
@@ -1098,7 +1098,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 91,
-          vessel_report_id: 992,
+          vessel_report_id: 991,
           eta: "2020-01-14 20:34:06",
           max_wave_height: 17.55,
           hfo: 151.07,
@@ -8047,7 +8047,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 670,
-          vessel_report_id: 992,
+          vessel_report_id: 991,
           eta: "2020-01-24 20:18:55",
           max_wave_height: 28.97,
           hfo: 183.18,
@@ -9356,7 +9356,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 779,
-          vessel_report_id: 992,
+          vessel_report_id: 991,
           eta: "2020-01-15 19:41:03",
           max_wave_height: 21.51,
           hfo: 181.93,
