@@ -66,17 +66,17 @@ function VoyageDetails({
           <CardHeader className={classes.headerTitle} title="Position" />
           <CardContent>
             <Grid container>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <Typography className={classes.infoTitle}>Date</Typography>
                 <Typography className={classes.describeText}>{date}</Typography>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <Typography className={classes.infoTitle}>Latitude</Typography>
                 <Typography className={classes.describeText}>
                   {latitude}
                 </Typography>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <Typography className={classes.infoTitle}>Longitude</Typography>
                 <Typography className={classes.describeText}>
                   {longitude}
@@ -88,17 +88,17 @@ function VoyageDetails({
           <CardHeader className={classes.headerTitle} title="Consumption" />
           <CardContent>
             <Grid container>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <Typography className={classes.infoTitle}>HSFO</Typography>
                 <Typography className={classes.describeText}>{hsfo}</Typography>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <Typography className={classes.infoTitle}>ULSFO</Typography>
                 <Typography className={classes.describeText}>
                   {ulsfo}
                 </Typography>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <Typography className={classes.infoTitle}>FOC Total</Typography>
                 <Typography className={classes.describeText}>
                   {hsfo + ulsfo}

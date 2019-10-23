@@ -8,6 +8,8 @@ import MapComponent from "./MapComponent";
 import Grid from "@material-ui/core/Grid";
 import ScrollWrapper from "./ScrollWrapper";
 import { mapOptions } from "../utilities/mapConfiguration";
+import { Box, Fab, styled } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 export default class VoyageDetailsContainer extends Component {
   state = {
@@ -104,6 +106,24 @@ export default class VoyageDetailsContainer extends Component {
       totalCost = selectedRoute[0].totalCost;
     }
 
+    const SuggestedRouteButton = styled(Fab)({
+      background: "#0b3c61",
+      position: "fixed",
+      bottom: "20px",
+      right: "240px",
+      border: 0,
+      borderRadius: 3,
+      boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .6)",
+      color: "white",
+      height: 48,
+      padding: "0 30px",
+      textDecoration: "none",
+      display: "inline-flex",
+      lineHeight: 2.8
+    });
+
+    const suggestedRoutesLink = `/voyages/${this.state.voyageId}/vessel-reports/${this.state.latestVesselReport.id}/suggested-routes`;
+
     return (
       <>
         <Grid container spacing={1}>
@@ -128,7 +148,7 @@ export default class VoyageDetailsContainer extends Component {
                 hsfo={latestVesselReport.hfoConsumption}
                 ulsfo={latestVesselReport.lsfoConsumption}
               />
-              {selectedRoute.length > 0 && (
+              {selectedRoute.length > 0 && voyage.hfoCost && (
                 <CostWidget
                   totalCost={totalCost}
                   hfoCost={voyage.hfoCost}
@@ -149,6 +169,15 @@ export default class VoyageDetailsContainer extends Component {
                   ]}
                 />
               )}
+              <Box width={1} paddingBottom={"100px"}>
+                <SuggestedRouteButton
+                  aria-label="select route"
+                  component={Link}
+                  to={suggestedRoutesLink}
+                >
+                  Select Route
+                </SuggestedRouteButton>
+              </Box>
             </ScrollWrapper>
           </Grid>
         </Grid>
