@@ -138,6 +138,18 @@ exports.seed = function(knex, Promise) {
           depth: -49,
           latitude: 36.131985,
           longitude: -5.308113
+        },
+        {
+          name: "Copenhagen",
+          depth: -27,
+          latitude: 55.7416,
+          longitude: 12.6252
+        },
+        {
+          name: "Istanbul",
+          depth: -38,
+          latitude: 41.0077,
+          longitude: 29.0081
         }
       ]);
     });
