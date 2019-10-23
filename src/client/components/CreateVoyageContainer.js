@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import StartVoyage from "./StartVoyage";
 
 //import material UI
-import { Paper, Grid } from "@material-ui/core";
+import { Paper, Grid, Typography } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import axios from "axios";
 import camelcaseKeys from "camelcase-keys";
@@ -51,11 +51,11 @@ export default class CreateVoyageContainer extends Component {
         direction="column"
         alignItems="center"
         justify="center"
-        p="50px"
       >
         <Grid item xs={10} md={8} width={1}>
           <Paper>
             <StartVoyage
+              className="start-voyage-form"
               vessels={this.state.vessels}
               voyages={optimizationOptions}
               ports={this.state.ports}
