@@ -37,8 +37,8 @@ const NavBar = () => {
           </MenuItem>
           <Route>
             <MenuItem>
-              <Link className={classes.MenuItemColor} to="/start-voyage">
-                START VOYAGE
+              <Link className={classes.MenuItemColor} to="/voyages/new">
+                CREATE VOYAGE
               </Link>
             </MenuItem>
           </Route>

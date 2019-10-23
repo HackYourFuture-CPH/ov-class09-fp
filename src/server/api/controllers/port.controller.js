@@ -17,6 +17,15 @@ const getPortById = async id => {
   }
 };
 
+const getPorts = async () => {
+  try {
+    const ports = await knex("ports");
+    return ports;
+  } catch (err) {
+    return err.message;
+  }
+};
+
 const createPort = async ({ body }) => {
   const { name, depth, latitude, longitude } = body;
 
@@ -43,4 +52,4 @@ const createPort = async ({ body }) => {
   }
 };
 
-module.exports = { getPortById, createPort };
+module.exports = { getPorts, getPortById, createPort };

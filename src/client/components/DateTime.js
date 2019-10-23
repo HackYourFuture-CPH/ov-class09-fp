@@ -12,30 +12,28 @@ function DateTime({
 }) {
   return (
     <React.Fragment>
-      <form>
-        <TextField
-          id="date"
-          label="Date"
-          type="date"
-          defaultValue="2019-10-19"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+      <TextField
+        id="date"
+        label="Date"
+        type="date"
+        defaultValue="2019-10-19"
+        InputLabelProps={{
+          shrink: true
+        }}
+      />
 
-        <TextField
-          id="time"
-          label="Time"
-          type="time"
-          defaultValue="04:20"
-          InputLabelProps={{
-            shrink: true
-          }}
-          inputProps={{
-            step: 300 // 5 min
-          }}
-        />
-      </form>
+      <TextField
+        id="time"
+        label="Time"
+        type="time"
+        defaultValue="04:20"
+        InputLabelProps={{
+          shrink: true
+        }}
+        inputProps={{
+          step: 300 // 5 min
+        }}
+      />
     </React.Fragment>
   );
 }

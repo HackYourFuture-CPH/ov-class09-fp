@@ -8396,10 +8396,11 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-10-23 04:56:16"
         },
         {
+          id: 838,
           voyage_id: 14,
           selected_route_id: null,
-          latitude: 30.830898,
-          longitude: 120.92585,
+          latitude: 55.526137,
+          longitude: 1.584981,
           current_speed: 11.2,
           hfo_consumption: 9211.59,
           lsfo_consumption: 6313.87,
@@ -9639,20 +9640,22 @@ exports.seed = function(knex, Promise) {
           created_at: "2020-02-16 06:46:28"
         },
         {
+          id: 962,
           voyage_id: 10,
           selected_route_id: null,
-          latitude: 59.2883751,
-          longitude: 18.0250491,
+          latitude: 44.639112,
+          longitude: -15.157161,
           current_speed: 13.5,
           hfo_consumption: 4150.56,
           lsfo_consumption: 2824.92,
           created_at: "2019-10-27 02:35:31"
         },
         {
+          id: 963,
           voyage_id: 1,
           selected_route_id: null,
-          latitude: 47.349916,
-          longitude: 130.297964,
+          latitude: 33.696205,
+          longitude: 16.947693,
           current_speed: 25.6,
           hfo_consumption: 1049.22,
           lsfo_consumption: 2755.28,
@@ -9849,10 +9852,11 @@ exports.seed = function(knex, Promise) {
           created_at: "2019-12-10 07:29:57"
         },
         {
+          id: 983,
           voyage_id: 12,
           selected_route_id: null,
-          latitude: 14.5482727,
-          longitude: -89.6618378,
+          latitude: 54.602205,
+          longitude: 7.05103,
           current_speed: 1.0,
           hfo_consumption: 8421.69,
           lsfo_consumption: 5501.23,
@@ -9937,16 +9941,6 @@ exports.seed = function(knex, Promise) {
           hfo_consumption: 8629.58,
           lsfo_consumption: 8778.53,
           created_at: "2019-10-21 00:07:21"
-        },
-        {
-          voyage_id: 24,
-          selected_route_id: null,
-          latitude: 39.436192999314095,
-          longitude: 12.0849609375,
-          current_speed: 15.1,
-          hfo_consumption: 8629.58,
-          lsfo_consumption: 8778.53,
-          created_at: "2019-10-22 00:04:38"
         }
       ]);
     });

@@ -13,6 +13,19 @@ const ROLES = require("../../constants/roles");
 
 // controllers
 const portController = require("../controllers/port.controller");
+
+// ENDPOINT: /api/ports/ :GET
+router.get(
+  "/",
+  authorizeUser(ROLES.SUPER_USER, ROLES.ADMIN, ROLES.OPERATOR),
+  function(req, res, next) {
+    portController
+      .getPorts()
+      .then(result => res.json(result))
+      .catch(next);
+  }
+);
+
 // ENDPOINT: /api/ports/:id :GET
 router.get(
   "/:id",

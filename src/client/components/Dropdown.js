@@ -11,17 +11,15 @@ import Select from "@material-ui/core/Select";
 
 function Dropdown({ label, optionsMap, optionNameKey, handleSelection }) {
   return (
-    <form>
-      <FormControl>
-        <InputLabel htmlFor="age-simple">Select</InputLabel>
-        <Select value={label} onChange={e => handleSelection(e)}>
-          {optionsMap.map(elem => {
-            return <MenuItem value={elem.value}>{elem.name}</MenuItem>;
-          })}
-        </Select>
-        <FormHelperText>Some place from here</FormHelperText>
-      </FormControl>
-    </form>
+    <FormControl>
+      <InputLabel htmlFor="age-simple">Select</InputLabel>
+      <Select value={label} onChange={e => handleSelection(e)}>
+        {optionsMap.map(elem => {
+          return <MenuItem value={elem.value}>{elem.name}</MenuItem>;
+        })}
+      </Select>
+      <FormHelperText>{label}</FormHelperText>
+    </FormControl>
   );
 }
 

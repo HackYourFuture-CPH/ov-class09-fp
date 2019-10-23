@@ -8,7 +8,8 @@ function CheckBox({ label, handleCheckbox }) {
     <div>
       <FormControlLabel
         control={<Checkbox value="remember" color="primary" />}
-        label="Checked"
+        label={label}
+        onChange={handleCheckbox}
       />
     </div>
   );

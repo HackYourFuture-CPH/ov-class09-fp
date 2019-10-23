@@ -6,3 +6,19 @@ body {
   background-color: #edf3f8;
   margin: 0;
 }
+
+.start-voyage-form {
+  width: 100%;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.start-voyage-form > * {
+  margin: 2rem;
+}
+
+.start-voyage-form__submit-button {
+  justify-content: center;
+  margin: 2rem;
+  margin-left: 4rem;
+}
