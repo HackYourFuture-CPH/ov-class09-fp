@@ -4,7 +4,7 @@ export const mapOptions = {
   zoom: 4,
   style: {
     color: {
-      suggestedRoute: "#F8AA13",
+      suggestedRoute: "#EE6888",
       elapsedRoute: "#1353F8"
     },
     marker: {
