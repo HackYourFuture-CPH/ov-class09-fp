@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import StartVoyage from "./StartVoyage";
 
 //import material UI
-import { Paper, Grid, Typography } from "@material-ui/core";
-import { styled } from "@material-ui/core/styles";
+import { Paper, Grid } from "@material-ui/core";
 import axios from "axios";
 import camelcaseKeys from "camelcase-keys";
 
@@ -39,9 +38,9 @@ export default class CreateVoyageContainer extends Component {
 
   render() {
     const optimizationOptions = [
-      { id: 1, optimisation_type: "fixed_eta" },
-      { id: 2, optimisation_type: "earliest_arrival" },
-      { id: 3, optimisation_type: "least_cost_arrival" }
+      { name: "Fixed ETA", value: "fixed_eta" },
+      { name: "Earliest Arrival", value: "earliest_arrival" },
+      { name: "Least Cost Arrival", value: "least_cost_arrival" }
     ];
 
     return (

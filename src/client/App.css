@@ -16,3 +16,9 @@ body {
 .start-voyage-form > * {
   margin: 2rem;
 }
+
+.start-voyage-form__submit-button {
+  justify-content: center;
+  margin: 2rem;
+  margin-left: 4rem;
+}

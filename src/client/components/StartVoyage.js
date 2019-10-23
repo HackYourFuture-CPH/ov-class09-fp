@@ -4,7 +4,7 @@ import InputFieldNumber from "./InputFieldNumber";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 import PropTypes from "prop-types";
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 
 class StartVoyage extends Component {
   state = {
@@ -111,6 +111,7 @@ class StartVoyage extends Component {
         />
       );
     }
+
     return (
       <div>
         <form className="start-voyage-form">
@@ -203,6 +204,13 @@ class StartVoyage extends Component {
               onDataInputChange={this.handleDataInputChange}
             />
           </Box>
+          <Button
+            variant="contained"
+            color="primary"
+            className="start-voyage-form__submit-button"
+          >
+            Create Voyage
+          </Button>
         </form>
       </div>
     );
