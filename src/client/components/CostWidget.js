@@ -53,19 +53,19 @@ function CostWidget({
       <CardHeader className={classes.headerTitle} title="Cost Widget" />
       <CardContent>
         <Grid container>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={4}>
             <Typography className={classes.infoTitle}>Total Cost</Typography>
             <Typography className={classes.describeText}>
               {totalCost}{" "}
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={4}>
             <Typography className={classes.infoTitle}>Current Cost</Typography>
             <Typography className={classes.describeText}>
               {currentCost}{" "}
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={4}>
             <Typography className={classes.infoTitle}>
               Remaining Cost
             </Typography>
