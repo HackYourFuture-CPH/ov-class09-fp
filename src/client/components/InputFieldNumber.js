@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import TextField from "@material-ui/core/TextField";
@@ -12,9 +12,9 @@ class InputFieldNumber extends Component {
     const { label, name, unit, value, onDataInputChange } = this.props;
 
     return (
-      <form>
+      <Fragment>
         <TextField
-          label="Number"
+          label={label}
           name={name}
           value={value}
           step={this.props.step}
@@ -26,7 +26,7 @@ class InputFieldNumber extends Component {
           }}
         />
         <span className="unit">{unit}</span>
-      </form>
+      </Fragment>
     );
   }
 }

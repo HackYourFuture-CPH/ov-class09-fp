@@ -20,13 +20,13 @@ const MainRouter = props => {
       <Switch>
         <Route exact path="/login" component={LoginForm} />
         <PrivateRoute path="/app" component={AppLayout} />
+        <PrivateRoute path="/voyages/new" component={CreateVoyageContainer} />
         <PrivateRoute exact path="/voyages" component={VoyagesContainer} />
         <PrivateRoute
           path="/voyages-summary"
           component={VoyagesSummaryContainer}
         />
         <PrivateRoute path="/admin" component={AdminContainer} />
-        <PrivateRoute path="/voyages/new" component={CreateVoyageContainer} />
         <PrivateRoute
           exact
           path="/voyages/:voyage_id"

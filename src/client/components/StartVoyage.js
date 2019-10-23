@@ -4,6 +4,7 @@ import InputFieldNumber from "./InputFieldNumber";
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 import PropTypes from "prop-types";
+import { Box } from "@material-ui/core";
 
 class StartVoyage extends Component {
   state = {
@@ -112,80 +113,96 @@ class StartVoyage extends Component {
     }
     return (
       <div>
-        <form>
-          <Dropdown
-            label="Choose vessel"
-            optionsMap={vessels}
-            optionNameKey="name"
-            handleSelection={this.handleVesselSelection}
-          />
-          <Checkbox
-            label="Chartered vessel"
-            handleCheckbox={this.handleToggleCheckbox}
-          />
+        <form className="start-voyage-form">
+          <Box>
+            <Dropdown
+              label="Choose vessel"
+              optionsMap={vessels}
+              optionNameKey="name"
+              handleSelection={this.handleVesselSelection}
+            />
+            <Checkbox
+              label="Chartered vessel"
+              handleCheckbox={this.handleToggleCheckbox}
+            />
+          </Box>
           {checkBoxLogic}
-          <Dropdown
-            label="Depart from"
-            optionsMap={ports}
-            optionNameKey="name"
-            handleSelection={this.handleDeparturePortSelection}
-          />
-          <DateTime
-            label="Departure time"
-            name="departure_time"
-            date={departureDate}
-            time={departureTime}
-            onDateInputChange={this.handleDateInputChange}
-            onTimeInputChange={this.handleTimeInputChange}
-          />
-          <Dropdown
-            label="Destination"
-            optionsMap={ports}
-            optionNameKey="name"
-            handleSelection={this.handleArrivalPortSelection}
-          />
-          <DateTime
-            label="Arrival time"
-            name="target_arrival_time"
-            date={arrivalDate}
-            time={arrivalTime}
-            onDateInputChange={this.handleDateInputChange}
-            onTimeInputChange={this.handleTimeInputChange}
-          />
-          <Dropdown
-            label="Optimisation type"
-            optionsMap={voyages}
-            optionNameKey="optimisation_type"
-            handleSelection={this.handleOptimisationTypeSelection}
-          />
-          <InputFieldNumber
-            label="Forward Draft"
-            name="forwarddraft"
-            unit="m"
-            value={forwarddraft}
-            onDataInputChange={this.handleDataInputChange}
-          />
-          <InputFieldNumber
-            label="Aft Draft"
-            name="aftdraft"
-            unit="m"
-            value={aftdraft}
-            onDataInputChange={this.handleDataInputChange}
-          />
-          <InputFieldNumber
-            label="Low Sulfor Fuel Oil Cost"
-            name="lfsocost"
-            unit="USD"
-            value={lfsocost}
-            onDataInputChange={this.handleDataInputChange}
-          />
-          <InputFieldNumber
-            label="Heavy Fuel Oil Cost"
-            name="hfocost"
-            unit="USD"
-            value={hfocost}
-            onDataInputChange={this.handleDataInputChange}
-          />
+          <Box>
+            <Dropdown
+              label="Depart from"
+              optionsMap={ports}
+              optionNameKey="name"
+              handleSelection={this.handleDeparturePortSelection}
+            />
+            <DateTime
+              label="Departure time"
+              name="departure_time"
+              date={departureDate}
+              time={departureTime}
+              onDateInputChange={this.handleDateInputChange}
+              onTimeInputChange={this.handleTimeInputChange}
+            />
+          </Box>
+          <Box>
+            <Dropdown
+              label="Destination"
+              optionsMap={ports}
+              optionNameKey="name"
+              handleSelection={this.handleArrivalPortSelection}
+            />
+            <DateTime
+              label="Arrival time"
+              name="target_arrival_time"
+              date={arrivalDate}
+              time={arrivalTime}
+              onDateInputChange={this.handleDateInputChange}
+              onTimeInputChange={this.handleTimeInputChange}
+            />
+          </Box>
+          <Box>
+            <Dropdown
+              label="Optimisation type"
+              optionsMap={voyages}
+              optionNameKey="optimisation_type"
+              handleSelection={this.handleOptimisationTypeSelection}
+            />
+          </Box>
+          <Box>
+            <InputFieldNumber
+              label="Forward Draft"
+              name="forwarddraft"
+              unit="m"
+              value={forwarddraft}
+              onDataInputChange={this.handleDataInputChange}
+            />
+          </Box>
+          <Box>
+            <InputFieldNumber
+              label="Aft Draft"
+              name="aftdraft"
+              unit="m"
+              value={aftdraft}
+              onDataInputChange={this.handleDataInputChange}
+            />
+          </Box>
+          <Box>
+            <InputFieldNumber
+              label="Low Sulfor Fuel Oil Cost"
+              name="lfsocost"
+              unit="USD"
+              value={lfsocost}
+              onDataInputChange={this.handleDataInputChange}
+            />
+          </Box>
+          <Box>
+            <InputFieldNumber
+              label="Heavy Fuel Oil Cost"
+              name="hfocost"
+              unit="USD"
+              value={hfocost}
+              onDataInputChange={this.handleDataInputChange}
+            />
+          </Box>
         </form>
       </div>
     );
