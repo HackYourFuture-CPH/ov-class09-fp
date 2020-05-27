@@ -57,6 +57,10 @@ containing specifications on current position, speed, consumption and more.
 
 ![Click here to check the Business Glossary](/BusinessGlossary.md)
 
+##### Wireframes
+
+https://www.figma.com/file/KJ60sPBKyAtC7vk8aX2wkd/OV
+
 #### Database model
 
 ![DB Diagram](/db/Schema.png)
