@@ -1,6 +1,10 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import Field from "../Field";
+
+//import material UI
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 export default function SuggestedRouteDetails({
   eta,
@@ -11,18 +15,34 @@ export default function SuggestedRouteDetails({
   lsfo
 }) {
   return (
-    <Fragment>
-      <div>
-        <Field title={"ETA"} description={eta} />
-        <Field title={"HFO consumption"} description={hfo} />
-        <Field title={"MAX wave HS"} description={`${maxWaveHs}m`} />
-      </div>
-      <div>
-        <Field title={"AVG speed"} description={`${avgSpeed}kn`} />
-        <Field title={"HIRE cost"} description={`$${hireCost}`} />
-        <Field title={"LSFO consumtion"} description={lsfo} />
-      </div>
-    </Fragment>
+    <Container>
+      <Grid container>
+        <Grid item xs={6}>
+          <Typography>ETA</Typography>
+          <Typography>{eta}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>AVG speed</Typography>
+          <Typography>{`${avgSpeed}kn`}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>MAX wave HS</Typography>
+          <Typography>{`${maxWaveHs}m`}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>HIRE cost</Typography>
+          <Typography>{`$${hireCost}`}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>HFO consumption</Typography>
+          <Typography>{hfo}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>LSFO consumtion</Typography>
+          <Typography>{lsfo}</Typography>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
